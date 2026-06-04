@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { KBSearch } from "@/components/kb-search";
 import { KB_ARTICLES, KB_CATEGORIES } from "@/data/knowledge-base";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
@@ -18,6 +19,8 @@ export default function KnowledgeBasePage() {
         <p className="section-subtitle max-w-3xl">
           Hardware deployment guides for {SITE.name} customers — setup, maintenance, and operations for real-device phone farms from {SITE.location}.
         </p>
+
+        <KBSearch articles={KB_ARTICLES} />
 
         <div className="grid lg:grid-cols-4 gap-8">
           <aside className="lg:col-span-1">

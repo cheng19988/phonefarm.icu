@@ -6,7 +6,7 @@ Set your GitHub repo URL (repo name should be `phonefarm.icu`):
 
 ```bash
 cd D:\phonefarm.icu
-git remote set-url origin https://github.com/YOUR_GITHUB_USER/phonefarm.icu.git
+git remote set-url origin https://github.com/cheng19988/phonefarm.icu.git
 git push -u origin main
 ```
 
