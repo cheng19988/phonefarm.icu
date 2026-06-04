@@ -25,11 +25,25 @@ npm run sync-assets
 Primary path: `D:\网站搭建素材库\FINAL_phonefarm_6sites_package_CN\02_六个网站分类素材\02_phonefarm.icu_product_catalog_site`  
 Fallback: `D:\网站搭建素材库\02_six_website_ready\phonefarm.icu_product_catalog_site`
 
-## Production
+## Vercel
+
+Required environment variables in Vercel project settings:
+
+| Variable | Example | Notes |
+|----------|---------|--------|
+| `JWT_SECRET` | long random string | Required |
+| `DATABASE_URL` | `file:./prisma/vercel.db` | Optional for catalog fallback; required for orders/login |
+
+Build uses `npm run build` (no DB seed during build). Product pages fall back to static catalog if DB is unavailable.
+
+For full shop features on Vercel, add a hosted DB (e.g. Vercel Postgres / Turso) or commit a seeded SQLite file and set `DATABASE_URL`.
+
+## Production (self-hosted)
 
 Copy `.env.example` to `.env`, set `JWT_SECRET` and admin password, then:
 
 ```bash
+npm run db:push && npm run db:seed
 npm run build
 npm start
 ```

@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { listCatalogProducts } from "@/lib/catalog";
 import { ProductCard } from "@/components/commerce";
 import { buildMetadata } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
   title: "Full Phone Farm Hardware Catalog and Shop",
@@ -16,19 +18,10 @@ export default async function ProductsPage({
   searchParams: Promise<{ sort?: string; category?: string }>;
 }) {
   const params = await searchParams;
-  const orderBy =
-    params.sort === "price-desc"
-      ? { priceUsd: "desc" as const }
-      : params.sort === "price-asc"
-        ? { priceUsd: "asc" as const }
-        : { name: "asc" as const };
-
-  const products = await prisma.product.findMany({
-    where: {
-      published: true,
-      ...(params.category ? { category: params.category } : {}),
-    },
-    orderBy,
+  const products = await listCatalogProducts({
+    category: params.category,
+    orderBy: params.sort === "price-desc" ? "priceUsd" : params.sort === "price-asc" ? "priceUsd" : "name",
+    sort: params.sort === "price-desc" ? "desc" : "asc",
   });
 
   const categories = [...new Set(products.map((p) => p.category))];

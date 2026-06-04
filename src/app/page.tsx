@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { countCatalogProducts, listCatalogProducts } from "@/lib/catalog";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductCard, FAQAccordion } from "@/components/commerce";
@@ -12,6 +12,8 @@ import { HARDWARE_PACKAGES } from "@/data/packages";
 import { KB_ARTICLES } from "@/data/knowledge-base";
 import { IMAGES } from "@/lib/images";
 import { SITE, PRODUCT_CATEGORIES } from "@/lib/config";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
   title: SITE.headline,
@@ -34,8 +36,8 @@ const MATRIX = [
 
 export default async function HomePage() {
   const [products, totalCount] = await Promise.all([
-    prisma.product.findMany({ where: { published: true }, orderBy: { priceUsd: "asc" }, take: 12 }),
-    prisma.product.count({ where: { published: true } }),
+    listCatalogProducts({ orderBy: "priceUsd", sort: "asc", take: 12 }),
+    countCatalogProducts(),
   ]);
   const previewFaq = FAQ_ITEMS.slice(0, 6);
 

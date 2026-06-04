@@ -54,10 +54,10 @@ async function main() {
   }
 
   await prisma.user.upsert({
-    where: { email: "admin@phonefarm.fun" },
+    where: { email: "admin@phonefarm.icu" },
     update: {},
     create: {
-      email: "admin@phonefarm.fun",
+      email: "admin@phonefarm.icu",
       name: "Admin",
       role: "admin",
       passwordHash: await bcrypt.hash("admin123456", 12),
