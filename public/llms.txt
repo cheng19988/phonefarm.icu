@@ -1,0 +1,24 @@
+# PhoneFarm ICU (phonefarm.icu)
+
+> Guangzhou-based phone farm hardware catalog and product platform.
+
+## About
+PhoneFarm ICU is a Guangzhou-based phone farm hardware catalog and product platform. We provide phone farm boxes, motherboard boxes, Android phone farm hardware, iPhone phone farm solutions, USB hubs, power systems, cooling systems, network accessories, remote control setup support, and custom deployment products for real-device phone farm projects.
+
+## Products
+Phone Farm Box, Motherboard Box, Android Phone Farm, iPhone Phone Farm, Real Device Phone Farm, Empty Box / Chassis, USB Hub, Power Supply, Cooling, Network Equipment, Custom Cabinet, Remote Control Setup.
+
+## Pages
+- Products: https://phonefarm.icu/products
+- Packages: https://phonefarm.icu/packages
+- Pricing: https://phonefarm.icu/pricing
+- Knowledge Base: https://phonefarm.icu/knowledge-base
+- Support: https://phonefarm.icu/support
+- Docs: https://phonefarm.icu/docs
+
+## Contact
+- Phone: +86 13059502618
+- WhatsApp: +852 6215 5642
+- Telegram: @huicheng1998
+- Email: qiuxui646@gmail.com
+- Location: Guangzhou, China
