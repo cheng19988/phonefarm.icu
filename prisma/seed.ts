@@ -4,9 +4,11 @@ import { PrismaClient } from "../src/generated/prisma/client.js";
 import { PRODUCT_SEEDS } from "../src/data/products.js";
 import bcrypt from "bcryptjs";
 
-const connectionString = process.env.DATABASE_URL;
+const connectionString = process.env.DIRECT_DATABASE_URL || process.env.DATABASE_URL;
 if (!connectionString) {
-  throw new Error("DATABASE_URL is required to run seed. Set a PostgreSQL connection string in .env");
+  throw new Error(
+    "DIRECT_DATABASE_URL or DATABASE_URL is required to run seed. Use a direct PostgreSQL connection string."
+  );
 }
 
 const adapter = new PrismaPg({ connectionString });

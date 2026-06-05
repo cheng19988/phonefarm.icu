@@ -29,58 +29,59 @@ Fallback: `D:\网站搭建素材库\02_six_website_ready\phonefarm.icu_product_c
 
 ## Database (PostgreSQL)
 
-This project uses **Prisma 7 + PostgreSQL** (`@prisma/adapter-pg` + `pg`). SQLite is no longer supported.
+This project uses **Prisma 7 + PostgreSQL** (`@prisma/adapter-pg` + `pg`). Schema is versioned in `prisma/migrations/`.
 
 | Environment | Recommended provider |
 |-------------|---------------------|
 | Local dev | Docker Postgres, or free [Neon](https://neon.tech) / [Supabase](https://supabase.com) dev branch |
 | Vercel production | **Neon**, **Supabase**, or **Vercel Postgres** (Marketplace) |
 
-### Connection strings
+### Connection strings (pooled vs direct)
 
-Copy `.env.example` to `.env`:
+| Variable | Use | Example |
+|----------|-----|---------|
+| `DATABASE_URL` | **Runtime** (Next.js app on Vercel) | Pooled URL (`-pooler` host on Neon, port `6543` on Supabase) |
+| `DIRECT_DATABASE_URL` | **Migrations & seed** (CLI, local, CI) | Direct (non-pooled) URL |
 
-```bash
-DATABASE_URL="postgresql://user:password@host:5432/phonefarm?schema=public"
-JWT_SECRET="your-local-secret"
-ADMIN_EMAIL="admin@phonefarm.icu"
-ADMIN_PASSWORD="change-me"
-```
+Copy `.env.example` to `.env` and set both URLs when your provider separates pooled and direct endpoints.
 
-**Serverless / Vercel:** use the provider's **pooled** connection string to avoid exhausting connections:
+`prisma.config.ts` (Prisma CLI) reads `DIRECT_DATABASE_URL` first, then falls back to `DATABASE_URL`.  
+`src/lib/prisma.ts` (runtime) always uses `DATABASE_URL` (pooled).
 
-| Provider | Pooled URL hint |
-|----------|-----------------|
-| Neon | Host contains `-pooler` (e.g. `ep-xxx-pooler.region.aws.neon.tech`) |
-| Supabase | Port `6543` (transaction pooler) or `pooler.supabase.com` |
-| Vercel Postgres | Use the pooled URL from the Vercel storage dashboard |
-
-Use a **direct** (non-pooled) URL for `db:push` / migrations if the provider recommends it; use **pooled** for runtime (`DATABASE_URL` on Vercel).
-
-### First-time setup
+### Local development
 
 ```bash
 npm install
-npm run db:push      # create tables in Postgres
-npm run db:seed      # sync products + admin user
+npx prisma validate          # verify schema — no database required
+
+# When you have a real Postgres database:
+npm run db:migrate:dev       # prisma migrate dev — apply migrations + dev workflow
+npm run db:seed              # sync products + admin user (uses DIRECT_DATABASE_URL || DATABASE_URL)
 ```
 
-`npm run build` runs `prisma generate` (also via `postinstall`). **Build does not require a live database** — product pages fall back to `src/data/products.ts` if the DB is unreachable.
-
-### Schema updates
-
-After pulling Prisma schema changes:
+For a new schema change during development:
 
 ```bash
-npx prisma generate   # included in npm run build
-npm run db:push       # apply schema (dev / small projects)
-# or
-npm run db:migrate    # if using prisma migrate deploy in production
+npm run db:migrate:dev -- --name describe_your_change
 ```
+
+### Production migrations
+
+**Do not use `db:push` as the long-term production workflow.** Use checked-in migrations:
+
+```bash
+# CI / deploy hook / manual — requires DIRECT_DATABASE_URL or direct DATABASE_URL
+npm run db:migrate           # prisma migrate deploy
+npm run db:seed              # once after first deploy, or when re-seeding products
+```
+
+`npm run build` runs `prisma generate` only. **Build does not require a live database** — product pages fall back to `src/data/products.ts` if the DB is unreachable.
+
+Initial migration: `prisma/migrations/20250606000000_init/` (generated via `prisma migrate diff`, not executed against a database in CI).
 
 ### Migrating from old SQLite data
 
-If you have inquiry rows in a local `dev.db` file, export them manually (e.g. `sqlite3 dev.db .dump`) and import into Postgres, or re-seed and accept a fresh CRM. Schema field mapping is unchanged (`ContactSubmission` columns match).
+If you have inquiry rows in a local `dev.db` file, export them manually and import into Postgres, or re-seed and accept a fresh CRM.
 
 ---
 
@@ -88,7 +89,8 @@ If you have inquiry rows in a local `dev.db` file, export them manually (e.g. `s
 
 | Variable | Example | Notes |
 |----------|---------|--------|
-| `DATABASE_URL` | `postgresql://...pooler.../neondb?sslmode=require` | **Required** — pooled Postgres URL |
+| `DATABASE_URL` | `postgresql://...pooler.../neondb?sslmode=require` | **Required** — pooled URL for runtime |
+| `DIRECT_DATABASE_URL` | `postgresql://...direct.../neondb?sslmode=require` | For build/CI migrate only (optional on Vercel if you migrate from local) |
 | `JWT_SECRET` | long random string | **Required** for admin login |
 | `ADMIN_EMAIL` | `admin@phonefarm.icu` | Admin account (seed) |
 | `ADMIN_PASSWORD` | strong password | Admin password (seed) |
@@ -96,19 +98,19 @@ If you have inquiry rows in a local `dev.db` file, export them manually (e.g. `s
 | `TELEGRAM_BOT_TOKEN` | from @BotFather | Required if notifications enabled |
 | `TELEGRAM_CHAT_ID` | your chat or group id | Required if notifications enabled |
 
-`vercel.json` uses `npm run build` (= `prisma generate && next build`). It does **not** run `db:push` or seed.
+`vercel.json` uses `npm run build` (= `prisma generate && next build`). It does **not** run migrations or seed.
 
-**After first deploy:**
+**Recommended first deploy:**
 
-1. Set `DATABASE_URL` to your Postgres pooled URL.
-2. Run locally (or in CI) against the **direct** URL:
+1. Set `DATABASE_URL` (pooled) on Vercel for runtime.
+2. From your machine or CI with **direct** URL:
    ```bash
-   DATABASE_URL="postgresql://...direct..." npm run db:push
-   DATABASE_URL="postgresql://...direct..." npm run db:seed
+   DIRECT_DATABASE_URL="postgresql://...direct..." npm run db:migrate
+   DIRECT_DATABASE_URL="postgresql://...direct..." npm run db:seed
    ```
-3. Redeploy or wait for next build — runtime uses pooled `DATABASE_URL` on Vercel.
+3. Deploy — app connects via pooled `DATABASE_URL`.
 
-Optional: set Vercel **Build Command** to `npm run vercel-build` to push schema + seed during build (only if `DATABASE_URL` is available at build time).
+Optional: set Vercel **Build Command** to `npm run vercel-build` to run `migrate deploy` + seed during build (requires `DIRECT_DATABASE_URL` or direct `DATABASE_URL` at build time).
 
 ### Telegram inquiry notifications
 
@@ -128,10 +130,10 @@ If variables are missing or `INQUIRY_NOTIFY_ENABLED` is not `true`, form submiss
 
 ## Production (self-hosted)
 
-Copy `.env.example` to `.env`, set `JWT_SECRET`, `DATABASE_URL`, and admin password, then:
+Copy `.env.example` to `.env`, set `JWT_SECRET`, `DATABASE_URL`, `DIRECT_DATABASE_URL`, and admin password, then:
 
 ```bash
-npm run db:push && npm run db:seed
+npm run db:migrate && npm run db:seed
 npm run build
 npm start
 ```
