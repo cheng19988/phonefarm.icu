@@ -88,15 +88,19 @@ model Payment {
 }
 
 model ContactSubmission {
-  id             String   @id @default(cuid())
-  name           String
-  country        String?
-  whatsapp       String?
-  phone          String?
-  email          String
-  deviceQuantity String?
-  productInterest String?
-  budget         String?
-  message        String?
-  createdAt      DateTime @default(now())
+  id               String   @id @default(cuid())
+  name             String
+  company          String?
+  country          String?
+  whatsapp         String?
+  phone            String?
+  email            String
+  deviceQuantity   String?
+  productInterest  String?
+  preferredContact String?
+  sourcePage       String?
+  message          String?
+  status           String   @default("New")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

@@ -1,24 +1,59 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { notifyTelegramInquiry } from "@/lib/notify-telegram";
+import { parseInquiryForm, validateInquiry } from "@/lib/inquiry";
 
 export async function POST(req: NextRequest) {
-  const form = await req.formData();
-  const company = String(form.get("company") || "").trim();
-  const rawMessage = String(form.get("message") || "");
-  const data = {
-    name: String(form.get("name") || ""),
-    country: String(form.get("country") || ""),
-    whatsapp: String(form.get("whatsapp") || ""),
-    phone: String(form.get("phone") || ""),
-    email: String(form.get("email") || ""),
-    deviceQuantity: String(form.get("deviceQuantity") || ""),
-    productInterest: String(form.get("productInterest") || ""),
-    budget: String(form.get("budget") || ""),
-    message: company ? `Company: ${company}\n\n${rawMessage}`.trim() : rawMessage,
-  };
-  if (!data.name || !data.email) {
-    return NextResponse.json({ error: "Name and email required" }, { status: 400 });
+  let form: FormData;
+  try {
+    form = await req.formData();
+  } catch {
+    return NextResponse.json({ error: "Invalid form submission." }, { status: 400 });
   }
-  await prisma.contactSubmission.create({ data });
-  return NextResponse.json({ ok: true });
+
+  const data = parseInquiryForm(form);
+
+  if (data.website) {
+    return NextResponse.json({ ok: true });
+  }
+
+  const validationError = validateInquiry(data);
+  if (validationError) {
+    return NextResponse.json({ error: validationError }, { status: 400 });
+  }
+
+  const referrer = req.headers.get("referer") || "";
+  const sourcePage = data.sourcePage || (referrer ? new URL(referrer).pathname : "");
+
+  try {
+    await prisma.contactSubmission.create({
+      data: {
+        name: data.name,
+        company: data.company || null,
+        email: data.email,
+        whatsapp: data.whatsapp || null,
+        phone: data.phone || null,
+        country: data.country || null,
+        deviceQuantity: data.deviceQuantity || null,
+        productInterest: data.productInterest || null,
+        preferredContact: data.preferredContact || null,
+        sourcePage: sourcePage || null,
+        message: data.message || null,
+        status: "New",
+      },
+    });
+
+    await notifyTelegramInquiry({ ...data, sourcePage });
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("Contact submission failed:", err);
+    return NextResponse.json(
+      {
+        error:
+          "We could not save your inquiry right now. Please contact us via WhatsApp or email directly.",
+      },
+      { status: 503 }
+    );
+  }
 }

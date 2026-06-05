@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { AdminInquiryRow } from "@/components/admin-inquiry-row";
 import { AdminProductRow } from "@/components/admin-product-row";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
@@ -16,22 +17,23 @@ export default async function AdminPage() {
   const admin = await requireAdmin();
   if (!admin) redirect("/login");
 
-  const [users, orders, contacts, products] = await Promise.all([
+  const [users, orders, contacts, products, inquiries] = await Promise.all([
     prisma.user.count(),
     prisma.order.count(),
     prisma.contactSubmission.count(),
     prisma.product.count(),
+    prisma.contactSubmission.findMany({
+      take: 50,
+      orderBy: { createdAt: "desc" },
+    }),
   ]);
+
+  const newInquiries = inquiries.filter((i) => i.status === "New").length;
 
   const recentOrders = await prisma.order.findMany({
     take: 10,
     orderBy: { createdAt: "desc" },
     include: { user: { select: { email: true } }, payment: true, items: { include: { product: { select: { name: true } } } } },
-  });
-
-  const recentContacts = await prisma.contactSubmission.findMany({
-    take: 10,
-    orderBy: { createdAt: "desc" },
   });
 
   const allProducts = await prisma.product.findMany({ orderBy: { name: "asc" } });
@@ -44,8 +46,8 @@ export default async function AdminPage() {
           {[
             { label: "Users", value: users },
             { label: "Orders", value: orders },
-            { label: "Contacts", value: contacts },
-            { label: "Products", value: products },
+            { label: "Inquiries", value: contacts },
+            { label: "New Inquiries", value: newInquiries },
           ].map((s) => (
             <div key={s.label} className="card p-6 text-center">
               <div className="text-3xl font-bold text-cyan-400">{s.value}</div>
@@ -53,6 +55,36 @@ export default async function AdminPage() {
             </div>
           ))}
         </div>
+
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-4">Hardware Inquiries</h2>
+          <p className="text-slate-500 text-sm mb-4">Update status as you contact, quote, or close each lead.</p>
+          <div className="overflow-x-auto border border-slate-800 rounded-lg">
+            <table className="w-full text-sm min-w-[900px]">
+              <thead>
+                <tr className="border-b border-slate-800 text-slate-500 text-left bg-slate-900/50">
+                  <th className="p-3">Received</th>
+                  <th className="p-3">Contact</th>
+                  <th className="p-3">Product</th>
+                  <th className="p-3">Qty</th>
+                  <th className="p-3">Country</th>
+                  <th className="p-3">Email / Chat</th>
+                  <th className="p-3">Message</th>
+                  <th className="p-3">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {inquiries.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="p-6 text-center text-slate-500">No inquiries yet.</td>
+                  </tr>
+                ) : (
+                  inquiries.map((inq) => <AdminInquiryRow key={inq.id} inquiry={inq} />)
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           <section>
@@ -65,29 +97,24 @@ export default async function AdminPage() {
                     <span className="text-white">{o.status}</span>
                   </div>
                   <p className="text-slate-400 mt-1">{o.user.email} · ${o.totalUsd}</p>
-                  {o.payment && (
-                    <p className="text-slate-500 mt-1">Payment: {o.payment.paymentStatus} / {o.payment.verificationStatus}</p>
-                  )}
                 </div>
               ))}
             </div>
           </section>
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">Contact Submissions</h2>
-            <div className="space-y-3">
-              {recentContacts.map((c) => (
-                <div key={c.id} className="card p-4 text-sm">
-                  <p className="text-white font-medium">{c.name} · {c.email}</p>
-                  <p className="text-slate-400">{c.country} · {c.productInterest} · Qty: {c.deviceQuantity}</p>
-                  <p className="text-slate-500 mt-1 line-clamp-2">{c.message}</p>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-xl font-bold text-white mb-4">Inquiry Status Guide</h2>
+            <ul className="text-sm text-slate-400 space-y-2">
+              <li><strong className="text-cyan-400">New</strong> — just received, not yet contacted</li>
+              <li><strong className="text-yellow-400">Contacted</strong> — sales replied, gathering requirements</li>
+              <li><strong className="text-green-400">Quoted</strong> — written quotation sent</li>
+              <li><strong className="text-slate-500">Closed</strong> — won, lost, or no further action</li>
+              <li><strong className="text-red-400">Spam</strong> — filtered junk submission</li>
+            </ul>
           </section>
         </div>
 
         <section>
-          <h2 className="text-xl font-bold text-white mb-4">Product Inventory</h2>
+          <h2 className="text-xl font-bold text-white mb-4">Product Inventory ({products})</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -105,7 +132,6 @@ export default async function AdminPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-500 mt-4">Use Prisma Studio or API to update prices and stock: npx prisma studio</p>
         </section>
       </div>
     </div>
