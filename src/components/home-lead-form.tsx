@@ -19,12 +19,12 @@ export function HomeLeadForm() {
       <div className="container-wide max-w-3xl">
         <h2 className="section-title text-center">Get Deployment Consultation</h2>
         <p className="section-subtitle text-center">
-          Register your interest — our Guangzhou sales team responds within 24 hours (like GenFarmer package lead capture, for hardware quotes).
+          Tell us your device count and deployment goals — our sales engineers in Guangzhou typically reply within one business day.
         </p>
         {status === "success" ? (
           <div className="card p-8 text-center">
-            <p className="text-green-400 mb-4">Thank you! We will contact you soon.</p>
-            <Link href="/register" className="btn-primary">Create Account to Order</Link>
+            <p className="text-green-400 mb-4">Thank you. We will reach out via email or WhatsApp shortly.</p>
+            <Link href="/contact" className="btn-primary">View Contact Options</Link>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="card p-6 space-y-4">

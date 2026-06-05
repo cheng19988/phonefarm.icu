@@ -20,7 +20,7 @@ export const SERVICES = [
     title: "Group Control System Configuration",
     description:
       "Batch task scheduling, synchronized multi-device actions, client/project grouping, and automation script integration for agency-scale operations.",
-    image: IMAGES.remoteControl.detail,
+    image: IMAGES.androidFarm.hero,
   },
   {
     slug: "bulk-device-deployment",
@@ -41,7 +41,7 @@ export const SERVICES = [
     title: "Enterprise Deployment",
     description:
       "Full rackmount cabinet deployment with redundant power, network segmentation, remote monitoring, and dedicated account management for enterprise clients.",
-    image: IMAGES.customCabinet.detail,
+    image: IMAGES.network.hero,
   },
   {
     slug: "maintenance-support",

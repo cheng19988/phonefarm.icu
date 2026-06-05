@@ -38,19 +38,13 @@ export async function Header() {
           <Link href="/products" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
             Catalog
           </Link>
-          {session ? (
-            <Link href={session.role === "admin" ? "/admin" : "/account/orders"} className="text-sm text-slate-300 hover:text-white">
+          <Link href="/contact" className="hidden lg:inline-flex text-sm text-slate-300 hover:text-white">
+            Inquiry
+          </Link>
+          {session && (
+            <Link href={session.role === "admin" ? "/admin" : "/account/orders"} className="text-sm text-slate-400 hover:text-white">
               Account
             </Link>
-          ) : (
-            <>
-              <Link href="/login" className="text-sm text-slate-300 hover:text-white">
-                Login
-              </Link>
-              <Link href="/register" className="text-sm text-cyan-400 hover:text-white font-medium">
-                Register
-              </Link>
-            </>
           )}
         </div>
       </div>

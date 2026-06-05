@@ -31,7 +31,7 @@ export function ProductCard({ slug, name, shortDesc, priceUsd, stock, imageCard,
           <StockBadge stock={stock} />
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <Link href={`/products/${slug}`} className="btn-primary text-center text-sm py-2">Buy Now</Link>
+          <Link href={`/products/${slug}`} className="btn-primary text-center text-sm py-2">View Details</Link>
           <Link href={`/contact?product=${slug}`} className="btn-secondary text-center text-sm py-2">Get Quote</Link>
         </div>
       </div>

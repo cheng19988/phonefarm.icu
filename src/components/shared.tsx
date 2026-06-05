@@ -33,7 +33,7 @@ export function ContactCTA({ title = "Talk to Our Sales Team" }: { title?: strin
     <section className="rounded-2xl bg-gradient-to-br from-cyan-900/40 to-slate-900 border border-cyan-800/50 p-8 md:p-12 text-center">
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{title}</h2>
       <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
-        Factory-direct support from {SITE.location}. Get pricing, custom quotes, and deployment guidance within 24 hours.
+        Speak with our {SITE.location} sales team for pricing, MOQ, lead times, and deployment planning. Most inquiries receive a response within 24 hours.
       </p>
       <ContactBar />
       <div className="mt-6 flex flex-wrap justify-center gap-3">

@@ -3,13 +3,13 @@ export const SITE = {
   domain: "phonefarm.icu",
   url: "https://phonefarm.icu",
   tagline: "Phone Farm Hardware Catalog — Guangzhou",
-  headline: "Phone Farm Hardware, Boxes, Accessories and Deployment Products",
+  headline: "Industrial Phone Farm Hardware, Built in Guangzhou",
   intro:
-    "PhoneFarm ICU is a Guangzhou-based phone farm hardware catalog and product platform for real-device phone farm boxes, motherboard boxes, USB hub solutions, power systems, cooling systems, network accessories, and custom deployment products.",
+    "PhoneFarm ICU manufactures real-device phone farm enclosures, motherboard boxes, and supporting infrastructure. We supply complete hardware kits with engineering support, QC, and worldwide shipping from our Guangzhou facility.",
   location: "Guangzhou, China",
   since: 2017,
   description:
-    "PhoneFarm ICU — Guangzhou phone farm hardware catalog and shop. Phone farm boxes, motherboard boxes, Android and iPhone farms, USB hubs, power, cooling, network gear, remote control setup, USDT checkout, and bulk deployment.",
+    "PhoneFarm ICU — Guangzhou manufacturer of phone farm boxes, motherboard chassis, USB hubs, power and cooling systems. Catalog pricing, bulk quotes, and international delivery since 2017.",
 } as const;
 
 export const CONTACT = {
@@ -37,7 +37,8 @@ export const NAV = [
   { href: "/knowledge-base", label: "Knowledge Base" },
   { href: "/support", label: "Support" },
   { href: "/docs", label: "Docs" },
-  { href: "/blog", label: "Blog" },
+  { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export const FOOTER_NAV = [
@@ -61,5 +62,5 @@ export const PRODUCT_CATEGORIES = [
   "Cooling",
   "Network",
   "Custom Cabinet",
-  "Remote Control Setup",
+  "Remote Control",
 ] as const;

@@ -17,14 +17,20 @@ export function buildMetadata({
   noIndex,
 }: SEOInput): Metadata {
   const url = `${SITE.url}${path}`;
-  const ogImage = image || `${SITE.url}/images/hero_1600x900/phonefarm.icu-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-hero_1600x900.webp`;
+  const defaultOg = `${SITE.url}/images/hero_1600x900/phonefarm.icu-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-hero_1600x900.webp`;
+  const ogImage = image
+    ? image.startsWith("http")
+      ? image
+      : `${SITE.url}${image}`
+    : defaultOg;
+  const fullTitle = `${title} | ${SITE.name}`;
 
   return {
-    title: `${title} | ${SITE.name}`,
+    title,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${title} | ${SITE.name}`,
+      title: fullTitle,
       description,
       url,
       siteName: SITE.name,
@@ -34,7 +40,7 @@ export function buildMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | ${SITE.name}`,
+      title: fullTitle,
       description,
       images: [ogImage],
     },

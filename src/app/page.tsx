@@ -7,7 +7,6 @@ import { HomeLeadForm } from "@/components/home-lead-form";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/shared";
 import { FAQ_ITEMS } from "@/data/faq";
-import { BLOG_POSTS } from "@/data/blog";
 import { HARDWARE_PACKAGES } from "@/data/packages";
 import { KB_ARTICLES } from "@/data/knowledge-base";
 import { IMAGES } from "@/lib/images";
@@ -16,7 +15,7 @@ import { SITE, PRODUCT_CATEGORIES } from "@/lib/config";
 export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
-  title: SITE.headline,
+  title: "Phone Farm Hardware Catalog",
   description: SITE.description,
   path: "/",
 });
@@ -56,8 +55,8 @@ export default async function HomePage() {
           <p className="text-xl text-slate-300 max-w-2xl mb-8">{SITE.intro}</p>
           <div className="flex flex-wrap gap-4">
             <Link href="/products" className="btn-primary text-lg px-8 py-3">Browse Catalog</Link>
-            <Link href="/pricing" className="btn-secondary text-lg px-8 py-3">See Pricing</Link>
-            <Link href="/register" className="btn-outline text-lg px-8 py-3">Register</Link>
+            <Link href="/contact" className="btn-secondary text-lg px-8 py-3">Request Quote</Link>
+            <Link href="/pricing" className="btn-outline text-lg px-8 py-3">View Pricing</Link>
           </div>
         </div>
       </section>
@@ -65,7 +64,7 @@ export default async function HomePage() {
       <section className="section">
         <div className="container-wide">
           <h2 className="section-title">Hardware Product Matrix</h2>
-          <p className="section-subtitle">Factory-direct categories for real-device phone farms.</p>
+          <p className="section-subtitle">Browse by product line — boxes, farms, power, cooling, and deployment accessories.</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {MATRIX.map((item) => (
               <Link key={item.href} href={item.href} className="card overflow-hidden group hover:border-cyan-700 transition-colors">
@@ -112,7 +111,7 @@ export default async function HomePage() {
       <section className="section" id="catalog">
         <div className="container-wide">
           <h2 className="section-title">Shop Catalog</h2>
-          <p className="section-subtitle">{totalCount} SKUs with price, stock, Buy Now (USDT), Get Quote.</p>
+          <p className="section-subtitle">{totalCount} SKUs with list pricing and stock status. Open any product for specs, or send a bulk inquiry.</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {products.map((p) => (
               <ProductCard key={p.id} slug={p.slug} name={p.name} shortDesc={p.shortDesc} priceUsd={p.priceUsd} stock={p.stock} imageCard={p.imageCard} category={p.category} />
@@ -141,9 +140,13 @@ export default async function HomePage() {
           </div>
           <div>
             <h2 className="section-title">Support and Docs</h2>
-            <div className="flex flex-wrap gap-3 mt-4">
-              <Link href="/support" className="btn-primary">Support</Link>
-              <Link href="/docs" className="btn-secondary">Docs</Link>
+            <p className="text-slate-400 text-sm mt-2 mb-4">
+              Deployment guides, wiring diagrams, and pre-sales engineering — available before and after your order ships.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/support" className="btn-primary">Support Channels</Link>
+              <Link href="/docs" className="btn-secondary">Technical Docs</Link>
+              <Link href="/services" className="btn-outline">Setup Services</Link>
             </div>
           </div>
         </div>

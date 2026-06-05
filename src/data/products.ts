@@ -37,13 +37,13 @@ function p(
     shortDesc,
     description:
       extra?.description ||
-      `${name} from PhoneFarm ICU — factory-direct real-device hardware built in Guangzhou since 2017. Designed for stable 24/7 phone farm operations with centralized power, cooling, and USB connectivity.`,
+      `${shortDesc} Built and tested at our Guangzhou workshop, with export packaging and remote setup guidance included.`,
     features: extra?.features || [
-      "Factory-direct from Guangzhou manufacturer",
+      "Assembled and burn-in tested before shipment",
       "Real physical devices — not cloud or emulator",
       "Centralized power and cooling architecture",
-      "Compatible with ADB and group control software",
-      "Tested before shipment with QC report",
+      "ADB and group-control software compatible",
+      "12-month hardware support",
     ],
     specs: extra?.specs || {
       "Form Factor": "2U industrial chassis",
@@ -56,10 +56,10 @@ function p(
       "Warranty": "12 months hardware support",
     },
     scenarios: extra?.scenarios || [
-      "Multi-account social media operations",
-      "App testing and QA automation",
-      "E-commerce store management at scale",
-      "Ad verification and marketing campaigns",
+      "Mobile app QA and regression testing",
+      "Enterprise device fleet provisioning",
+      "Cross-version OS compatibility testing",
+      "Automation workflow development",
     ],
     accessories: extra?.accessories || [
       "Industrial chassis unit",

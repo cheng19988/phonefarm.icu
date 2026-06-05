@@ -25,6 +25,10 @@ function ContactForm() {
           <input name="name" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
         </div>
         <div>
+          <label className="block text-sm text-slate-400 mb-1">Company</label>
+          <input name="company" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+        </div>
+        <div>
           <label className="block text-sm text-slate-400 mb-1">Country</label>
           <input name="country" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
         </div>
@@ -71,18 +75,15 @@ export default function ContactPage() {
     <div className="section">
       <div className="container-wide max-w-4xl">
         <h1 className="section-title">Contact Us</h1>
-        <p className="section-subtitle">Get your custom quote in minutes. Factory-direct support from {SITE.location}.</p>
+        <p className="section-subtitle">
+          Share your deployment requirements — device count, product interest, and timeline. Our sales team in {SITE.location} replies within 24 hours on business days.
+        </p>
 
         <div className="card p-6 mb-8">
-          <h2 className="font-bold text-white mb-4">Direct Contact</h2>
+          <h2 className="font-bold text-white mb-2">Direct Contact</h2>
+          <p className="text-slate-400 text-sm mb-4">For urgent orders, WhatsApp or Telegram is fastest. Email works well for detailed spec attachments.</p>
           <ContactBar />
-          <ul className="mt-4 space-y-2 text-slate-300">
-            <li>📞 Phone: {CONTACT.phone}</li>
-            <li>💬 WhatsApp: {CONTACT.whatsapp}</li>
-            <li>✈️ Telegram: {CONTACT.telegram}</li>
-            <li>✉️ Email: {CONTACT.email}</li>
-            <li>📍 Location: {SITE.location}</li>
-          </ul>
+          <p className="mt-4 text-sm text-slate-500">Location: {SITE.location}</p>
         </div>
 
         <Suspense fallback={<div className="card p-6 text-slate-400">Loading form...</div>}>

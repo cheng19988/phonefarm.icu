@@ -17,7 +17,10 @@ export default function ServicesPage() {
       <div className="container-wide">
         <h1 className="section-title">Phone Farm Services</h1>
         <p className="section-subtitle">
-          From single-box setup to enterprise rack deployment — PhoneFarm ICU provides end-to-end hardware and configuration services from our Guangzhou factory.
+          Hardware is only half the deployment. We help with setup, remote control configuration, bulk provisioning, and ongoing maintenance — delivered from our Guangzhou workshop or remotely.
+        </p>
+        <p className="text-sm text-slate-500 mb-10 max-w-3xl">
+          Services are quoted per project. Most clients combine hardware purchase with one or two setup packages — share your device count and software stack on the contact form for a scoped proposal.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SERVICES.map((svc) => (

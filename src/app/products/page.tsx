@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { listCatalogProducts } from "@/lib/catalog";
 import { ProductCard } from "@/components/commerce";
+import { ContactCTA } from "@/components/shared";
 import { buildMetadata } from "@/lib/seo";
+import { SITE } from "@/lib/config";
 
 export const dynamic = "force-dynamic";
 
@@ -25,13 +27,20 @@ export default async function ProductsPage({
   });
 
   const categories = [...new Set(products.map((p) => p.category))];
+  const sortBase = params.category
+    ? `/products?category=${encodeURIComponent(params.category)}`
+    : "/products";
+  const sortSep = params.category ? "&" : "?";
 
   return (
     <div className="section">
       <div className="container-wide">
         <h1 className="section-title">Phone Farm Hardware Catalog</h1>
         <p className="section-subtitle">
-          {products.length} SKUs ? factory-direct real-device hardware from Guangzhou. USD prices, stock status, Buy Now (USDT) or Get Quote.
+          {products.length} SKUs — real-device enclosures and accessories from {SITE.location}. USD list prices, live stock, and bulk quotes for deployment teams.
+        </p>
+        <p className="text-sm text-slate-500 mb-8 max-w-3xl">
+          Each unit is assembled and burn-in tested before export. Standard lead time is 5–10 business days for in-stock models; custom cabinets and large orders are quoted separately.
         </p>
 
         <div className="flex flex-wrap gap-3 mb-8">
@@ -54,8 +63,8 @@ export default async function ProductsPage({
 
         <div className="flex gap-3 mb-8 text-sm">
           <span className="text-slate-500">Sort:</span>
-          <Link href="/products?sort=price-asc" className="text-slate-400 hover:text-white">Price Low</Link>
-          <Link href="/products?sort=price-desc" className="text-slate-400 hover:text-white">Price High</Link>
+          <Link href={`${sortBase}${sortSep}sort=price-asc`} className="text-slate-400 hover:text-white">Price Low</Link>
+          <Link href={`${sortBase}${sortSep}sort=price-desc`} className="text-slate-400 hover:text-white">Price High</Link>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -71,6 +80,10 @@ export default async function ProductsPage({
               category={p.category}
             />
           ))}
+        </div>
+
+        <div className="mt-16">
+          <ContactCTA title="Need a Bulk Quote or Custom Configuration?" />
         </div>
       </div>
     </div>

@@ -18,8 +18,21 @@ export default function FAQPage() {
         <div className="container-wide max-w-3xl">
           <h1 className="section-title">Frequently Asked Questions</h1>
           <p className="section-subtitle">
-            Everything you need to know about PhoneFarm ICU hardware, ordering, shipping, and support.
+            Hardware specs, ordering process, shipping, and after-sales — answers from our Guangzhou sales and engineering team.
           </p>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {[
+              { label: "Products", href: "/products" },
+              { label: "Pricing", href: "/pricing" },
+              { label: "Services", href: "/services" },
+              { label: "Knowledge Base", href: "/knowledge-base" },
+              { label: "Contact Sales", href: "/contact" },
+            ].map((link) => (
+              <a key={link.href} href={link.href} className="text-xs px-3 py-1 rounded-full border border-slate-700 text-slate-400 hover:border-cyan-600 hover:text-cyan-400">
+                {link.label}
+              </a>
+            ))}
+          </div>
           <FAQAccordion items={FAQ_ITEMS} />
           <div className="mt-16">
             <ContactCTA title="Still Have Questions?" />
