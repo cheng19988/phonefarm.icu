@@ -1,5 +1,6 @@
 import { HARDWARE_PACKAGES } from "@/data/packages";
 import { PRODUCT_SEEDS } from "@/data/products";
+import { SERVICES } from "@/data/services";
 
 export const INQUIRY_STATUSES = ["New", "Contacted", "Quoted", "Closed", "Spam"] as const;
 export type InquiryStatus = (typeof INQUIRY_STATUSES)[number];
@@ -26,7 +27,20 @@ export function resolveProductInterest(slugOrLabel: string): string {
   if (product) return product.name;
   const pkg = HARDWARE_PACKAGES.find((p) => p.slug === key);
   if (pkg) return `${pkg.name} (package)`;
+  const service = SERVICES.find((s) => s.slug === key);
+  if (service) return service.title;
   return key;
+}
+
+export function resolveSourcePage(formSource: string, referer: string): string {
+  const fromForm = formSource.trim();
+  if (fromForm) return fromForm;
+  if (!referer.trim()) return "";
+  try {
+    return new URL(referer).pathname;
+  } catch {
+    return "";
+  }
 }
 
 export function parseInquiryForm(form: FormData): InquiryPayload {

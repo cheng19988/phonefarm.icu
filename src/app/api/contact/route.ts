@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { notifyTelegramInquiry } from "@/lib/notify-telegram";
-import { parseInquiryForm, validateInquiry } from "@/lib/inquiry";
+import { parseInquiryForm, resolveSourcePage, validateInquiry } from "@/lib/inquiry";
 
 export async function POST(req: NextRequest) {
   let form: FormData;
@@ -22,8 +22,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: validationError }, { status: 400 });
   }
 
-  const referrer = req.headers.get("referer") || "";
-  const sourcePage = data.sourcePage || (referrer ? new URL(referrer).pathname : "");
+  const sourcePage = resolveSourcePage(data.sourcePage, req.headers.get("referer") || "");
 
   try {
     await prisma.contactSubmission.create({

@@ -31,16 +31,25 @@ const STATUS_COLORS: Record<string, string> = {
 export function AdminInquiryRow({ inquiry }: { inquiry: Inquiry }) {
   const [status, setStatus] = useState(inquiry.status);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
 
   async function updateStatus(next: InquiryStatus) {
     setSaving(true);
+    setError("");
     try {
       const res = await fetch(`/api/admin/inquiries/${inquiry.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: next }),
       });
-      if (res.ok) setStatus(next);
+      if (res.ok) {
+        setStatus(next);
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      setError(data.error || "Could not update status. Please try again.");
+    } catch {
+      setError("Network error. Please try again.");
     } finally {
       setSaving(false);
     }
@@ -81,6 +90,7 @@ export function AdminInquiryRow({ inquiry }: { inquiry: Inquiry }) {
             <option key={s} value={s}>{s}</option>
           ))}
         </select>
+        {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
       </td>
     </tr>
   );
