@@ -1,121 +1,117 @@
 export const BLOG_POSTS = [
   {
     slug: "how-to-choose-phone-farm-box",
-    title: "How to Choose a Phone Farm Box: CPU, Cooling, and Scalability",
-    category: "Hardware & Selection",
+    title: "How to Choose a Phone Farm Rack for Your QA Lab",
+    category: "Hardware Selection",
     date: "2026-03-27",
     excerpt:
-      "When building a phone farm, the box matters more than individual phones. Learn how CPU generation, cooling design, and expansion capacity affect your long-term ROI.",
-    content: `When I first got into phone farming, I piled old phones on a desk and plugged them into a computer. Within a week, cables were everywhere, phones overheated, and two devices failed.
+      "Capacity, cooling, power budget, and device model fit matter more than headline node counts. A practical checklist for hardware buyers.",
+    content: `When planning a device lab, the rack hardware determines how safely you can run real phones or motherboards day after day.
 
-The turning point was switching to a factory-built phone farm box with centralized power and active cooling. Here is what actually matters when choosing hardware:
+**1. Device model fit**
+Slot spacing follows phone or motherboard dimensions. Share your model list before ordering — a "20-node" rack may fit fewer units if devices are large.
 
-**1. Chipset generation determines workload capacity**
-Snapdragon 835/845 boxes handle social media automation well. Snapdragon 855+ and newer support heavier multi-app workloads and higher-resolution screen mirroring.
+**2. Cooling and room temperature**
+Rack fans assist airflow but do not replace room HVAC. Warm climates need both rack cooling modules and ambient temperature planning.
 
-**2. Cooling is not optional**
-Passive cooling fails above 15–20 devices. Look for 4+ fan active airflow with metal chassis heat dissipation. Our Guangzhou factory tests every unit with 72-hour burn-in.
+**3. Power budget**
+Centralized PSU sizing must match total charging load. Overloading a bus causes random node dropouts during QA runs.
 
-**3. Scalability path**
-Start with a 20-node 2U box, then expand with rackmount cabinets. Ensure your vendor supports modular expansion — not one-off custom builds.
+**4. Expansion path**
+Start with one catalog rack, validate cable layout, then add empty chassis or custom cabinet rows for scale.
 
-**4. Software compatibility**
-Verify ADB access, OTG support, and group control software compatibility before purchase. PhoneFarm ICU boxes ship with management software pre-configured.
-
-Contact our sales team for a sizing consultation based on your device count and workflow.`,
+PhoneFarm ICU quotes rack hardware from Guangzhou with configuration advice before shipment. Contact sales with device count and shipping country.`,
   },
   {
     slug: "real-device-vs-cloud-phone",
-    title: "Real Device Phone Farm vs Cloud Phone: Which Should You Choose?",
-    category: "Applications & Use Cases",
+    title: "Real Device Racks vs Cloud Phones for Testing Labs",
+    category: "Lab Planning",
     date: "2026-02-12",
     excerpt:
-      "Cloud phones promise convenience, but real device farms win on trust scores, sensor accuracy, and platform compliance. Here is an honest comparison.",
-    content: `Cloud phone services rent virtual Android instances on shared infrastructure. Real device phone farms use physical hardware in your control or ours.
+      "When physical hardware makes sense for mobile app QA, device management, and sensor-accurate testing.",
+    content: `Cloud phone services provide remote Android instances on shared servers. Real device racks use hardware you control in your lab or ours.
 
-**When cloud phones work:** Quick prototyping, light app testing, temporary campaigns with low account value.
+**Cloud phones can suit:** Early UI prototyping, light compatibility smoke tests, temporary demos.
 
-**When real devices win:** Multi-account social media, ad verification, e-commerce operations, anything where platform trust scores and device fingerprints matter.
+**Real device racks suit:** Sensor-accurate QA, OS build matrices, device management infrastructure, SIM lab work on physical hardware.
 
-Real devices provide genuine IMEI, sensor data, GPS, and carrier profiles. Platforms increasingly detect shared cloud infrastructure patterns.
+Physical devices reflect real GPS, camera, and radio behavior that virtual environments approximate differently.
 
-PhoneFarm ICU Phone Farm builds the hardware layer — factory-direct from Guangzhou with 8+ years of deployment experience since 2017.`,
+PhoneFarm ICU supplies rack hardware — not cloud subscriptions. Request a quote if you are building or expanding a device lab.`,
   },
   {
     slug: "phone-farm-setup-guide-2026",
-    title: "Phone Farm Setup Guide 2026: From Zero to Production",
-    category: "Setup & Tutorials",
+    title: "Phone Farm Rack Setup Checklist for New Labs",
+    category: "Deployment",
     date: "2026-01-20",
     excerpt:
-      "Step-by-step guide to deploying your first phone farm — hardware unboxing, USB hub wiring, network setup, software installation, and first automation test.",
-    content: `This guide walks through deploying a PhoneFarm ICU phone farm box from unboxing to first automated task.
+      "Hardware unboxing, power verification, USB topology, and first device detection — a lab commissioning checklist.",
+    content: `Use this checklist when commissioning PhoneFarm ICU rack hardware.
 
-**Step 1: Unbox and inspect**
-Verify 20 device slots, power cable, USB cables, and cooling fans. Run visual QC on each node.
+**Step 1: Inspect shipment**
+Compare packing list to carton contents. Note any transit damage on chassis corners.
 
-**Step 2: Power and network**
-Connect 110V/220V power. Attach network router with dedicated IP per device group if required.
+**Step 2: Power**
+Connect rated PSU only. Verify input voltage label matches your region.
 
-**Step 3: USB hub connection**
-Single USB cable from box to control PC. Install management software and verify all devices appear in dashboard.
+**Step 3: USB topology**
+Attach hub uplink to control workstation. Confirm each slot label matches hub port map.
 
-**Step 4: Device preparation**
-Enable USB debugging, install required APKs in batch, configure proxy if needed.
+**Step 4: Device placement**
+Insert buyer-supplied devices. Enable USB debugging per your lab policy.
 
-**Step 5: First automation test**
-Run a simple script on all 20 devices simultaneously. Monitor temperature and connection stability for 24 hours.
+**Step 5: Burn-in**
+Run a 24-hour detection test before production QA workloads.
 
-Need help? WhatsApp us at +852 6215 5642 for remote setup support.`,
+Remote setup guidance is available via WhatsApp after hardware delivery.`,
   },
   {
     slug: "motherboard-box-vs-phone-box",
-    title: "Motherboard Box vs Phone Box: Cost, SIM Support, and Use Cases",
-    category: "Hardware & Selection",
+    title: "Motherboard Box vs Phone Farm Rack",
+    category: "Hardware Selection",
     date: "2026-04-17",
     excerpt:
-      "Understand the trade-offs between screenless motherboard boxes and full phone boxes before you buy.",
-    content: `**Motherboard Box advantages:** Lower per-node cost, smaller footprint, official Android system, ideal for headless automation.
+      "Density, SIM tray access, and display requirements — how to pick the right Android hardware line.",
+    content: `**Motherboard box:** Screenless Android boards, higher density, lower per-node cost. Common in headless automation labs.
 
-**Motherboard Box limitations:** Re-authorizing USB debugging requires temporary screen attachment if authorization is lost.
+**Phone farm rack:** Full smartphones with displays and sensors. Better when apps need camera, GPS, or on-device UI validation.
 
-**Phone Box advantages:** Full phone frame with SIM and camera support, customized ROM options, auto-reconnect without authorized PC.
+**SIM lab note:** Tray access depends on board or phone model — confirm in a compatibility check before quoting.
 
-**Phone Box limitations:** Slightly higher cost, unlocked bootloader on custom ROM models.
-
-PhoneFarm ICU offers both configurations from our Guangzhou factory. Request a sample to compare for your specific workflow.`,
+PhoneFarm ICU offers both lines from Guangzhou. Request a sample rack or motherboard box to compare for your workflow.`,
   },
   {
     slug: "bulk-apk-installation-guide",
-    title: "How to Bulk Install APKs on Your Phone Farm",
-    category: "Setup & Tutorials",
+    title: "Staging Builds Across a Device Lab",
+    category: "Lab Operations",
     date: "2026-03-20",
     excerpt:
-      "Install multiple APK files across all devices in your farm with a single action using our management software.",
-    content: `Bulk APK installation saves hours when deploying apps across 20+ devices.
+      "Organizing device groups before pushing test builds to a multi-node rack.",
+    content: `Structured device grouping saves time when deploying test builds across many nodes.
 
-1. Right-click any device screen in the management dashboard
-2. Select "Install APK" from the context menu
-3. Choose one or multiple APK files
-4. Confirm batch installation — progress shows per device
+1. Group racks by OS version or test campaign in your device management tool
+2. Push builds to one pilot node before wide rollout
+3. Log failures per slot ID using the rack wiring map from your packing list
+4. Replace USB cables on slots with repeated install timeouts
 
-Tips: Group devices by project before installing. Verify APK signatures match your automation requirements. Contact support if you need custom deployment scripts.`,
+PhoneFarm ICU provides hardware and slot maps — your team owns build deployment tooling.`,
   },
   {
     slug: "enterprise-phone-farm-deployment",
-    title: "Enterprise Phone Farm Deployment: Rackmount Solutions",
-    category: "Applications & Use Cases",
+    title: "Planning a Multi-Rack Device Lab",
+    category: "Enterprise",
     date: "2026-05-10",
     excerpt:
-      "How enterprise teams deploy 100+ device phone farms with rackmount cabinets, redundant power, and remote monitoring.",
-    content: `Enterprise deployments require more than stacking boxes on shelves.
+      "Room power, cabinet layout, and cable management for 50+ device deployments.",
+    content: `Labs above 50 devices need more than stacking single racks on shelves.
 
-**Infrastructure planning:** Dedicated server room or rack space, 220V power circuits, network segmentation, cooling capacity for 5–10kW loads.
+**Room planning:** Document available amps, cooling capacity, and network entry points before cabinet quoting.
 
-**Hardware selection:** Custom 42U cabinets with modular device trays, redundant PSUs, and cable management.
+**Hardware:** Custom cabinets with PDU feeds, ducted airflow, and labeled cable trays reduce long-term maintenance cost.
 
-**Operations:** Remote monitoring dashboard, SLA-backed support, scheduled maintenance windows, spare parts inventory.
+**Operations:** Maintain spare USB cables and fan modules sized to your rack count.
 
-PhoneFarm ICU has deployed enterprise farms for agencies and QA teams across North America, Europe, and Southeast Asia since 2017. Contact us for an enterprise deployment proposal.`,
+PhoneFarm ICU engineers cabinet projects from Guangzhou. Contact sales with room dimensions and device inventory for a proposal.`,
   },
 ];
 

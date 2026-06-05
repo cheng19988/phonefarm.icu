@@ -123,7 +123,7 @@ export const KB_ARTICLES: KBArticle[] = [
     body: [
       "Replace worn USB cables and verify hub power injection.",
       "Reduce cable length; use powered industrial hubs.",
-      "Check for thermal throttling on devices in poorly ventilated racks.",
+      "Check for thermal throttling on devices in racks with blocked airflow.",
     ],
   },
 ];

@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { ContactBar } from "@/components/shared";
+import { TrustStrip } from "@/components/trust-strip";
 import { CONTACT, SITE } from "@/lib/config";
 
 function ContactForm() {
@@ -68,6 +69,8 @@ function ContactForm() {
 
 export default function ContactPage() {
   return (
+    <>
+    <TrustStrip />
     <div className="section">
       <div className="container-wide max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Contact Sales</h1>
@@ -86,5 +89,6 @@ export default function ContactPage() {
         </Suspense>
       </div>
     </div>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ContactCTA } from "@/components/shared";
+import { TrustStrip } from "@/components/trust-strip";
 import { buildMetadata } from "@/lib/seo";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/config";
@@ -13,6 +14,8 @@ export const metadata = buildMetadata({
 
 export default function AboutPage() {
   return (
+    <>
+    <TrustStrip />
     <div className="section">
       <div className="container-wide max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">About PhoneFarm ICU</h1>
@@ -70,5 +73,6 @@ export default function AboutPage() {
         <ContactCTA title="Request a Quote from Our Guangzhou Team" />
       </div>
     </div>
+    </>
   );
 }

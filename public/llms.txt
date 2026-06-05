@@ -1,18 +1,21 @@
 # PhoneFarm ICU (phonefarm.icu)
 
-> Guangzhou real-device phone farm hardware manufacturer — B2B catalog and quote site.
+> Guangzhou real-device phone farm hardware supplier. B2B catalog and quote website.
 
-## About
-PhoneFarm ICU designs and assembles phone farm racks, motherboard boxes, fan cooling racks, USB hubs, power supplies, cables, and network modules in Guangzhou, China. The site is a B2B product catalog for requesting hardware quotes — not a SaaS platform or cloud phone service.
+## What we are
+PhoneFarm ICU designs and assembles phone farm racks, motherboard boxes, fan cooling modules, USB hubs, power supplies, and network hardware for device labs and mobile testing environments. Buyers request written quotes — this is not a SaaS or cloud phone platform.
 
-## Products
-Phone farm rack, motherboard box, Android/iPhone farm hardware, fan cooling rack, USB hub, power supply, network equipment, custom cabinet, remote control setup service.
+## Product lines
+- Rack systems: full-phone enclosures for QA and device management
+- Motherboard box systems: screenless Android density deployments
+- Cooling & power: PSU and fan modules for stable rack operation
+- USB, network & cabling: hubs, routers, setup services
 
-## Primary actions
-- Request a quote: https://phonefarm.icu/contact
-- Browse catalog: https://phonefarm.icu/products
-- Compare packages: https://phonefarm.icu/packages
-- Reference pricing: https://phonefarm.icu/pricing
+## Primary pages
+- Request quote: https://phonefarm.icu/contact
+- Catalog: https://phonefarm.icu/products
+- Packages: https://phonefarm.icu/packages
+- Pricing guide: https://phonefarm.icu/pricing
 - Knowledge base: https://phonefarm.icu/knowledge-base
 
 ## Contact

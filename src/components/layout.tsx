@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CONTACT, FOOTER_NAV, NAV, SITE } from "@/lib/config";
+import { BrandLogo } from "./brand-logo";
 import { ContactBar } from "./shared";
 import { getSession } from "@/lib/auth";
 
@@ -15,14 +16,8 @@ export async function Header() {
         </div>
       </div>
       <div className="container-wide py-4 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xs">
-            ICU
-          </div>
-          <div>
-            <div className="font-bold text-white leading-tight">{SITE.name}</div>
-            <div className="text-[10px] text-cyan-400 leading-tight hidden sm:block">{SITE.tagline}</div>
-          </div>
+        <Link href="/" className="shrink-0">
+          <BrandLogo />
         </Link>
         <nav className="hidden xl:flex items-center gap-5">
           {NAV.map((item) => (
