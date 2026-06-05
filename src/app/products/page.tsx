@@ -8,9 +8,9 @@ import { SITE } from "@/lib/config";
 export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
-  title: "Full Phone Farm Hardware Catalog and Shop",
+  title: "Phone Farm Hardware Catalog — Racks, Boxes & Accessories",
   description:
-    "Complete catalog: phone farm boxes, motherboard boxes, Android and iPhone farms, USB hubs, power, cooling, network equipment, custom cabinets. Prices, stock, USDT checkout from Guangzhou factory.",
+    "Browse phone farm racks, motherboard boxes, fan cooling racks, USB hubs, power supplies, and network modules. Reference USD prices — request a quote from Guangzhou manufacturer.",
   path: "/products",
 });
 
@@ -35,9 +35,9 @@ export default async function ProductsPage({
   return (
     <div className="section">
       <div className="container-wide">
-        <h1 className="section-title">Phone Farm Hardware Catalog</h1>
-        <p className="section-subtitle">
-          {products.length} SKUs — real-device enclosures and accessories from {SITE.location}. USD list prices, live stock, and bulk quotes for deployment teams.
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Phone Farm Hardware Catalog</h1>
+        <p className="text-slate-400 max-w-3xl mb-4">
+          {products.length} hardware SKUs from {SITE.location} — phone farm racks, motherboard boxes, cooling, USB hubs, and power modules. Reference USD prices; request a written quote for bulk orders.
         </p>
         <p className="text-sm text-slate-500 mb-8 max-w-3xl">
           Each unit is assembled and burn-in tested before export. Standard lead time is 5–10 business days for in-stock models; custom cabinets and large orders are quoted separately.

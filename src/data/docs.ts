@@ -6,7 +6,7 @@ export type DocArticle = {
   content: string[];
 };
 
-export const DOC_SECTIONS = ["Deployment", "Hardware Specs", "Orders & Payment", "Integration"] as const;
+export const DOC_SECTIONS = ["Deployment", "Hardware Specs", "Quote & Orders"] as const;
 
 export const DOC_ARTICLES: DocArticle[] = [
   {
@@ -15,62 +15,44 @@ export const DOC_ARTICLES: DocArticle[] = [
     section: "Deployment",
     summary: "How the PhoneFarm ICU catalog maps to deployment tiers.",
     content: [
-      "Products are organized by category: boxes, farms, accessories, and services.",
-      "Use Packages for pre-built bundles or pick individual SKUs from Products.",
-      "All prices are listed in USD; checkout supports USDT TRC20 for registered users.",
+      "Products are organized by category: phone farm racks, motherboard boxes, cooling, power, USB hubs, network modules, and custom cabinets.",
+      "Use Packages for pre-built hardware bundles or pick individual SKUs from the Products catalog.",
+      "All prices are reference USD amounts. Request a written quote before placing an order.",
     ],
   },
   {
     slug: "chassis-dimensions",
     title: "Chassis Dimensions and Rack Mounting",
     section: "Hardware Specs",
-    summary: "Standard 2U box dimensions and custom cabinet notes.",
+    summary: "Standard rack dimensions and custom cabinet notes.",
     content: [
-      "Standard phone farm box: approximately 43.5 × 27.5 × 9 cm.",
+      "Standard phone farm rack: approximately 43.5 × 27.5 × 9 cm (confirm in quote for your device model).",
       "Custom cabinets support 42U rackmount with integrated PDU and airflow ducts.",
-      "Request CAD drawings via contact for data center planning.",
+      "Request dimension drawings via the contact form for data center planning.",
     ],
   },
   {
     slug: "usb-hub-topology",
     title: "USB Hub Topology",
     section: "Hardware Specs",
-    summary: "Recommended USB routing for 20-node clusters.",
+    summary: "Recommended USB routing for multi-device racks.",
     content: [
-      "One powered industrial hub per 20 nodes is recommended.",
+      "One powered industrial hub per 20 nodes is the typical starting layout.",
       "Separate data and charging paths where the chassis design allows.",
-      "Label each port to device slot for maintenance.",
+      "Label each port to device slot for maintenance and support.",
     ],
   },
   {
-    slug: "order-lifecycle",
-    title: "Order Lifecycle and Statuses",
-    section: "Orders & Payment",
-    summary: "Pending, payment, confirmation, and expiry rules.",
+    slug: "quote-and-order-process",
+    title: "Quote and Order Process",
+    section: "Quote & Orders",
+    summary: "How to move from inquiry to confirmed hardware order.",
     content: [
-      "Statuses: Pending, Waiting for Payment, Paid, Confirmed, Cancelled, Expired.",
-      "USDT orders expire after 30 minutes if payment is not detected.",
-      "Payment verification uses on-chain checks (TronGrid API integration placeholder).",
-    ],
-  },
-  {
-    slug: "usdt-payment-fields",
-    title: "USDT Payment Fields",
-    section: "Orders & Payment",
-    summary: "Payment record schema for integrations.",
-    content: [
-      "Fields: order_id, user_id, product_id, expected_amount, received_amount, payment_address, payment_network, payment_currency, tx_hash, payment_status, expires_at, paid_at, verification_status.",
-      "Network: Tron TRC20. Currency: USDT. Minimum: 10 USDT.",
-    ],
-  },
-  {
-    slug: "webhook-placeholder",
-    title: "Order Webhook (Coming Soon)",
-    section: "Integration",
-    summary: "Reserved endpoint for ERP and CRM integrations.",
-    content: [
-      "Enterprise buyers may request webhook notifications for Paid and Confirmed statuses.",
-      "Contact sales to register callback URLs and API keys.",
+      "Step 1: Submit contact form or WhatsApp inquiry with device quantity and shipping country.",
+      "Step 2: Sales team confirms rack/box configuration, accessories, and reference pricing.",
+      "Step 3: Written quote issued including freight estimate and lead time.",
+      "Step 4: After confirmation, production, QC, packing inspection, and dispatch.",
+      "Payment terms (T/T, Wise, PayPal, or USDT) are agreed after quote acceptance — not via instant checkout.",
     ],
   },
 ];

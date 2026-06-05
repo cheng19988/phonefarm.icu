@@ -2,14 +2,14 @@ export const SITE = {
   name: "PhoneFarm ICU",
   domain: "phonefarm.icu",
   url: "https://phonefarm.icu",
-  tagline: "Phone Farm Hardware Catalog — Guangzhou",
-  headline: "Industrial Phone Farm Hardware, Built in Guangzhou",
+  tagline: "Phone Farm Racks & Hardware — Guangzhou",
+  headline: "Real-Device Phone Farm Hardware Manufacturer",
   intro:
-    "PhoneFarm ICU manufactures real-device phone farm enclosures, motherboard boxes, and supporting infrastructure. We supply complete hardware kits with engineering support, QC, and worldwide shipping from our Guangzhou facility.",
+    "PhoneFarm ICU designs and assembles phone farm racks, motherboard boxes, fan cooling racks, USB hubs, power supplies, cables, and SIM bank hardware in Guangzhou. Request a quote for sample orders, bulk deployment, or custom rack configurations.",
   location: "Guangzhou, China",
   since: 2017,
   description:
-    "PhoneFarm ICU — Guangzhou manufacturer of phone farm boxes, motherboard chassis, USB hubs, power and cooling systems. Catalog pricing, bulk quotes, and international delivery since 2017.",
+    "PhoneFarm ICU — Guangzhou phone farm hardware manufacturer. Phone farm racks, motherboard boxes, cooling racks, USB hubs, power supplies, and bulk device management infrastructure. Request a quote since 2017.",
 } as const;
 
 export const CONTACT = {

@@ -32,14 +32,11 @@ export async function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/pricing" className="hidden sm:inline-flex btn-outline text-sm py-2 px-3">
-            Pricing
+          <Link href="/products" className="hidden sm:inline-flex btn-outline text-sm py-2 px-3">
+            Products
           </Link>
-          <Link href="/products" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
-            Catalog
-          </Link>
-          <Link href="/contact" className="hidden lg:inline-flex text-sm text-slate-300 hover:text-white">
-            Inquiry
+          <Link href="/contact" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
+            Request a Quote
           </Link>
           {session && (
             <Link href={session.role === "admin" ? "/admin" : "/account/orders"} className="text-sm text-slate-400 hover:text-white">

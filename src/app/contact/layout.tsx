@@ -1,9 +1,9 @@
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Contact PhoneFarm ICU — Get a Quote",
+  title: "Contact Sales — Request a Hardware Quote",
   description:
-    "Contact our Guangzhou sales team via phone, WhatsApp, Telegram, or email. Custom quotes for phone farm boxes and enterprise deployments.",
+    "Request a quote for phone farm racks, motherboard boxes, cooling racks, and bulk deployment hardware. Guangzhou assembly team — WhatsApp, Telegram, email.",
   path: "/contact",
 });
 

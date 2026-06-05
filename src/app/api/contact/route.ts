@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   const form = await req.formData();
-  const company = String(form.get("company") || "");
+  const company = String(form.get("company") || "").trim();
   const rawMessage = String(form.get("message") || "");
   const data = {
     name: String(form.get("name") || ""),

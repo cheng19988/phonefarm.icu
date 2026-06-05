@@ -19,14 +19,14 @@ export const SERVICES = [
     slug: "group-control-system-configuration",
     title: "Group Control System Configuration",
     description:
-      "Batch task scheduling, synchronized multi-device actions, client/project grouping, and automation script integration for agency-scale operations.",
+      "Batch task scheduling, synchronized multi-device actions, and project grouping for multi-rack device management operations.",
     image: IMAGES.androidFarm.hero,
   },
   {
     slug: "bulk-device-deployment",
     title: "Bulk Device Deployment",
     description:
-      "Large-scale device provisioning — APK pre-installation, account setup, proxy configuration, and fleet health monitoring for 100+ device orders.",
+      "Large-scale device provisioning — firmware staging, device grouping, and fleet health checks for 100+ device orders.",
     image: IMAGES.factory,
   },
   {
