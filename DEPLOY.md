@@ -75,6 +75,25 @@ npm run db:migrate           # prisma migrate deploy
 npm run db:seed              # once after first deploy, or when re-seeding products
 ```
 
+### Rotate admin password (production)
+
+Set in Vercel (names must be exact):
+
+- `ADMIN_EMAIL` — admin login email
+- `ADMIN_PASSWORD` — new plain-text password (seed hashes with bcrypt; never stored in code)
+
+Re-run seed against Neon (no SQL needed):
+
+```bash
+# Option A — from your machine with Neon direct URL
+DIRECT_DATABASE_URL="postgresql://...direct..." ADMIN_EMAIL="you@example.com" ADMIN_PASSWORD="your-new-password" npm run db:seed
+
+# Option B — one Vercel production deploy with build command npm run vercel-build
+# (uses Vercel env vars during build; migrate deploy is idempotent)
+```
+
+Seed upserts the admin user and **updates `passwordHash`** when the account already exists. If `ADMIN_EMAIL` differs from the old default `admin@phonefarm.icu`, the default account is removed.
+
 `npm run build` runs `prisma generate` only. **Build does not require a live database** — product pages fall back to `src/data/products.ts` if the DB is unreachable.
 
 Initial migration: `prisma/migrations/20250606000000_init/` (generated via `prisma migrate diff`, not executed against a database in CI).

@@ -60,19 +60,29 @@ async function main() {
 
   const adminEmail = process.env.ADMIN_EMAIL || "admin@phonefarm.icu";
   const adminPassword = process.env.ADMIN_PASSWORD || "admin123456";
+  const passwordHash = await bcrypt.hash(adminPassword, 12);
 
   await prisma.user.upsert({
     where: { email: adminEmail },
-    update: {},
+    update: {
+      passwordHash,
+      role: "admin",
+      name: "Admin",
+    },
     create: {
       email: adminEmail,
       name: "Admin",
       role: "admin",
-      passwordHash: await bcrypt.hash(adminPassword, 12),
+      passwordHash,
     },
   });
 
-  console.log("Seeded products and admin user");
+  const defaultAdminEmail = "admin@phonefarm.icu";
+  if (process.env.ADMIN_EMAIL && adminEmail !== defaultAdminEmail) {
+    await prisma.user.deleteMany({ where: { email: defaultAdminEmail } });
+  }
+
+  console.log(`Seeded products and admin user (${adminEmail})`);
 }
 
 main()
