@@ -49,18 +49,21 @@ export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { titl
 export function MobileContactBar() {
   return (
     <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-slate-950/95 border-t border-slate-800 backdrop-blur-sm">
-      <div className="grid grid-cols-4 divide-x divide-slate-800">
+      <div className="grid grid-cols-5 divide-x divide-slate-800">
         <Link href="/products" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
           Shop
+        </Link>
+        <Link href="/register" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
+          Sign Up
+        </Link>
+        <Link href="/login" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
+          Sign In
         </Link>
         <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
           WhatsApp
         </a>
-        <Link href="/register" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
-          Sign Up
-        </Link>
         <Link href="/contact" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
-          Quote
+          Sales
         </Link>
       </div>
     </div>

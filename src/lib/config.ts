@@ -51,6 +51,50 @@ export const FOOTER_NAV = [
   { href: "/terms", label: "Terms" },
 ] as const;
 
+export const SHOP_MENU = [
+  {
+    title: "Racks & Boxes",
+    items: [
+      { label: "Phone Farm Box", href: "/products/phone-farm-box" },
+      { label: "Motherboard Box", href: "/products/motherboard-box" },
+      { label: "Android Phone Farm", href: "/products/android-phone-farm" },
+      { label: "iPhone Phone Farm", href: "/products/iphone-phone-farm" },
+      { label: "Real Device Farm", href: "/products/real-device-phone-farm" },
+      { label: "Empty Box / Chassis", href: "/products/empty-box-chassis" },
+    ],
+  },
+  {
+    title: "Infrastructure",
+    items: [
+      { label: "USB Hub", href: "/products/usb-hub" },
+      { label: "Power Supply", href: "/products/power-supply-solution" },
+      { label: "Cooling", href: "/products/cooling-solution" },
+      { label: "Network Equipment", href: "/products/network-equipment" },
+      { label: "Custom Cabinet", href: "/products/custom-cabinet" },
+    ],
+  },
+  {
+    title: "Packages",
+    items: [
+      { label: "Starter Box Bundle", href: "/packages/starter-box-bundle" },
+      { label: "Motherboard Density Pack", href: "/packages/motherboard-density-pack" },
+      { label: "iPhone Farm Suite", href: "/packages/iphone-farm-suite" },
+      { label: "Enterprise Deployment", href: "/packages/enterprise-rack-deployment" },
+      { label: "Compare Packages", href: "/packages" },
+    ],
+  },
+  {
+    title: "Buying Guides",
+    items: [
+      { label: "How to Buy", href: "/docs/buying-guide" },
+      { label: "USDT Payment", href: "/docs/usdt-payment-guide" },
+      { label: "Shipping Guide", href: "/docs/shipping-guide" },
+      { label: "Warranty & Support", href: "/docs/warranty-guide" },
+      { label: "Knowledge Base", href: "/knowledge-base" },
+    ],
+  },
+] as const;
+
 export const PRODUCT_CATEGORIES = [
   "Phone Farm Box",
   "Motherboard Box",

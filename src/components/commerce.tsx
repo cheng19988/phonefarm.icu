@@ -13,13 +13,28 @@ type ProductCardProps = {
   stock: number;
   imageCard: string;
   category: string;
+  specHighlight?: string;
+  large?: boolean;
 };
 
-export function ProductCard({ slug, name, shortDesc, priceUsd, stock, imageCard, category }: ProductCardProps) {
+export function ProductCard({
+  slug,
+  name,
+  shortDesc,
+  priceUsd,
+  stock,
+  imageCard,
+  category,
+  specHighlight,
+  large = false,
+}: ProductCardProps) {
   const outOfStock = stock <= 0;
   return (
-    <article className="card group flex flex-col">
-      <Link href={`/products/${slug}`} className="block relative aspect-square overflow-hidden rounded-t-xl bg-slate-900">
+    <article className={`card group flex flex-col ${large ? "lg:flex-row lg:overflow-visible" : ""}`}>
+      <Link
+        href={`/products/${slug}`}
+        className={`block relative overflow-hidden bg-slate-900 ${large ? "lg:w-2/5 aspect-[4/3] lg:aspect-auto lg:min-h-[280px] rounded-l-xl" : "aspect-[4/3] rounded-t-xl"}`}
+      >
         <Image
           src={imageCard}
           alt={`${name} — phone farm hardware`}
@@ -29,10 +44,13 @@ export function ProductCard({ slug, name, shortDesc, priceUsd, stock, imageCard,
         />
         <span className="absolute top-3 left-3 text-xs bg-slate-950/80 text-slate-300 px-2 py-1 rounded">{category}</span>
       </Link>
-      <div className="p-4 flex flex-col flex-1">
+      <div className={`p-4 md:p-5 flex flex-col flex-1 ${large ? "lg:p-6" : ""}`}>
         <Link href={`/products/${slug}`}>
-          <h3 className="font-semibold text-white group-hover:text-cyan-400 transition-colors mb-1">{name}</h3>
+          <h3 className={`font-semibold text-white group-hover:text-cyan-400 transition-colors mb-1 ${large ? "text-lg" : ""}`}>{name}</h3>
         </Link>
+        {specHighlight && (
+          <p className="text-xs text-cyan-600/90 mb-2 font-medium">{specHighlight}</p>
+        )}
         <p className="text-sm text-slate-400 mb-3 line-clamp-2 flex-1">{shortDesc}</p>
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm text-slate-500">
@@ -41,17 +59,17 @@ export function ProductCard({ slug, name, shortDesc, priceUsd, stock, imageCard,
           <StockBadge stock={stock} />
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <Link href={`/products/${slug}`} className="btn-outline text-center text-sm py-2">View Specs</Link>
+          <Link href={`/products/${slug}`} className="btn-outline text-center text-sm py-2.5">View Details</Link>
           <form action="/api/orders" method="POST">
             <input type="hidden" name="productSlug" value={slug} />
             <input type="hidden" name="action" value="buy" />
-            <button type="submit" disabled={outOfStock} className="btn-primary w-full text-sm py-2 disabled:opacity-50">
+            <button type="submit" disabled={outOfStock} className="btn-primary w-full text-sm py-2.5 disabled:opacity-50">
               Buy Now
             </button>
           </form>
         </div>
         <Link href={`/contact?product=${slug}`} className="text-center text-xs text-cyan-400 hover:text-white mt-2">
-          Bulk quote →
+          Request Quote →
         </Link>
       </div>
     </article>
@@ -111,7 +129,44 @@ export function ProductCommerceActions({
         USDT (TRC20) payment available after order confirmation · 30 min payment window · Reference price for {productName}.
         Bulk orders and shipping quotes via contact sales.
       </p>
+      <p className="text-xs text-slate-500">
+        <Link href="/login" className="text-cyan-400 hover:text-white">Sign in</Link>
+        {" "}or{" "}
+        <Link href="/register" className="text-cyan-400 hover:text-white">create an account</Link>
+        {" "}to place orders and track payment.
+      </p>
     </div>
+  );
+}
+
+type RelatedProduct = {
+  slug: string;
+  name: string;
+  priceUsd: number;
+  imageCard: string;
+  category: string;
+};
+
+export function RelatedProducts({ products, title = "Related Products" }: { products: RelatedProduct[]; title?: string }) {
+  if (products.length === 0) return null;
+  return (
+    <section>
+      <h2 className="text-xl font-bold text-white mb-6">{title}</h2>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {products.map((p) => (
+          <Link key={p.slug} href={`/products/${p.slug}`} className="card overflow-hidden group hover:border-cyan-800 transition-colors">
+            <div className="relative aspect-[4/3]">
+              <Image src={p.imageCard} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform" sizes="25vw" />
+            </div>
+            <div className="p-4">
+              <p className="text-xs text-slate-500 mb-1">{p.category}</p>
+              <p className="font-medium text-white group-hover:text-cyan-400">{p.name}</p>
+              <p className="text-cyan-400 text-sm mt-1">${p.priceUsd.toLocaleString()} USD</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 

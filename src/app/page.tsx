@@ -11,6 +11,7 @@ import { KB_ARTICLES } from "@/data/knowledge-base";
 import { IMAGES } from "@/lib/images";
 import { SITE, PRODUCT_CATEGORIES } from "@/lib/config";
 import { listCatalogProducts, countCatalogProducts } from "@/lib/catalog";
+import { PRICING_TIERS } from "@/data/pricing";
 
 export const metadata = buildMetadata({
   title: SITE.headline,
@@ -38,6 +39,20 @@ const TRUST_STATS = [
   { value: "Global", label: "Shipping available" },
 ];
 
+const WHY_CHOOSE = [
+  { title: "Factory-Direct Hardware", desc: "Real-device racks and boxes assembled in Guangzhou — not cloud phone rental." },
+  { title: "Published Reference Prices", desc: "USD catalog pricing with Buy Now path — bulk quotes for enterprise scale." },
+  { title: "Full Deployment Stack", desc: "Racks, motherboard boxes, USB hubs, power, cooling, and network modules." },
+  { title: "USDT + Quote Flexibility", desc: "Checkout with USDT after confirmation or contact sales for custom projects." },
+];
+
+const USE_CASES = [
+  { title: "Mobile QA Labs", desc: "Real Android and iPhone arrays for build validation and regression testing." },
+  { title: "Device Management Ops", desc: "Centralized hardware for enterprise mobile fleet staging and provisioning." },
+  { title: "Agency Device Banks", desc: "Dedicated rack rows for content preview and multi-account workflows." },
+  { title: "SIM & Network Labs", desc: "Isolated clusters with network modules for carrier and profile testing." },
+];
+
 export default async function HomePage() {
   const [products, totalCount] = await Promise.all([
     listCatalogProducts({ orderBy: "priceUsd", take: 12 }),
@@ -50,7 +65,7 @@ export default async function HomePage() {
       <JsonLd data={faqJsonLd(previewFaq)} />
 
       {/* Full-screen hero */}
-      <section className="relative min-h-[80vh] flex items-center border-b border-slate-800 overflow-hidden">
+      <section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center border-b border-slate-800 overflow-hidden">
         <Image
           src={IMAGES.homeHero}
           alt="Phone farm rack hardware catalog"
@@ -91,8 +106,8 @@ export default async function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="relative hidden lg:block">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl shadow-cyan-950/30">
+            <div className="relative hidden lg:block min-h-[420px] xl:min-h-[520px]">
+              <div className="relative h-full min-h-[420px] xl:min-h-[520px] rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl shadow-cyan-950/30">
                 <Image
                   src={IMAGES.phoneFarmBox.hero}
                   alt="Phone farm box hardware — main product"
@@ -102,8 +117,11 @@ export default async function HomePage() {
                   priority
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 w-40 h-40 rounded-xl overflow-hidden border border-slate-700 shadow-xl hidden xl:block">
+              <div className="absolute -bottom-6 -left-6 w-48 h-48 rounded-xl overflow-hidden border border-slate-700 shadow-xl hidden xl:block">
                 <Image src={IMAGES.motherboardBox.card} alt="Motherboard box" fill className="object-cover" />
+              </div>
+              <div className="absolute -top-4 -right-4 w-36 h-36 rounded-xl overflow-hidden border border-slate-700 shadow-xl hidden xl:block">
+                <Image src={IMAGES.usbHub.card} alt="USB hub module" fill className="object-cover" />
               </div>
             </div>
           </div>
@@ -115,10 +133,10 @@ export default async function HomePage() {
         <div className="container-hero">
           <h2 className="section-title">Hardware Product Matrix</h2>
           <p className="section-subtitle">Factory-direct categories for real-device phone farms — aligned with industry-standard rack and box deployments.</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {MATRIX.map((item) => (
               <Link key={item.href} href={item.href} className="card overflow-hidden group hover:border-cyan-700/60 transition-colors">
-                <div className="relative aspect-square">
+                <div className="relative aspect-[4/3]">
                   <Image src={item.image} alt={item.label} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="20vw" />
                 </div>
                 <p className="p-3 md:p-4 text-sm font-medium text-white text-center">{item.label}</p>
@@ -139,8 +157,34 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Packages */}
+      {/* Pricing preview */}
       <section className="section bg-slate-900/40 border-y border-slate-800">
+        <div className="container-hero">
+          <h2 className="section-title">Pricing</h2>
+          <p className="section-subtitle">Reference tiers from sample order to enterprise deployment — buy online or request bulk quote.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {PRICING_TIERS.map((tier) => (
+              <div key={tier.id} className="card p-6 flex flex-col">
+                <h3 className="text-xl font-bold text-white mb-1">{tier.name}</h3>
+                <p className="text-2xl font-bold text-cyan-400 mb-3">{tier.priceLabel}</p>
+                <p className="text-sm text-slate-400 mb-4 flex-1">{tier.description}</p>
+                <ul className="space-y-2 mb-6 text-sm text-slate-400">
+                  {tier.features.map((f) => (
+                    <li key={f}>— {f}</li>
+                  ))}
+                </ul>
+                <Link href={tier.href} className="btn-primary text-center">{tier.cta}</Link>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/pricing" className="btn-outline">Full Price Table</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Packages */}
+      <section className="section">
         <div className="container-hero">
           <h2 className="section-title">Deployment Packages</h2>
           <p className="section-subtitle">Pre-configured hardware bundles — buy online or request a bulk quote.</p>
@@ -159,14 +203,45 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Why choose */}
+      <section className="section bg-slate-900/40 border-y border-slate-800">
+        <div className="container-hero">
+          <h2 className="section-title">Why PhoneFarm ICU</h2>
+          <p className="section-subtitle">Guangzhou factory-direct hardware for real-device phone farms — shop, deploy, and scale.</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {WHY_CHOOSE.map((item) => (
+              <div key={item.title} className="card p-6">
+                <h3 className="font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use cases */}
+      <section className="section">
+        <div className="container-hero">
+          <h2 className="section-title">Use Cases</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {USE_CASES.map((item) => (
+              <div key={item.title} className="p-6 rounded-xl border border-slate-800 hover:border-cyan-900 transition-colors">
+                <h3 className="font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Shop catalog */}
-      <section className="section" id="catalog">
+      <section className="section bg-slate-900/30" id="catalog">
         <div className="container-hero">
           <h2 className="section-title">Shop Catalog</h2>
           <p className="section-subtitle">
             {totalCount} SKUs with price, stock, Buy Now (USDT), and bulk quote options.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((p) => (
               <ProductCard
                 key={p.id}

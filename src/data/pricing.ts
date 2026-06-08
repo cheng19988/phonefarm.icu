@@ -27,7 +27,7 @@ export const PRICING_TIERS: PricingTier[] = [
     description: "Full rack deployment with power, cooling, and setup guidance.",
     features: ["20-node phone farm rack", "Power + fan cooling modules", "Buy online or request bulk quote", "5–10 day lead time (in stock)"],
     cta: "View Professional Package",
-    href: "/packages/enterprise-rack-deployment",
+    href: "/packages/motherboard-density-pack",
   },
   {
     id: "enterprise",

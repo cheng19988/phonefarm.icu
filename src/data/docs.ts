@@ -6,7 +6,7 @@ export type DocArticle = {
   content: string[];
 };
 
-export const DOC_SECTIONS = ["Deployment", "Hardware Specs", "Quote & Orders"] as const;
+export const DOC_SECTIONS = ["Deployment", "Hardware Specs", "Quote & Orders", "Buying & Payment"] as const;
 
 export const DOC_ARTICLES: DocArticle[] = [
   {
@@ -52,7 +52,87 @@ export const DOC_ARTICLES: DocArticle[] = [
       "Step 2: Sales team confirms rack/box configuration, accessories, and reference pricing.",
       "Step 3: Written quote issued including freight estimate and lead time.",
       "Step 4: After confirmation, production, QC, packing inspection, and dispatch.",
-      "Payment terms (T/T, Wise, PayPal, or USDT) are agreed after quote acceptance — not via instant checkout.",
+      "Payment terms (T/T or USDT) are agreed after quote acceptance for bulk orders.",
+    ],
+  },
+  {
+    slug: "buying-guide",
+    title: "How to Buy Phone Farm Hardware",
+    section: "Buying & Payment",
+    summary: "Register, browse the shop, place an order, and complete USDT payment.",
+    content: [
+      "Step 1: Create an account at /register or sign in at /login.",
+      "Step 2: Browse /products or /packages and click Buy Now on your chosen SKU.",
+      "Step 3: Review the order on /orders/{id} — reference USD price is shown.",
+      "Step 4: Pay with USDT (TRC20) within the payment window after order confirmation.",
+      "For bulk orders, custom rack layouts, or OEM discussion, use Request Quote or Contact Sales — parallel to online checkout.",
+      "Sample orders from 1 unit are available on most in-stock SKUs.",
+    ],
+  },
+  {
+    slug: "usdt-payment-guide",
+    title: "USDT Payment Guide",
+    section: "Buying & Payment",
+    summary: "How USDT (TRC20) payment works after order confirmation.",
+    content: [
+      "USDT payment is available after order confirmation — not the only payment method.",
+      "Network: Tron TRC20. Use the payment address shown on your order page only.",
+      "Payment window: typically 30 minutes from order creation — complete transfer before expiry.",
+      "Minimum amount and contract address are displayed on the order payment page.",
+      "After transfer, submit your transaction hash on the order page for verification.",
+      "Enterprise bulk orders may use wire transfer (T/T) instead — contact sales.",
+    ],
+  },
+  {
+    slug: "shipping-guide",
+    title: "Shipping & Export Guide",
+    section: "Buying & Payment",
+    summary: "Packing, freight, MOQ, and lead times from Guangzhou.",
+    content: [
+      "In-stock SKUs: typically 5–10 business days for workshop QC and packing before dispatch.",
+      "Export packing includes foam-lined cartons, accessory checklists, and packing inspection.",
+      "Express courier and sea freight options — freight quoted by destination country.",
+      "Import duties and customs are buyer responsibility unless agreed otherwise in bulk quote.",
+      "Multi-rack projects may ship on pallet or in phased batches.",
+      "Share shipping country and preferred method when ordering or requesting a quote.",
+    ],
+  },
+  {
+    slug: "warranty-guide",
+    title: "Warranty & After-Sales",
+    section: "Buying & Payment",
+    summary: "Hardware support, replacement parts, and remote diagnostics.",
+    content: [
+      "Standard rack products: 12-month hardware support on chassis, fans, and PSU modules.",
+      "Replacement parts available: fan modules, USB hubs, PSUs, and cables.",
+      "Remote diagnostics via WhatsApp or Telegram with photos and logs.",
+      "Warranty does not cover buyer-supplied phones, third-party software, or misuse.",
+      "Production farms: discuss maintenance schedule and spare kit sizing during quote.",
+    ],
+  },
+  {
+    slug: "rack-configuration-guide",
+    title: "Rack Configuration Guide",
+    section: "Hardware Specs",
+    summary: "Plan slot count, power, cooling, and USB topology for your lab.",
+    content: [
+      "Start with device model list — dimensions determine slot layout.",
+      "One powered industrial USB hub per 10–20 nodes is a typical starting point.",
+      "Size PSU against total charging load — avoid consumer-grade daisy-chaining.",
+      "Add cooling modules when ambient exceeds 30°C or iPhone charging runs continuously.",
+      "Document slot-to-ADB ID map for maintenance.",
+    ],
+  },
+  {
+    slug: "bulk-order-process",
+    title: "Bulk Order Process",
+    section: "Quote & Orders",
+    summary: "MOQ, project quotes, and enterprise deployment planning.",
+    content: [
+      "Bulk pricing typically discussed from 3+ identical rack configurations or 5+ units.",
+      "Enterprise projects: share room dimensions, power feed, and total device target.",
+      "Written proposal includes layout, accessories, freight, and lead time.",
+      "USDT or wire transfer on confirmation — phased shipment available for large orders.",
     ],
   },
 ];
