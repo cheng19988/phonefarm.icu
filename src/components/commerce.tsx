@@ -81,11 +81,11 @@ export function FAQAccordion({ items }: { items: { question: string; answer: str
     <div className="space-y-3">
       {items.map((item, i) => (
         <details key={i} className="card p-4 group">
-          <summary className="font-medium text-white cursor-pointer list-none flex justify-between items-center">
+          <summary className="font-medium text-[var(--text)] cursor-pointer list-none flex justify-between items-center">
             {item.question}
-            <span className="text-slate-500 group-open:rotate-45 transition-transform text-xl">+</span>
+            <span className="text-[var(--text-subtle)] group-open:rotate-45 transition-transform text-xl">+</span>
           </summary>
-          <p className="mt-3 text-slate-400 text-sm leading-relaxed">{item.answer}</p>
+          <p className="mt-3 text-[var(--text-muted)] text-sm leading-relaxed">{item.answer}</p>
         </details>
       ))}
     </div>

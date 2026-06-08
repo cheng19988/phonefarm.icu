@@ -10,19 +10,25 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
   );
 }
 
-export function ContactBar({ compact = false }: { compact?: boolean }) {
+export function ContactBar({ compact = false, variant = "default" }: { compact?: boolean; variant?: "default" | "light" | "dark" }) {
+  const linkClass =
+    variant === "light"
+      ? "text-blue-100 hover:text-white"
+      : variant === "dark"
+        ? "text-slate-400 hover:text-white"
+        : "text-[var(--text-muted)] hover:text-[var(--brand)]";
   return (
     <div className={`flex flex-wrap items-center gap-x-4 gap-y-2 ${compact ? "text-xs" : "text-sm"}`}>
-      <a href={`tel:${CONTACT.phone}`} className="text-slate-300 hover:text-white transition-colors">
+      <a href={`tel:${CONTACT.phone}`} className={`${linkClass} transition-colors`}>
         {CONTACT.phone}
       </a>
-      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors">
+      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${linkClass} transition-colors`}>
         WhatsApp
       </a>
-      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors">
+      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className={`${linkClass} transition-colors`}>
         Telegram
       </a>
-      <a href={`mailto:${CONTACT.email}`} className="text-slate-300 hover:text-white transition-colors">
+      <a href={`mailto:${CONTACT.email}`} className={`${linkClass} transition-colors`}>
         {CONTACT.email}
       </a>
     </div>
@@ -31,15 +37,16 @@ export function ContactBar({ compact = false }: { compact?: boolean }) {
 
 export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { title?: string }) {
   return (
-    <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-8 md:p-12 text-center">
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{title}</h2>
-      <p className="text-slate-400 mb-6 max-w-2xl mx-auto">
-        Shop the catalog, register to order with USDT, or contact our {SITE.location} team for bulk quotes and deployment planning.
+    <section className="rounded-2xl border border-[var(--border)] bg-gradient-to-br from-blue-50 to-white p-8 md:p-12 text-center shadow-sm">
+      <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-3">{title}</h2>
+      <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
+        Shop the catalog, register to order. USDT payment is available after order confirmation.
+        Sales team will confirm payment and update order status. Bulk quotes via {SITE.location} sales.
       </p>
       <ContactBar />
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Link href="/products" className="btn-primary">Browse Products</Link>
-        <Link href="/register" className="btn-secondary">Sign Up</Link>
+        <Link href="/products" className="btn-accent">Shop Now</Link>
+        <Link href="/register" className="btn-primary">Sign Up</Link>
         <Link href="/contact" className="btn-outline">Contact Sales</Link>
       </div>
     </section>
@@ -48,21 +55,21 @@ export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { titl
 
 export function MobileContactBar() {
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-slate-950/95 border-t border-slate-800 backdrop-blur-sm">
-      <div className="grid grid-cols-5 divide-x divide-slate-800">
-        <Link href="/products" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
+    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t border-[var(--border)] backdrop-blur-sm shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+      <div className="grid grid-cols-5 divide-x divide-[var(--border)]">
+        <Link href="/products" className="flex flex-col items-center py-3 text-xs font-medium text-[var(--brand)]">
           Shop
         </Link>
-        <Link href="/register" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
+        <Link href="/register" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">
           Sign Up
         </Link>
-        <Link href="/login" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
+        <Link href="/login" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">
           Sign In
         </Link>
-        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
+        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">
           WhatsApp
         </a>
-        <Link href="/contact" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
+        <Link href="/contact" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">
           Sales
         </Link>
       </div>

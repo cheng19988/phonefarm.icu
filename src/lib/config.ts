@@ -30,15 +30,19 @@ export const PAYMENT = {
   expiryMinutes: 30,
 } as const;
 
-export const NAV = [
-  { href: "/products", label: "Shop" },
+/** Main header nav (Shop is separate dropdown) */
+export const HEADER_NAV = [
   { href: "/packages", label: "Packages" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/knowledge-base", label: "Knowledge Base" },
   { href: "/support", label: "Support" },
-  { href: "/docs", label: "Docs" },
-  { href: "/services", label: "Services" },
+  { href: "/knowledge-base", label: "Knowledge Base" },
   { href: "/contact", label: "Contact" },
+] as const;
+
+/** @deprecated use HEADER_NAV — kept for mobile fallback */
+export const NAV = [
+  { href: "/products", label: "Shop" },
+  ...HEADER_NAV,
 ] as const;
 
 export const FOOTER_NAV = [
@@ -53,44 +57,40 @@ export const FOOTER_NAV = [
 
 export const SHOP_MENU = [
   {
-    title: "Racks & Boxes",
+    title: "Phone Farm Racks",
     items: [
       { label: "Phone Farm Box", href: "/products/phone-farm-box" },
-      { label: "Motherboard Box", href: "/products/motherboard-box" },
       { label: "Android Phone Farm", href: "/products/android-phone-farm" },
       { label: "iPhone Phone Farm", href: "/products/iphone-phone-farm" },
       { label: "Real Device Farm", href: "/products/real-device-phone-farm" },
-      { label: "Empty Box / Chassis", href: "/products/empty-box-chassis" },
+      { label: "All Racks", href: "/products?category=Phone+Farm+Box" },
     ],
   },
   {
-    title: "Infrastructure",
+    title: "Motherboard Boxes",
     items: [
-      { label: "USB Hub", href: "/products/usb-hub" },
-      { label: "Power Supply", href: "/products/power-supply-solution" },
-      { label: "Cooling", href: "/products/cooling-solution" },
-      { label: "Network Equipment", href: "/products/network-equipment" },
+      { label: "Motherboard Box", href: "/products/motherboard-box" },
+      { label: "Empty Box / Chassis", href: "/products/empty-box-chassis" },
       { label: "Custom Cabinet", href: "/products/custom-cabinet" },
     ],
   },
   {
-    title: "Packages",
+    title: "Power / Cooling / USB",
     items: [
-      { label: "Starter Box Bundle", href: "/packages/starter-box-bundle" },
-      { label: "Motherboard Density Pack", href: "/packages/motherboard-density-pack" },
-      { label: "iPhone Farm Suite", href: "/packages/iphone-farm-suite" },
-      { label: "Enterprise Deployment", href: "/packages/enterprise-rack-deployment" },
-      { label: "Compare Packages", href: "/packages" },
+      { label: "USB Hub", href: "/products/usb-hub" },
+      { label: "Power Supply", href: "/products/power-supply-solution" },
+      { label: "Cooling Module", href: "/products/cooling-solution" },
+      { label: "Network Equipment", href: "/products/network-equipment" },
     ],
   },
   {
-    title: "Buying Guides",
+    title: "Packages & Guides",
     items: [
+      { label: "Starter Box Bundle", href: "/packages/starter-box-bundle" },
+      { label: "Compare Packages", href: "/packages" },
       { label: "How to Buy", href: "/docs/buying-guide" },
       { label: "USDT Payment", href: "/docs/usdt-payment-guide" },
       { label: "Shipping Guide", href: "/docs/shipping-guide" },
-      { label: "Warranty & Support", href: "/docs/warranty-guide" },
-      { label: "Knowledge Base", href: "/knowledge-base" },
     ],
   },
 ] as const;
