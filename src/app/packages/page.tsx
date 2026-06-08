@@ -55,12 +55,11 @@ export default function PackagesPage() {
                 </tr>
               ))}
               <tr>
-                <td className="p-4 text-slate-500">Quote</td>
+                <td className="p-4 text-slate-500">Order</td>
                 {HARDWARE_PACKAGES.map((pkg) => (
-                  <td key={pkg.slug} className="p-4">
-                    <Link href={`/contact?product=${pkg.slug}`} className="btn-primary text-xs py-1.5 px-3 inline-block">
-                      Request Quote
-                    </Link>
+                  <td key={pkg.slug} className="p-4 space-x-2">
+                    <Link href={`/packages/${pkg.slug}`} className="text-cyan-400 hover:text-white text-xs">View</Link>
+                    <Link href={`/contact?product=${pkg.slug}`} className="text-slate-500 hover:text-white text-xs">Quote</Link>
                   </td>
                 ))}
               </tr>
@@ -84,8 +83,8 @@ export default function PackagesPage() {
                   ))}
                 </ul>
                 <div className="flex gap-3">
-                  <Link href={`/packages/${pkg.slug}`} className="btn-outline flex-1 text-center text-sm py-2">Package Details</Link>
-                  <Link href={`/contact?product=${pkg.slug}`} className="btn-primary flex-1 text-center text-sm py-2">Request Quote</Link>
+                  <Link href={`/packages/${pkg.slug}`} className="btn-primary flex-1 text-center text-sm py-2">View & Order</Link>
+                  <Link href={`/contact?product=${pkg.slug}`} className="btn-outline flex-1 text-center text-sm py-2">Bulk Quote</Link>
                 </div>
               </div>
             </article>

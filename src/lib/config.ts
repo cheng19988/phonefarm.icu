@@ -3,13 +3,13 @@ export const SITE = {
   domain: "phonefarm.icu",
   url: "https://phonefarm.icu",
   tagline: "Phone Farm Racks & Hardware — Guangzhou",
-  headline: "Real-Device Phone Farm Hardware Manufacturer",
+  headline: "Phone Farm Hardware, Racks & Boxes — Shop & Deploy",
   intro:
-    "PhoneFarm ICU designs and assembles phone farm racks, motherboard boxes, fan cooling racks, USB hubs, power supplies, cables, and SIM bank hardware in Guangzhou. Request a quote for sample orders, bulk deployment, or custom rack configurations.",
+    "Factory-direct phone farm racks, motherboard boxes, cooling systems, USB hubs, and deployment packages from Guangzhou. Browse the catalog, register to order, pay with USDT after confirmation, or contact sales for bulk quotes.",
   location: "Guangzhou, China",
   since: 2017,
   description:
-    "PhoneFarm ICU — Guangzhou phone farm hardware manufacturer. Phone farm racks, motherboard boxes, cooling racks, USB hubs, power supplies, and bulk device management infrastructure. Request a quote since 2017.",
+    "PhoneFarm ICU — Guangzhou phone farm hardware catalog. Phone farm racks, motherboard boxes, cooling, USB hubs, packages, and accessories. Shop online, USDT payment, bulk quotes since 2017.",
 } as const;
 
 export const CONTACT = {
@@ -31,7 +31,7 @@ export const PAYMENT = {
 } as const;
 
 export const NAV = [
-  { href: "/products", label: "Products" },
+  { href: "/products", label: "Shop" },
   { href: "/packages", label: "Packages" },
   { href: "/pricing", label: "Pricing" },
   { href: "/knowledge-base", label: "Knowledge Base" },
@@ -44,6 +44,7 @@ export const NAV = [
 export const FOOTER_NAV = [
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
   { href: "/services", label: "Services" },
   { href: "/privacy", label: "Privacy" },

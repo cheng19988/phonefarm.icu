@@ -16,6 +16,7 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ slug, name, shortDesc, priceUsd, stock, imageCard, category }: ProductCardProps) {
+  const outOfStock = stock <= 0;
   return (
     <article className="card group flex flex-col">
       <Link href={`/products/${slug}`} className="block relative aspect-square overflow-hidden rounded-t-xl bg-slate-900">
@@ -34,13 +35,24 @@ export function ProductCard({ slug, name, shortDesc, priceUsd, stock, imageCard,
         </Link>
         <p className="text-sm text-slate-400 mb-3 line-clamp-2 flex-1">{shortDesc}</p>
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm text-slate-500">From <span className="text-lg font-bold text-white">${priceUsd.toLocaleString()}</span></span>
+          <span className="text-sm text-slate-500">
+            <span className="text-lg font-bold text-white">${priceUsd.toLocaleString()}</span> USD
+          </span>
           <StockBadge stock={stock} />
         </div>
         <div className="grid grid-cols-2 gap-2">
           <Link href={`/products/${slug}`} className="btn-outline text-center text-sm py-2">View Specs</Link>
-          <Link href={`/contact?product=${slug}`} className="btn-primary text-center text-sm py-2">Request Quote</Link>
+          <form action="/api/orders" method="POST">
+            <input type="hidden" name="productSlug" value={slug} />
+            <input type="hidden" name="action" value="buy" />
+            <button type="submit" disabled={outOfStock} className="btn-primary w-full text-sm py-2 disabled:opacity-50">
+              Buy Now
+            </button>
+          </form>
         </div>
+        <Link href={`/contact?product=${slug}`} className="text-center text-xs text-cyan-400 hover:text-white mt-2">
+          Bulk quote →
+        </Link>
       </div>
     </article>
   );
@@ -62,43 +74,52 @@ export function FAQAccordion({ items }: { items: { question: string; answer: str
   );
 }
 
-/** Primary B2B quote CTAs — used on product and package pages */
-export function ProductQuoteButtons({ slug, productName }: { slug: string; productName: string }) {
+/** Primary commerce + quote CTAs on product and package pages */
+export function ProductCommerceActions({
+  slug,
+  productName,
+  stock,
+}: {
+  slug: string;
+  productName: string;
+  stock: number;
+}) {
+  const disabled = stock <= 0;
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-3">
-        <Link href={`/contact?product=${slug}`} className="btn-primary">
-          Request Quote for This Product
-        </Link>
-        <Link href={`/contact?product=${slug}&message=Compatibility+check+for+${encodeURIComponent(productName)}`} className="btn-secondary">
-          Ask for Compatibility
+        <form action="/api/orders" method="POST">
+          <input type="hidden" name="productSlug" value={slug} />
+          <input type="hidden" name="action" value="buy" />
+          <button type="submit" disabled={disabled} className="btn-primary disabled:opacity-50">
+            Buy Now — USDT
+          </button>
+        </form>
+        <form action="/api/orders" method="POST">
+          <input type="hidden" name="productSlug" value={slug} />
+          <input type="hidden" name="action" value="quote" />
+          <button type="submit" className="btn-secondary">Add to Order</button>
+        </form>
+        <Link href={`/contact?product=${slug}`} className="btn-outline">
+          Request Quote
         </Link>
         <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
           WhatsApp Sales
         </a>
       </div>
       <p className="text-xs text-slate-500">
-        Reference price shown. Final quote depends on device model, quantity, cooling, power layout, and shipping destination.
+        USDT (TRC20) payment available after order confirmation · 30 min payment window · Reference price for {productName}.
+        Bulk orders and shipping quotes via contact sales.
       </p>
     </div>
   );
 }
 
-/** Kept for backend order flow — not used on marketing pages */
+/** @deprecated use ProductCommerceActions */
+export function ProductQuoteButtons({ slug, productName }: { slug: string; productName: string }) {
+  return <ProductCommerceActions slug={slug} productName={productName} stock={10} />;
+}
+
 export function BuyButtons({ slug, stock }: { slug: string; stock: number }) {
-  const disabled = stock <= 0;
-  return (
-    <div className="flex flex-wrap gap-3 hidden" aria-hidden="true">
-      <form action="/api/orders" method="POST">
-        <input type="hidden" name="productSlug" value={slug} />
-        <input type="hidden" name="action" value="buy" />
-        <button type="submit" disabled={disabled}>Buy Now</button>
-      </form>
-      <form action="/api/orders" method="POST">
-        <input type="hidden" name="productSlug" value={slug} />
-        <input type="hidden" name="action" value="quote" />
-        <button type="submit">Add to Order</button>
-      </form>
-    </div>
-  );
+  return <ProductCommerceActions slug={slug} productName={slug} stock={stock} />;
 }

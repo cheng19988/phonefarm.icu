@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 export const metadata = buildMetadata({
   title: "Phone Farm Hardware Catalog — Racks, Boxes & Accessories",
   description:
-    "Browse phone farm racks, motherboard boxes, fan cooling racks, USB hubs, power supplies, and network modules. Reference USD prices — request a quote from Guangzhou manufacturer.",
+    "Shop phone farm racks, motherboard boxes, cooling racks, USB hubs, power supplies, and network modules. USD reference prices — buy online with USDT or request a bulk quote.",
   path: "/products",
 });
 
@@ -41,7 +41,7 @@ export default async function ProductsPage({
         <div className="container-wide">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Phone Farm Hardware Catalog</h1>
           <p className="text-slate-400 max-w-3xl mb-4">
-            {products.length} hardware SKUs assembled in {SITE.location}. Browse by product line below, then request a written quote for your device count and shipping destination.
+            {products.length} hardware SKUs assembled in {SITE.location}. Browse by product line, order online with USDT after checkout, or contact sales for bulk pricing and custom configurations.
           </p>
 
           {/* Product lines */}

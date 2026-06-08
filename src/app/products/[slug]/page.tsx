@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCatalogProduct } from "@/lib/catalog";
-import { ProductQuoteButtons, FAQAccordion } from "@/components/commerce";
+import { ProductCommerceActions, FAQAccordion } from "@/components/commerce";
 import { ContactCTA, JsonLd } from "@/components/shared";
 import { TrustStrip } from "@/components/trust-strip";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -93,7 +93,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 Reference price: <span className="text-white font-semibold">${product.priceUsd.toLocaleString()} USD</span>
                 {" "}· {product.stock > 0 ? `${product.stock} in stock (reference)` : "Built to order — quote required"}
               </p>
-              <ProductQuoteButtons slug={product.slug} productName={product.name} />
+              <ProductCommerceActions slug={product.slug} productName={product.name} stock={product.stock} />
               <div className="mt-6 p-4 rounded-lg border border-slate-800 text-sm text-slate-400">
                 <p className="font-medium text-white mb-1">Sales contact</p>
                 <p>{CONTACT.phone} · WhatsApp · Telegram · {CONTACT.email}</p>

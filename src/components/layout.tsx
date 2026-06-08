@@ -10,12 +10,12 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
       <div className="hidden md:block bg-slate-900/80 border-b border-slate-800">
-        <div className="container-wide py-2 flex justify-between items-center text-xs text-slate-400">
+        <div className="container-hero py-2 flex justify-between items-center text-xs text-slate-400">
           <span>{SITE.location} · Hardware Catalog Since {SITE.since}</span>
           <ContactBar compact />
         </div>
       </div>
-      <div className="container-wide py-4 flex items-center justify-between gap-4">
+      <div className="container-hero py-4 flex items-center justify-between gap-4">
         <Link href="/" className="shrink-0">
           <BrandLogo />
         </Link>
@@ -26,21 +26,30 @@ export async function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Link href="/products" className="hidden sm:inline-flex btn-outline text-sm py-2 px-3">
-            Products
+            Shop Catalog
           </Link>
-          <Link href="/contact" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
-            Request a Quote
+          <Link href="/pricing" className="hidden md:inline-flex text-sm text-slate-400 hover:text-white py-2">
+            Pricing
           </Link>
-          {session && (
-            <Link href={session.role === "admin" ? "/admin" : "/account/orders"} className="text-sm text-slate-400 hover:text-white">
+          {session ? (
+            <Link href={session.role === "admin" ? "/admin" : "/account/orders"} className="text-sm text-slate-300 hover:text-white py-2">
               Account
             </Link>
+          ) : (
+            <>
+              <Link href="/login" className="text-sm text-slate-400 hover:text-white py-2 px-2">
+                Sign In
+              </Link>
+              <Link href="/register" className="btn-primary text-sm py-2 px-4">
+                Sign Up
+              </Link>
+            </>
           )}
         </div>
       </div>
-      <nav className="xl:hidden container-wide pb-3 flex gap-4 overflow-x-auto text-sm">
+      <nav className="xl:hidden container-hero pb-3 flex gap-4 overflow-x-auto text-sm">
         {NAV.map((item) => (
           <Link key={item.href} href={item.href} className="text-slate-400 hover:text-white whitespace-nowrap">
             {item.label}
@@ -54,18 +63,19 @@ export async function Header() {
 export function Footer() {
   return (
     <footer className="bg-slate-950 border-t border-slate-800 mt-auto">
-      <div className="container-wide py-12 grid md:grid-cols-4 gap-8">
+      <div className="container-hero py-12 grid md:grid-cols-4 gap-8">
         <div className="md:col-span-2">
           <div className="font-bold text-white text-lg mb-2">{SITE.name}</div>
           <p className="text-slate-400 text-sm mb-4 max-w-md">{SITE.intro}</p>
           <ContactBar />
         </div>
         <div>
-          <h3 className="font-semibold text-white mb-3">Catalog</h3>
+          <h3 className="font-semibold text-white mb-3">Shop</h3>
           <ul className="space-y-2 text-sm text-slate-400">
             <li><Link href="/products" className="hover:text-white">All Products</Link></li>
             <li><Link href="/packages" className="hover:text-white">Packages</Link></li>
             <li><Link href="/pricing" className="hover:text-white">Pricing</Link></li>
+            <li><Link href="/register" className="hover:text-white">Create Account</Link></li>
             <li><Link href="/products/phone-farm-box" className="hover:text-white">Phone Farm Box</Link></li>
             <li><Link href="/products/motherboard-box" className="hover:text-white">Motherboard Box</Link></li>
           </ul>

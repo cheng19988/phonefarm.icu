@@ -100,11 +100,19 @@ export default async function PackageDetailPage({ params }: Props) {
             </>
           )}
 
-          <div className="flex flex-wrap gap-4 mb-12">
-            <Link href={`/contact?product=${pkg.slug}`} className="btn-primary">Request Quote for This Package</Link>
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">WhatsApp Sales</a>
-            <Link href="/pricing" className="btn-outline">Reference Pricing</Link>
+          <div className="flex flex-wrap gap-4 mb-4">
+            {pkg.productSlugs[0] && (
+              <form action="/api/orders" method="POST">
+                <input type="hidden" name="productSlug" value={pkg.productSlugs[0]} />
+                <input type="hidden" name="action" value="buy" />
+                <button type="submit" className="btn-primary">Order Package — USDT</button>
+              </form>
+            )}
+            <Link href={`/contact?product=${pkg.slug}`} className="btn-secondary">Request Bulk Quote</Link>
+            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">WhatsApp Sales</a>
+            <Link href="/pricing" className="btn-outline">Pricing</Link>
           </div>
+          <p className="text-xs text-slate-500 mb-12">USDT payment after order confirmation · Package order uses primary catalog SKU — contact sales for full bundle configuration.</p>
 
           <ContactCTA title={`Discuss ${pkg.name} with Sales`} />
         </div>
