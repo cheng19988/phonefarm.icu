@@ -95,11 +95,28 @@ export function buildFullSpecTable(
 
 /** One-line spec highlight for shop cards */
 export function specHighlight(seed: ProductSeed): string {
-  const cap =
-    seed.specs["Typical capacity"] ??
-    seed.specs["Typical devices"] ??
-    seed.specs["Node type"] ??
-    seed.specs["Type"];
-  if (cap) return cap;
-  return seed.features[0] ?? seed.shortDesc.slice(0, 60);
+  return specHighlights(seed)[0] ?? seed.shortDesc.slice(0, 60);
+}
+
+/** 2–4 spec bullets for shop product cards */
+export function specHighlights(seed: ProductSeed): string[] {
+  const keys = [
+    "Typical capacity",
+    "Typical devices",
+    "Node type",
+    "Type",
+    "Power input",
+    "Cooling",
+    "USB interface",
+    "Chassis material",
+    "Port count",
+    "Output power",
+  ];
+  const fromSpecs = keys
+    .map((k) => seed.specs[k])
+    .filter((v): v is string => Boolean(v))
+    .slice(0, 3);
+  const fromFeatures = seed.features.slice(0, 4 - fromSpecs.length);
+  const combined = [...fromSpecs, ...fromFeatures].slice(0, 4);
+  return combined.length > 0 ? combined : [seed.shortDesc.slice(0, 72)];
 }

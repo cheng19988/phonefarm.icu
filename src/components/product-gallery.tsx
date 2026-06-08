@@ -16,26 +16,28 @@ export function ProductGallery({ images, alt }: Props) {
   if (!current) return null;
 
   return (
-    <div className="space-y-4">
-      <div className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl shadow-slate-950/50">
+    <div className="space-y-4 lg:sticky lg:top-28">
+      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100 border border-[var(--border)] shadow-lg shadow-blue-900/5">
         <Image
           src={current}
           alt={alt}
           fill
           className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 45vw"
+          sizes="(max-width: 1024px) 100vw, 55vw"
           priority
         />
       </div>
       {thumbs.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-1">
+        <div className="flex gap-3 overflow-x-auto pb-1 snap-x">
           {thumbs.map((src, i) => (
             <button
-              key={src}
+              key={`${src}-${i}`}
               type="button"
               onClick={() => setActive(i)}
-              className={`relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-colors ${
-                i === active ? "border-cyan-500" : "border-slate-700 hover:border-slate-500"
+              className={`relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden border-2 transition-all snap-start ${
+                i === active
+                  ? "border-[var(--brand)] ring-2 ring-[var(--brand)]/20"
+                  : "border-[var(--border)] hover:border-[var(--brand)]/50"
               }`}
             >
               <Image src={src} alt="" fill className="object-cover" sizes="96px" />

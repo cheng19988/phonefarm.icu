@@ -46,3 +46,10 @@ prisma/dev.db
 next-env.d.ts
 
 /src/generated/prisma
+
+# local analysis / reference-site temp files (never commit)
+.tmp-*
+scripts/download-genfarmer-*.mjs
+scripts/dedupe-image-folder.mjs
+scripts/rebuild-manifest.mjs
+scripts/restore-dedupe-keepers.mjs

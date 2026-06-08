@@ -109,3 +109,51 @@ export const PRODUCT_CATEGORIES = [
   "Custom Cabinet",
   "Remote Control",
 ] as const;
+
+/** Shop page category filter pills (group maps to multiple PRODUCT_CATEGORIES) */
+export const SHOP_FILTERS = [
+  { key: "all", label: "All", href: "/products", categories: null as string[] | null },
+  {
+    key: "racks",
+    label: "Phone Farm Racks",
+    href: "/products?group=racks",
+    categories: ["Phone Farm Box", "Android Phone Farm", "iPhone Phone Farm", "Real Device Phone Farm"],
+  },
+  {
+    key: "motherboard",
+    label: "Motherboard Boxes",
+    href: "/products?group=motherboard",
+    categories: ["Motherboard Box", "Empty Box / Chassis"],
+  },
+  {
+    key: "power",
+    label: "Power / Cooling / USB",
+    href: "/products?group=power",
+    categories: ["USB Hub", "Power Supply", "Cooling"],
+  },
+  {
+    key: "network",
+    label: "Network / SIM",
+    href: "/products?group=network",
+    categories: ["Network"],
+  },
+  {
+    key: "cabinet",
+    label: "Custom Cabinet",
+    href: "/products?group=cabinet",
+    categories: ["Custom Cabinet"],
+  },
+  {
+    key: "packages",
+    label: "Packages / Kits",
+    href: "/packages",
+    categories: null,
+  },
+] as const;
+
+export function getShopFilterCategories(group?: string): string[] | undefined {
+  if (!group) return undefined;
+  const filter = SHOP_FILTERS.find((f) => f.key === group);
+  const cats = filter?.categories;
+  return cats ? [...cats] : undefined;
+}

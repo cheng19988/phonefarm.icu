@@ -1,15 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
 import { listCatalogProducts } from "@/lib/catalog";
-import { ProductCard } from "@/components/commerce";
 import { ContactCTA } from "@/components/shared";
 import { TrustStrip } from "@/components/trust-strip";
+import { ShopHero } from "@/components/products/shop-hero";
+import { ShopProductCard } from "@/components/products/product-card";
+import { CategoryFilters } from "@/components/products/category-filters";
 import { buildMetadata } from "@/lib/seo";
-import { SITE, PRODUCT_CATEGORIES } from "@/lib/config";
-import { PRODUCT_LINES } from "@/data/product-lines";
+import { getShopFilterCategories } from "@/lib/config";
 import { getProductSeed } from "@/data/products";
-import { specHighlight } from "@/lib/product-specs";
-import { IMAGES } from "@/lib/images";
+import { specHighlights } from "@/lib/product-specs";
 
 export const dynamic = "force-dynamic";
 
@@ -20,131 +19,100 @@ export const metadata = buildMetadata({
   path: "/products",
 });
 
+const BUYING_GUIDES = [
+  { title: "How to Buy", href: "/docs/buying-guide", desc: "Register, order, and pay with USDT after confirmation" },
+  { title: "USDT Payment", href: "/docs/usdt-payment-guide", desc: "TRC20 payment after order confirmation" },
+  { title: "Shipping Guide", href: "/docs/shipping-guide", desc: "Export packing, MOQ, and freight options" },
+  { title: "Warranty", href: "/docs/warranty-guide", desc: "Hardware support and replacement parts" },
+  { title: "Bulk Quote", href: "/contact", desc: "Custom rack layout and project pricing" },
+];
+
 export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ sort?: string; category?: string }>;
+  searchParams: Promise<{ sort?: string; category?: string; group?: string }>;
 }) {
   const params = await searchParams;
-  const products = await listCatalogProducts({
+  const groupCategories = getShopFilterCategories(params.group);
+
+  let products = await listCatalogProducts({
     category: params.category,
-    orderBy: params.sort === "price-desc" ? "priceUsd" : params.sort === "price-asc" ? "priceUsd" : "name",
+    orderBy: params.sort === "price-desc" || params.sort === "price-asc" ? "priceUsd" : "name",
     sort: params.sort === "price-desc" ? "desc" : "asc",
   });
 
-  const categories = [...new Set(products.map((p) => p.category))];
-  const sortBase = params.category
-    ? `/products?category=${encodeURIComponent(params.category)}`
-    : "/products";
-  const sortSep = params.category ? "&" : "?";
+  if (groupCategories) {
+    products = products.filter((p) => groupCategories.includes(p.category));
+  }
+
+  const sortBase = (() => {
+    const q = new URLSearchParams();
+    if (params.category) q.set("category", params.category);
+    if (params.group) q.set("group", params.group);
+    const s = q.toString();
+    return s ? `/products?${s}` : "/products";
+  })();
+  const sortSep = sortBase.includes("?") ? "&" : "?";
 
   return (
     <>
-      <TrustStrip />
+      <ShopHero productCount={products.length} />
+      <TrustStrip variant="light" />
 
-      {/* Shop hero */}
-      <section className="relative min-h-[45vh] flex items-center border-b border-slate-800 overflow-hidden">
-        <Image src={IMAGES.homeHero} alt="" fill className="object-cover opacity-20" priority />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent" />
-        <div className="container-hero relative py-16 lg:py-20">
-          <div className="max-w-2xl">
-            <p className="text-cyan-400 text-sm font-medium mb-3">BoxPhone Shop · Hardware Catalog</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Shop Phone Farm Hardware</h1>
-            <p className="text-lg text-slate-300 mb-6">
-              {products.length} SKUs from {SITE.location}. Reference USD prices, Buy Now with USDT, or request a bulk quote for custom configurations.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/register" className="btn-primary">Sign Up to Order</Link>
-              <Link href="/pricing" className="btn-secondary">View Pricing</Link>
-              <Link href="/contact" className="btn-outline">Contact Sales</Link>
+      <div className="section section-light">
+        <div className="container-hero">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
+            <CategoryFilters activeGroup={params.group} activeCategory={params.category} />
+            <div className="flex flex-wrap gap-4 text-sm items-center shrink-0">
+              <span className="text-[var(--text-subtle)]">Sort:</span>
+              <Link href={`${sortBase}${sortSep}sort=price-asc`} className="text-[var(--text-muted)] hover:text-[var(--brand)] font-medium">
+                Price ↑
+              </Link>
+              <Link href={`${sortBase}${sortSep}sort=price-desc`} className="text-[var(--text-muted)] hover:text-[var(--brand)] font-medium">
+                Price ↓
+              </Link>
+              <span className="text-[var(--text-subtle)] ml-2">{products.length} products</span>
             </div>
           </div>
-        </div>
-      </section>
 
-      <div className="section">
-        <div className="container-hero">
-          {/* Product lines */}
-          <section className="mb-14">
-            <h2 className="text-2xl font-bold text-white mb-6">Product Lines</h2>
-            <div className="grid md:grid-cols-2 gap-5">
-              {PRODUCT_LINES.map((line) => (
-                <div key={line.id} id={`line-${line.id}`} className="p-6 rounded-xl border border-slate-800 bg-slate-900/30">
-                  <h3 className="font-semibold text-white text-lg mb-2">{line.name}</h3>
-                  <p className="text-sm text-slate-400 mb-2">{line.summary}</p>
-                  <p className="text-xs text-slate-500 mb-4">{line.suitableFor}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {line.categories.map((cat) => (
-                      <Link
-                        key={cat}
-                        href={`/products?category=${encodeURIComponent(cat)}`}
-                        className="text-xs px-3 py-1.5 rounded-full border border-slate-700 text-slate-400 hover:border-cyan-600 hover:text-white"
-                      >
-                        {cat}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+          {products.length === 0 ? (
+            <div className="text-center py-20 card p-10">
+              <p className="text-lg text-[var(--text-muted)] mb-4">No products match this filter.</p>
+              <Link href="/products" className="btn-primary">View All Products</Link>
+            </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+              {products.map((p) => {
+                const seed = getProductSeed(p.slug);
+                return (
+                  <ShopProductCard
+                    key={p.id}
+                    slug={p.slug}
+                    name={p.name}
+                    shortDesc={p.shortDesc}
+                    priceUsd={p.priceUsd}
+                    stock={p.stock}
+                    imageCard={p.imageCard}
+                    category={p.category}
+                    specHighlights={seed ? specHighlights(seed) : undefined}
+                  />
+                );
+              })}
+            </div>
+          )}
+
+          <section className="mt-20 mb-16">
+            <p className="text-sm font-semibold text-[var(--brand)] uppercase tracking-wide mb-2">Before You Order</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-8">Buying Guides</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {BUYING_GUIDES.map((g) => (
+                <Link key={g.href} href={g.href} className="card card-hover p-6">
+                  <h3 className="font-bold text-[var(--text)] mb-2">{g.title}</h3>
+                  <p className="text-sm text-[var(--text-muted)]">{g.desc}</p>
+                </Link>
               ))}
             </div>
           </section>
-
-          <div className="flex flex-wrap gap-2 mb-6">
-            <Link
-              href="/products"
-              className={`px-4 py-1.5 rounded-full text-sm border ${!params.category ? "border-cyan-600 text-white bg-cyan-950/30" : "border-slate-700 text-slate-400 hover:text-white"}`}
-            >
-              All Products
-            </Link>
-            {PRODUCT_CATEGORIES.map((cat) => (
-              <Link
-                key={cat}
-                href={`/products?category=${encodeURIComponent(cat)}`}
-                className={`px-4 py-1.5 rounded-full text-sm border ${params.category === cat ? "border-cyan-600 text-white bg-cyan-950/30" : "border-slate-700 text-slate-400 hover:text-white"}`}
-              >
-                {cat}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex gap-4 mb-10 text-sm items-center">
-            <span className="text-slate-500">Sort by price:</span>
-            <Link href={`${sortBase}${sortSep}sort=price-asc`} className="text-slate-400 hover:text-white">Low → High</Link>
-            <Link href={`${sortBase}${sortSep}sort=price-desc`} className="text-slate-400 hover:text-white">High → Low</Link>
-            <span className="text-slate-600 ml-auto">{products.length} products</span>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((p) => {
-              const seed = getProductSeed(p.slug);
-              return (
-                <ProductCard
-                  key={p.id}
-                  slug={p.slug}
-                  name={p.name}
-                  shortDesc={p.shortDesc}
-                  priceUsd={p.priceUsd}
-                  stock={p.stock}
-                  imageCard={p.imageCard}
-                  category={p.category}
-                  specHighlight={seed ? specHighlight(seed) : undefined}
-                />
-              );
-            })}
-          </div>
-
-          <div className="mt-20 grid md:grid-cols-3 gap-6 mb-16">
-            {[
-              { title: "How to Buy", href: "/docs/buying-guide", desc: "Register, order, and pay with USDT" },
-              { title: "USDT Payment", href: "/docs/usdt-payment-guide", desc: "TRC20 payment after order confirmation" },
-              { title: "Shipping Guide", href: "/docs/shipping-guide", desc: "Export packing, MOQ, and freight options" },
-            ].map((g) => (
-              <Link key={g.href} href={g.href} className="card p-6 hover:border-cyan-800 transition-colors">
-                <h3 className="font-bold text-white mb-2">{g.title}</h3>
-                <p className="text-sm text-slate-400">{g.desc}</p>
-              </Link>
-            ))}
-          </div>
 
           <ContactCTA title="Need a Bulk Quote or Custom Rack Configuration?" />
         </div>
