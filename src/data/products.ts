@@ -1,5 +1,3 @@
-import { IMAGES } from "@/lib/images";
-
 export type ProductSeed = {
   slug: string;
   name: string;
@@ -30,6 +28,16 @@ function product(data: ProductSeed): ProductSeed {
   return data;
 }
 
+/** Synced assets under public/images/products/{slug}/ — list and PDP use the same files. */
+function syncedImages(slug: string, ext: "png" | "webp" = "png") {
+  const base = `/images/products/${slug}`;
+  return {
+    imageCard: `${base}/card.${ext}`,
+    imageHero: `${base}/hero.${ext}`,
+    imageDetail: `${base}/gallery-1.${ext}`,
+  };
+}
+
 export const PRODUCT_SEEDS: ProductSeed[] = [
   product({
     slug: "phone-farm-box",
@@ -47,13 +55,16 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Burn-in tested before export packing",
     ],
     specs: {
-      "Product type": "Full-phone rack enclosure",
-      "Typical capacity": "Configured per phone model — commonly 10–20 slots",
+      "Product type": "Full-phone rack enclosure (Box Phone Farm)",
+      "Reference models": "Samsung S8 / S10 class — configurable per order",
+      "Node interface": "USB + LAN port per slot",
+      "Typical node spec": "6GB RAM + 128GB storage class (model-dependent)",
+      "Typical capacity": "10–20 device slots per rack (layout confirmed in quote)",
       "Chassis material": "Steel frame with ventilated panels",
       "Power input": "110–220V AC (region-specific cable supplied)",
-      "Cooling": "Integrated fan module — ambient temp dependent",
-      "USB interface": "Hub uplink to control PC (model-dependent hub pairing)",
-      "Dimensions": "Confirmed in quote — varies by slot layout",
+      "Cooling": "Integrated active fan module",
+      "Control uplink": "USB hub to control workstation",
+      "Dimensions": "Confirmed per phone model list before production",
     },
     scenarios: [
       "Mobile app QA and regression testing on real hardware",
@@ -102,9 +113,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 699,
     stock: 15,
-    imageCard: IMAGES.phoneFarmBox.card,
-    imageHero: IMAGES.phoneFarmBox.hero,
-    imageDetail: IMAGES.phoneFarmBox.detail,
+    ...syncedImages("phone-farm-box"),
   }),
 
   product({
@@ -123,13 +132,15 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Workshop assembly with thermal spot-check",
     ],
     specs: {
-      "Node type": "Android motherboard (screenless)",
-      "Typical capacity": "Density confirmed per board model — often 15–20 nodes",
-      "Power": "Industrial PSU sized to node count in quote",
+      "Product type": "Motherboard box (screenless Android nodes)",
+      "Reference platform": "A908N class — 6GB + 128GB, USB + LAN + OTG",
+      "Node type": "Black circuit board mounting without display/battery",
+      "Typical capacity": "15–20 motherboard nodes per chassis",
+      "Power": "Industrial centralized PSU",
       "Cooling": "Multi-fan airflow across motherboard row",
       "Connectivity": "USB hub with per-node data path",
-      "Chassis": "Approx. 43.5 × 27.5 × 9 cm reference — custom layouts quoted separately",
-      "SIM / tray": "Depends on motherboard model — confirm in compatibility check",
+      "Chassis": "Approx. 43.5 × 27.5 × 9 cm reference size",
+      "Compatible boards": "Note 8 / OnePlus 5 / Nubia Z17 class — confirm before order",
     },
     scenarios: [
       "Android app automation in headless device labs",
@@ -175,9 +186,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 1680,
     stock: 8,
-    imageCard: IMAGES.motherboardBox.card,
-    imageHero: IMAGES.motherboardBox.hero,
-    imageDetail: IMAGES.motherboardBox.detail,
+    ...syncedImages("motherboard-box"),
   }),
 
   product({
@@ -196,11 +205,13 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Includes deployment checklist for Android labs",
     ],
     specs: {
-      "Platform": "Android smartphones (buyer-supplied or locally sourced)",
-      "Rack type": "Full-phone enclosure",
-      "Typical devices": "10–20 per unit — model dependent",
-      "Control link": "USB to Windows or Linux control station",
-      "Network": "Buyer router — optional network module add-on",
+      "Product type": "Android full-phone rack (Box Phone Farm)",
+      "Reference models": "Samsung S9 / S20 / Note 20 / S21 FE class",
+      "Node interface": "USB + LAN per slot",
+      "Typical node spec": "6GB RAM + 128GB storage class (model-dependent)",
+      "Rack type": "Full-phone enclosure with active cooling",
+      "Typical capacity": "10–20 devices per rack — layout confirmed in quote",
+      "Control link": "USB hub to Windows or Linux control station",
       "Software": "Buyer-selected ADB tools — not included",
     },
     scenarios: [
@@ -238,9 +249,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 517,
     stock: 20,
-    imageCard: IMAGES.androidFarm.card,
-    imageHero: IMAGES.androidFarm.hero,
-    imageDetail: IMAGES.androidFarm.detail,
+    ...syncedImages("android-phone-farm"),
   }),
 
   product({
@@ -259,12 +268,13 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Workshop cable routing test before shipment",
     ],
     specs: {
-      "Platform": "Apple iPhone (buyer-supplied)",
+      "Product type": "iOS lab rack — Lightning / USB-C routing for real iPhones",
+      "Gallery note": "Photos show compact rack chassis layout; iPhone models quoted per your list",
+      "Platform": "Apple iPhone (customer-supplied)",
       "Typical capacity": "10–16 devices — model and cable type dependent",
       "Connectors": "Lightning and/or USB-C per quote",
       "Control": "macOS workstation recommended",
-      "Network": "Optional dedicated router per cluster",
-      "Dimensions": "Confirmed per iPhone model mix in quote",
+      "Chassis": "Ventilated metal frame with centralized charging bus",
     },
     scenarios: [
       "iOS app QA and TestFlight distribution testing",
@@ -301,9 +311,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 1280,
     stock: 5,
-    imageCard: IMAGES.iphoneFarm.card,
-    imageHero: IMAGES.iphoneFarm.hero,
-    imageDetail: IMAGES.iphoneFarm.detail,
+    ...syncedImages("iphone-phone-farm"),
   }),
 
   product({
@@ -322,11 +330,12 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Packing and freight planned for large shipments",
     ],
     specs: {
+      "Product type": "Full-phone rack with real device slots (Box Phone)",
+      "Reference model": "Samsung S8 class — USB + LAN, 6GB + 128GB",
       "Scope": "Project-based — rack count defined in quote",
-      "Device type": "Full smartphones (buyer-supplied typical)",
+      "Device type": "Complete smartphones with screen (buyer-supplied typical)",
       "Infrastructure": "Racks + optional power/cooling/network modules",
       "Control": "Buyer workstation and network design",
-      "Lead time": "Longer than single-SKU — confirmed per project",
     },
     scenarios: [
       "Production mobile testing environment build-out",
@@ -368,9 +377,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 998,
     stock: 12,
-    imageCard: IMAGES.realDevice.card,
-    imageHero: IMAGES.realDevice.hero,
-    imageDetail: IMAGES.realDevice.detail,
+    ...syncedImages("real-device-phone-farm"),
   }),
 
   product({
@@ -389,11 +396,12 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Same export QC on frame integrity and vent alignment",
     ],
     specs: {
+      "Product type": "Bare chassis / empty box frame",
+      "Reference layout": "S10-class slot spacing — structure diagram included",
       "Contents": "Chassis frame and panels — no hub/PSU included",
       "Material": "Steel with ventilation cutouts",
       "Slot pattern": "Standard or custom — confirmed in quote",
       "Add-on modules": "USB hub, PSU, cooling sold separately",
-      "Weight": "Lighter than fully configured rack — exact weight in quote",
     },
     scenarios: [
       "Custom lab experiments with non-standard device sizes",
@@ -428,9 +436,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 280,
     stock: 25,
-    imageCard: IMAGES.emptyBox.card,
-    imageHero: IMAGES.emptyBox.hero,
-    imageDetail: IMAGES.emptyBox.detail,
+    ...syncedImages("empty-box-chassis"),
   }),
 
   product({
@@ -488,9 +494,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 89,
     stock: 50,
-    imageCard: IMAGES.usbHub.card,
-    imageHero: IMAGES.usbHub.hero,
-    imageDetail: IMAGES.usbHub.detail,
+    ...syncedImages("usb-hub", "webp"),
   }),
 
   product({
@@ -548,9 +552,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 120,
     stock: 40,
-    imageCard: IMAGES.power.card,
-    imageHero: IMAGES.power.hero,
-    imageDetail: IMAGES.power.detail,
+    ...syncedImages("power-supply-solution", "webp"),
   }),
 
   product({
@@ -609,9 +611,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 65,
     stock: 45,
-    imageCard: IMAGES.cooling.card,
-    imageHero: IMAGES.cooling.hero,
-    imageDetail: IMAGES.cooling.detail,
+    ...syncedImages("cooling-solution", "webp"),
   }),
 
   product({
@@ -670,9 +670,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 150,
     stock: 30,
-    imageCard: IMAGES.network.card,
-    imageHero: IMAGES.network.hero,
-    imageDetail: IMAGES.network.detail,
+    ...syncedImages("network-equipment", "webp"),
   }),
 
   product({
@@ -737,9 +735,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 2500,
     stock: 3,
-    imageCard: IMAGES.customCabinet.card,
-    imageHero: IMAGES.customCabinet.hero,
-    imageDetail: IMAGES.customCabinet.detail,
+    ...syncedImages("custom-cabinet", "webp"),
   }),
 
   product({
@@ -795,9 +791,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     priceUsd: 350,
     stock: 99,
-    imageCard: IMAGES.remoteControl.card,
-    imageHero: IMAGES.remoteControl.hero,
-    imageDetail: IMAGES.remoteControl.detail,
+    ...syncedImages("remote-control-setup", "webp"),
   }),
 ];
 

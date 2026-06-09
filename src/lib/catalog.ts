@@ -1,6 +1,7 @@
 import type { Prisma } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import { canonicalProductPriceUsd } from "@/lib/pricing";
+import { getProductAssets } from "@/lib/product-assets";
 import { PRODUCT_SEEDS, getProductSeed, type ProductSeed } from "@/data/products";
 
 export type CatalogProduct = {
@@ -29,8 +30,23 @@ function withCanonicalPrice<T extends CatalogProduct>(product: T): T {
   return { ...product, priceUsd: canonicalProductPriceUsd(product.slug, product.priceUsd) };
 }
 
+function withProductImages<T extends CatalogProduct>(product: T): T {
+  const assets = getProductAssets(product.slug);
+  if (!assets) return product;
+  return {
+    ...product,
+    imageCard: assets.card,
+    imageHero: assets.hero,
+    imageDetail: assets.detail,
+  };
+}
+
+function normalizeProduct<T extends CatalogProduct>(product: T): T {
+  return withProductImages(withCanonicalPrice(product));
+}
+
 function seedToCatalog(seed: ProductSeed): CatalogProduct {
-  return withCanonicalPrice({
+  return normalizeProduct({
     id: `seed-${seed.slug}`,
     slug: seed.slug,
     name: seed.name,
@@ -89,7 +105,7 @@ export async function listCatalogProducts(options?: {
       orderBy,
       ...(options?.take ? { take: options.take } : {}),
     });
-    return rows.map(withCanonicalPrice);
+    return rows.map(normalizeProduct);
   } catch {
     return filterFallback(options);
   }
@@ -106,7 +122,7 @@ export async function countCatalogProducts(): Promise<number> {
 export async function getCatalogProduct(slug: string): Promise<CatalogProduct | null> {
   try {
     const row = await prisma.product.findUnique({ where: { slug } });
-    if (row) return withCanonicalPrice(row);
+    if (row) return normalizeProduct(row);
   } catch {
     /* use seed fallback */
   }

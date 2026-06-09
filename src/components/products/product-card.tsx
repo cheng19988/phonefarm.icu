@@ -27,12 +27,12 @@ export function ShopProductCard({
 
   return (
     <article className="group card card-hover flex flex-col h-full rounded-lg overflow-hidden">
-      <Link href={`/products/${slug}`} className="block relative aspect-square overflow-hidden bg-[var(--surface-muted)]">
+      <Link href={`/products/${slug}`} className="block relative aspect-square overflow-hidden bg-white">
         <Image
           src={imageCard}
           alt={`${name} — phone farm hardware`}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-700"
+          className="object-contain p-3 group-hover:scale-[1.02] transition-transform duration-500"
           sizes="(max-width:768px) 50vw, 33vw"
         />
         <span className="absolute top-4 left-4 text-[10px] font-semibold uppercase tracking-[0.15em] bg-[var(--dark-bg)]/80 text-white px-3 py-1.5 rounded">

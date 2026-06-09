@@ -17,12 +17,12 @@ export function ProductGallery({ images, alt }: Props) {
 
   return (
     <div className="space-y-4 lg:sticky lg:top-28">
-      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100 border border-[var(--border)] shadow-lg shadow-blue-900/5">
+      <div className="relative aspect-[4/5] rounded-lg overflow-hidden bg-white border border-[var(--border)]">
         <Image
           src={current}
           alt={alt}
           fill
-          className="object-cover"
+          className="object-contain p-2"
           sizes="(max-width: 1024px) 100vw, 55vw"
           priority
         />
@@ -40,7 +40,7 @@ export function ProductGallery({ images, alt }: Props) {
                   : "border-[var(--border)] hover:border-[var(--brand)]/50"
               }`}
             >
-              <Image src={src} alt="" fill className="object-cover" sizes="96px" />
+              <Image src={src} alt="" fill className="object-contain p-1 bg-white" sizes="96px" />
             </button>
           ))}
         </div>
