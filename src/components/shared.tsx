@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CONTACT, SITE } from "@/lib/config";
+import { IconMail, IconShop, IconUser, IconWhatsApp } from "./icons";
 
 export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   return (
@@ -53,22 +54,28 @@ export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { titl
 }
 
 export function MobileContactBar() {
+  const item = "flex flex-col items-center gap-1 py-2.5 text-[10px] font-medium transition-colors";
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--dark-bg)]/95 border-t border-white/10 backdrop-blur-sm">
-      <div className="grid grid-cols-5 divide-x divide-white/10">
-        <Link href="/products" className="flex flex-col items-center py-3 text-xs font-medium text-[var(--accent)]">
+    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[#060b18]/96 border-t border-white/10 backdrop-blur-xl safe-area-pb">
+      <div className="grid grid-cols-5 divide-x divide-white/[0.06]">
+        <Link href="/products" className={`${item} text-[var(--accent)]`}>
+          <IconShop size={18} />
           Shop
         </Link>
-        <Link href="/register" className="flex flex-col items-center py-3 text-xs text-slate-400">
+        <Link href="/register" className={`${item} text-slate-400 hover:text-white`}>
+          <IconUser size={18} />
           Sign Up
         </Link>
-        <Link href="/login" className="flex flex-col items-center py-3 text-xs text-slate-400">
+        <Link href="/login" className={`${item} text-slate-400 hover:text-white`}>
+          <IconUser size={18} />
           Sign In
         </Link>
-        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">
+        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${item} text-slate-400 hover:text-white`}>
+          <IconWhatsApp size={18} />
           WhatsApp
         </a>
-        <Link href="/contact" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">
+        <Link href="/contact" className={`${item} text-slate-400 hover:text-white`}>
+          <IconMail size={18} />
           Sales
         </Link>
       </div>

@@ -210,6 +210,73 @@ body {
   box-shadow: 0 0 0 3px rgba(15, 28, 63, 0.1);
 }
 
+/* Site header */
+.header-nav-link {
+  @apply relative px-3.5 py-2 text-sm font-medium text-slate-300 rounded-lg transition-colors;
+}
+.header-nav-link:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.06);
+}
+.header-nav-link-shop {
+  color: white;
+}
+.header-nav-link-mobile {
+  @apply px-3 py-1.5 text-xs font-medium text-slate-400 rounded-full transition-colors;
+}
+.header-nav-link-mobile:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+}
+.header-cta-btn {
+  @apply inline-flex items-center justify-center rounded-lg font-semibold text-sm transition-all;
+  background: linear-gradient(135deg, #e8c547 0%, #c9a227 100%);
+  color: var(--dark-bg);
+  padding: 0.55rem 1.15rem;
+  box-shadow: 0 2px 12px rgba(201, 162, 39, 0.35);
+}
+.header-cta-btn:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 4px 16px rgba(201, 162, 39, 0.45);
+}
+.header-signin-btn {
+  @apply inline-flex items-center justify-center rounded-lg font-medium text-sm transition-colors;
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+.header-signin-btn:hover {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+}
+.header-account-btn {
+  @apply inline-flex items-center gap-2 rounded-lg font-medium text-sm transition-colors;
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.5rem 0.9rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+.header-account-btn:hover {
+  color: white;
+  border-color: rgba(201, 162, 39, 0.45);
+}
+.header-shop-panel {
+  background: linear-gradient(165deg, #121d38 0%, #0c1428 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Premium hero overlay utility */
 .hero-cinematic {
   background: var(--dark-bg);
