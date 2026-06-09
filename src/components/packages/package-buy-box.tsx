@@ -33,18 +33,17 @@ export function PackageBuyBox({ pkg }: { pkg: HardwarePackage }) {
       </div>
 
       <div className="space-y-3 mb-6">
-        {primarySlug ? (
-          <form action="/api/orders" method="POST">
-            <input type="hidden" name="productSlug" value={primarySlug} />
-            <input type="hidden" name="action" value="buy" />
-            <button type="submit" className="btn-accent w-full py-3.5 text-base">
-              Order Package
-            </button>
-          </form>
-        ) : (
-          <Link href={`/contact?product=${pkg.slug}`} className="btn-accent w-full py-3.5 text-base text-center block">
-            Order Package
-          </Link>
+        <Link href={`/contact?product=${pkg.slug}`} className="btn-accent w-full py-3.5 text-base text-center block">
+          Request Package Quote
+        </Link>
+        {primarySlug && (
+          <p className="text-xs text-[var(--text-subtle)] text-center">
+            Bundle pricing is confirmed by sales — individual SKUs such as{" "}
+            <Link href={`/products/${primarySlug}`} className="text-[var(--brand)] hover:underline">
+              {primarySlug.replace(/-/g, " ")}
+            </Link>{" "}
+            can be ordered separately from the shop.
+          </p>
         )}
         <div className="grid grid-cols-2 gap-3">
           <Link href={`/contact?product=${pkg.slug}`} className="btn-outline text-sm py-3 text-center">

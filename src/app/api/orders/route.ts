@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { PAYMENT } from "@/lib/config";
-import { createPaymentExpiry, usdToUsdt } from "@/lib/payment";
+import { canonicalProductPriceUsd, lineTotalUsd, usdToUsdt } from "@/lib/pricing";
+import { createPaymentExpiry } from "@/lib/payment";
 
 function orderNumber() {
   return `HC${Date.now().toString(36).toUpperCase()}`;
@@ -25,20 +26,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Product not found" }, { status: 404 });
   }
 
+  const quantity = 1;
+  const unitPrice = canonicalProductPriceUsd(product.slug, product.priceUsd);
+  const totalUsd = lineTotalUsd(unitPrice, quantity);
+
   const order = await prisma.order.create({
     data: {
       orderNumber: orderNumber(),
       userId: session.id,
       status: action === "buy" ? "Waiting for Payment" : "Pending",
-      totalUsd: product.priceUsd,
+      totalUsd,
       items: {
-        create: [{ productId: product.id, quantity: 1, unitPrice: product.priceUsd }],
+        create: [{ productId: product.id, quantity, unitPrice }],
       },
     },
   });
 
   if (action === "buy") {
-    const amount = usdToUsdt(product.priceUsd);
+    const amount = usdToUsdt(totalUsd);
     await prisma.payment.create({
       data: {
         orderId: order.id,

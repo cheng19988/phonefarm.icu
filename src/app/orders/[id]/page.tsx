@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { PAYMENT, CONTACT } from "@/lib/config";
+import { PAYMENT } from "@/lib/config";
+import { formatUsd, formatUsdt } from "@/lib/pricing";
 import { CopyButton } from "@/components/ui/copy-button";
 import { ContactBar } from "@/components/shared";
 
@@ -185,13 +186,13 @@ export default function OrderPage() {
                 {item.product.name}
               </Link>
               <span className="text-[var(--text-muted)]">
-                ${item.unitPrice} × {item.quantity}
+                {formatUsd(item.unitPrice)} × {item.quantity}
               </span>
             </div>
           ))}
           <div className="flex justify-between font-bold text-[var(--text)] mt-4 text-lg">
             <span>Total</span>
-            <span className="text-[var(--accent)]">${order.totalUsd.toLocaleString()}</span>
+            <span className="text-[var(--accent)]">{formatUsd(order.totalUsd)}</span>
           </div>
         </div>
 
@@ -201,7 +202,7 @@ export default function OrderPage() {
             <div className="space-y-4 text-sm">
               <div className="flex justify-between items-center">
                 <span className="text-[var(--text-muted)]">Amount</span>
-                <span className="text-[var(--text)] font-bold font-mono text-lg">{payment.expectedAmount} USDT</span>
+                <span className="text-[var(--text)] font-bold font-mono text-lg">{formatUsdt(payment.expectedAmount)} USDT</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[var(--text-muted)]">Network</span>

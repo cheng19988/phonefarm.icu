@@ -1,6 +1,8 @@
 import { PAYMENT } from "./config";
 import { prisma } from "./prisma";
 
+export { usdToUsdt } from "./pricing";
+
 export type TronTransaction = {
   txHash: string;
   amount: number;
@@ -80,8 +82,4 @@ export async function checkAndUpdatePayment(paymentId: string) {
 
 export function createPaymentExpiry() {
   return new Date(Date.now() + PAYMENT.expiryMinutes * 60 * 1000);
-}
-
-export function usdToUsdt(usd: number) {
-  return Math.max(PAYMENT.minAmount, Math.round(usd * 100) / 100);
 }

@@ -5,6 +5,7 @@ import { TrustStrip } from "@/components/trust-strip";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
+import { formatUsd } from "@/lib/pricing";
 
 export const metadata = buildMetadata({
   title: "My Orders",
@@ -77,7 +78,7 @@ export default async function AccountOrdersPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-xl font-bold text-[var(--accent)]">${order.totalUsd.toLocaleString()}</p>
+                        <p className="text-xl font-bold text-[var(--accent)]">{formatUsd(order.totalUsd)}</p>
                       </div>
                     </div>
                     <p className="text-sm text-[var(--text-muted)] mb-4 line-clamp-2">

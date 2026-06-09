@@ -1,3 +1,5 @@
+import { formatUsd } from "@/lib/pricing";
+
 type PriceTagProps = {
   priceUsd: number;
   label?: string;
@@ -10,7 +12,7 @@ export function PriceTag({ priceUsd, label = "USD", size = "md" }: PriceTagProps
   return (
     <span className="inline-flex items-baseline gap-1.5">
       <span className={`font-bold text-[var(--accent)] ${sizeClass}`}>
-        ${priceUsd.toLocaleString()}
+        {formatUsd(priceUsd)}
       </span>
       <span className="text-sm font-medium text-[var(--text-subtle)]">{label}</span>
     </span>

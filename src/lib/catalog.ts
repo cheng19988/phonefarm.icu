@@ -1,5 +1,6 @@
 import type { Prisma } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
+import { canonicalProductPriceUsd } from "@/lib/pricing";
 import { PRODUCT_SEEDS, getProductSeed, type ProductSeed } from "@/data/products";
 
 export type CatalogProduct = {
@@ -24,8 +25,12 @@ export type CatalogProduct = {
   published: boolean;
 };
 
+function withCanonicalPrice<T extends CatalogProduct>(product: T): T {
+  return { ...product, priceUsd: canonicalProductPriceUsd(product.slug, product.priceUsd) };
+}
+
 function seedToCatalog(seed: ProductSeed): CatalogProduct {
-  return {
+  return withCanonicalPrice({
     id: `seed-${seed.slug}`,
     slug: seed.slug,
     name: seed.name,
@@ -45,7 +50,7 @@ function seedToCatalog(seed: ProductSeed): CatalogProduct {
     imageHero: seed.imageHero,
     imageDetail: seed.imageDetail,
     published: true,
-  };
+  });
 }
 
 const FALLBACK_CATALOG = PRODUCT_SEEDS.map(seedToCatalog);
@@ -76,7 +81,7 @@ export async function listCatalogProducts(options?: {
     const orderBy: Prisma.ProductOrderByWithRelationInput =
       options?.orderBy === "priceUsd" ? { priceUsd: sortDir } : { name: sortDir };
 
-    return await prisma.product.findMany({
+    const rows = await prisma.product.findMany({
       where: {
         published: true,
         ...(options?.category ? { category: options.category } : {}),
@@ -84,6 +89,7 @@ export async function listCatalogProducts(options?: {
       orderBy,
       ...(options?.take ? { take: options.take } : {}),
     });
+    return rows.map(withCanonicalPrice);
   } catch {
     return filterFallback(options);
   }
@@ -100,7 +106,7 @@ export async function countCatalogProducts(): Promise<number> {
 export async function getCatalogProduct(slug: string): Promise<CatalogProduct | null> {
   try {
     const row = await prisma.product.findUnique({ where: { slug } });
-    if (row) return row;
+    if (row) return withCanonicalPrice(row);
   } catch {
     /* use seed fallback */
   }
