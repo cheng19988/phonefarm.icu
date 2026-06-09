@@ -14,6 +14,7 @@ import { HARDWARE_PACKAGES } from "@/data/packages";
 import { getProductLine } from "@/data/product-lines";
 import { buildFullSpecTable } from "@/lib/product-specs";
 import { buildGalleryImages } from "@/lib/product-images";
+import { getGalleryCaptions, getProductImageManifest } from "@/lib/product-image-manifest";
 import { pickRelatedProducts } from "@/lib/related-products";
 import { specHighlights } from "@/lib/product-specs";
 
@@ -71,6 +72,8 @@ export default async function ProductDetailPage({ params }: Props) {
   }));
 
   const galleryImages = buildGalleryImages(slug, product);
+  const galleryCaptions = getGalleryCaptions(slug);
+  const imageManifest = getProductImageManifest(slug).filter((e) => e.role === "gallery" || e.role === "hero");
   const warrantySummary =
     seed?.afterSales.find((s) => s.toLowerCase().includes("month") || s.toLowerCase().includes("support")) ??
     seed?.afterSales[0] ??
@@ -118,7 +121,11 @@ export default async function ProductDetailPage({ params }: Props) {
 
           {/* PDP hero: gallery + buy box */}
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 xl:gap-16 mb-20">
-            <ProductGallery images={galleryImages} alt={`${product.name} — phone farm hardware`} />
+            <ProductGallery
+              images={galleryImages}
+              alt={`${product.name} — phone farm hardware`}
+              captions={galleryCaptions}
+            />
             <BuyBox
               slug={product.slug}
               name={product.name}
@@ -169,6 +176,26 @@ export default async function ProductDetailPage({ params }: Props) {
               <div id="specs">
                 <SpecTable specs={fullSpecs} />
               </div>
+
+              {imageManifest.length > 1 && (
+                <section>
+                  <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Reference Models &amp; Gallery</h2>
+                  <p className="text-[var(--text-muted)] mb-4 leading-relaxed">
+                    Product photos below are synced from factory assets. Filename labels include model, RAM/storage, and port
+                    configuration (USB, LAN, OTG) for each reference platform.
+                  </p>
+                  <ul className="grid sm:grid-cols-2 gap-2 text-sm">
+                    {imageManifest.map((entry) => (
+                      <li
+                        key={entry.file}
+                        className="text-[var(--text-muted)] p-3 rounded-lg border border-[var(--border)] bg-white"
+                      >
+                        {entry.label}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
 
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Suitable For</h2>

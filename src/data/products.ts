@@ -56,7 +56,8 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     specs: {
       "Product type": "Full-phone rack enclosure (Box Phone Farm)",
-      "Reference models": "Samsung S8 / S10 / Note 9 — configurable per order",
+      "Reference models":
+        "Samsung S8 (6GB+128GB, USB+LAN) · S10 · S10 Change · S8 Change · Note 9 · Note 8 Super Change — gallery shows all factory reference boards",
       "Typical capacity": "Up to 20 device slots per rack",
       "Front panel I/O": "LAN1 + LAN2 (RJ45) · USB Type-B · OTG/USB switch · numbered LED row",
       "Node interface": "USB + LAN port per slot",
@@ -141,7 +142,8 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Cooling": "Multi-fan airflow across motherboard row",
       "Connectivity": "USB hub with per-node data path",
       "Chassis": "Approx. 43.5 × 27.5 × 9 cm reference size",
-      "Compatible boards": "Note 8 / OnePlus 5 / Nubia Z17 class — confirm before order",
+      "Compatible boards":
+        "A908N (6GB+128GB) · Note 8 · Note 10 Lite Change · OnePlus 5 Super Change · Nubia Z17 — confirm slot layout before order",
     },
     scenarios: [
       "Android app automation in headless device labs",
@@ -207,7 +209,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     specs: {
       "Product type": "Android full-phone rack (Box Phone Farm)",
-      "Reference models": "Samsung S9 / S20 / Note 20 / S21 FE class",
+      "Reference models": "Samsung S9 · S20 (8GB+128GB) · Note 20 (8GB+256GB) · S21 FE (6GB+128GB) — USB+LAN+OTG",
       "Node interface": "USB + LAN per slot",
       "Typical node spec": "6GB RAM + 128GB storage class (model-dependent)",
       "Rack type": "Full-phone enclosure with active cooling",
@@ -270,7 +272,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     specs: {
       "Product type": "iOS lab rack — Lightning / USB-C routing for real iPhones",
-      "Gallery note": "Photos show compact rack chassis layout; iPhone models quoted per your list",
+      "Reference models": "Samsung Z Flip3 (8GB+128GB) · Z Flip4 · Pixel 4XL Super Change · OnePlus 8 Pro — USB+LAN+OTG",
       "Platform": "Apple iPhone (customer-supplied)",
       "Typical capacity": "10–16 devices — model and cable type dependent",
       "Connectors": "Lightning and/or USB-C per quote",
@@ -332,7 +334,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     specs: {
       "Product type": "Full-phone rack with real device slots (Box Phone)",
-      "Reference model": "Samsung S8 class — USB + LAN, 6GB + 128GB",
+      "Reference model": "Samsung S8 Super Change · S8 real device unit — USB + LAN + OTG, 6GB + 128GB class",
       "Scope": "Project-based — rack count defined in quote",
       "Device type": "Complete smartphones with screen (buyer-supplied typical)",
       "Infrastructure": "Racks + optional power/cooling/network modules",

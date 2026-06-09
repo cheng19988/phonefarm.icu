@@ -12,8 +12,7 @@ type ProductImages = {
 export function buildGalleryImages(slug: string, product: ProductImages): string[] {
   const assets = getProductAssets(slug);
   if (assets) {
-    const all = [...new Set([...assets.gallery, assets.hero, assets.detail])];
-    return all.slice(0, 8);
+    return [...new Set([...assets.gallery, assets.detail, assets.hero].filter(Boolean))];
   }
-  return [...new Set([product.imageHero, product.imageDetail, product.imageCard].filter(Boolean))].slice(0, 6);
+  return [...new Set([product.imageHero, product.imageDetail, product.imageCard].filter(Boolean))];
 }

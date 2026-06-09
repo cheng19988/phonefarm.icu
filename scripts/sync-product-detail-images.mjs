@@ -1,6 +1,7 @@
 /**
- * Copy real product images into public/images/products/{slug}/
- * Run: node scripts/sync-product-detail-images.mjs
+ * Sync ALL product images from material libraries into public/images/products/{slug}/
+ * Filenames encode model + specs — written to manifest.json per SKU.
+ * Run: npm run sync-product-images
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -8,144 +9,281 @@ import path from "node:path";
 const DETAIL_SRC = "D:\\产品商品详情图";
 const WHITEBG_SRC = "E:\\主板机照片素材\\主板机白底";
 const OUT = path.join(process.cwd(), "public", "images", "products");
+const PUBLIC_IMAGES = path.join(process.cwd(), "public", "images");
 
-/** @type {Record<string, { files: { match: string; dest: string }[]; whitebg?: { file: string; dest: string } }>} */
-const MAP = {
-  "phone-farm-box": {
-    files: [
-      { match: "box-phone-farm-s8-en_main_box_s8", dest: "hero.png" },
-      { match: "box-phone-farm-s8-en_main_box_s8", dest: "card.png" },
-      { match: "box-phone-farm-s10-en_main", dest: "gallery-1.png" },
-      { match: "box-phone-farm-s8-change-en_main", dest: "gallery-2.png" },
-      { match: "gallery_6_Structure_of_B", dest: "gallery-3.png" },
-      { match: "box-phone-farm-note-9-en_main", dest: "gallery-4.png" },
-    ],
-  },
-  "motherboard-box": {
-    files: [
-      { match: "box-phone-farm-a908n-en_main", dest: "hero.png" },
-      { match: "box-phone-farm-a908n-en_main", dest: "card.png" },
-      { match: "box-phone-farm-note-8-en_main", dest: "gallery-1.png" },
-      { match: "box-phone-farm-oneplus-5-super-change-en_main", dest: "gallery-2.png" },
-      { match: "box-phone-farm-nubia-z17-en_main", dest: "gallery-3.png" },
-    ],
-    whitebg: { file: "2025_10_25_11_27_IMG_0551.png", dest: "gallery-4.png" },
-  },
-  "android-phone-farm": {
-    files: [
-      { match: "box-phone-farm-s9-en_main", dest: "hero.png" },
-      { match: "box-phone-farm-s9-en_main", dest: "card.png" },
-      { match: "box-phone-farm-s20-en_main", dest: "gallery-1.png" },
-      { match: "box-phone-farm-note-20-en_main", dest: "gallery-2.png" },
-      { match: "box-phone-farm-s21-fe-en_main", dest: "gallery-3.png" },
-    ],
-    whitebg: { file: "2025_10_25_11_28_IMG_0553.png", dest: "gallery-4.png" },
-  },
-  "iphone-phone-farm": {
-    files: [
-      { match: "box-phone-farm-z-flip3-en_main", dest: "hero.png" },
-      { match: "box-phone-farm-z-flip3-en_main", dest: "card.png" },
-      { match: "box-phone-farm-z-flip4-en_main", dest: "gallery-1.png" },
-      { match: "box-phone-farm-pixel-4xl-super-change_gallery", dest: "gallery-2.png" },
-    ],
-    whitebg: { file: "2025_10_25_11_37_IMG_0566.png", dest: "gallery-3.png" },
-  },
-  "real-device-phone-farm": {
-    files: [
-      { match: "boxphone-s8-super-change-en_main", dest: "hero.png" },
-      { match: "boxphone-s8-super-change-en_main", dest: "card.png" },
-      { match: "device-s8-id_gallery_2_main_s8", dest: "gallery-1.jpg" },
-      { match: "device-s8-id_gallery_3_Frame_13", dest: "gallery-2.jpg" },
-      { match: "device-s8-id_gallery_4_Frame_21", dest: "gallery-3.jpg" },
-    ],
-    whitebg: { file: "2025_10_25_11_29_IMG_0556", dest: "gallery-4.png" },
-  },
-  "empty-box-chassis": {
-    whitebgList: [
-      { file: "2025_10_25_11_39_IMG_0570.png", dest: "hero.png" },
-      { file: "2025_10_25_11_39_IMG_0570.png", dest: "card.png" },
-      { file: "2025_10_25_11_40_IMG_0571.png", dest: "gallery-1.png" },
-      { file: "2025_10_25_12_01_IMG_0579.png", dest: "gallery-2.png" },
-      { file: "2025_10_25_11_23_IMG_0548.png", dest: "gallery-3.png" },
-      { file: "2025_10_25_11_33_IMG_0561.png", dest: "gallery-4.png" },
-    ],
-    files: [{ match: "gallery_6_Structure_of_B", dest: "gallery-5.png" }],
-  },
+const ALL_SLUGS = [
+  "phone-farm-box",
+  "motherboard-box",
+  "android-phone-farm",
+  "iphone-phone-farm",
+  "real-device-phone-farm",
+  "empty-box-chassis",
+  "usb-hub",
+  "power-supply-solution",
+  "cooling-solution",
+  "network-equipment",
+  "custom-cabinet",
+  "remote-control-setup",
+];
+
+/** @type {Record<string, string>} */
+const HERO_MATCH = {
+  "phone-farm-box": "box-phone-farm-s8-en_main_box_s8",
+  "motherboard-box": "box-phone-farm-a908n-en_main",
+  "android-phone-farm": "box-phone-farm-s9-en_main",
+  "iphone-phone-farm": "box-phone-farm-z-flip3-en_main",
+  "real-device-phone-farm": "boxphone-s8-super-change-en_main",
+  "empty-box-chassis": "IMG_0570",
 };
 
-const WEBP_FALLBACK = {
-  "usb-hub": "phonefarm.icu-components-electronicscomponentsassembly-19059",
-  "power-supply-solution": "phonefarm.icu-components-electronicsassemblylabworkbench-9e7df",
-  "cooling-solution": "phonefarm.icu-components-electronics-workbenchdetail-6f814",
-  "network-equipment": "phonefarm.icu-accessories-networkdevice-accessories-36665",
-  "custom-cabinet": "phonefarm.icu-product-box-2025-10-25-11-33-img-0561-db197",
-  "remote-control-setup": "phonefarm.icu-accessories-techaccessories-showcase-80dfb",
+function classifyDetail(name) {
+  const n = name.toLowerCase();
+  if (/site_|genfarmer|package_product/.test(n)) return [];
+  if (/perangkat_s8|device-s8-id/.test(n)) return ["real-device-phone-farm"];
+  if (/boxphone-s8-super-change/.test(n)) return ["real-device-phone-farm"];
+  if (/a908n|box-phone-farm-note-8-en_main|oneplus-5-super-change|nubia-z17|note-10-lite-change/.test(n))
+    return ["motherboard-box"];
+  if (/box-phone-farm-s9|box-phone-farm-s20|note-20-en_main|s21-fe-en_main/.test(n)) return ["android-phone-farm"];
+  if (/z-flip3|z-flip4|pixel-4xl|oneplus-8-pro/.test(n)) return ["iphone-phone-farm"];
+  if (/structure_of_b/.test(n)) return ["empty-box-chassis", "phone-farm-box"];
+  if (/box-phone-farm-s8|box-phone-farm-s10|note-9-en_main|s8-change|s10-change/.test(n)) return ["phone-farm-box"];
+  if (n.startsWith("product_box_phone_farm")) return ["phone-farm-box"];
+  return [];
+}
+
+/** @type {Record<string, string[]>} */
+const WHITEBG_SLUGS = {
+  "2025_10_25_11_39_IMG_0570": ["empty-box-chassis"],
+  "2025_10_25_11_40_IMG_0571": ["empty-box-chassis"],
+  "2025_10_25_12_01_IMG_0579": ["empty-box-chassis", "custom-cabinet"],
+  "2025_10_25_11_33_IMG_0561": ["empty-box-chassis", "custom-cabinet"],
+  "2025_10_25_11_23_IMG_0548": ["empty-box-chassis", "phone-farm-box"],
+  "2025_10_25_11_21_IMG_0547": ["phone-farm-box", "custom-cabinet"],
+  "2025_10_25_11_24_IMG_0549": ["phone-farm-box", "custom-cabinet"],
+  "2025_10_25_11_27_IMG_0551": ["motherboard-box"],
+  "2025_10_25_11_28_IMG_0553": ["android-phone-farm"],
+  "2025_10_25_11_29_IMG_0556": ["real-device-phone-farm"],
+  "2025_10_25_11_37_IMG_0566": ["iphone-phone-farm"],
+  "2025_10_25_11_44_IMG_0573": ["empty-box-chassis", "custom-cabinet"],
+  "2025_10_25_11_45_IMG_0575": ["empty-box-chassis", "custom-cabinet"],
 };
 
-function listDetailFiles() {
-  if (!fs.existsSync(DETAIL_SRC)) return [];
-  return fs.readdirSync(DETAIL_SRC);
+const ACCESSORY_WEBPS = {
+  "usb-hub": [
+    "phonefarm.icu-components-electronicscomponentsassembly-19059",
+    "phonefarm.icu-components-electronicscomponentslayout-64e0d",
+    "phonefarm.icu-components-electronicscomponentsproductphoto-27282",
+    "phonefarm.icu-accessories-electronics-accessories-1cc0b",
+    "phonefarm.icu-components-electronicscomponents-device-showcase-93575",
+  ],
+  "power-supply-solution": [
+    "phonefarm.icu-components-electronicsassemblylabworkbench-9e7df",
+    "phonefarm.icu-components-electronicsassemblylab-19f44",
+    "phonefarm.icu-components-electronicsassembly-detail-f936c",
+  ],
+  "cooling-solution": ["phonefarm.icu-components-electronics-workbenchdetail-6f814"],
+  "network-equipment": [
+    "phonefarm.icu-accessories-networkdevice-accessories-36665",
+    "phonefarm.icu-accessories-networkdevice-cablesaccessoriesshowcase-e6cc8",
+    "phonefarm.icu-accessories-computeraccessories-showcase-2b3e3",
+  ],
+  "custom-cabinet": [
+    "phonefarm.icu-product-box-2025-10-25-11-33-img-0561-db197",
+    "phonefarm.icu-product-box-2025-10-25-11-21-img-0547-4b35a",
+    "phonefarm.icu-product-box-2025-10-25-11-24-img-0549-f696b",
+    "phonefarm.icu-product-box-2025-10-25-11-27-img-0551-a9b35",
+    "phonefarm.icu-product-box-2025-10-25-11-28-img-0553-47327",
+    "phonefarm.icu-product-box-2025-10-25-11-29-img-0556-25-10-2025-22-02-38-73237",
+    "phonefarm.icu-product-box-2025-10-25-11-37-img-0566-ee21b",
+    "phonefarm.icu-product-box-0f5501e1584de9a625d220f62951bc6d-d04df",
+  ],
+  "remote-control-setup": [
+    "phonefarm.icu-accessories-techaccessories-showcase-80dfb",
+    "phonefarm.icu-components-electronicscomponents-device-showcase-93575",
+  ],
+};
+
+function parseModelLabel(filename) {
+  if (/product_Box_Phone_Farm_/i.test(filename)) {
+    const part = filename.replace(/^product_Box_Phone_Farm_/i, "").split(/_box-|-en_main|-id_/i)[0];
+    return part.replace(/_/g, " ").replace(/\s+/g, " ").trim();
+  }
+  if (/Perangkat_S8/i.test(filename)) return "Samsung S8 — real device unit for Box Phone Farm";
+  if (/Structure_of_B/i.test(filename)) return "Chassis structure — 20 slots, LAN, USB, OTG";
+  if (/IMG_0570/i.test(filename)) return "Empty chassis front — 20 slots, LAN1/LAN2, USB";
+  if (/IMG_0571/i.test(filename)) return "Empty chassis rear — 4× fan + PSU bay";
+  if (/IMG_0579/i.test(filename)) return "Empty chassis — stacked product photo";
+  if (/IMG_0561/i.test(filename)) return "Chassis rear — PSU and cooling fans";
+  if (/IMG_0548/i.test(filename)) return "Chassis front — status LED row";
+  if (/IMG_0551/i.test(filename)) return "Motherboard box — product photo";
+  if (/IMG_0553/i.test(filename)) return "Android phone farm — product photo";
+  if (/IMG_0566/i.test(filename)) return "Compact rack — product photo";
+  if (/IMG_0556/i.test(filename)) return "Real device S8 rack — product photo";
+  if (/IMG_0573/i.test(filename)) return "Custom cabinet — product photo";
+  if (/IMG_0575/i.test(filename)) return "Cabinet / chassis — product photo";
+  if (/phonefarm\.icu-/i.test(filename)) {
+    const tag = filename.replace(/^phonefarm\.icu-/, "").split(/-hero_|-card_|-detail_/)[0];
+    return tag.replace(/-/g, " ");
+  }
+  return filename.replace(/\.[^.]+$/, "").replace(/_/g, " ").slice(0, 100);
 }
 
-function findFile(files, match) {
-  const hit = files.find((f) => f.toLowerCase().includes(match.toLowerCase()));
-  return hit ? path.join(DETAIL_SRC, hit) : null;
+function extOf(file) {
+  return path.extname(file).toLowerCase() || ".png";
 }
 
-function findWhitebg(name) {
-  if (!fs.existsSync(WHITEBG_SRC)) return null;
-  const files = fs.readdirSync(WHITEBG_SRC);
-  const hit = files.find((f) => f.includes(name.replace(".png", "")) || f.startsWith(name.slice(0, 20)));
-  return hit ? path.join(WHITEBG_SRC, hit) : null;
+function slugifyLabel(label) {
+  return label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 48);
 }
 
 function copyFile(src, dest) {
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.copyFileSync(src, dest);
-  console.log(`  ${path.basename(dest)} <- ${path.basename(src)}`);
 }
 
-const detailFiles = listDetailFiles();
+function findWebp(base, kind) {
+  const dir = path.join(PUBLIC_IMAGES, kind);
+  if (!fs.existsSync(dir)) return null;
+  const hit = fs.readdirSync(dir).find((f) => f.startsWith(base) && f.endsWith(".webp"));
+  return hit ? path.join(dir, hit) : null;
+}
 
-for (const [slug, cfg] of Object.entries(MAP)) {
+function resetSlugDir(slug) {
   const dir = path.join(OUT, slug);
+  if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true });
   fs.mkdirSync(dir, { recursive: true });
-  console.log(`\n${slug}:`);
-  for (const { match, dest } of cfg.files) {
-    const src = findFile(detailFiles, match);
-    if (!src) {
-      console.warn(`  MISSING match="${match}" -> ${dest}`);
-      continue;
-    }
-    copyFile(src, path.join(dir, dest));
-  }
-  if (cfg.whitebgList) {
-    for (const { file, dest } of cfg.whitebgList) {
-      const wb = path.join(WHITEBG_SRC, file);
-      const src = fs.existsSync(wb) ? wb : findWhitebg(file);
-      if (src) copyFile(src, path.join(dir, dest));
-      else console.warn(`  MISSING whitebg: ${file}`);
-    }
-  }
-  if (cfg.whitebg) {
-    const wb = path.join(WHITEBG_SRC, cfg.whitebg.file);
-    const src = fs.existsSync(wb) ? wb : findWhitebg(cfg.whitebg.file);
-    if (src) copyFile(src, path.join(dir, cfg.whitebg.dest));
-    else console.warn(`  MISSING whitebg: ${cfg.whitebg.file}`);
+  return dir;
+}
+
+/** @type {Record<string, { src: string; label: string; key: string }[]>} */
+const bucket = Object.fromEntries(ALL_SLUGS.map((s) => [s, []]));
+
+function pushAsset(slug, src, label, key) {
+  if (!bucket[slug]) bucket[slug] = [];
+  if (bucket[slug].some((a) => a.key === key)) return;
+  bucket[slug].push({ src, label, key });
+}
+
+// Detail library
+if (fs.existsSync(DETAIL_SRC)) {
+  const seen = new Set();
+  for (const file of fs.readdirSync(DETAIL_SRC).sort()) {
+    if (!/^product_/i.test(file)) continue;
+    const normalized = file.replace(/ \(2\)/, "");
+    if (seen.has(normalized)) continue;
+    seen.add(normalized);
+    const slugs = classifyDetail(file);
+    const label = parseModelLabel(file);
+    const src = path.join(DETAIL_SRC, file);
+    for (const slug of slugs) pushAsset(slug, src, label, `detail:${normalized}`);
   }
 }
 
-const cardDir = path.join(process.cwd(), "public", "images", "card_800x800");
-const heroDir = path.join(process.cwd(), "public", "images", "hero_1600x900");
-const detailDir = path.join(process.cwd(), "public", "images", "detail_1200x900");
-
-for (const [slug, base] of Object.entries(WEBP_FALLBACK)) {
-  const dir = path.join(OUT, slug);
-  fs.mkdirSync(dir, { recursive: true });
-  console.log(`\n${slug} (webp):`);
-  copyFile(path.join(heroDir, `${base}-hero_1600x900.webp`), path.join(dir, "hero.webp"));
-  copyFile(path.join(heroDir, `${base}-hero_1600x900.webp`), path.join(dir, "card.webp"));
-  copyFile(path.join(detailDir, `${base}-detail_1200x900.webp`), path.join(dir, "gallery-1.webp"));
+// White-background photos
+if (fs.existsSync(WHITEBG_SRC)) {
+  for (const file of fs.readdirSync(WHITEBG_SRC).sort()) {
+    if (!/\.(png|jpg|jpeg|webp)$/i.test(file)) continue;
+    if (/Untitled|ScreenShot|\.pdf/i.test(file)) continue;
+    let matched = null;
+    for (const [stem, slugs] of Object.entries(WHITEBG_SLUGS)) {
+      if (file.includes(stem) || file.includes(stem.split("IMG_")[1] ?? "____")) {
+        matched = slugs;
+        break;
+      }
+    }
+    if (!matched) continue;
+    const src = path.join(WHITEBG_SRC, file);
+    const label = parseModelLabel(file);
+    for (const slug of matched) pushAsset(slug, src, label, `whitebg:${file}`);
+  }
 }
 
-console.log("\nDone.");
+// Accessory webp
+for (const [slug, bases] of Object.entries(ACCESSORY_WEBPS)) {
+  for (const base of bases) {
+    for (const kind of ["hero_1600x900", "detail_1200x900", "card_800x800"]) {
+      const src = findWebp(base, kind);
+      if (!src) continue;
+      pushAsset(slug, src, parseModelLabel(path.basename(src)), `webp:${base}:${kind}`);
+    }
+  }
+}
+
+let total = 0;
+for (const slug of ALL_SLUGS) {
+  const assets = bucket[slug];
+  const dir = resetSlugDir(slug);
+  if (assets.length === 0) {
+    console.warn(`\n${slug}: NO ASSETS`);
+    continue;
+  }
+
+  console.log(`\n${slug} (${assets.length} sources):`);
+
+  const heroNeedle = HERO_MATCH[slug];
+  const sorted = [...assets].sort((a, b) => {
+    const ah = heroNeedle && a.key.toLowerCase().includes(heroNeedle.toLowerCase()) ? 0 : 1;
+    const bh = heroNeedle && b.key.toLowerCase().includes(heroNeedle.toLowerCase()) ? 0 : 1;
+    return ah - bh || a.label.localeCompare(b.label);
+  });
+
+  const manifest = [];
+  const usedNames = new Set();
+
+  function uniqueName(name) {
+    let n = name;
+    let i = 1;
+    while (usedNames.has(n)) {
+      const ext = extOf(name);
+      const base = name.slice(0, -ext.length);
+      n = `${base}-${i}${ext}`;
+      i += 1;
+    }
+    usedNames.add(n);
+    return n;
+  }
+
+  // Hero
+  const heroAsset = sorted[0];
+  const heroExt = extOf(heroAsset.src);
+  const heroName = uniqueName(`hero${heroExt}`);
+  copyFile(heroAsset.src, path.join(dir, heroName));
+  manifest.push({
+    file: heroName,
+    label: heroAsset.label,
+    url: `/images/products/${slug}/${heroName}`,
+    role: "hero",
+  });
+  console.log(`  ${heroName} <- ${path.basename(heroAsset.src)}`);
+  total += 1;
+
+  // Card = hero copy
+  const cardName = uniqueName(`card${heroExt}`);
+  copyFile(path.join(dir, heroName), path.join(dir, cardName));
+  manifest.push({ file: cardName, label: heroAsset.label, url: `/images/products/${slug}/${cardName}`, role: "card" });
+
+  // Gallery — all remaining
+  let g = 0;
+  for (const asset of sorted.slice(1)) {
+    g += 1;
+    const ext = extOf(asset.src);
+    const gName = uniqueName(`gallery-${String(g).padStart(2, "0")}-${slugifyLabel(asset.label)}${ext}`);
+    copyFile(asset.src, path.join(dir, gName));
+    manifest.push({
+      file: gName,
+      label: asset.label,
+      url: `/images/products/${slug}/${gName}`,
+      role: "gallery",
+    });
+    console.log(`  ${gName} <- ${path.basename(asset.src)}`);
+    total += 1;
+  }
+
+  fs.writeFileSync(path.join(dir, "manifest.json"), JSON.stringify(manifest, null, 2));
+}
+
+console.log(`\nDone. ${total} files synced across ${ALL_SLUGS.length} SKUs.`);

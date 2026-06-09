@@ -1,0 +1,56 @@
+[
+  {
+    "file": "hero.png",
+    "label": "Empty chassis front — 20 slots, LAN1/LAN2, USB",
+    "url": "/images/products/empty-box-chassis/hero.png",
+    "role": "hero"
+  },
+  {
+    "file": "card.png",
+    "label": "Empty chassis front — 20 slots, LAN1/LAN2, USB",
+    "url": "/images/products/empty-box-chassis/card.png",
+    "role": "card"
+  },
+  {
+    "file": "gallery-01-cabinet-chassis-product-photo.png",
+    "label": "Cabinet / chassis — product photo",
+    "url": "/images/products/empty-box-chassis/gallery-01-cabinet-chassis-product-photo.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-02-change-generasi-terbaru-2026-port-usb-lan.png",
+    "label": "Change Generasi Terbaru 2026 Port USB LAN",
+    "url": "/images/products/empty-box-chassis/gallery-02-change-generasi-terbaru-2026-port-usb-lan.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-03-chassis-front-status-led-row.png",
+    "label": "Chassis front — status LED row",
+    "url": "/images/products/empty-box-chassis/gallery-03-chassis-front-status-led-row.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-04-chassis-rear-psu-and-cooling-fans.png",
+    "label": "Chassis rear — PSU and cooling fans",
+    "url": "/images/products/empty-box-chassis/gallery-04-chassis-rear-psu-and-cooling-fans.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-05-custom-cabinet-product-photo.jpeg",
+    "label": "Custom cabinet — product photo",
+    "url": "/images/products/empty-box-chassis/gallery-05-custom-cabinet-product-photo.jpeg",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-06-empty-chassis-stacked-product-photo.png",
+    "label": "Empty chassis — stacked product photo",
+    "url": "/images/products/empty-box-chassis/gallery-06-empty-chassis-stacked-product-photo.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-07-empty-chassis-rear-4-fan-psu-bay.png",
+    "label": "Empty chassis rear — 4× fan + PSU bay",
+    "url": "/images/products/empty-box-chassis/gallery-07-empty-chassis-rear-4-fan-psu-bay.png",
+    "role": "gallery"
+  }
+]

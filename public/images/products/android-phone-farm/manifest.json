@@ -1,0 +1,38 @@
+[
+  {
+    "file": "hero.png",
+    "label": "S9 S9 Latest Generation 2026 USB LAN OTG Black Circuit Board",
+    "url": "/images/products/android-phone-farm/hero.png",
+    "role": "hero"
+  },
+  {
+    "file": "card.png",
+    "label": "S9 S9 Latest Generation 2026 USB LAN OTG Black Circuit Board",
+    "url": "/images/products/android-phone-farm/card.png",
+    "role": "card"
+  },
+  {
+    "file": "gallery-01-android-phone-farm-product-photo.png",
+    "label": "Android phone farm — product photo",
+    "url": "/images/products/android-phone-farm/gallery-01-android-phone-farm-product-photo.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-02-note-20-8-256gb-usb-lan-otg-black-circuit-board.png",
+    "label": "Note 20 8 256GB USB LAN OTG black circuit board",
+    "url": "/images/products/android-phone-farm/gallery-02-note-20-8-256gb-usb-lan-otg-black-circuit-board.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-03-s20-8-128gb-usb-lan-otg-black-circuit.png",
+    "label": "S20 8 128GB USB LAN OTG black circuit",
+    "url": "/images/products/android-phone-farm/gallery-03-s20-8-128gb-usb-lan-otg-black-circuit.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-04-s21-fe-6-128gb-usb-lan-otg-black-circuit-board.png",
+    "label": "S21 FE 6 128GB USB LAN OTG black circuit board",
+    "url": "/images/products/android-phone-farm/gallery-04-s21-fe-6-128gb-usb-lan-otg-black-circuit-board.png",
+    "role": "gallery"
+  }
+]
