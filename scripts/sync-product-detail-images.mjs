@@ -61,12 +61,15 @@ const MAP = {
     whitebg: { file: "2025_10_25_11_29_IMG_0556", dest: "gallery-4.png" },
   },
   "empty-box-chassis": {
-    files: [
-      { match: "gallery_6_Structure_of_B", dest: "hero.png" },
-      { match: "gallery_6_Structure_of_B", dest: "card.png" },
-      { match: "box-phone-farm-s10-change-en_main", dest: "gallery-1.png" },
+    whitebgList: [
+      { file: "2025_10_25_11_39_IMG_0570.png", dest: "hero.png" },
+      { file: "2025_10_25_11_39_IMG_0570.png", dest: "card.png" },
+      { file: "2025_10_25_11_40_IMG_0571.png", dest: "gallery-1.png" },
+      { file: "2025_10_25_12_01_IMG_0579.png", dest: "gallery-2.png" },
+      { file: "2025_10_25_11_23_IMG_0548.png", dest: "gallery-3.png" },
+      { file: "2025_10_25_11_33_IMG_0561.png", dest: "gallery-4.png" },
     ],
-    whitebg: { file: "2025_10_25_12_01_IMG_0579.png", dest: "gallery-2.png" },
+    files: [{ match: "gallery_6_Structure_of_B", dest: "gallery-5.png" }],
   },
 };
 
@@ -115,6 +118,14 @@ for (const [slug, cfg] of Object.entries(MAP)) {
       continue;
     }
     copyFile(src, path.join(dir, dest));
+  }
+  if (cfg.whitebgList) {
+    for (const { file, dest } of cfg.whitebgList) {
+      const wb = path.join(WHITEBG_SRC, file);
+      const src = fs.existsSync(wb) ? wb : findWhitebg(file);
+      if (src) copyFile(src, path.join(dir, dest));
+      else console.warn(`  MISSING whitebg: ${file}`);
+    }
   }
   if (cfg.whitebg) {
     const wb = path.join(WHITEBG_SRC, cfg.whitebg.file);

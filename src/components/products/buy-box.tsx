@@ -16,6 +16,7 @@ type Props = {
   stock: number;
   model?: string;
   warrantySummary?: string;
+  specHighlights?: string[];
 };
 
 export function BuyBox({
@@ -29,6 +30,7 @@ export function BuyBox({
   stock,
   model,
   warrantySummary = "12-month hardware support — term confirmed in quotation",
+  specHighlights = [],
 }: Props) {
   const disabled = stock <= 0;
 
@@ -53,7 +55,25 @@ export function BuyBox({
           Model / SKU: <span className="font-medium text-[var(--text-muted)]">{model}</span>
         </p>
       )}
-      <p className="text-base text-[var(--text-muted)] mb-6 leading-relaxed">{shortDesc}</p>
+      <p className="text-base text-[var(--text-muted)] mb-4 leading-relaxed">{shortDesc}</p>
+
+      {specHighlights.length > 0 && (
+        <ul className="mb-6 space-y-2 text-sm text-[var(--text-muted)] border-l-2 border-[var(--brand)] pl-4">
+          {specHighlights.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+      )}
+
+      <p className="text-xs text-[var(--text-subtle)] mb-6">
+        <Link href="/phone-farm" className="text-[var(--brand)] font-medium hover:underline">
+          Phone farm hardware guide
+        </Link>
+        {" · "}
+        <Link href={`/products/${slug}#specs`} className="text-[var(--brand)] font-medium hover:underline">
+          Full specifications
+        </Link>
+      </p>
 
       <div className="p-6 rounded-lg border border-[var(--border)] bg-[var(--surface-muted)] mb-6">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-2">

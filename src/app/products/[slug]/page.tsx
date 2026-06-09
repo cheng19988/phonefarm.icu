@@ -139,6 +139,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   : null
               }
               warrantySummary={warrantySummary}
+              specHighlights={seed ? specHighlights(seed) : undefined}
             />
           </div>
 
@@ -165,7 +166,9 @@ export default async function ProductDetailPage({ params }: Props) {
                 </section>
               )}
 
-              <SpecTable specs={fullSpecs} />
+              <div id="specs">
+                <SpecTable specs={fullSpecs} />
+              </div>
 
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Suitable For</h2>

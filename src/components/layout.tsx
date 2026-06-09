@@ -86,6 +86,7 @@ export function Footer() {
         <div className="lg:col-span-2">
           <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-5">Resources</h3>
           <ul className="space-y-3 text-sm">
+            <li><Link href="/phone-farm" className="hover:text-white transition-colors">Phone Farm Guide</Link></li>
             <li><Link href="/docs/buying-guide" className="hover:text-white transition-colors">How to Buy</Link></li>
             <li><Link href="/docs/usdt-payment-guide" className="hover:text-white transition-colors">USDT Payment</Link></li>
             <li><Link href="/knowledge-base" className="hover:text-white transition-colors">Knowledge Base</Link></li>

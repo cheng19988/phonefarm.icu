@@ -32,6 +32,7 @@ export const PAYMENT = {
 
 /** Main header nav (Shop is separate dropdown) */
 export const HEADER_NAV = [
+  { href: "/phone-farm", label: "Phone Farm Guide" },
   { href: "/packages", label: "Packages" },
   { href: "/pricing", label: "Pricing" },
   { href: "/support", label: "Support" },
@@ -86,6 +87,7 @@ export const SHOP_MENU = [
   {
     title: "Packages & Guides",
     items: [
+      { label: "What Is a Phone Farm?", href: "/phone-farm" },
       { label: "Starter Box Bundle", href: "/packages/starter-box-bundle" },
       { label: "Compare Packages", href: "/packages" },
       { label: "How to Buy", href: "/docs/buying-guide" },

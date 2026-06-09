@@ -102,11 +102,16 @@ export function specHighlight(seed: ProductSeed): string {
 export function specHighlights(seed: ProductSeed): string[] {
   const keys = [
     "Typical capacity",
+    "Slot capacity",
+    "Reference models",
+    "Reference platform",
+    "Front panel I/O",
     "Typical devices",
     "Node type",
     "Type",
     "Power input",
     "Cooling",
+    "Rear cooling",
     "USB interface",
     "Chassis material",
     "Port count",
