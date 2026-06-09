@@ -56,7 +56,7 @@ export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { titl
 export function MobileContactBar() {
   const item = "flex flex-col items-center gap-1 py-2.5 text-[10px] font-medium transition-colors";
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[#060b18]/96 border-t border-white/10 backdrop-blur-xl safe-area-pb">
+    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden border-t border-[rgba(212,175,90,0.2)] backdrop-blur-xl safe-area-pb site-header-mobile-bar">
       <div className="grid grid-cols-5 divide-x divide-white/[0.06]">
         <Link href="/products" className={`${item} text-[var(--accent)]`}>
           <IconShop size={18} />

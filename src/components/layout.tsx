@@ -1,31 +1,38 @@
 import Link from "next/link";
 import { CONTACT, FOOTER_NAV, HEADER_NAV, SITE } from "@/lib/config";
 import { BrandLogo } from "./brand-logo";
-import { IconMail, IconPhone, IconTelegram, IconUser, IconWhatsApp } from "./icons";
+import { IconBadge, IconMail, IconPhone, IconTelegram, IconUser, IconWhatsApp } from "./icons";
 import { ShopNavDropdown } from "./shop-nav";
 import { ShopNavMobile } from "./shop-nav-mobile";
 import { getSession } from "@/lib/auth";
 
 function HeaderContactStrip() {
-  const itemClass =
-    "inline-flex items-center gap-1.5 text-slate-400 hover:text-[var(--accent)] transition-colors";
+  const itemClass = "header-contact-link";
 
   return (
-    <div className="flex flex-wrap items-center justify-end gap-x-5 gap-y-1.5 text-[11px]">
+    <div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1.5 text-[11px]">
       <a href={`tel:${CONTACT.phone}`} className={itemClass}>
-        <IconPhone size={13} />
+        <IconBadge>
+          <IconPhone size={12} />
+        </IconBadge>
         {CONTACT.phone}
       </a>
       <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className={itemClass}>
-        <IconWhatsApp size={13} />
+        <IconBadge tone="neutral">
+          <IconWhatsApp size={12} />
+        </IconBadge>
         WhatsApp
       </a>
       <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className={itemClass}>
-        <IconTelegram size={13} />
+        <IconBadge tone="neutral">
+          <IconTelegram size={12} />
+        </IconBadge>
         Telegram
       </a>
       <a href={`mailto:${CONTACT.email}`} className={`${itemClass} hidden xl:inline-flex`}>
-        <IconMail size={13} />
+        <IconBadge>
+          <IconMail size={12} />
+        </IconBadge>
         {CONTACT.email}
       </a>
     </div>
@@ -36,11 +43,11 @@ export async function Header() {
   const session = await getSession();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.07] bg-[#060b18]/92 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
-      <div className="hidden lg:block border-b border-white/[0.06] bg-[#080f1f]/80">
+    <header className="site-header sticky top-0 z-50 relative">
+      <div className="hidden lg:block site-header-top">
         <div className="container-hero py-2 flex justify-between items-center gap-6">
-          <p className="text-[11px] text-slate-500 tracking-wide flex items-center gap-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500/80" aria-hidden />
+          <p className="text-[11px] text-[var(--header-muted)] tracking-wide flex items-center gap-2">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden />
             {SITE.location} · Factory Direct · Est. {SITE.since}
           </p>
           <HeaderContactStrip />
@@ -84,7 +91,7 @@ export async function Header() {
           </div>
         </div>
 
-        <nav className="xl:hidden flex items-center gap-1 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-none border-t border-white/[0.06] pt-2.5">
+        <nav className="xl:hidden flex items-center gap-1 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-none site-header-mobile-nav pt-2.5">
           <ShopNavMobile variant="dark" />
           {HEADER_NAV.map((item) => (
             <Link key={item.href} href={item.href} className="header-nav-link-mobile whitespace-nowrap">

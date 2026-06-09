@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { SHOP_MENU } from "@/lib/config";
-import { IconChevronDown, IconGrid } from "./icons";
+import { IconChevronDown, IconRack } from "./icons";
 
 export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
@@ -15,12 +15,12 @@ export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark
   return (
     <div className="relative shrink-0">
       <button type="button" onClick={() => setOpen((v) => !v)} className={btnClass} aria-expanded={open}>
-        <IconGrid size={14} className={variant === "dark" ? "text-[var(--accent)]" : undefined} />
+        <IconRack size={14} className={variant === "dark" ? "text-[var(--header-gold)]" : undefined} />
         Shop
         <IconChevronDown size={13} className={`opacity-70 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute left-0 right-0 top-full mt-2 bg-[#111b33] border border-white/10 rounded-xl shadow-2xl z-50 px-4 py-4 max-h-[70vh] overflow-y-auto min-w-[280px]">
+        <div className="absolute left-0 right-0 top-full mt-2 header-shop-panel z-50 px-4 py-4 max-h-[70vh] overflow-y-auto min-w-[280px]">
           {SHOP_MENU.map((group) => (
             <div key={group.title} className="mb-4 last:mb-0">
               <p className="text-[10px] font-bold text-[var(--accent)] uppercase tracking-[0.14em] mb-2">{group.title}</p>

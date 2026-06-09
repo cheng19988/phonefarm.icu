@@ -1,44 +1,88 @@
+"use client";
+
+import { useId } from "react";
+
 type Props = {
   size?: number;
   className?: string;
 };
 
-/** Shared brand mark — rack icon on navy gradient with gold accent */
+/** Premium rack monogram — navy glass tile + gold rail */
 export function BrandMark({ size = 40, className }: Props) {
+  const uid = useId().replace(/:/g, "");
+  const bg = `pf-bg-${uid}`;
+  const gold = `pf-gold-${uid}`;
+  const shine = `pf-shine-${uid}`;
+  const slot = `pf-slot-${uid}`;
+
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 40 40"
+      viewBox="0 0 44 44"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden
       className={className}
     >
       <defs>
-        <linearGradient id="pf-bg" x1="4" y1="4" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0f1c3f" />
-          <stop offset="1" stopColor="#1e3568" />
+        <linearGradient id={bg} x1="6" y1="4" x2="38" y2="40" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#2a3d5c" />
+          <stop offset="0.55" stopColor="#1a2840" />
+          <stop offset="1" stopColor="#141e32" />
         </linearGradient>
-        <linearGradient id="pf-gold" x1="8" y1="30" x2="32" y2="30" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#e8c547" />
-          <stop offset="1" stopColor="#c9a227" />
+        <linearGradient id={gold} x1="8" y1="33" x2="36" y2="33" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#f0d875" />
+          <stop offset="0.5" stopColor="#d4af4a" />
+          <stop offset="1" stopColor="#b8922e" />
         </linearGradient>
-        <linearGradient id="pf-slot" x1="8" y1="10" x2="8" y2="26" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#3d5f9a" />
-          <stop offset="1" stopColor="#2a4070" />
+        <linearGradient id={shine} x1="22" y1="4" x2="22" y2="20" gradientUnits="userSpaceOnUse">
+          <stop stopColor="white" stopOpacity="0.22" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
+        <linearGradient id={slot} x1="10" y1="11" x2="10" y2="28" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#4a6fa5" />
+          <stop offset="1" stopColor="#2d4a78" />
+        </linearGradient>
+        <filter id={`pf-glow-${uid}`} x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="1.2" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
-      <rect x="1" y="1" width="38" height="38" rx="10" fill="url(#pf-bg)" />
-      <rect x="1" y="1" width="38" height="38" rx="10" stroke="rgba(201,162,39,0.45)" strokeWidth="1" />
-      <rect x="7" y="9" width="6" height="9" rx="1.5" fill="url(#pf-slot)" opacity="0.95" />
-      <rect x="15" y="9" width="6" height="9" rx="1.5" fill="url(#pf-slot)" opacity="0.85" />
-      <rect x="23" y="9" width="6" height="9" rx="1.5" fill="url(#pf-slot)" opacity="0.75" />
-      <rect x="7" y="20" width="6" height="9" rx="1.5" fill="url(#pf-slot)" opacity="0.85" />
-      <rect x="15" y="20" width="6" height="9" rx="1.5" fill="url(#pf-slot)" opacity="0.75" />
-      <rect x="23" y="20" width="6" height="9" rx="1.5" fill="url(#pf-slot)" opacity="0.65" />
-      <rect x="5" y="31" width="30" height="2.5" rx="1.25" fill="url(#pf-gold)" />
-      <circle cx="32" cy="8" r="2" fill="#e8c547" opacity="0.9" />
+
+      <rect x="2" y="2" width="40" height="40" rx="11" fill={`url(#${bg})`} />
+      <rect x="2" y="2" width="40" height="40" rx="11" fill={`url(#${shine})`} />
+      <rect x="2.5" y="2.5" width="39" height="39" rx="10.5" stroke="rgba(212,175,90,0.35)" strokeWidth="1" />
+      <rect x="2.5" y="2.5" width="39" height="39" rx="10.5" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+
+      {/* rack slots */}
+      {[10, 18, 26].map((x, col) =>
+        [11, 21].map((y, row) => (
+          <rect
+            key={`${x}-${y}`}
+            x={x}
+            y={y}
+            width={6}
+            height={7.5}
+            rx={1.6}
+            fill={`url(#${slot})`}
+            opacity={0.95 - col * 0.08 - row * 0.06}
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth="0.5"
+          />
+        )),
+      )}
+
+      {/* gold power rail */}
+      <rect x="7" y="32.5" width="30" height="3" rx="1.5" fill={`url(#${gold})`} filter={`url(#pf-glow-${uid})`} />
+      <rect x="9" y="33" width="10" height="1" rx="0.5" fill="white" opacity="0.35" />
+
+      {/* status LED */}
+      <circle cx="33" cy="9" r="2.2" fill="#f0d875" opacity="0.95" />
+      <circle cx="33" cy="9" r="1" fill="white" opacity="0.5" />
     </svg>
   );
 }

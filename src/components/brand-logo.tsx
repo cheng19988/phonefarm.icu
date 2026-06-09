@@ -25,14 +25,14 @@ export function BrandLogo({ compact = false, showText = true, variant = "dark" }
             >
               PhoneFarm
             </span>
-            <span className={`font-bold tracking-tight ${compact ? "text-sm" : "text-[1.05rem] md:text-lg"} text-[var(--accent)]`}>
+            <span className={`font-bold tracking-tight ${compact ? "text-sm" : "text-[1.05rem] md:text-lg"} text-[#e8c96a]`}>
               ICU
             </span>
           </span>
           {!compact && (
             <span
               className={`block mt-1 text-[10px] tracking-[0.14em] uppercase font-medium ${
-                variant === "light" ? "text-slate-400" : "text-[var(--text-subtle)]"
+                variant === "light" ? "text-[#9aa8be]" : "text-[var(--text-subtle)]"
               } hidden sm:block`}
             >
               Guangzhou · Factory Direct

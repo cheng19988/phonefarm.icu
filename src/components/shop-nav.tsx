@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SHOP_MENU } from "@/lib/config";
-import { IconChevronDown, IconGrid } from "./icons";
+import { IconChevronDown, IconRack } from "./icons";
 
 export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "dark" }) {
   const linkClass =
@@ -11,7 +11,7 @@ export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "da
   return (
     <div className="relative group">
       <Link href="/products" className={linkClass}>
-        <IconGrid size={15} className={variant === "dark" ? "text-[var(--accent)]" : undefined} />
+        <IconRack size={15} className={variant === "dark" ? "text-[var(--header-gold)]" : undefined} />
         Shop
         <IconChevronDown size={14} className="opacity-60 transition-transform group-hover:rotate-180 duration-300" />
       </Link>
