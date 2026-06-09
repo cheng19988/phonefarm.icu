@@ -4,6 +4,7 @@ import { getCatalogProduct, listCatalogProducts } from "@/lib/catalog";
 import { FAQAccordion, RelatedProducts } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { BuyBox } from "@/components/products/buy-box";
+import { ReferencePlatforms } from "@/components/products/reference-platforms";
 import { SpecTable } from "@/components/products/spec-table";
 import { ContactCTA, JsonLd } from "@/components/shared";
 import { TrustStrip } from "@/components/trust-strip";
@@ -12,9 +13,8 @@ import { PAYMENT } from "@/lib/config";
 import { getProductSeed } from "@/data/products";
 import { HARDWARE_PACKAGES } from "@/data/packages";
 import { getProductLine } from "@/data/product-lines";
-import { buildFullSpecTable } from "@/lib/product-specs";
-import { buildGalleryImages } from "@/lib/product-images";
-import { getGalleryCaptions, getProductImageManifest } from "@/lib/product-image-manifest";
+import { buildDisplaySpecTable } from "@/lib/product-specs";
+import { buildProductGallery } from "@/lib/product-images";
 import { pickRelatedProducts } from "@/lib/related-products";
 import { specHighlights } from "@/lib/product-specs";
 
@@ -58,7 +58,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const faq = parseJson<{ q: string; a: string }[]>(product.faq, []);
 
   const fullSpecs = seed
-    ? buildFullSpecTable(seed, product.name, product.category)
+    ? buildDisplaySpecTable(seed, product.name, product.category)
     : parseJson<Record<string, string>>(product.specs, {});
 
   const productLine = seed ? getProductLine(seed.productLine) : null;
@@ -71,9 +71,7 @@ export default async function ProductDetailPage({ params }: Props) {
     })(),
   }));
 
-  const galleryImages = buildGalleryImages(slug, product);
-  const galleryCaptions = getGalleryCaptions(slug);
-  const imageManifest = getProductImageManifest(slug).filter((e) => e.role === "gallery" || e.role === "hero");
+  const gallery = buildProductGallery(slug, product);
   const warrantySummary =
     seed?.afterSales.find((s) => s.toLowerCase().includes("month") || s.toLowerCase().includes("support")) ??
     seed?.afterSales[0] ??
@@ -122,9 +120,9 @@ export default async function ProductDetailPage({ params }: Props) {
           {/* PDP hero: gallery + buy box */}
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 xl:gap-16 mb-20">
             <ProductGallery
-              images={galleryImages}
+              images={gallery.images}
               alt={`${product.name} — phone farm hardware`}
-              captions={galleryCaptions}
+              captions={gallery.captions}
             />
             <BuyBox
               slug={product.slug}
@@ -150,8 +148,8 @@ export default async function ProductDetailPage({ params }: Props) {
             />
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-12 lg:gap-16 mb-20">
-            <div className="lg:col-span-2 space-y-14">
+          <div className="grid lg:grid-cols-3 gap-10 lg:gap-14 mb-20">
+            <div className="lg:col-span-2 space-y-10">
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-4">Product Overview</h2>
                 <p className="text-[var(--text-muted)] leading-relaxed text-lg">{product.description}</p>
@@ -177,25 +175,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <SpecTable specs={fullSpecs} />
               </div>
 
-              {imageManifest.length > 1 && (
-                <section>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Reference Models &amp; Gallery</h2>
-                  <p className="text-[var(--text-muted)] mb-4 leading-relaxed">
-                    Product photos below are synced from factory assets. Filename labels include model, RAM/storage, and port
-                    configuration (USB, LAN, OTG) for each reference platform.
-                  </p>
-                  <ul className="grid sm:grid-cols-2 gap-2 text-sm">
-                    {imageManifest.map((entry) => (
-                      <li
-                        key={entry.file}
-                        className="text-[var(--text-muted)] p-3 rounded-lg border border-[var(--border)] bg-white"
-                      >
-                        {entry.label}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
+              <ReferencePlatforms models={gallery.referenceModels} />
 
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Suitable For</h2>

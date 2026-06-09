@@ -3,6 +3,7 @@ import { listCatalogProducts } from "@/lib/catalog";
 import { ContactCTA } from "@/components/shared";
 import { ShopHero } from "@/components/products/shop-hero";
 import { ShopProductCard } from "@/components/products/product-card";
+import { ProductCatalogSections } from "@/components/products/product-catalog-sections";
 import { CategoryFilters } from "@/components/products/category-filters";
 import { buildMetadata } from "@/lib/seo";
 import { getShopFilterCategories } from "@/lib/config";
@@ -69,8 +70,24 @@ export default async function ProductsPage({
               <p className="text-lg text-[var(--text-muted)] mb-4">No products match this filter.</p>
               <Link href="/products" className="btn-primary">View All Products</Link>
             </div>
+          ) : !params.group && !params.category ? (
+            <ProductCatalogSections
+              products={products.map((p) => {
+                const seed = getProductSeed(p.slug);
+                return {
+                  slug: p.slug,
+                  name: p.name,
+                  shortDesc: p.shortDesc,
+                  priceUsd: p.priceUsd,
+                  stock: p.stock,
+                  imageCard: p.imageCard,
+                  category: p.category,
+                  specHighlights: seed ? specHighlights(seed) : undefined,
+                };
+              })}
+            />
           ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {products.map((p) => {
                 const seed = getProductSeed(p.slug);
                 return (

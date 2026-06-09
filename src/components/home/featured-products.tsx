@@ -29,7 +29,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
         />
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 mt-4">
           <Link href={`/products/${lead.slug}`} className="lg:col-span-7 group card card-hover relative min-h-[420px] lg:min-h-[520px] rounded-lg overflow-hidden">
-            <Image src={lead.imageHero} alt={lead.name} fill className="object-cover group-hover:scale-[1.02] transition-transform duration-700" sizes="60vw" priority />
+            <Image src={lead.imageHero} alt={lead.name} fill className="object-contain p-6 bg-white group-hover:scale-[1.02] transition-transform duration-700" sizes="60vw" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--dark-bg)] via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
               <p className="text-[var(--accent)] text-xs uppercase tracking-[0.2em] mb-2">{lead.category}</p>
@@ -45,7 +45,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
             {rest.map((p) => (
               <Link key={p.slug} href={`/products/${p.slug}`} className="group card card-hover flex flex-1 min-h-[200px] overflow-hidden rounded-lg">
                 <div className="relative w-2/5 min-w-[140px]">
-                  <Image src={p.imageHero} alt={p.name} fill className="object-cover" sizes="200px" />
+                  <Image src={p.imageHero} alt={p.name} fill className="object-contain p-2 bg-white" sizes="200px" />
                 </div>
                 <div className="flex-1 p-5 md:p-6 flex flex-col justify-center">
                   <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--text-subtle)] mb-1">{p.category}</p>

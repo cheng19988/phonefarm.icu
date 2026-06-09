@@ -93,6 +93,20 @@ export function buildFullSpecTable(
   return enriched;
 }
 
+/** PDP spec table — product specs first, plus key commerce fields only */
+export function buildDisplaySpecTable(
+  seed: ProductSeed,
+  productName: string,
+  category: string,
+): Record<string, string> {
+  const full = buildFullSpecTable(seed, productName, category);
+  const display: Record<string, string> = { ...seed.specs };
+  for (const key of ["Warranty", "Shipping", "MOQ / sample order", "Payment method", "Bulk order support"]) {
+    if (full[key]) display[key] = full[key];
+  }
+  return display;
+}
+
 /** One-line spec highlight for shop cards */
 export function specHighlight(seed: ProductSeed): string {
   return specHighlights(seed)[0] ?? seed.shortDesc.slice(0, 60);

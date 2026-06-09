@@ -17,41 +17,53 @@ export function ProductGallery({ images, alt, captions = {} }: Props) {
 
   if (!current) return null;
 
+  const visibleThumbs = thumbs.slice(0, 8);
+  const extraCount = thumbs.length - visibleThumbs.length;
+
   return (
     <div className="space-y-4 lg:sticky lg:top-28">
-      <div className="relative aspect-[4/5] rounded-lg overflow-hidden bg-white border border-[var(--border)]">
+      <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white border border-[var(--border)] shadow-sm">
         <Image
           src={current}
           alt={caption ? `${alt} — ${caption}` : alt}
           fill
-          className="object-contain p-2"
+          className="object-contain p-4"
           sizes="(max-width: 1024px) 100vw, 55vw"
           priority
         />
+        {thumbs.length > 1 && (
+          <span className="absolute bottom-3 right-3 text-xs font-medium bg-[var(--dark-bg)]/75 text-white px-2.5 py-1 rounded-full">
+            {active + 1} / {thumbs.length}
+          </span>
+        )}
       </div>
+
       {caption && (
-        <p className="text-sm text-[var(--text-muted)] leading-relaxed px-1 border-l-2 border-[var(--accent)] pl-3">
-          {caption}
-        </p>
+        <p className="text-sm font-medium text-[var(--text)] leading-snug px-1">{caption}</p>
       )}
-      {thumbs.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-1 snap-x">
-          {thumbs.map((src, i) => (
+
+      {visibleThumbs.length > 1 && (
+        <div className="grid grid-cols-4 sm:grid-cols-4 gap-2">
+          {visibleThumbs.map((src, i) => (
             <button
-              key={`${src}-${i}`}
+              key={src}
               type="button"
               onClick={() => setActive(i)}
               title={captions[src]}
-              className={`relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden border-2 transition-all snap-start ${
+              className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
                 i === active
-                  ? "border-[var(--brand)] ring-2 ring-[var(--brand)]/20"
-                  : "border-[var(--border)] hover:border-[var(--brand)]/50"
+                  ? "border-[var(--brand)] ring-2 ring-[var(--brand)]/15"
+                  : "border-[var(--border)] hover:border-[var(--brand)]/40"
               }`}
             >
-              <Image src={src} alt="" fill className="object-contain p-1 bg-white" sizes="96px" />
+              <Image src={src} alt="" fill className="object-contain p-1.5 bg-white" sizes="80px" />
             </button>
           ))}
         </div>
+      )}
+
+      {extraCount > 0 && (
+        <p className="text-xs text-[var(--text-subtle)] px-1">+{extraCount} more photos in reference section below</p>
       )}
     </div>
   );
