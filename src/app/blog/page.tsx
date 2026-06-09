@@ -1,31 +1,43 @@
 import Link from "next/link";
+import { TrustStrip } from "@/components/trust-strip";
+import { ContentHero } from "@/components/content/content-hero";
 import { BLOG_POSTS } from "@/data/blog";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Guides & Blog",
+  title: "Hardware Guides & Blog",
   description:
-    "Practical guides on phone farm boxes, hardware selection, setup tutorials, real device vs cloud, and enterprise deployment.",
+    "Practical guides on phone farm hardware selection, deployment planning, QC, rack configuration, power, cooling, and B2B order process.",
   path: "/blog",
 });
 
 export default function BlogPage() {
   return (
-    <div className="section">
-      <div className="container-wide">
-        <h1 className="section-title">Guides &amp; Resources</h1>
-        <p className="section-subtitle">Practical guides for phone farm hardware, automation workflows, and deployment best practices.</p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {BLOG_POSTS.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="card p-6 hover:border-cyan-800 transition-colors group">
-              <span className="text-xs text-cyan-400">{post.category}</span>
-              <span className="text-xs text-slate-500 ml-2">{post.date}</span>
-              <h2 className="font-bold text-white mt-2 group-hover:text-cyan-400 transition-colors">{post.title}</h2>
-              <p className="text-sm text-slate-400 mt-2">{post.excerpt}</p>
-            </Link>
-          ))}
+    <>
+      <ContentHero
+        eyebrow="Resources"
+        title="Hardware Guides & Blog"
+        subtitle="Deployment planning, rack configuration, power and cooling, QC and packing, and B2B order process for real-device phone farm hardware."
+      />
+      <TrustStrip variant="light" />
+
+      <div className="section section-light">
+        <div className="container-hero">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {BLOG_POSTS.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="card card-hover p-6 group flex flex-col h-full">
+                <span className="text-xs font-semibold text-[var(--brand)] uppercase">{post.category}</span>
+                <span className="text-xs text-[var(--text-subtle)] mt-1">{post.date}</span>
+                <h2 className="font-bold text-[var(--text)] mt-3 group-hover:text-[var(--brand)] transition-colors line-clamp-2">
+                  {post.title}
+                </h2>
+                <p className="text-sm text-[var(--text-muted)] mt-2 flex-1 line-clamp-3">{post.excerpt}</p>
+                <span className="text-sm font-medium text-[var(--brand)] mt-4">Read guide →</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

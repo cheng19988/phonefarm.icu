@@ -3,65 +3,65 @@ import { IMAGES } from "@/lib/images";
 export const SERVICES = [
   {
     slug: "phone-farm-setup",
-    title: "Phone Farm Setup",
+    title: "Rack Layout Planning",
     description:
-      "End-to-end phone farm deployment — from hardware assembly and device mounting to power routing, network configuration, and first-boot testing.",
+      "Workshop support to plan slot count, cable routing, and power budget for phone farm racks — aligned with your device model list and room layout.",
     image: IMAGES.serviceScene,
   },
   {
     slug: "remote-control-configuration",
-    title: "Remote Control Configuration",
+    title: "Remote Setup Guidance",
     description:
-      "Screen mirroring, ADB setup, and visual device management workstation configuration so you can control dozens of devices from one dashboard.",
+      "ADB path verification, workstation monitor layout, and screen mirroring compatibility check for your rack hardware (buyer-supplied software).",
     image: IMAGES.remoteControl.hero,
   },
   {
     slug: "group-control-system-configuration",
-    title: "Group Control System Configuration",
+    title: "Power & Cooling Advice",
     description:
-      "Batch task scheduling, synchronized multi-device actions, and project grouping for multi-rack device management operations.",
+      "PSU sizing, fan airflow planning, and thermal notes for dense Android or iPhone clusters in production lab environments.",
     image: IMAGES.androidFarm.hero,
   },
   {
     slug: "bulk-device-deployment",
-    title: "Bulk Device Deployment",
+    title: "Bulk Order Coordination",
     description:
-      "Large-scale device provisioning — firmware staging, device grouping, and fleet health checks for 100+ device orders.",
+      "Multi-rack project quotes, phased shipment planning, and packing inspection coordination for 20+ unit deployments.",
     image: IMAGES.factory,
   },
   {
     slug: "custom-hardware-solution",
-    title: "Custom Hardware Solution",
+    title: "Custom Cabinet Discussion",
     description:
-      "Bespoke chassis design, node count optimization, power/cooling engineering, and rack integration tailored to your device models and workflow.",
+      "Custom chassis dimensions, node count, and rack integration scoped in a written proposal — OEM/ODM discussion available.",
     image: IMAGES.customCabinet.hero,
   },
   {
     slug: "enterprise-deployment",
-    title: "Enterprise Deployment",
+    title: "Export & Packing Support",
     description:
-      "Full rackmount cabinet deployment with redundant power, network segmentation, remote monitoring, and dedicated account management for enterprise clients.",
+      "International logistics from Guangzhou — express courier, sea freight, customs documentation, and pallet packing for bulk hardware.",
     image: IMAGES.network.hero,
   },
   {
     slug: "maintenance-support",
-    title: "Maintenance & Support",
+    title: "Warranty & Parts Support",
     description:
-      "Ongoing hardware maintenance, firmware updates, replacement parts, remote diagnostics, and SLA-backed technical support for production farms.",
+      "Replacement fan modules, USB hubs, PSUs, and remote diagnostics guidance for hardware under warranty.",
     image: IMAGES.workshop,
   },
   {
     slug: "sample-solution",
-    title: "Sample Solution",
+    title: "Sample Order Onboarding",
     description:
-      "Evaluation kits with 1–2 units, setup guide, software trial, and dedicated onboarding call — so you can validate before committing to bulk orders.",
+      "First-rack evaluation support — accessory checklist, quick-start guide, and pre-sales call for sample orders from 1 unit.",
     image: IMAGES.phoneFarmBox.card,
   },
   {
     slug: "overseas-delivery",
-    title: "Overseas Delivery",
+    title: "Shipping Estimate",
     description:
-      "International logistics from Guangzhou — express courier, sea freight, customs documentation, and door-to-door delivery to North America, Europe, and Southeast Asia.",
+      "Freight quotes by destination country — DHL, FedEx, UPS express, or sea freight for multi-rack projects.",
     image: IMAGES.warehouse,
   },
 ];

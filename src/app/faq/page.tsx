@@ -1,12 +1,15 @@
+import Link from "next/link";
 import { FAQAccordion } from "@/components/commerce";
 import { ContactCTA, JsonLd } from "@/components/shared";
-import { FAQ_ITEMS } from "@/data/faq";
+import { TrustStrip } from "@/components/trust-strip";
+import { ContentHero } from "@/components/content/content-hero";
+import { FAQ_ITEMS, FAQ_CATEGORIES } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Phone Farm FAQ — Hardware, Shipping, Payment & Support",
   description:
-    "Answers about phone farm boxes, motherboard boxes, real device vs cloud, customization, MOQ, samples, delivery, USDT payment, and contacting sales.",
+    "Answers about phone farm boxes, motherboard boxes, ordering, USDT payment, shipping, warranty, and bulk quotes.",
   path: "/faq",
 });
 
@@ -14,29 +17,45 @@ export default function FAQPage() {
   return (
     <>
       <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
-      <div className="section">
-        <div className="container-wide max-w-3xl">
-          <h1 className="section-title">Frequently Asked Questions</h1>
-          <p className="section-subtitle">
-            Hardware specs, ordering process, shipping, and after-sales — answers from our Guangzhou sales and engineering team.
-          </p>
-          <div className="flex flex-wrap gap-2 mb-8">
+      <ContentHero
+        eyebrow="Help Center"
+        title="Frequently Asked Questions"
+        subtitle="Hardware specs, ordering, payment, shipping, and after-sales — answers from our Guangzhou sales and engineering team."
+      />
+      <TrustStrip variant="light" />
+
+      <div className="section section-light">
+        <div className="container-hero max-w-3xl">
+          <div className="flex flex-wrap gap-2 mb-10">
             {[
-              { label: "Products", href: "/products" },
+              { label: "Shop", href: "/products" },
               { label: "Pricing", href: "/pricing" },
-              { label: "Services", href: "/services" },
-              { label: "Knowledge Base", href: "/knowledge-base" },
-              { label: "Contact Sales", href: "/contact" },
+              { label: "Packages", href: "/packages" },
+              { label: "Docs", href: "/docs" },
+              { label: "Contact", href: "/contact" },
             ].map((link) => (
-              <a key={link.href} href={link.href} className="text-xs px-3 py-1 rounded-full border border-slate-700 text-slate-400 hover:border-cyan-600 hover:text-cyan-400">
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs px-3 py-1.5 rounded-full border border-[var(--border-strong)] text-[var(--text-muted)] hover:border-[var(--brand)] hover:text-[var(--brand)] bg-white"
+              >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
-          <FAQAccordion items={FAQ_ITEMS} />
-          <div className="mt-16">
-            <ContactCTA title="Still Have Questions?" />
-          </div>
+
+          {FAQ_CATEGORIES.map((cat) => {
+            const items = FAQ_ITEMS.filter((i) => i.category === cat);
+            if (!items.length) return null;
+            return (
+              <section key={cat} className="mb-12">
+                <h2 className="text-xl font-bold text-[var(--text)] mb-5">{cat}</h2>
+                <FAQAccordion items={items} />
+              </section>
+            );
+          })}
+
+          <ContactCTA title="Still Have Questions?" />
         </div>
       </div>
     </>

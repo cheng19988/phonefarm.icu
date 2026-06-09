@@ -20,24 +20,24 @@ const STEPS = [
 export default function InquiryReceivedPage() {
   return (
     <>
-      <TrustStrip />
-      <div className="section">
-        <div className="container-wide max-w-2xl text-center">
-          <div className="w-12 h-12 rounded-full border border-green-700 bg-green-950/50 flex items-center justify-center mx-auto mb-6">
-            <span className="text-green-400 text-xl" aria-hidden="true">✓</span>
+      <TrustStrip variant="light" />
+      <div className="section section-light">
+        <div className="container-hero max-w-2xl text-center">
+          <div className="w-14 h-14 rounded-full border-2 border-green-200 bg-green-50 flex items-center justify-center mx-auto mb-6">
+            <span className="text-green-600 text-2xl" aria-hidden="true">✓</span>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-3">Inquiry Received</h1>
-          <p className="text-slate-300 mb-2">We received your hardware quotation request.</p>
-          <p className="text-slate-500 text-sm mb-10 max-w-lg mx-auto">
-            Our Guangzhou sales team will review your device quantity, product interest, and shipping country, then reply with configuration advice and a written quote. This is not an order confirmation or online checkout.
+          <h1 className="text-3xl font-bold text-[var(--text)] mb-3">Inquiry Received</h1>
+          <p className="text-[var(--text-muted)] mb-2">We received your hardware quotation request.</p>
+          <p className="text-[var(--text-subtle)] text-sm mb-10 max-w-lg mx-auto">
+            Our Guangzhou sales team will review your requirements and reply with configuration advice and a written quote. You can also shop and order directly from the catalog.
           </p>
 
-          <div className="text-left p-6 rounded-lg border border-slate-800 mb-10">
-            <h2 className="font-semibold text-white mb-4">What happens next</h2>
+          <div className="text-left p-6 rounded-2xl border border-[var(--border)] bg-white mb-10">
+            <h2 className="font-semibold text-[var(--text)] mb-4">What happens next</h2>
             <ol className="space-y-3">
               {STEPS.map((step, i) => (
-                <li key={step} className="flex gap-3 text-sm text-slate-400">
-                  <span className="text-slate-500 font-medium shrink-0">{i + 1}.</span>
+                <li key={step} className="flex gap-3 text-sm text-[var(--text-muted)]">
+                  <span className="text-[var(--brand)] font-bold shrink-0">{i + 1}.</span>
                   {step}
                 </li>
               ))}
@@ -51,15 +51,15 @@ export default function InquiryReceivedPage() {
             <a href={`mailto:${CONTACT.email}`} className="btn-secondary">
               Email Sales
             </a>
-            <Link href="/products" className="btn-outline">
-              Back to Products
+            <Link href="/products" className="btn-accent">
+              Browse Products
             </Link>
-            <Link href="/packages" className="btn-outline">
-              View Packages
+            <Link href="/register" className="btn-outline">
+              Sign Up to Order
             </Link>
           </div>
 
-          <p className="text-xs text-slate-600 mt-8">
+          <p className="text-xs text-[var(--text-subtle)] mt-8">
             Typical reply within one business day. Urgent requests: WhatsApp {CONTACT.whatsapp}
           </p>
         </div>

@@ -15,31 +15,31 @@ export function KBSearch({ articles }: { articles: KBArticle[] }) {
         a.title.toLowerCase().includes(term) ||
         a.excerpt.toLowerCase().includes(term) ||
         a.category.toLowerCase().includes(term) ||
-        a.body.some((p) => p.toLowerCase().includes(term))
+        a.body.some((p) => p.toLowerCase().includes(term)),
     );
   }, [q, articles]);
 
   return (
     <div className="mb-10">
-      <label className="block text-sm text-slate-400 mb-2">Search knowledge base</label>
+      <label className="form-label">Search knowledge base</label>
       <input
         type="search"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="e.g. motherboard, USB, shipping, troubleshooting"
-        className="w-full max-w-xl bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white"
+        placeholder="e.g. motherboard, USB, shipping, cooling"
+        className="form-input max-w-xl"
       />
       {q.trim() && (
         <ul className="mt-4 space-y-2">
           {filtered.length === 0 ? (
-            <li className="text-slate-500 text-sm">No articles match your search.</li>
+            <li className="text-[var(--text-subtle)] text-sm">No articles match your search.</li>
           ) : (
             filtered.map((a) => (
               <li key={a.slug}>
-                <Link href={`/knowledge-base/${a.slug}`} className="text-cyan-400 hover:text-white text-sm">
+                <Link href={`/knowledge-base/${a.slug}`} className="text-[var(--brand)] hover:underline text-sm font-medium">
                   {a.title}
                 </Link>
-                <span className="text-slate-600 text-xs ml-2">{a.category}</span>
+                <span className="text-[var(--text-subtle)] text-xs ml-2">{a.category}</span>
               </li>
             ))
           )}

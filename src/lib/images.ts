@@ -4,6 +4,7 @@ const detail = (name: string) => `/images/detail_1200x900/${name}-detail_1200x90
 
 const P = "phonefarm.icu";
 
+/** @see SITE_IMAGE_PATHS in lib/site-images.ts for future canonical asset paths */
 export const IMAGES = {
   homeHero: hero(`${P}-product-box-0f5501e1584de9a625d220f62951bc6d-d04df`),
   phoneFarmBox: {

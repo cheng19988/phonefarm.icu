@@ -1,5 +1,7 @@
+import Link from "next/link";
+import { TrustStrip } from "@/components/trust-strip";
 import { buildMetadata } from "@/lib/seo";
-import { SITE } from "@/lib/config";
+import { SITE, CONTACT } from "@/lib/config";
 
 export const metadata = buildMetadata({
   title: "Terms of Use",
@@ -9,21 +11,60 @@ export const metadata = buildMetadata({
 
 export default function TermsPage() {
   return (
-    <div className="section">
-      <div className="container-wide max-w-3xl prose-content">
-        <h1 className="section-title">Terms of Use</h1>
-        <p>Last updated: June 2026</p>
-        <h2>Products &amp; Orders</h2>
-        <p>All products are real-device phone farm hardware manufactured by PhoneFarm ICU in Guangzhou, China. Prices are listed in USD. Orders are subject to stock availability.</p>
-        <h2>Payment</h2>
-        <p>Online orders accept USDT on Tron TRC20 network. Minimum payment is 10 USDT. Orders expire after 30 minutes if payment is not received. We do not auto-confirm payments without blockchain verification.</p>
-        <h2>Shipping</h2>
-        <p>International shipping is available worldwide. Delivery times vary by method (express 3–7 days, sea freight 15–30 days). Import duties and taxes are the buyer&apos;s responsibility.</p>
-        <h2>Warranty</h2>
-        <p>Hardware carries a 12-month warranty against manufacturing defects. Misuse, unauthorized modifications, and normal wear are excluded.</p>
-        <h2>Contact</h2>
-        <p>Questions about these terms: qiuxui646@gmail.com</p>
+    <>
+      <TrustStrip variant="light" />
+      <div className="section section-light">
+        <div className="container-hero max-w-3xl">
+          <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">Terms of Use</h1>
+          <p className="text-[var(--text-subtle)] mb-10">Last updated: June 2026</p>
+
+          <div className="prose-content space-y-8">
+            <section>
+              <h2>Products &amp; Orders</h2>
+              <p>
+                Products listed on {SITE.name} are real-device phone farm hardware assembled in Guangzhou, China. Prices are reference USD amounts. Orders are subject to stock availability and sales confirmation for custom configurations.
+              </p>
+            </section>
+            <section>
+              <h2>Accounts</h2>
+              <p>
+                You may register an account to place orders and view order history. You are responsible for keeping login credentials secure.
+              </p>
+            </section>
+            <section>
+              <h2>Payment</h2>
+              <p>
+                USDT on Tron TRC20 network is available after order confirmation. Minimum payment and payment window are shown on your order page. Sales team confirms payment and updates order status. Wire transfer (T/T) may be available for enterprise bulk orders.
+              </p>
+            </section>
+            <section>
+              <h2>Shipping</h2>
+              <p>
+                International shipping is available from Guangzhou. Delivery times vary by method. Import duties and taxes are typically the buyer&apos;s responsibility unless agreed otherwise in a bulk quote.
+              </p>
+            </section>
+            <section>
+              <h2>Inquiries &amp; Quotes</h2>
+              <p>
+                Contact form submissions are quotation requests, not binding orders. Written quotes are issued before production for bulk and custom projects.
+              </p>
+            </section>
+            <section>
+              <h2>Warranty</h2>
+              <p>
+                Hardware carries warranty support on chassis, fans, and PSU modules as described per product. Misuse, unauthorized modifications, and buyer-supplied devices are excluded.
+              </p>
+            </section>
+            <section>
+              <h2>Contact</h2>
+              <p>
+                Questions about these terms: <a href={`mailto:${CONTACT.email}`} className="text-[var(--brand)] hover:underline">{CONTACT.email}</a>.
+                See our <Link href="/privacy" className="text-[var(--brand)] hover:underline">Privacy Policy</Link>.
+              </p>
+            </section>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

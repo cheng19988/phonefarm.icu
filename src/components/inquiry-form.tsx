@@ -50,7 +50,7 @@ function InquiryFormInner({ sourcePage, submitLabel = "Request a Quote", classNa
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`p-6 rounded-lg border border-slate-800 space-y-4 ${className}`}>
+    <form onSubmit={handleSubmit} className={`card p-6 md:p-8 space-y-4 ${className}`}>
       <input
         type="text"
         name="website"
@@ -60,48 +60,48 @@ function InquiryFormInner({ sourcePage, submitLabel = "Request a Quote", classNa
         aria-hidden="true"
       />
 
-      <p className="text-xs text-slate-500">
-        Submit a hardware quotation request. Our sales team will review your requirements and reply with configuration advice — this is not an online checkout.
+      <p className="text-xs text-[var(--text-subtle)]">
+        Bulk quote and configuration support — you can also shop and order directly from the catalog with USDT after confirmation.
       </p>
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Name *</label>
-          <input name="name" required maxLength={200} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="form-label">Name *</label>
+          <input name="name" required maxLength={200} className="form-input" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Company</label>
-          <input name="company" maxLength={200} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="form-label">Company</label>
+          <input name="company" maxLength={200} className="form-input" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Email *</label>
-          <input name="email" type="email" required maxLength={320} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="form-label">Email *</label>
+          <input name="email" type="email" required maxLength={320} className="form-input" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">WhatsApp / Telegram</label>
-          <input name="whatsapp" placeholder="@handle or +country code number" maxLength={120} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="form-label">WhatsApp / Telegram</label>
+          <input name="whatsapp" placeholder="@handle or +country code number" maxLength={120} className="form-input" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Product interest</label>
+          <label className="form-label">Product interest</label>
           <input
             name="productInterest"
             defaultValue={defaultProductInterest}
             placeholder="e.g. Phone Farm Box, motherboard box, package"
             maxLength={300}
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white"
+            className="form-input"
           />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Device quantity</label>
-          <input name="deviceQuantity" placeholder="e.g. 20, 50, 100" maxLength={50} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="form-label">Device quantity</label>
+          <input name="deviceQuantity" placeholder="e.g. 20, 50, 100" maxLength={50} className="form-input" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Shipping country</label>
-          <input name="country" placeholder="e.g. United States, Germany" maxLength={120} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="form-label">Shipping country</label>
+          <input name="country" placeholder="e.g. United States, Germany" maxLength={120} className="form-input" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Preferred contact</label>
-          <select name="preferredContact" className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white">
+          <label className="form-label">Preferred contact</label>
+          <select name="preferredContact" className="form-input">
             <option value="">No preference</option>
             <option value="Email">Email</option>
             <option value="WhatsApp">WhatsApp</option>
@@ -110,20 +110,20 @@ function InquiryFormInner({ sourcePage, submitLabel = "Request a Quote", classNa
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label className="block text-sm text-slate-400 mb-1">Phone (optional)</label>
-          <input name="phone" maxLength={40} className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="form-label">Phone (optional)</label>
+          <input name="phone" maxLength={40} className="form-input" />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Message</label>
+        <label className="form-label">Message</label>
         <textarea
           name="message"
           rows={4}
           defaultValue={messageParam}
           placeholder="Device models, rack layout, timeline, cooling/power requirements, compatibility questions..."
           maxLength={8000}
-          className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white"
+          className="form-input"
         />
       </div>
 
@@ -132,7 +132,7 @@ function InquiryFormInner({ sourcePage, submitLabel = "Request a Quote", classNa
       </button>
 
       {status === "error" && (
-        <p className="text-red-400 text-sm" role="alert">{errorMsg}</p>
+        <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg px-3 py-2" role="alert">{errorMsg}</p>
       )}
     </form>
   );
@@ -140,7 +140,7 @@ function InquiryFormInner({ sourcePage, submitLabel = "Request a Quote", classNa
 
 export function InquiryForm(props: InquiryFormProps) {
   return (
-    <Suspense fallback={<div className="p-6 text-slate-400 border border-slate-800 rounded-lg">Loading form…</div>}>
+    <Suspense fallback={<div className="card p-6 text-[var(--text-muted)]">Loading form…</div>}>
       <InquiryFormInner {...props} />
     </Suspense>
   );

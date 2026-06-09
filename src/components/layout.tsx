@@ -3,6 +3,7 @@ import { CONTACT, FOOTER_NAV, HEADER_NAV, SITE } from "@/lib/config";
 import { BrandLogo } from "./brand-logo";
 import { ContactBar } from "./shared";
 import { ShopNavDropdown } from "./shop-nav";
+import { ShopNavMobile } from "./shop-nav-mobile";
 import { getSession } from "@/lib/auth";
 
 export async function Header() {
@@ -45,15 +46,15 @@ export async function Header() {
               <Link href="/login" className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--brand)] py-2 px-2">
                 Sign In
               </Link>
-              <Link href="/register" className="btn-primary text-sm py-2 px-4">
+              <Link href="/register" className="btn-primary text-xs sm:text-sm py-2 px-3 sm:px-4 whitespace-nowrap">
                 Sign Up
               </Link>
             </>
           )}
         </div>
       </div>
-      <nav className="xl:hidden container-hero pb-3 flex gap-4 overflow-x-auto text-sm border-t border-[var(--border)] pt-2">
-        <Link href="/products" className="text-[var(--brand)] font-semibold whitespace-nowrap">Shop</Link>
+      <nav className="xl:hidden relative container-hero pb-3 flex gap-4 overflow-x-auto text-sm border-t border-[var(--border)] pt-2">
+        <ShopNavMobile />
         {HEADER_NAV.map((item) => (
           <Link key={item.href} href={item.href} className="text-[var(--text-muted)] hover:text-[var(--brand)] whitespace-nowrap">
             {item.label}

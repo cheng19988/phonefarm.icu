@@ -12,7 +12,7 @@ export function ShopNavDropdown() {
         <span className="text-[10px] opacity-60">▾</span>
       </Link>
       <div className="absolute left-0 top-full pt-2 hidden group-hover:block z-50">
-        <div className="bg-white border border-[var(--border)] rounded-2xl shadow-xl p-6 grid grid-cols-2 lg:grid-cols-4 gap-8 min-w-[640px]">
+        <div className="bg-white border border-[var(--border)] rounded-2xl shadow-xl p-6 grid grid-cols-2 lg:grid-cols-4 gap-8 min-w-[min(90vw,640px)] max-w-[90vw]">
           {SHOP_MENU.map((group) => (
             <div key={group.title}>
               <p className="text-xs font-bold text-[var(--brand)] uppercase tracking-wide mb-3">{group.title}</p>
