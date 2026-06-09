@@ -80,4 +80,9 @@ export const IMAGES = {
     workshop: "/images/company/workshop.png",
     warehouse: "/images/company/warehouse.png",
   },
+  /** High-res originals from 主板机白底 — use for premium heroes when needed */
+  premium: {
+    phoneFarmRaw: "/images/premium/phone-farm-raw.png",
+    androidFarmRaw: "/images/premium/android-farm-raw.png",
+  },
 } as const;

@@ -31,7 +31,7 @@ export function TrustStrip({
         {TRUST_ITEMS.map((item) => (
           <span key={item} className="flex items-center gap-1.5">
             <span
-              className={`w-1.5 h-1.5 rounded-full ${light ? "bg-[var(--brand)]" : "bg-slate-600"}`}
+              className={`w-1.5 h-1.5 rounded-full ${light ? "bg-[var(--accent)]" : "bg-[var(--accent)]"}`}
               aria-hidden="true"
             />
             {item}

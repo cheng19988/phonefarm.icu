@@ -3,9 +3,11 @@ import { ContactCTA } from "@/components/shared";
 import { TrustStrip } from "@/components/trust-strip";
 import { PriceTag } from "@/components/ui/price-tag";
 import { StockBadge } from "@/components/shared";
+import { PageHero } from "@/components/ui/page-hero";
 import { buildMetadata } from "@/lib/seo";
 import { PRICING_TIERS, getCatalogPriceTable } from "@/data/pricing";
 import { SITE } from "@/lib/config";
+import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
   title: "Hardware Pricing — Shop & Bulk Quotes",
@@ -19,21 +21,18 @@ export default function PricingPage() {
 
   return (
     <>
-      <section className="relative min-h-[38vh] flex items-center bg-gradient-to-br from-white via-blue-50/40 to-slate-100 border-b border-[var(--border)]">
-        <div className="container-hero py-14 lg:py-16">
-          <p className="text-sm font-semibold text-[var(--brand)] uppercase tracking-wide mb-3">Reference Pricing</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-[var(--text)] mb-4">Hardware Pricing Guide</h1>
-          <p className="text-lg text-[var(--text-muted)] max-w-2xl mb-6 leading-relaxed">
-            Published USD reference prices from {SITE.location}. Bulk quote available for custom racks and freight.
-            USDT payment is available after order confirmation.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/products" className="btn-accent px-7 py-3">Browse Products</Link>
-            <Link href="/register" className="btn-primary px-7 py-3">Sign Up to Order</Link>
-            <Link href="/contact" className="btn-outline px-7 py-3">Bulk Quote</Link>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Reference Pricing"
+        title="Hardware Pricing"
+        subtitle={`Published USD reference prices from ${SITE.location}. Bulk quotes for custom racks and international freight.`}
+        image={IMAGES.motherboardBox.hero}
+        imageAlt="Motherboard box hardware pricing"
+        ctas={[
+          { label: "Browse Catalog", href: "/products", variant: "accent" },
+          { label: "Bulk Quote", href: "/contact", variant: "outline" },
+        ]}
+        compact
+      />
       <TrustStrip variant="light" />
 
       <div className="section section-light">

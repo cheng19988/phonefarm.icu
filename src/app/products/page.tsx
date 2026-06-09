@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { listCatalogProducts } from "@/lib/catalog";
 import { ContactCTA } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { ShopHero } from "@/components/products/shop-hero";
 import { ShopProductCard } from "@/components/products/product-card";
 import { CategoryFilters } from "@/components/products/category-filters";
@@ -18,14 +17,6 @@ export const metadata = buildMetadata({
     "Shop phone farm racks, motherboard boxes, cooling racks, USB hubs, power supplies, and network modules. USD reference prices — buy online with USDT or request a bulk quote.",
   path: "/products",
 });
-
-const BUYING_GUIDES = [
-  { title: "How to Buy", href: "/docs/buying-guide", desc: "Register, order, and pay with USDT after confirmation" },
-  { title: "USDT Payment", href: "/docs/usdt-payment-guide", desc: "TRC20 payment after order confirmation" },
-  { title: "Shipping Guide", href: "/docs/shipping-guide", desc: "Export packing, MOQ, and freight options" },
-  { title: "Warranty", href: "/docs/warranty-guide", desc: "Hardware support and replacement parts" },
-  { title: "Bulk Quote", href: "/contact", desc: "Custom rack layout and project pricing" },
-];
 
 export default async function ProductsPage({
   searchParams,
@@ -57,9 +48,7 @@ export default async function ProductsPage({
   return (
     <>
       <ShopHero productCount={products.length} />
-      <TrustStrip variant="light" />
-
-      <div className="section section-light">
+      <div className="section section-light -mt-1">
         <div className="container-hero">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
             <CategoryFilters activeGroup={params.group} activeCategory={params.category} />
@@ -101,20 +90,9 @@ export default async function ProductsPage({
             </div>
           )}
 
-          <section className="mt-20 mb-16">
-            <p className="text-sm font-semibold text-[var(--brand)] uppercase tracking-wide mb-2">Before You Order</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-8">Buying Guides</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {BUYING_GUIDES.map((g) => (
-                <Link key={g.href} href={g.href} className="card card-hover p-6">
-                  <h3 className="font-bold text-[var(--text)] mb-2">{g.title}</h3>
-                  <p className="text-sm text-[var(--text-muted)]">{g.desc}</p>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          <ContactCTA title="Need a Bulk Quote or Custom Rack Configuration?" />
+          <div className="mt-20">
+            <ContactCTA title="Need a Bulk Quote or Custom Rack Configuration?" />
+          </div>
         </div>
       </div>
     </>

@@ -10,53 +10,52 @@ export async function Header() {
   const session = await getSession();
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[var(--border)] shadow-sm">
-      <div className="hidden md:block bg-[var(--brand)] text-white">
-        <div className="container-hero py-2 flex justify-between items-center text-xs">
-          <span className="font-medium">{SITE.location} · Factory Direct Hardware Since {SITE.since}</span>
+    <header className="sticky top-0 z-50 bg-[var(--dark-bg)]/95 backdrop-blur-md border-b border-white/10">
+      <div className="hidden lg:block border-b border-white/5">
+        <div className="container-hero py-2 flex justify-between items-center text-[11px] text-slate-400 tracking-wide">
+          <span>
+            {SITE.location} · Factory Direct Hardware · Est. {SITE.since}
+          </span>
           <ContactBar compact variant="light" />
         </div>
       </div>
-      <div className="container-hero py-3.5 flex items-center justify-between gap-4">
+      <div className="container-hero py-4 flex items-center justify-between gap-6">
         <Link href="/" className="shrink-0">
-          <BrandLogo />
+          <BrandLogo variant="light" />
         </Link>
-        <nav className="hidden xl:flex items-center gap-6">
-          <ShopNavDropdown />
+        <nav className="hidden xl:flex items-center gap-8">
+          <ShopNavDropdown variant="dark" />
           {HEADER_NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--brand)] transition-colors"
+              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
             >
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-3">
           {session ? (
-            <Link
-              href={session.role === "admin" ? "/admin" : "/account/orders"}
-              className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--brand)] py-2"
-            >
+            <Link href={session.role === "admin" ? "/admin" : "/account/orders"} className="text-sm text-slate-300 hover:text-white py-2">
               Account
             </Link>
           ) : (
             <>
-              <Link href="/login" className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--brand)] py-2 px-2">
+              <Link href="/login" className="hidden sm:inline text-sm text-slate-300 hover:text-white py-2 px-2">
                 Sign In
               </Link>
-              <Link href="/register" className="btn-primary text-xs sm:text-sm py-2 px-3 sm:px-4 whitespace-nowrap">
-                Sign Up
+              <Link href="/register" className="btn-accent text-sm py-2.5 px-5 whitespace-nowrap">
+                Get Started
               </Link>
             </>
           )}
         </div>
       </div>
-      <nav className="xl:hidden relative container-hero pb-3 flex gap-4 overflow-x-auto text-sm border-t border-[var(--border)] pt-2">
-        <ShopNavMobile />
+      <nav className="xl:hidden relative container-hero pb-3 flex gap-5 overflow-x-auto text-sm border-t border-white/10 pt-3">
+        <ShopNavMobile variant="dark" />
         {HEADER_NAV.map((item) => (
-          <Link key={item.href} href={item.href} className="text-[var(--text-muted)] hover:text-[var(--brand)] whitespace-nowrap">
+          <Link key={item.href} href={item.href} className="text-slate-400 hover:text-white whitespace-nowrap">
             {item.label}
           </Link>
         ))}
@@ -67,50 +66,46 @@ export async function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--dark-bg)] border-t border-slate-800 mt-auto text-slate-300">
-      <div className="container-hero py-14 grid md:grid-cols-2 lg:grid-cols-5 gap-10">
-        <div className="lg:col-span-2">
-          <div className="font-bold text-white text-xl mb-3">{SITE.name}</div>
-          <p className="text-slate-400 text-sm mb-5 max-w-md leading-relaxed">{SITE.intro}</p>
+    <footer className="bg-[var(--dark-bg)] border-t border-white/10 mt-auto text-slate-400">
+      <div className="container-hero py-16 md:py-20 grid md:grid-cols-2 lg:grid-cols-12 gap-12">
+        <div className="lg:col-span-5">
+          <div className="font-semibold text-white text-2xl mb-4 tracking-tight">{SITE.name}</div>
+          <p className="text-slate-400 text-sm mb-6 max-w-md leading-relaxed">{SITE.intro}</p>
           <ContactBar variant="dark" />
         </div>
-        <div>
-          <h3 className="font-semibold text-white mb-4">Shop</h3>
-          <ul className="space-y-2.5 text-sm text-slate-400">
-            <li><Link href="/products" className="hover:text-white">All Products</Link></li>
-            <li><Link href="/products/phone-farm-box" className="hover:text-white">Phone Farm Box</Link></li>
-            <li><Link href="/products/motherboard-box" className="hover:text-white">Motherboard Box</Link></li>
-            <li><Link href="/products/usb-hub" className="hover:text-white">USB Hub</Link></li>
-            <li><Link href="/packages" className="hover:text-white">Packages</Link></li>
-            <li><Link href="/pricing" className="hover:text-white">Pricing</Link></li>
+        <div className="lg:col-span-2">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-5">Shop</h3>
+          <ul className="space-y-3 text-sm">
+            <li><Link href="/products" className="hover:text-white transition-colors">All Products</Link></li>
+            <li><Link href="/products/phone-farm-box" className="hover:text-white transition-colors">Phone Farm Box</Link></li>
+            <li><Link href="/products/motherboard-box" className="hover:text-white transition-colors">Motherboard Box</Link></li>
+            <li><Link href="/packages" className="hover:text-white transition-colors">Packages</Link></li>
+            <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
           </ul>
         </div>
-        <div>
-          <h3 className="font-semibold text-white mb-4">Buying Guides</h3>
-          <ul className="space-y-2.5 text-sm text-slate-400">
-            <li><Link href="/docs/buying-guide" className="hover:text-white">How to Buy</Link></li>
-            <li><Link href="/docs/usdt-payment-guide" className="hover:text-white">USDT Payment</Link></li>
-            <li><Link href="/docs/shipping-guide" className="hover:text-white">Shipping Guide</Link></li>
-            <li><Link href="/docs/warranty-guide" className="hover:text-white">Warranty</Link></li>
-            <li><Link href="/register" className="hover:text-white">Create Account</Link></li>
-            <li><Link href="/login" className="hover:text-white">Sign In</Link></li>
+        <div className="lg:col-span-2">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-5">Resources</h3>
+          <ul className="space-y-3 text-sm">
+            <li><Link href="/docs/buying-guide" className="hover:text-white transition-colors">How to Buy</Link></li>
+            <li><Link href="/docs/usdt-payment-guide" className="hover:text-white transition-colors">USDT Payment</Link></li>
+            <li><Link href="/knowledge-base" className="hover:text-white transition-colors">Knowledge Base</Link></li>
+            <li><Link href="/support" className="hover:text-white transition-colors">Support</Link></li>
           </ul>
         </div>
-        <div>
-          <h3 className="font-semibold text-white mb-4">Support & Company</h3>
-          <ul className="space-y-2.5 text-sm text-slate-400">
-            <li><Link href="/support" className="hover:text-white">Support</Link></li>
-            <li><Link href="/knowledge-base" className="hover:text-white">Knowledge Base</Link></li>
-            <li><Link href="/contact" className="hover:text-white">Contact Sales</Link></li>
-            {FOOTER_NAV.map((item) => (
+        <div className="lg:col-span-3">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-5">Company</h3>
+          <ul className="space-y-3 text-sm">
+            <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+            <li><Link href="/contact" className="hover:text-white transition-colors">Contact Sales</Link></li>
+            {FOOTER_NAV.filter((i) => !["/about", "/contact"].includes(i.href)).map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-white">{item.label}</Link>
+                <Link href={item.href} className="hover:text-white transition-colors">{item.label}</Link>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <div className="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+      <div className="border-t border-white/10 py-6 text-center text-xs text-slate-600">
         © {new Date().getFullYear()} {SITE.name} · {SITE.location} · {CONTACT.email}
       </div>
     </footer>

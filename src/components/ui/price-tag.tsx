@@ -11,7 +11,7 @@ export function PriceTag({ priceUsd, label = "USD", size = "md" }: PriceTagProps
     size === "lg" ? "text-3xl md:text-4xl" : size === "sm" ? "text-lg" : "text-2xl";
   return (
     <span className="inline-flex items-baseline gap-1.5">
-      <span className={`font-bold text-[var(--accent)] ${sizeClass}`}>
+      <span className={`font-semibold text-[var(--accent)] ${sizeClass}`}>
         {formatUsd(priceUsd)}
       </span>
       <span className="text-sm font-medium text-[var(--text-subtle)]">{label}</span>

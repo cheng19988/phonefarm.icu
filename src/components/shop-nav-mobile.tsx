@@ -4,15 +4,19 @@ import Link from "next/link";
 import { useState } from "react";
 import { SHOP_MENU } from "@/lib/config";
 
-export function ShopNavMobile() {
+export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
+  const btnClass =
+    variant === "dark"
+      ? "text-white font-semibold whitespace-nowrap flex items-center gap-1"
+      : "text-[var(--brand)] font-semibold whitespace-nowrap flex items-center gap-1";
 
   return (
     <div className="shrink-0">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="text-[var(--brand)] font-semibold whitespace-nowrap flex items-center gap-1"
+        className={btnClass}
         aria-expanded={open}
       >
         Shop

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { HARDWARE_PACKAGES } from "@/data/packages";
 import { ContactCTA } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { PackageHero } from "@/components/packages/package-hero";
 import { PackageCard } from "@/components/packages/package-card";
 import { PackageComparisonTable } from "@/components/packages/comparison-table";
@@ -19,7 +18,6 @@ export default function PackagesPage() {
   return (
     <>
       <PackageHero />
-      <TrustStrip variant="light" />
 
       <div className="section section-light">
         <div className="container-hero">

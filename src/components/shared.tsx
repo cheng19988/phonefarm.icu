@@ -37,16 +37,15 @@ export function ContactBar({ compact = false, variant = "default" }: { compact?:
 
 export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { title?: string }) {
   return (
-    <section className="rounded-2xl border border-[var(--border)] bg-gradient-to-br from-blue-50 to-white p-8 md:p-12 text-center shadow-sm">
-      <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-3">{title}</h2>
-      <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
-        Shop the catalog, register to order. USDT payment is available after order confirmation.
-        Sales team will confirm payment and update order status. Bulk quotes via {SITE.location} sales.
+    <section className="rounded-lg bg-[var(--dark-bg)] p-10 md:p-14 text-center">
+      <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">{title}</h2>
+      <p className="text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+        Shop the catalog, register to order. USDT payment after order confirmation.
+        Bulk quotes via {SITE.location} sales.
       </p>
-      <ContactBar />
-      <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Link href="/products" className="btn-accent">Shop Now</Link>
-        <Link href="/register" className="btn-primary">Sign Up</Link>
+      <ContactBar variant="dark" />
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <Link href="/products" className="btn-accent">Shop Catalog</Link>
         <Link href="/contact" className="btn-outline">Contact Sales</Link>
       </div>
     </section>
@@ -55,15 +54,15 @@ export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { titl
 
 export function MobileContactBar() {
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t border-[var(--border)] backdrop-blur-sm shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
-      <div className="grid grid-cols-5 divide-x divide-[var(--border)]">
-        <Link href="/products" className="flex flex-col items-center py-3 text-xs font-medium text-[var(--brand)]">
+    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--dark-bg)]/95 border-t border-white/10 backdrop-blur-sm">
+      <div className="grid grid-cols-5 divide-x divide-white/10">
+        <Link href="/products" className="flex flex-col items-center py-3 text-xs font-medium text-[var(--accent)]">
           Shop
         </Link>
-        <Link href="/register" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">
+        <Link href="/register" className="flex flex-col items-center py-3 text-xs text-slate-400">
           Sign Up
         </Link>
-        <Link href="/login" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">
+        <Link href="/login" className="flex flex-col items-center py-3 text-xs text-slate-400">
           Sign In
         </Link>
         <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-[var(--text-muted)]">

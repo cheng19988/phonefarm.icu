@@ -34,7 +34,7 @@ export function BuyBox({
 
   return (
     <div className="lg:sticky lg:top-28">
-      <p className="text-sm font-semibold text-[var(--brand)] mb-2 uppercase tracking-wide">{category}</p>
+      <p className="eyebrow text-[var(--accent)] mb-3">{category}</p>
       {productLine && (
         <p className="text-sm text-[var(--text-subtle)] mb-3">
           Product line:{" "}
@@ -47,7 +47,7 @@ export function BuyBox({
           )}
         </p>
       )}
-      <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4 leading-tight tracking-tight">{name}</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-[var(--text)] mb-4 leading-tight tracking-tight">{name}</h1>
       {model && (
         <p className="text-sm text-[var(--text-subtle)] mb-4">
           Model / SKU: <span className="font-medium text-[var(--text-muted)]">{model}</span>
@@ -55,7 +55,7 @@ export function BuyBox({
       )}
       <p className="text-base text-[var(--text-muted)] mb-6 leading-relaxed">{shortDesc}</p>
 
-      <div className="p-5 rounded-2xl border border-[var(--border)] bg-white shadow-sm mb-6">
+      <div className="p-6 rounded-lg border border-[var(--border)] bg-[var(--surface-muted)] mb-6">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
           <PriceTag priceUsd={priceUsd} size="lg" label="USD reference" />
           <StockBadge stock={stock} />

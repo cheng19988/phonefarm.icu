@@ -1,77 +1,65 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PriceTag } from "@/components/ui/price-tag";
+import { SectionHeader } from "@/components/ui/section-header";
 import { StockBadge } from "@/components/shared";
 
-export type FeaturedProduct = {
+type Product = {
   slug: string;
   name: string;
   shortDesc: string;
   priceUsd: number;
   stock: number;
-  imageCard: string;
+  imageHero: string;
   category: string;
 };
 
-export function FeaturedProducts({ products }: { products: FeaturedProduct[] }) {
+export function FeaturedProducts({ products }: { products: Product[] }) {
+  const [lead, ...rest] = products.slice(0, 3);
+
+  if (!lead) return null;
+
   return (
-    <section className="section section-light">
+    <section className="section section-muted">
       <div className="container-hero">
-        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
-          <div>
-            <p className="text-sm font-semibold text-[var(--brand)] uppercase tracking-wide mb-2">Best Sellers</p>
-            <h2 className="section-title mb-2">Featured Hardware</h2>
-            <p className="section-subtitle mb-0 max-w-2xl">
-              Reference USD prices · Buy Now online · USDT payment after order confirmation
-            </p>
-          </div>
-          <Link href="/products" className="btn-outline shrink-0">View All Products</Link>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {products.map((p) => (
-            <article key={p.slug} className="card card-hover group flex flex-col">
-              <Link href={`/products/${p.slug}`} className="block relative aspect-[4/3] overflow-hidden bg-slate-100">
-                <Image
-                  src={p.imageCard}
-                  alt={p.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width:768px) 100vw, 25vw"
-                />
-                <span className="absolute top-3 left-3 text-xs font-medium bg-white/95 text-[var(--text-muted)] px-2.5 py-1 rounded-md shadow-sm">
-                  {p.category}
-                </span>
-              </Link>
-              <div className="p-5 flex flex-col flex-1">
-                <Link href={`/products/${p.slug}`}>
-                  <h3 className="font-bold text-[var(--text)] group-hover:text-[var(--brand)] transition-colors mb-2 line-clamp-2">
-                    {p.name}
-                  </h3>
-                </Link>
-                <p className="text-sm text-[var(--text-muted)] mb-4 line-clamp-2 flex-1">{p.shortDesc}</p>
-                <div className="flex items-center justify-between mb-4">
-                  <PriceTag priceUsd={p.priceUsd} size="sm" />
-                  <StockBadge stock={p.stock} />
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <Link href={`/products/${p.slug}`} className="btn-secondary text-center text-sm py-2.5">
-                    View Details
-                  </Link>
-                  <form action="/api/orders" method="POST">
-                    <input type="hidden" name="productSlug" value={p.slug} />
-                    <input type="hidden" name="action" value="buy" />
-                    <button
-                      type="submit"
-                      disabled={p.stock <= 0}
-                      className="btn-accent w-full text-sm py-2.5 disabled:opacity-50"
-                    >
-                      Buy Now
-                    </button>
-                  </form>
-                </div>
+        <SectionHeader
+          eyebrow="Featured Hardware"
+          title="Flagship Products"
+          subtitle="Reference USD pricing — register to order online or contact sales for bulk deployment quotes."
+        />
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 mt-4">
+          <Link href={`/products/${lead.slug}`} className="lg:col-span-7 group card card-hover relative min-h-[420px] lg:min-h-[520px] rounded-lg overflow-hidden">
+            <Image src={lead.imageHero} alt={lead.name} fill className="object-cover group-hover:scale-[1.02] transition-transform duration-700" sizes="60vw" priority />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--dark-bg)] via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+              <p className="text-[var(--accent)] text-xs uppercase tracking-[0.2em] mb-2">{lead.category}</p>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white mb-3">{lead.name}</h3>
+              <p className="text-slate-300 text-sm mb-4 max-w-lg line-clamp-2">{lead.shortDesc}</p>
+              <div className="flex items-center gap-4">
+                <PriceTag priceUsd={lead.priceUsd} size="lg" label="USD" />
+                <StockBadge stock={lead.stock} />
               </div>
-            </article>
-          ))}
+            </div>
+          </Link>
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            {rest.map((p) => (
+              <Link key={p.slug} href={`/products/${p.slug}`} className="group card card-hover flex flex-1 min-h-[200px] overflow-hidden rounded-lg">
+                <div className="relative w-2/5 min-w-[140px]">
+                  <Image src={p.imageHero} alt={p.name} fill className="object-cover" sizes="200px" />
+                </div>
+                <div className="flex-1 p-5 md:p-6 flex flex-col justify-center">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--text-subtle)] mb-1">{p.category}</p>
+                  <h3 className="font-semibold text-[var(--text)] group-hover:text-[var(--brand)] transition-colors mb-2">{p.name}</h3>
+                  <PriceTag priceUsd={p.priceUsd} size="sm" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="text-center mt-12">
+          <Link href="/products" className="btn-outline-dark">
+            View Full Catalog
+          </Link>
         </div>
       </div>
     </section>

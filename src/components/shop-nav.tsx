@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { SHOP_MENU } from "@/lib/config";
 
-export function ShopNavDropdown() {
+export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "dark" }) {
+  const linkClass =
+    variant === "dark"
+      ? "text-sm font-semibold text-white hover:text-[var(--accent)] transition-colors flex items-center gap-1"
+      : "text-sm font-semibold text-[var(--brand)] hover:text-[var(--brand-hover)] transition-colors flex items-center gap-1";
+
   return (
     <div className="relative group">
-      <Link
-        href="/products"
-        className="text-sm font-semibold text-[var(--brand)] hover:text-[var(--brand-hover)] transition-colors flex items-center gap-1"
-      >
+      <Link href="/products" className={linkClass}>
         Shop
         <span className="text-[10px] opacity-60">▾</span>
       </Link>
