@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 import { AuthLayout } from "@/components/auth/auth-layout";
+import { authHref, resolveSafeRedirect } from "@/lib/safe-redirect";
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectParam = searchParams.get("redirect");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +24,7 @@ export default function LoginPage() {
       body: JSON.stringify({ email: form.get("email"), password: form.get("password") }),
     });
     if (res.ok) {
-      router.push("/account/orders");
+      router.push(resolveSafeRedirect(redirectParam));
       router.refresh();
     } else {
       const data = await res.json();
@@ -57,11 +60,19 @@ export default function LoginPage() {
         </button>
         <p className="text-center text-sm text-[var(--text-muted)]">
           No account?{" "}
-          <Link href="/register" className="text-[var(--brand)] font-medium hover:underline">
+          <Link href={authHref("/register", redirectParam)} className="text-[var(--brand)] font-medium hover:underline">
             Create Account
           </Link>
         </p>
       </form>
     </AuthLayout>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="section section-light min-h-[50vh]" />}>
+      <LoginForm />
+    </Suspense>
   );
 }
