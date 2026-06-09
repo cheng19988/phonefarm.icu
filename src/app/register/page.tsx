@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AuthLayout } from "@/components/auth/auth-layout";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -34,29 +35,42 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="section">
-      <div className="container-wide max-w-md">
-        <h1 className="section-title text-center">Create Account</h1>
-        <form onSubmit={handleSubmit} className="card p-6 space-y-4">
-          {error && <p className="text-red-400 text-sm">{error}</p>}
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">Name</label>
-            <input name="name" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">Email</label>
-            <input name="email" type="email" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">Password</label>
-            <input name="password" type="password" required minLength={8} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <button type="submit" disabled={loading} className="btn-primary w-full">{loading ? "Creating..." : "Register"}</button>
-          <p className="text-center text-sm text-slate-400">
-            Have an account? <Link href="/login" className="text-cyan-400">Login</Link>
-          </p>
-        </form>
-      </div>
-    </div>
+    <AuthLayout
+      title="Create Your Account"
+      subtitle="Register to place hardware orders, track shipments, and prepare USDT payment after order confirmation."
+      benefits={[
+        "Place Buy Now orders on phone farm racks and accessories",
+        "Track order history and payment status in one place",
+        "Request bulk quotes faster with saved account details",
+        "USDT payment available after sales confirms your order",
+      ]}
+    >
+      <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-4 shadow-sm">
+        <h2 className="text-xl font-bold text-[var(--text)] mb-2">Register</h2>
+        {error && <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>}
+        <div>
+          <label className="form-label">Name</label>
+          <input name="name" className="form-input" />
+        </div>
+        <div>
+          <label className="form-label">Email</label>
+          <input name="email" type="email" required className="form-input" />
+        </div>
+        <div>
+          <label className="form-label">Password</label>
+          <input name="password" type="password" required minLength={8} className="form-input" />
+          <p className="text-xs text-[var(--text-subtle)] mt-1">Minimum 8 characters</p>
+        </div>
+        <button type="submit" disabled={loading} className="btn-primary w-full py-3">
+          {loading ? "Creating account..." : "Create Account"}
+        </button>
+        <p className="text-center text-sm text-[var(--text-muted)]">
+          Have an account?{" "}
+          <Link href="/login" className="text-[var(--brand)] font-medium hover:underline">
+            Sign In
+          </Link>
+        </p>
+      </form>
+    </AuthLayout>
   );
 }

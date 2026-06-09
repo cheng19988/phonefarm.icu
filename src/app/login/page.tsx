@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AuthLayout } from "@/components/auth/auth-layout";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -30,25 +31,37 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="section">
-      <div className="container-wide max-w-md">
-        <h1 className="section-title text-center">Login</h1>
-        <form onSubmit={handleSubmit} className="card p-6 space-y-4">
-          {error && <p className="text-red-400 text-sm">{error}</p>}
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">Email</label>
-            <input name="email" type="email" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">Password</label>
-            <input name="password" type="password" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <button type="submit" disabled={loading} className="btn-primary w-full">{loading ? "Logging in..." : "Login"}</button>
-          <p className="text-center text-sm text-slate-400">
-            No account? <Link href="/register" className="text-cyan-400">Register</Link>
-          </p>
-        </form>
-      </div>
-    </div>
+    <AuthLayout
+      title="Sign In to Your Account"
+      subtitle="Sign in to continue your order, view order history, and access USDT payment instructions after confirmation."
+      benefits={[
+        "Continue checkout on in-progress hardware orders",
+        "View order history and payment status",
+        "Access USDT payment details on confirmed orders",
+        "Manage account orders from Guangzhou factory direct shop",
+      ]}
+    >
+      <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-4 shadow-sm">
+        <h2 className="text-xl font-bold text-[var(--text)] mb-2">Sign In</h2>
+        {error && <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>}
+        <div>
+          <label className="form-label">Email</label>
+          <input name="email" type="email" required className="form-input" />
+        </div>
+        <div>
+          <label className="form-label">Password</label>
+          <input name="password" type="password" required className="form-input" />
+        </div>
+        <button type="submit" disabled={loading} className="btn-primary w-full py-3">
+          {loading ? "Signing in..." : "Sign In"}
+        </button>
+        <p className="text-center text-sm text-[var(--text-muted)]">
+          No account?{" "}
+          <Link href="/register" className="text-[var(--brand)] font-medium hover:underline">
+            Create Account
+          </Link>
+        </p>
+      </form>
+    </AuthLayout>
   );
 }
