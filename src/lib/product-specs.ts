@@ -118,6 +118,7 @@ export function specHighlights(seed: ProductSeed): string[] {
     "Typical capacity",
     "Slot capacity",
     "Reference models",
+    "Reference layout",
     "Reference platform",
     "Front panel I/O",
     "Typical devices",

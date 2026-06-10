@@ -9,21 +9,46 @@ const ACCESSORY_SLUGS = new Set([
   "remote-control-setup",
 ]);
 
+const CHASSIS_ONLY_SLUGS = new Set(["iphone-phone-farm"]);
+
+const CABINET_SLUGS = new Set(["empty-box-chassis", "custom-cabinet"]);
+
 const MAX_MAIN_IMAGES: Record<string, number> = {
   "phone-farm-box": 6,
   "motherboard-box": 5,
   "android-phone-farm": 5,
-  "iphone-phone-farm": 5,
+  "iphone-phone-farm": 4,
   "real-device-phone-farm": 5,
   "empty-box-chassis": 6,
-  "custom-cabinet": 8,
-  default: 4,
+  "custom-cabinet": 6,
+  default: 3,
+};
+
+const ACCESSORY_CAPTIONS: Record<string, string> = {
+  "electronicscomponentsassembly": "USB hub assembly — rack mount module",
+  "electronicscomponentslayout": "USB port layout — industrial hub PCB",
+  "electronicscomponentsproductphoto": "Powered USB hub — product photo",
+  "electronics-accessories": "USB hub and cable accessories",
+  "electronicscomponents-device-showcase": "Device connectivity module showcase",
+  "electronicsassemblylabworkbench": "Industrial PSU — lab bench reference",
+  "electronicsassemblylab": "Power distribution module assembly",
+  "electronicsassembly-detail": "Rack PSU module — detail view",
+  "electronics-workbenchdetail": "Cooling fan module — rack airflow",
+  "networkdevice-accessories": "Network switch / router accessories",
+  "networkdevice-cablesaccessoriesshowcase": "Network cables and rack accessories",
+  "computeraccessories-showcase": "Router and switch module showcase",
+  "techaccessories-showcase": "Remote setup — workstation accessories",
 };
 
 /** Human-readable model label from asset filename metadata */
 export function formatModelLabel(label: string): string {
   let s = label.trim();
-  if (/^\d{4} \d{2} \d{2}/.test(s)) return "Factory product photo";
+  if (/^phonefarm\.icu-/i.test(s)) {
+    const tag = s.replace(/^phonefarm\.icu-/i, "").toLowerCase();
+    for (const [key, caption] of Object.entries(ACCESSORY_CAPTIONS)) {
+      if (tag.includes(key)) return caption;
+    }
+  }
   s = s
     .replace(/\bS8 S8\b/gi, "Samsung S8")
     .replace(/\bS9 S9\b/gi, "Samsung S9")
@@ -36,15 +61,30 @@ export function formatModelLabel(label: string): string {
 
 function isModelSpecEntry(label: string): boolean {
   const l = label.toLowerCase();
-  if (/structure diagram|factory product photo/.test(l)) return false;
+  if (/structure diagram|structure of b/.test(l)) return false;
   return (
-    /\d+\s*gb|\bs[0-9]{1,2}\b|note\s*\d|a908n|oneplus|nubia|flip|pixel|exynos|change\b/.test(l) &&
-    !/chassis front|chassis rear|stacked product/.test(l)
+    /\d+\s*gb|\bs[0-9]{1,2}\b|note\s*\d|a908n|oneplus|nubia|flip|pixel|exynos|change\b|perangkat|real device unit/.test(l) &&
+    !/chassis front|chassis rear|stacked product|compact rack|custom cabinet|cabinet/i.test(l)
   );
 }
 
 function isChassisPhoto(label: string): boolean {
   return /chassis|empty chassis|structure|cabinet|stacked|status led|psu bay|compact rack/i.test(label);
+}
+
+function isStructureDiagram(label: string): boolean {
+  return /structure diagram|structure of b|structure —/i.test(label);
+}
+
+function isWrongCategoryPhoto(label: string, slug: string): boolean {
+  const l = label.toLowerCase();
+  if (slug === "custom-cabinet") {
+    return /motherboard box|android phone farm|real device s8|s8 super|note-|flip|pixel|oneplus|a908n/.test(l);
+  }
+  if (slug === "phone-farm-box") {
+    return /note-8-super|motherboard box/.test(l);
+  }
+  return false;
 }
 
 function webpBase(url: string): string {
@@ -99,38 +139,48 @@ export function curateProductGallery(slug: string): CuratedGallery | null {
 
   const main: ProductImageEntry[] = [];
   const reference: ProductImageEntry[] = [];
+  const chassisOnly = CHASSIS_ONLY_SLUGS.has(slug);
 
-  /** iOS rack SKU — material library has no iPhone boards; show chassis only */
-  const iosRack = slug === "iphone-phone-farm";
-  const chassisOnly = iosRack;
-
-  const pickHero = entries.find((e) => e.role === "hero");
-  const chassisHero = entries.find((e) => isChassisPhoto(e.label) && !/structure diagram/i.test(e.label));
+  const pickHero = entries.find((e) => e.role === "hero" && !isWrongCategoryPhoto(e.label, slug));
+  const chassisHero = entries.find(
+    (e) => isChassisPhoto(e.label) && !isStructureDiagram(e.label) && !isWrongCategoryPhoto(e.label, slug),
+  );
   const hero = chassisOnly && chassisHero ? chassisHero : pickHero;
   if (hero) main.push(hero);
 
   for (const e of entries) {
     if (e.role === "hero" || main.some((m) => m.url === e.url)) continue;
+    if (isWrongCategoryPhoto(e.label, slug)) continue;
+
+    if (isStructureDiagram(e.label)) {
+      reference.push(e);
+      continue;
+    }
 
     if (chassisOnly) {
       if (isChassisPhoto(e.label) && main.length < limit) main.push(e);
       continue;
     }
 
-    if (isModelSpecEntry(e.label)) {
-      reference.push(e);
+    if (slug === "real-device-phone-farm" && /real device|perangkat/i.test(e.label)) {
       if (main.length < limit) main.push(e);
       continue;
     }
 
+    if (isModelSpecEntry(e.label)) {
+      reference.push(e);
+      if (main.length < limit && slug !== "custom-cabinet") main.push(e);
+      continue;
+    }
+
     if (isChassisPhoto(e.label)) {
-      if (slug === "empty-box-chassis" || slug === "custom-cabinet") {
+      if (CABINET_SLUGS.has(slug) || slug === "custom-cabinet") {
         if (main.length < limit) main.push(e);
       }
       continue;
     }
 
-    if (main.length < limit && !/factory product photo/i.test(formatModelLabel(e.label))) {
+    if (main.length < limit && slug !== "custom-cabinet") {
       main.push(e);
     }
   }
@@ -144,7 +194,7 @@ export function curateProductGallery(slug: string): CuratedGallery | null {
       const key = r.label.toLowerCase();
       if (seenLabels.has(key)) return false;
       seenLabels.add(key);
-      return r.label.length > 4 && !/factory product photo/i.test(r.label);
+      return r.label.length > 4;
     })
     .slice(0, 12);
 

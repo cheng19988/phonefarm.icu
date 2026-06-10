@@ -60,7 +60,7 @@ const WHITEBG_SLUGS = {
   "2025_10_25_11_33_IMG_0561": ["empty-box-chassis", "custom-cabinet"],
   "2025_10_25_11_23_IMG_0548": ["empty-box-chassis", "phone-farm-box", "iphone-phone-farm"],
   "2025_10_25_11_21_IMG_0547": ["phone-farm-box"],
-  "2025_10_25_11_24_IMG_0549": ["phone-farm-box", "custom-cabinet"],
+  "2025_10_25_11_24_IMG_0549": ["phone-farm-box"],
   "2025_10_25_11_27_IMG_0551": ["motherboard-box"],
   "2025_10_25_11_28_IMG_0553": ["android-phone-farm"],
   "2025_10_25_11_29_IMG_0556": ["real-device-phone-farm"],
@@ -88,20 +88,8 @@ const ACCESSORY_WEBPS = {
     "phonefarm.icu-accessories-networkdevice-cablesaccessoriesshowcase-e6cc8",
     "phonefarm.icu-accessories-computeraccessories-showcase-2b3e3",
   ],
-  "custom-cabinet": [
-    "phonefarm.icu-product-box-2025-10-25-11-33-img-0561-db197",
-    "phonefarm.icu-product-box-2025-10-25-11-21-img-0547-4b35a",
-    "phonefarm.icu-product-box-2025-10-25-11-24-img-0549-f696b",
-    "phonefarm.icu-product-box-2025-10-25-11-27-img-0551-a9b35",
-    "phonefarm.icu-product-box-2025-10-25-11-28-img-0553-47327",
-    "phonefarm.icu-product-box-2025-10-25-11-29-img-0556-25-10-2025-22-02-38-73237",
-    "phonefarm.icu-product-box-2025-10-25-11-37-img-0566-ee21b",
-    "phonefarm.icu-product-box-0f5501e1584de9a625d220f62951bc6d-d04df",
-  ],
-  "remote-control-setup": [
-    "phonefarm.icu-accessories-techaccessories-showcase-80dfb",
-    "phonefarm.icu-components-electronicscomponents-device-showcase-93575",
-  ],
+  "custom-cabinet": ["phonefarm.icu-product-box-2025-10-25-11-33-img-0561-db197"],
+  "remote-control-setup": ["phonefarm.icu-accessories-techaccessories-showcase-80dfb"],
 };
 
 function parseModelLabel(filename) {
@@ -203,14 +191,13 @@ if (fs.existsSync(WHITEBG_SRC)) {
   }
 }
 
-// Accessory webp
+// Accessory webp — one detail image per asset (no hero/detail/card triplets)
 for (const [slug, bases] of Object.entries(ACCESSORY_WEBPS)) {
   for (const base of bases) {
-    for (const kind of ["hero_1600x900", "detail_1200x900", "card_800x800"]) {
-      const src = findWebp(base, kind);
-      if (!src) continue;
-      pushAsset(slug, src, parseModelLabel(path.basename(src)), `webp:${base}:${kind}`);
-    }
+    const src =
+      findWebp(base, "detail_1200x900") ?? findWebp(base, "hero_1600x900") ?? findWebp(base, "card_800x800");
+    if (!src) continue;
+    pushAsset(slug, src, parseModelLabel(path.basename(src)), `webp:${base}:detail`);
   }
 }
 

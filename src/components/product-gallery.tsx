@@ -63,7 +63,7 @@ export function ProductGallery({ images, alt, captions = {} }: Props) {
       )}
 
       {extraCount > 0 && (
-        <p className="text-xs text-[var(--text-subtle)] px-1">+{extraCount} more photos in reference section below</p>
+        <p className="text-xs text-[var(--text-subtle)] px-1">+{extraCount} additional photos available on request</p>
       )}
     </div>
   );

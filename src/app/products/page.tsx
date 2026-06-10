@@ -8,6 +8,7 @@ import { CategoryFilters } from "@/components/products/category-filters";
 import { buildMetadata } from "@/lib/seo";
 import { getShopFilterCategories } from "@/lib/config";
 import { getProductSeed } from "@/data/products";
+import { getProductLine } from "@/data/product-lines";
 import { specHighlights } from "@/lib/product-specs";
 
 export const dynamic = "force-dynamic";
@@ -74,6 +75,7 @@ export default async function ProductsPage({
             <ProductCatalogSections
               products={products.map((p) => {
                 const seed = getProductSeed(p.slug);
+                const line = seed ? getProductLine(seed.productLine) : null;
                 return {
                   slug: p.slug,
                   name: p.name,
@@ -82,6 +84,7 @@ export default async function ProductsPage({
                   stock: p.stock,
                   imageCard: p.imageCard,
                   category: p.category,
+                  productLine: line?.name,
                   specHighlights: seed ? specHighlights(seed) : undefined,
                 };
               })}
@@ -90,6 +93,7 @@ export default async function ProductsPage({
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {products.map((p) => {
                 const seed = getProductSeed(p.slug);
+                const line = seed ? getProductLine(seed.productLine) : null;
                 return (
                   <ShopProductCard
                     key={p.id}
@@ -100,6 +104,7 @@ export default async function ProductsPage({
                     stock={p.stock}
                     imageCard={p.imageCard}
                     category={p.category}
+                    productLine={line?.name}
                     specHighlights={seed ? specHighlights(seed) : undefined}
                   />
                 );

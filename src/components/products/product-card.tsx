@@ -11,6 +11,7 @@ export type ShopProductCardProps = {
   stock: number;
   imageCard: string;
   category: string;
+  productLine?: string;
   specHighlights?: string[];
 };
 
@@ -22,6 +23,7 @@ export function ShopProductCard({
   stock,
   imageCard,
   category,
+  productLine,
   specHighlights = [],
 }: ShopProductCardProps) {
   const outOfStock = stock <= 0;
@@ -39,7 +41,12 @@ export function ShopProductCard({
         />
       </Link>
       <div className="p-5 md:p-6 flex flex-col flex-1">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] mb-2">{category}</p>
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-2">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">{category}</p>
+          {productLine ? (
+            <span className="text-[10px] text-[var(--text-subtle)]">· {productLine}</span>
+          ) : null}
+        </div>
         <Link href={`/products/${slug}`}>
           <h3 className="font-semibold text-lg text-[var(--text)] group-hover:text-[var(--brand)] transition-colors mb-2 line-clamp-2 leading-snug">
             {name}

@@ -3,6 +3,11 @@ import { FAQAccordion } from "@/components/commerce";
 import { SpecTable } from "@/components/products/spec-table";
 import { PAYMENT } from "@/lib/config";
 import type { ProductSeed } from "@/data/products";
+import {
+  REFERENCE_SECTION_COPY,
+  referenceContextForSlug,
+  type ReferenceContext,
+} from "@/lib/product-reference-labels";
 
 type Props = {
   slug: string;
@@ -13,6 +18,7 @@ type Props = {
   faq: { q: string; a: string }[];
   referenceLabels: string[];
   seed: ProductSeed | undefined;
+  referenceContext?: ReferenceContext;
 };
 
 export function ProductDetailSections({
@@ -24,7 +30,11 @@ export function ProductDetailSections({
   faq,
   referenceLabels,
   seed,
+  referenceContext,
 }: Props) {
+  const refCtx = referenceContext ?? referenceContextForSlug(slug);
+  const refCopy = REFERENCE_SECTION_COPY[refCtx];
+
   return (
     <div className="space-y-12 max-w-3xl">
       <section>
@@ -48,10 +58,8 @@ export function ProductDetailSections({
 
       {referenceLabels.length > 0 && (
         <section>
-          <h2 className="text-xl font-bold text-[var(--text)] mb-3">Reference Configurations</h2>
-          <p className="text-sm text-[var(--text-muted)] mb-4">
-            Available factory board layouts for this product line. Your final quote confirms slot count and cable plan.
-          </p>
+          <h2 className="text-xl font-bold text-[var(--text)] mb-3">{refCopy.title}</h2>
+          <p className="text-sm text-[var(--text-muted)] mb-4">{refCopy.intro}</p>
           <div className="flex flex-wrap gap-2">
             {referenceLabels.map((label) => (
               <span

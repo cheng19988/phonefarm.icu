@@ -57,7 +57,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     specs: {
       "Product type": "Full-phone rack enclosure (Box Phone Farm)",
       "Reference models":
-        "Samsung S8 (6GB+128GB, USB+LAN) · S10 · S10 Change · S8 Change · Note 9 · Note 8 Super Change — gallery shows all factory reference boards",
+        "Samsung S8 (6GB+128GB, USB+LAN) · S10 · S10 Change · S8 Change · Note 9",
       "Typical capacity": "Up to 20 device slots per rack",
       "Front panel I/O": "LAN1 + LAN2 (RJ45) · USB Type-B · OTG/USB switch · numbered LED row",
       "Node interface": "USB + LAN port per slot",
@@ -701,7 +701,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     productLine: "cooling-power",
     shortDesc: "Floor-standing or rackmount cabinet engineered for multi-rack phone farm labs.",
     description:
-      "Custom cabinets integrate multiple phone farm racks, PDU feeds, cooling ducts, and cable management into one floor-standing or 42U-class structure. Every cabinet is quote-engineered — no stock one-size configuration. Suitable when device count exceeds what loose racks on shelves can safely power and cool.",
+      "Custom cabinets integrate multiple phone farm racks, PDU feeds, cooling ducts, and cable management into one floor-standing or 42U-class structure. Every cabinet is quote-engineered — no stock one-size configuration. Product photos show cabinet and chassis reference layouts from our workshop; final drawing is issued before production.",
     features: [
       "Engineered layout per device count and room size",
       "Integrated PDU and cable management plan",

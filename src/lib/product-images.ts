@@ -1,5 +1,7 @@
 import { curateProductGallery } from "@/lib/product-gallery-curate";
 import { getProductAssets } from "@/lib/product-assets";
+import { getProductSeed } from "@/data/products";
+import { mergeReferenceLabels } from "@/lib/product-reference-labels";
 
 type ProductImages = {
   imageHero: string;
@@ -17,12 +19,14 @@ export type ProductGalleryData = {
 /** Curated PDP gallery — main product shots only, reference models listed separately */
 export function buildProductGallery(slug: string, product: ProductImages): ProductGalleryData {
   const curated = curateProductGallery(slug);
+  const seed = getProductSeed(slug);
+
   if (curated && curated.mainImages.length > 0) {
     return {
       images: curated.mainImages,
       captions: curated.captions,
       referenceModels: curated.referenceModels,
-      referenceLabels: curated.referenceLabels,
+      referenceLabels: mergeReferenceLabels(curated.referenceLabels, seed, slug),
     };
   }
 
