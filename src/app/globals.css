@@ -169,6 +169,17 @@ body {
   color: white;
 }
 
+.btn-outline-light {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold transition-all border;
+  border-color: var(--border-strong);
+  color: var(--brand);
+  background: white;
+}
+.btn-outline-light:hover {
+  background: var(--surface-muted);
+  border-color: var(--brand);
+}
+
 .badge-green {
   @apply text-xs px-2.5 py-0.5 rounded font-medium;
   background: #e8f5e9;

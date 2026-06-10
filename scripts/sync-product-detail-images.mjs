@@ -31,9 +31,10 @@ const HERO_MATCH = {
   "phone-farm-box": "box-phone-farm-s8-en_main_box_s8",
   "motherboard-box": "box-phone-farm-a908n-en_main",
   "android-phone-farm": "box-phone-farm-s9-en_main",
-  "iphone-phone-farm": "box-phone-farm-z-flip3-en_main",
+  "iphone-phone-farm": "IMG_0566",
   "real-device-phone-farm": "boxphone-s8-super-change-en_main",
   "empty-box-chassis": "IMG_0570",
+  "custom-cabinet": "IMG_0573",
 };
 
 function classifyDetail(name) {
@@ -41,10 +42,10 @@ function classifyDetail(name) {
   if (/site_|genfarmer|package_product/.test(n)) return [];
   if (/perangkat_s8|device-s8-id/.test(n)) return ["real-device-phone-farm"];
   if (/boxphone-s8-super-change/.test(n)) return ["real-device-phone-farm"];
-  if (/a908n|box-phone-farm-note-8-en_main|oneplus-5-super-change|nubia-z17|note-10-lite-change/.test(n))
+  if (/a908n|box-phone-farm-note-8-en_main|note-8-super-change|oneplus-5-super-change|nubia-z17|note-10-lite-change/.test(n))
     return ["motherboard-box"];
   if (/box-phone-farm-s9|box-phone-farm-s20|note-20-en_main|s21-fe-en_main/.test(n)) return ["android-phone-farm"];
-  if (/z-flip3|z-flip4|pixel-4xl|oneplus-8-pro/.test(n)) return ["iphone-phone-farm"];
+  if (/z-flip3|z-flip4|pixel-4xl|oneplus-8-pro/.test(n)) return ["android-phone-farm"];
   if (/structure_of_b/.test(n)) return ["empty-box-chassis", "phone-farm-box"];
   if (/box-phone-farm-s8|box-phone-farm-s10|note-9-en_main|s8-change|s10-change/.test(n)) return ["phone-farm-box"];
   if (n.startsWith("product_box_phone_farm")) return ["phone-farm-box"];
@@ -53,17 +54,17 @@ function classifyDetail(name) {
 
 /** @type {Record<string, string[]>} */
 const WHITEBG_SLUGS = {
-  "2025_10_25_11_39_IMG_0570": ["empty-box-chassis"],
-  "2025_10_25_11_40_IMG_0571": ["empty-box-chassis"],
+  "2025_10_25_11_39_IMG_0570": ["empty-box-chassis", "iphone-phone-farm"],
+  "2025_10_25_11_40_IMG_0571": ["empty-box-chassis", "iphone-phone-farm"],
   "2025_10_25_12_01_IMG_0579": ["empty-box-chassis", "custom-cabinet"],
   "2025_10_25_11_33_IMG_0561": ["empty-box-chassis", "custom-cabinet"],
-  "2025_10_25_11_23_IMG_0548": ["empty-box-chassis", "phone-farm-box"],
-  "2025_10_25_11_21_IMG_0547": ["phone-farm-box", "custom-cabinet"],
+  "2025_10_25_11_23_IMG_0548": ["empty-box-chassis", "phone-farm-box", "iphone-phone-farm"],
+  "2025_10_25_11_21_IMG_0547": ["phone-farm-box"],
   "2025_10_25_11_24_IMG_0549": ["phone-farm-box", "custom-cabinet"],
   "2025_10_25_11_27_IMG_0551": ["motherboard-box"],
   "2025_10_25_11_28_IMG_0553": ["android-phone-farm"],
   "2025_10_25_11_29_IMG_0556": ["real-device-phone-farm"],
-  "2025_10_25_11_37_IMG_0566": ["iphone-phone-farm"],
+  "2025_10_25_11_37_IMG_0566": ["iphone-phone-farm", "phone-farm-box"],
   "2025_10_25_11_44_IMG_0573": ["empty-box-chassis", "custom-cabinet"],
   "2025_10_25_11_45_IMG_0575": ["empty-box-chassis", "custom-cabinet"],
 };

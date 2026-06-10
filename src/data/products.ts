@@ -262,7 +262,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     productLine: "rack-systems",
     shortDesc: "Rack hardware for real iPhone arrays — Lightning/USB-C routing, charging bus, and iOS lab layout.",
     description:
-      "The iPhone Phone Farm rack is wired for Apple device form factors with centralized charging and hub paths suited to iOS QA workflows. iPhones are customer-supplied. Final layout depends on iPhone generation (Lightning vs USB-C) and whether a macOS control station is part of your lab design.",
+      "The iPhone Phone Farm rack is wired for Apple device form factors with centralized charging and hub paths suited to iOS QA workflows. iPhones are customer-supplied. Product photos show the rack chassis and slot layout — not bundled iPhones. Final cable plan depends on your iPhone generation mix (Lightning vs USB-C) and whether a macOS control station is part of your lab design.",
     features: [
       "iPhone slot layout with generation-specific cable plan",
       "Centralized charging bus",
@@ -272,7 +272,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     specs: {
       "Product type": "iOS lab rack — Lightning / USB-C routing for real iPhones",
-      "Reference models": "Samsung Z Flip3 (8GB+128GB) · Z Flip4 · Pixel 4XL Super Change · OnePlus 8 Pro — USB+LAN+OTG",
+      "Reference layout": "Compact rack chassis — slot count and cable plan confirmed per iPhone generation (Lightning / USB-C)",
       "Platform": "Apple iPhone (customer-supplied)",
       "Typical capacity": "10–16 devices — model and cable type dependent",
       "Connectors": "Lightning and/or USB-C per quote",

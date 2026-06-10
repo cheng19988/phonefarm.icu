@@ -30,15 +30,21 @@
     "role": "gallery"
   },
   {
-    "file": "gallery-04-nubia-z17-super-change-usb-port-lan-otg.png",
-    "label": "Nubia Z17 Super Change USB Port LAN OTG",
-    "url": "/images/products/motherboard-box/gallery-04-nubia-z17-super-change-usb-port-lan-otg.png",
+    "file": "gallery-04-note-8-super-change-usb-port-lan-otg-boxphone-no.png",
+    "label": "Note 8 Super Change USB Port LAN OTG boxphone-note-8-super-change",
+    "url": "/images/products/motherboard-box/gallery-04-note-8-super-change-usb-port-lan-otg-boxphone-no.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-05-oneplus-5-super-change-usb-port-lan-otg.png",
+    "file": "gallery-05-nubia-z17-super-change-usb-port-lan-otg.png",
+    "label": "Nubia Z17 Super Change USB Port LAN OTG",
+    "url": "/images/products/motherboard-box/gallery-05-nubia-z17-super-change-usb-port-lan-otg.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-06-oneplus-5-super-change-usb-port-lan-otg.png",
     "label": "OnePlus 5 Super Change USB Port LAN OTG",
-    "url": "/images/products/motherboard-box/gallery-05-oneplus-5-super-change-usb-port-lan-otg.png",
+    "url": "/images/products/motherboard-box/gallery-06-oneplus-5-super-change-usb-port-lan-otg.png",
     "role": "gallery"
   }
 ]

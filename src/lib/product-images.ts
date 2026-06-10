@@ -11,6 +11,7 @@ export type ProductGalleryData = {
   images: string[];
   captions: Record<string, string>;
   referenceModels: { label: string; url: string }[];
+  referenceLabels: string[];
 };
 
 /** Curated PDP gallery — main product shots only, reference models listed separately */
@@ -21,6 +22,7 @@ export function buildProductGallery(slug: string, product: ProductImages): Produ
       images: curated.mainImages,
       captions: curated.captions,
       referenceModels: curated.referenceModels,
+      referenceLabels: curated.referenceLabels,
     };
   }
 
@@ -29,7 +31,7 @@ export function buildProductGallery(slug: string, product: ProductImages): Produ
     ? [...new Set([assets.hero, assets.detail, ...assets.gallery.filter((g) => g !== assets.hero)].filter(Boolean))].slice(0, 6)
     : [...new Set([product.imageHero, product.imageDetail, product.imageCard].filter(Boolean))];
 
-  return { images: fallback, captions: {}, referenceModels: [] };
+  return { images: fallback, captions: {}, referenceModels: [], referenceLabels: [] };
 }
 
 /** @deprecated use buildProductGallery */

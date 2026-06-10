@@ -1,15 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCatalogProduct, listCatalogProducts } from "@/lib/catalog";
-import { FAQAccordion, RelatedProducts } from "@/components/commerce";
+import { RelatedProducts } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { BuyBox } from "@/components/products/buy-box";
-import { ReferencePlatforms } from "@/components/products/reference-platforms";
-import { SpecTable } from "@/components/products/spec-table";
+import { ProductDetailSections } from "@/components/products/product-detail-sections";
 import { ContactCTA, JsonLd } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { PAYMENT } from "@/lib/config";
 import { getProductSeed } from "@/data/products";
 import { HARDWARE_PACKAGES } from "@/data/packages";
 import { getProductLine } from "@/data/product-lines";
@@ -50,12 +47,10 @@ export default async function ProductDetailPage({ params }: Props) {
   const seed = getProductSeed(slug);
   const allProducts = await listCatalogProducts();
 
-  const features = parseJson<string[]>(product.features, []);
   const scenarios = parseJson<string[]>(product.scenarios, []);
   const accessories = parseJson<string[]>(product.accessories, []);
-  const delivery = parseJson<string[]>(product.delivery, []);
-  const maintenance = parseJson<string[]>(product.maintenance, []);
   const faq = parseJson<{ q: string; a: string }[]>(product.faq, []);
+  const features = parseJson<string[]>(product.features, []);
 
   const fullSpecs = seed
     ? buildDisplaySpecTable(seed, product.name, product.category)
@@ -98,8 +93,6 @@ export default async function ProductDetailPage({ params }: Props) {
         ]}
       />
 
-      <TrustStrip variant="light" />
-
       <div className="section section-light pt-6">
         <div className="container-hero">
           <nav className="text-sm text-[var(--text-subtle)] mb-8 flex flex-wrap gap-1">
@@ -117,8 +110,7 @@ export default async function ProductDetailPage({ params }: Props) {
             <span className="text-[var(--text-muted)] font-medium">{product.name}</span>
           </nav>
 
-          {/* PDP hero: gallery + buy box */}
-          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 xl:gap-16 mb-20">
+          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 xl:gap-16 mb-16">
             <ProductGallery
               images={gallery.images}
               alt={`${product.name} — phone farm hardware`}
@@ -131,7 +123,6 @@ export default async function ProductDetailPage({ params }: Props) {
               shortDesc={product.shortDesc}
               priceUsd={product.priceUsd}
               stock={product.stock}
-              model={product.slug}
               productLine={productLine?.name}
               productLineHref={
                 seed
@@ -148,130 +139,32 @@ export default async function ProductDetailPage({ params }: Props) {
             />
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-10 lg:gap-14 mb-20">
-            <div className="lg:col-span-2 space-y-10">
-              <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-4">Product Overview</h2>
-                <p className="text-[var(--text-muted)] leading-relaxed text-lg">{product.description}</p>
-              </section>
+          <div className="grid lg:grid-cols-[1fr_280px] gap-10 lg:gap-14 mb-16">
+            <ProductDetailSections
+              slug={slug}
+              description={product.description}
+              features={features}
+              specs={fullSpecs}
+              scenarios={scenarios}
+              faq={faq}
+              referenceLabels={gallery.referenceLabels}
+              seed={seed}
+            />
 
-              {features.length > 0 && (
-                <section>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Key Features</h2>
-                  <ul className="grid sm:grid-cols-2 gap-3">
-                    {features.map((f) => (
-                      <li
-                        key={f}
-                        className="flex gap-2 text-sm text-[var(--text-muted)] p-4 rounded-xl border border-[var(--border)] bg-white"
-                      >
-                        <span className="text-[var(--brand)] shrink-0 font-bold">✓</span> {f}
-                      </li>
+            <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
+              {accessories.length > 0 && (
+                <section className="p-5 rounded-xl border border-[var(--border)] bg-white">
+                  <h3 className="font-bold text-[var(--text)] mb-3">Package Contents</h3>
+                  <ul className="space-y-2 text-sm text-[var(--text-muted)]">
+                    {accessories.map((a) => (
+                      <li key={a}>— {a}</li>
                     ))}
                   </ul>
                 </section>
               )}
-
-              <div id="specs">
-                <SpecTable specs={fullSpecs} />
-              </div>
-
-              <ReferencePlatforms models={gallery.referenceModels} />
-
-              <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Suitable For</h2>
-                <ul className="space-y-3">
-                  {scenarios.map((s) => (
-                    <li key={s} className="text-[var(--text-muted)] border-l-4 border-[var(--brand)] pl-4">
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              {seed && seed.compatibilityNotes.length > 0 && (
-                <section>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Compatibility Notes</h2>
-                  <ul className="space-y-2 text-[var(--text-muted)]">
-                    {seed.compatibilityNotes.map((n) => (
-                      <li key={n}>— {n}</li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={`/contact?product=${slug}&message=Compatibility+check`}
-                    className="inline-block mt-4 btn-outline text-sm"
-                  >
-                    Request compatibility check
-                  </Link>
-                </section>
-              )}
-
-              <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Shipping &amp; Packing</h2>
-                <ul className="space-y-2 text-[var(--text-muted)]">
-                  {(seed?.packingNotes ?? delivery).map((n) => (
-                    <li key={n}>— {n}</li>
-                  ))}
-                </ul>
-                <Link href="/docs/shipping-guide" className="text-sm text-[var(--brand)] font-medium hover:underline mt-4 inline-block">
-                  Shipping guide →
-                </Link>
-              </section>
-
-              <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Warranty &amp; After-Sales</h2>
-                <ul className="space-y-2 text-[var(--text-muted)]">
-                  {(seed?.afterSales ?? maintenance).map((n) => (
-                    <li key={n}>— {n}</li>
-                  ))}
-                </ul>
-                <Link href="/docs/warranty-guide" className="text-sm text-[var(--brand)] font-medium hover:underline mt-4 inline-block">
-                  Warranty guide →
-                </Link>
-              </section>
-
-              <section className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)]/50">
-                <h2 className="text-xl font-bold text-[var(--text)] mb-4">Payment Information</h2>
-                <ul className="space-y-2 text-sm text-[var(--text-muted)]">
-                  <li>
-                    — USDT ({PAYMENT.network}) available after order confirmation on{" "}
-                    <Link href="/docs/usdt-payment-guide" className="text-[var(--brand)] hover:underline">
-                      orders page
-                    </Link>
-                  </li>
-                  <li>— {PAYMENT.expiryMinutes}-minute payment window once order is created</li>
-                  <li>— Wire transfer (T/T) available for enterprise bulk — contact sales</li>
-                  <li>— USDT payment is available after order confirmation. Sales team confirms payment and updates order status.</li>
-                </ul>
-                <div className="flex flex-wrap gap-4 mt-4">
-                  <Link href="/docs/usdt-payment-guide" className="text-sm text-[var(--brand)] font-medium hover:underline">
-                    USDT payment guide →
-                  </Link>
-                  <Link href="/docs/buying-guide" className="text-sm text-[var(--brand)] font-medium hover:underline">
-                    How to buy →
-                  </Link>
-                </div>
-              </section>
-
-              {faq.length > 0 && (
-                <section>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-5">Product FAQ</h2>
-                  <FAQAccordion items={faq.map((f) => ({ question: f.q, answer: f.a }))} />
-                </section>
-              )}
-            </div>
-
-            <div className="space-y-6">
-              <section className="p-5 rounded-2xl border border-[var(--border)] bg-white sticky top-28">
-                <h3 className="font-bold text-[var(--text)] mb-3">Package Contents</h3>
-                <ul className="space-y-2 text-sm text-[var(--text-muted)]">
-                  {accessories.map((a) => (
-                    <li key={a}>— {a}</li>
-                  ))}
-                </ul>
-              </section>
 
               {seed && (
-                <section className="p-5 rounded-2xl border border-[var(--border)] bg-white">
+                <section className="p-5 rounded-xl border border-[var(--border)] bg-white">
                   <h3 className="font-bold text-[var(--text)] mb-2">MOQ &amp; Customization</h3>
                   <p className="text-sm text-[var(--text-muted)] mb-2">{seed.moqNotes}</p>
                   <p className="text-xs text-[var(--text-subtle)]">{seed.quoteGuidance}</p>
@@ -279,7 +172,7 @@ export default async function ProductDetailPage({ params }: Props) {
               )}
 
               {relatedPackages.length > 0 && (
-                <section className="p-5 rounded-2xl border border-[var(--border)] bg-white">
+                <section className="p-5 rounded-xl border border-[var(--border)] bg-white">
                   <h3 className="font-bold text-[var(--text)] mb-3">Recommended Packages</h3>
                   <ul className="space-y-3 text-sm">
                     {relatedPackages.map((pkg) => (
@@ -293,19 +186,10 @@ export default async function ProductDetailPage({ params }: Props) {
                   </ul>
                 </section>
               )}
-
-              <section className="p-5 rounded-2xl border border-[var(--border)] bg-white">
-                <h3 className="font-bold text-[var(--text)] mb-3">Deployment Notes</h3>
-                <ul className="space-y-2 text-sm text-[var(--text-muted)]">
-                  {delivery.map((d) => (
-                    <li key={d}>— {d}</li>
-                  ))}
-                </ul>
-              </section>
-            </div>
+            </aside>
           </div>
 
-          <div className="mb-20">
+          <div className="mb-16">
             <RelatedProducts products={relatedProducts} />
           </div>
 

@@ -24,15 +24,39 @@
     "role": "gallery"
   },
   {
-    "file": "gallery-03-s20-8-128gb-usb-lan-otg-black-circuit.png",
-    "label": "S20 8 128GB USB LAN OTG black circuit",
-    "url": "/images/products/android-phone-farm/gallery-03-s20-8-128gb-usb-lan-otg-black-circuit.png",
+    "file": "gallery-03-oneplus-8-pro-8-128gb-usb-port-lan-otg.png",
+    "label": "OnePlus 8 Pro 8 128GB USB Port LAN OTG",
+    "url": "/images/products/android-phone-farm/gallery-03-oneplus-8-pro-8-128gb-usb-port-lan-otg.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-04-s21-fe-6-128gb-usb-lan-otg-black-circuit-board.png",
+    "file": "gallery-04-pixel-4xl-super-change-cong-usb-lan-otg.png",
+    "label": "Pixel 4XL Super Change Cong USB LAN OTG",
+    "url": "/images/products/android-phone-farm/gallery-04-pixel-4xl-super-change-cong-usb-lan-otg.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-05-s20-8-128gb-usb-lan-otg-black-circuit.png",
+    "label": "S20 8 128GB USB LAN OTG black circuit",
+    "url": "/images/products/android-phone-farm/gallery-05-s20-8-128gb-usb-lan-otg-black-circuit.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-06-s21-fe-6-128gb-usb-lan-otg-black-circuit-board.png",
     "label": "S21 FE 6 128GB USB LAN OTG black circuit board",
-    "url": "/images/products/android-phone-farm/gallery-04-s21-fe-6-128gb-usb-lan-otg-black-circuit-board.png",
+    "url": "/images/products/android-phone-farm/gallery-06-s21-fe-6-128gb-usb-lan-otg-black-circuit-board.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-07-z-flip3-8-128gb-usb-lan-otg-black-circuit.png",
+    "label": "Z Flip3 8 128GB USB LAN OTG black circuit",
+    "url": "/images/products/android-phone-farm/gallery-07-z-flip3-8-128gb-usb-lan-otg-black-circuit.png",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-08-z-flip4-8-128gb-usb-lan-otg-black-circuit.png",
+    "label": "Z Flip4 8 128GB USB LAN OTG black circuit",
+    "url": "/images/products/android-phone-farm/gallery-08-z-flip4-8-128gb-usb-lan-otg-black-circuit.png",
     "role": "gallery"
   }
 ]

@@ -50,30 +50,23 @@ export function BuyBox({
         </p>
       )}
       <h1 className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-[var(--text)] mb-4 leading-tight tracking-tight">{name}</h1>
-      {model && (
+      {specHighlights[0] && (
         <p className="text-sm text-[var(--text-subtle)] mb-4">
-          Model / SKU: <span className="font-medium text-[var(--text-muted)]">{model}</span>
+          Reference: <span className="font-medium text-[var(--text-muted)]">{specHighlights[0]}</span>
         </p>
       )}
       <p className="text-base text-[var(--text-muted)] mb-4 leading-relaxed">{shortDesc}</p>
 
-      {specHighlights.length > 0 && (
-        <ul className="mb-6 space-y-2 text-sm text-[var(--text-muted)] border-l-2 border-[var(--brand)] pl-4">
-          {specHighlights.map((s) => (
-            <li key={s}>{s}</li>
+      {specHighlights.length > 1 && (
+        <ul className="mb-5 space-y-1.5 text-sm text-[var(--text-muted)]">
+          {specHighlights.slice(1, 4).map((s) => (
+            <li key={s} className="flex gap-2">
+              <span className="text-[var(--accent)]">·</span>
+              {s}
+            </li>
           ))}
         </ul>
       )}
-
-      <p className="text-xs text-[var(--text-subtle)] mb-6">
-        <Link href="/phone-farm" className="text-[var(--brand)] font-medium hover:underline">
-          Phone farm hardware guide
-        </Link>
-        {" · "}
-        <Link href={`/products/${slug}#specs`} className="text-[var(--brand)] font-medium hover:underline">
-          Full specifications
-        </Link>
-      </p>
 
       <div className="p-6 rounded-lg border border-[var(--border)] bg-[var(--surface-muted)] mb-6">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
@@ -101,7 +94,7 @@ export function BuyBox({
               Add to Order
             </button>
           </form>
-          <Link href={`/contact?product=${slug}`} className="btn-outline text-center text-sm py-3">
+          <Link href={`/contact?product=${slug}`} className="btn-outline-light text-center text-sm py-3">
             Request Quote
           </Link>
         </div>
@@ -109,15 +102,12 @@ export function BuyBox({
           href={CONTACT.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-outline w-full text-sm py-3 text-center"
+          className="btn-outline-light w-full text-sm py-3 text-center"
         >
           WhatsApp Sales
         </a>
       </div>
 
-      <p className="text-sm text-[var(--text-muted)] mb-4 leading-relaxed">
-        USDT payment is available after order confirmation. Sales team will confirm payment and update the order status.
-      </p>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         <Link href="/login" className="text-[var(--brand)] font-medium hover:underline">
           Sign In

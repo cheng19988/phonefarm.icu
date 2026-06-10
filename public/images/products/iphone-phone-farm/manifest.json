@@ -1,38 +1,32 @@
 [
   {
     "file": "hero.png",
-    "label": "Z Flip3 8 128GB USB LAN OTG black circuit",
+    "label": "Compact rack — product photo",
     "url": "/images/products/iphone-phone-farm/hero.png",
     "role": "hero"
   },
   {
     "file": "card.png",
-    "label": "Z Flip3 8 128GB USB LAN OTG black circuit",
+    "label": "Compact rack — product photo",
     "url": "/images/products/iphone-phone-farm/card.png",
     "role": "card"
   },
   {
-    "file": "gallery-01-compact-rack-product-photo.png",
-    "label": "Compact rack — product photo",
-    "url": "/images/products/iphone-phone-farm/gallery-01-compact-rack-product-photo.png",
+    "file": "gallery-01-chassis-front-status-led-row.png",
+    "label": "Chassis front — status LED row",
+    "url": "/images/products/iphone-phone-farm/gallery-01-chassis-front-status-led-row.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-02-oneplus-8-pro-8-128gb-usb-port-lan-otg.png",
-    "label": "OnePlus 8 Pro 8 128GB USB Port LAN OTG",
-    "url": "/images/products/iphone-phone-farm/gallery-02-oneplus-8-pro-8-128gb-usb-port-lan-otg.png",
+    "file": "gallery-02-empty-chassis-front-20-slots-lan1-lan2-usb.png",
+    "label": "Empty chassis front — 20 slots, LAN1/LAN2, USB",
+    "url": "/images/products/iphone-phone-farm/gallery-02-empty-chassis-front-20-slots-lan1-lan2-usb.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-03-pixel-4xl-super-change-cong-usb-lan-otg.png",
-    "label": "Pixel 4XL Super Change Cong USB LAN OTG",
-    "url": "/images/products/iphone-phone-farm/gallery-03-pixel-4xl-super-change-cong-usb-lan-otg.png",
-    "role": "gallery"
-  },
-  {
-    "file": "gallery-04-z-flip4-8-128gb-usb-lan-otg-black-circuit.png",
-    "label": "Z Flip4 8 128GB USB LAN OTG black circuit",
-    "url": "/images/products/iphone-phone-farm/gallery-04-z-flip4-8-128gb-usb-lan-otg-black-circuit.png",
+    "file": "gallery-03-empty-chassis-rear-4-fan-psu-bay.png",
+    "label": "Empty chassis rear — 4× fan + PSU bay",
+    "url": "/images/products/iphone-phone-farm/gallery-03-empty-chassis-rear-4-fan-psu-bay.png",
     "role": "gallery"
   }
 ]
