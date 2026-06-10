@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { LogoutButton } from "@/components/logout-button";
-import { TrustStrip } from "@/components/trust-strip";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
@@ -37,7 +36,6 @@ export default async function AccountOrdersPage() {
 
   return (
     <>
-      <TrustStrip variant="light" />
       <div className="section section-light">
         <div className="container-hero max-w-3xl">
           <div className="flex flex-wrap justify-between items-center gap-4 mb-10">

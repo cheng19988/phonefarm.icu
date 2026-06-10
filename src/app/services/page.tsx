@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactCTA } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { ContentHero } from "@/components/content/content-hero";
 import { SERVICES } from "@/data/services";
 import { buildMetadata } from "@/lib/seo";
@@ -14,7 +13,7 @@ export const metadata = buildMetadata({
 });
 
 const SERVICE_FOCUS = [
-  "Hardware configuration support — slot count, PSU, and hub sizing",
+  "Hardware configuration support - slot count, PSU, and hub sizing",
   "Rack layout planning for QA labs and device management teams",
   "Power and cooling advice for dense deployments",
   "Packing and export support for international freight",
@@ -28,23 +27,22 @@ export default function ServicesPage() {
       <ContentHero
         eyebrow="Order Support"
         title="Hardware Services"
-        subtitle="Configuration, layout, packing, and bulk coordination — quoted per project alongside catalog hardware orders. Not software subscriptions or automation services."
+        subtitle="Configuration, layout, packing, and bulk coordination - quoted per project alongside catalog hardware orders. Not software subscriptions or automation services."
       >
         <div className="flex flex-wrap gap-3">
           <Link href="/products" className="btn-accent px-7 py-3">Browse Hardware</Link>
           <Link href="/contact" className="btn-outline px-7 py-3">Request Service Quote</Link>
         </div>
       </ContentHero>
-      <TrustStrip variant="light" />
 
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero">
           <section className="mb-14 p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)]/50 max-w-3xl">
             <h2 className="font-bold text-[var(--text)] mb-4">What We Support</h2>
             <ul className="space-y-2 text-sm text-[var(--text-muted)]">
               {SERVICE_FOCUS.map((s) => (
                 <li key={s} className="flex gap-2">
-                  <span className="text-[var(--brand)] shrink-0">✓</span>
+                  <span className="text-[var(--brand)] shrink-0">+</span>
                   {s}
                 </li>
               ))}
@@ -61,7 +59,7 @@ export default function ServicesPage() {
                   <h2 className="text-lg font-bold text-[var(--text)] mb-2">{svc.title}</h2>
                   <p className="text-[var(--text-muted)] text-sm mb-4 flex-1">{svc.description}</p>
                   <Link href={`/contact?service=${svc.slug}`} className="text-sm font-semibold text-[var(--brand)] hover:underline">
-                    Request quote →
+                    Request quote
                   </Link>
                 </div>
               </article>

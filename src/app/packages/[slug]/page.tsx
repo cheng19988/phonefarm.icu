@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPackage, HARDWARE_PACKAGES } from "@/data/packages";
 import { ContactCTA, JsonLd } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
+import { PageIntro } from "@/components/ui/page-intro";
 import { PackageBuyBox } from "@/components/packages/package-buy-box";
 import { FAQAccordion } from "@/components/commerce";
 import { ShopProductCard } from "@/components/products/product-card";
@@ -59,17 +59,19 @@ export default async function PackageDetailPage({ params }: Props) {
   return (
     <>
       <JsonLd data={faqJsonLd(pkg.faq.map((f) => ({ question: f.q, answer: f.a })))} />
-      <TrustStrip variant="light" />
+      <PageIntro
+        eyebrow="Deployment Bundle"
+        title={pkg.name}
+        subtitle={pkg.tagline}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Packages", href: "/packages" },
+          { label: pkg.name },
+        ]}
+      />
 
-      <div className="section section-light pt-6">
+      <div className="section section-light pt-0">
         <div className="container-hero">
-          <nav className="text-sm text-[var(--text-subtle)] mb-8 flex flex-wrap gap-1">
-            <Link href="/" className="hover:text-[var(--brand)]">Home</Link>
-            <span>/</span>
-            <Link href="/packages" className="hover:text-[var(--brand)]">Packages</Link>
-            <span>/</span>
-            <span className="text-[var(--text-muted)] font-medium">{pkg.name}</span>
-          </nav>
 
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 mb-20">
             <div className="relative aspect-[4/3] lg:aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100 border border-[var(--border)] shadow-lg">

@@ -17,6 +17,8 @@ type Props = {
   model?: string;
   warrantySummary?: string;
   specHighlights?: string[];
+  /** PDP uses PageIntro for title — buy box shows pricing/actions only */
+  compact?: boolean;
 };
 
 export function BuyBox({
@@ -31,15 +33,33 @@ export function BuyBox({
   model,
   warrantySummary = "12-month hardware support — term confirmed in quotation",
   specHighlights = [],
+  compact = false,
 }: Props) {
   const disabled = stock <= 0;
 
   return (
     <div className="lg:sticky lg:top-28">
-      <p className="eyebrow text-[var(--accent)] mb-3">{category}</p>
-      {productLine && (
-        <p className="text-sm text-[var(--text-subtle)] mb-3">
-          Product line:{" "}
+      {!compact && (
+        <>
+          <p className="eyebrow text-[var(--accent)] mb-3">{category}</p>
+          {productLine && (
+            <p className="text-sm text-[var(--text-subtle)] mb-3">
+              Product line:{" "}
+              {productLineHref ? (
+                <Link href={productLineHref} className="text-[var(--brand)] hover:underline">
+                  {productLine}
+                </Link>
+              ) : (
+                productLine
+              )}
+            </p>
+          )}
+          <h1 className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-[var(--text)] mb-4 leading-tight tracking-tight">{name}</h1>
+        </>
+      )}
+      {compact && productLine && (
+        <p className="text-sm text-[var(--text-subtle)] mb-4">
+          Line:{" "}
           {productLineHref ? (
             <Link href={productLineHref} className="text-[var(--brand)] hover:underline">
               {productLine}
@@ -49,13 +69,14 @@ export function BuyBox({
           )}
         </p>
       )}
-      <h1 className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-[var(--text)] mb-4 leading-tight tracking-tight">{name}</h1>
       {specHighlights[0] && (
         <p className="text-sm text-[var(--text-subtle)] mb-4">
           Reference: <span className="font-medium text-[var(--text-muted)]">{specHighlights[0]}</span>
         </p>
       )}
-      <p className="text-base text-[var(--text-muted)] mb-4 leading-relaxed">{shortDesc}</p>
+      {!compact && shortDesc && (
+        <p className="text-base text-[var(--text-muted)] mb-4 leading-relaxed">{shortDesc}</p>
+      )}
 
       {specHighlights.length > 1 && (
         <ul className="mb-5 space-y-1.5 text-sm text-[var(--text-muted)]">

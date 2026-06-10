@@ -19,7 +19,7 @@ export default function PackagesPage() {
     <>
       <PackageHero />
 
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero">
           <section className="mb-20">
             <p className="text-sm font-semibold text-[var(--brand)] uppercase tracking-wide mb-2">Compare Bundles</p>

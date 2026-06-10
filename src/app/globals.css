@@ -19,15 +19,13 @@
   --dark-bg: #080f1f;
   --dark-surface: #111b33;
   --hero-overlay: rgba(8, 15, 31, 0.72);
-  /* Header — warm slate blue (softer than flat black) */
-  --header-bg-top: #243247;
-  --header-bg-mid: #1b283c;
-  --header-bg-bottom: #162033;
-  --header-top-bg: rgba(20, 30, 48, 0.88);
-  --header-muted: #8b9bb5;
-  --header-text: #e8edf5;
-  --header-gold: #e8c96a;
-  --header-gold-dim: rgba(212, 175, 90, 0.22);
+  /* Header — aligned with brand navy */
+  --header-bg: #0a1224;
+  --header-border: rgba(255, 255, 255, 0.08);
+  --header-muted: #94a3b8;
+  --header-text: #f1f5f9;
+  --header-gold: #d4af4a;
+  --header-gold-dim: rgba(201, 162, 39, 0.2);
 }
 
 @theme inline {
@@ -53,11 +51,11 @@ body {
 }
 
 .section {
-  @apply py-20 md:py-28 lg:py-32;
+  @apply py-16 md:py-20 lg:py-24;
 }
 
 .section-compact {
-  @apply py-14 md:py-20;
+  @apply py-12 md:py-16;
 }
 
 .section-light {
@@ -232,44 +230,13 @@ body {
 
 /* Site header */
 .site-header {
-  background: linear-gradient(
-    180deg,
-    var(--header-bg-top) 0%,
-    var(--header-bg-mid) 48%,
-    var(--header-bg-bottom) 100%
-  );
-  border-bottom: 1px solid var(--header-gold-dim);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 12px 40px rgba(8, 12, 22, 0.28);
-  backdrop-filter: blur(14px);
-}
-.site-header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(232, 201, 106, 0.55) 35%,
-    rgba(212, 175, 90, 0.75) 50%,
-    rgba(232, 201, 106, 0.55) 65%,
-    transparent 100%
-  );
-  pointer-events: none;
-}
-.site-header-top {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  background: var(--header-top-bg);
-}
-.site-header-mobile-nav {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  box-shadow: 0 4px 24px rgba(8, 15, 31, 0.18);
 }
 .site-header-mobile-bar {
-  background: linear-gradient(180deg, var(--header-bg-mid) 0%, var(--header-bg-bottom) 100%);
+  background: var(--header-bg);
+  border-top-color: var(--header-border);
 }
 .header-contact-link {
   @apply inline-flex items-center gap-2 transition-colors;
@@ -302,67 +269,100 @@ body {
   border-color: rgba(232, 201, 106, 0.3);
 }
 .header-nav-link {
-  @apply relative px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200;
-  color: #b8c5d9;
+  @apply relative px-3 py-2 text-sm font-medium transition-colors duration-200;
+  color: var(--header-muted);
 }
 .header-nav-link:hover {
   color: var(--header-text);
-  background: rgba(255, 255, 255, 0.08);
 }
 .header-nav-link-shop {
   color: var(--header-text);
+  font-weight: 600;
 }
 .header-nav-link-mobile {
-  @apply px-3 py-1.5 text-xs font-medium rounded-full transition-colors;
+  @apply px-3 py-1.5 text-xs font-medium rounded-md transition-colors;
   color: var(--header-muted);
 }
 .header-nav-link-mobile:hover {
   color: var(--header-text);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
 }
 .header-cta-btn {
-  @apply inline-flex items-center justify-center rounded-lg font-semibold text-sm transition-all;
-  background: linear-gradient(135deg, #f0d875 0%, #d4af4a 52%, #c19a2e 100%);
-  color: #1a2332;
-  padding: 0.55rem 1.15rem;
-  box-shadow: 0 2px 14px rgba(212, 175, 90, 0.38);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  @apply inline-flex items-center justify-center rounded-md font-semibold text-sm transition-all;
+  background: var(--accent);
+  color: var(--dark-bg);
+  padding: 0.5rem 1rem;
 }
 .header-cta-btn:hover {
-  filter: brightness(1.05);
-  box-shadow: 0 4px 18px rgba(212, 175, 90, 0.48);
-  transform: translateY(-1px);
+  background: var(--accent-hover);
+  color: white;
 }
 .header-signin-btn {
-  @apply inline-flex items-center justify-center rounded-lg font-medium text-sm transition-all;
-  color: #c5d0e0;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  @apply inline-flex items-center justify-center rounded-md font-medium text-sm transition-all;
+  color: var(--header-muted);
+  padding: 0.5rem 0.85rem;
 }
 .header-signin-btn:hover {
   color: var(--header-text);
-  border-color: rgba(232, 201, 106, 0.35);
-  background: rgba(255, 255, 255, 0.09);
 }
 .header-account-btn {
-  @apply inline-flex items-center gap-2 rounded-lg font-medium text-sm transition-all;
+  @apply inline-flex items-center gap-2 rounded-md font-medium text-sm transition-all;
   color: var(--header-text);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  padding: 0.5rem 0.9rem;
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--header-border);
+  padding: 0.45rem 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
 }
 .header-account-btn:hover {
-  border-color: rgba(232, 201, 106, 0.45);
-  background: rgba(232, 201, 106, 0.1);
+  border-color: var(--header-gold-dim);
+  background: rgba(255, 255, 255, 0.08);
 }
 .header-shop-panel {
-  background: linear-gradient(168deg, #2a3a52 0%, #1e2d42 45%, #182436 100%);
-  border: 1px solid rgba(232, 201, 106, 0.18);
-  border-radius: 1rem;
-  box-shadow:
-    0 24px 48px rgba(6, 10, 18, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  background: #0f1a30;
+  border: 1px solid var(--header-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 16px 40px rgba(6, 10, 18, 0.35);
+}
+
+/* Page intro bands — unified inner-page chrome */
+.page-intro-navy {
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+}
+.page-intro-light {
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+.page-intro-title {
+  @apply text-3xl md:text-4xl font-semibold tracking-tight leading-tight;
+}
+.page-intro-subtitle {
+  @apply text-base md:text-lg mt-3 max-w-2xl leading-relaxed;
+}
+.page-intro-crumb {
+  color: var(--header-muted);
+}
+
+/* Footer */
+.site-footer {
+  background: var(--dark-bg);
+  border-top: 1px solid var(--header-border);
+  color: #94a3b8;
+}
+.site-footer-bar {
+  border-top: 1px solid var(--header-border);
+}
+.footer-heading {
+  @apply text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 mb-5;
+}
+.footer-link {
+  @apply text-slate-400 hover:text-white transition-colors;
+}
+
+/* CTA band */
+.cta-band {
+  @apply rounded-xl p-10 md:p-12 text-center;
+  background: var(--dark-bg);
+  border: 1px solid var(--header-border);
 }
 
 .scrollbar-none {

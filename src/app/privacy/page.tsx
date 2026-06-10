@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { TrustStrip } from "@/components/trust-strip";
 import { buildMetadata } from "@/lib/seo";
 import { SITE, CONTACT } from "@/lib/config";
 
@@ -12,7 +11,6 @@ export const metadata = buildMetadata({
 export default function PrivacyPage() {
   return (
     <>
-      <TrustStrip variant="light" />
       <div className="section section-light">
         <div className="container-hero max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">Privacy Policy</h1>

@@ -38,7 +38,7 @@ export function ContactBar({ compact = false, variant = "default" }: { compact?:
 
 export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { title?: string }) {
   return (
-    <section className="rounded-lg bg-[var(--dark-bg)] p-10 md:p-14 text-center">
+    <section className="cta-band">
       <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">{title}</h2>
       <p className="text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
         Shop the catalog, register to order. USDT payment after order confirmation.

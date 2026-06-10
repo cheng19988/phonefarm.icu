@@ -7,7 +7,7 @@ type BrandLogoProps = {
 };
 
 export function BrandLogo({ compact = false, showText = true, variant = "dark" }: BrandLogoProps) {
-  const markSize = compact ? 34 : 42;
+  const markSize = compact ? 36 : 40;
 
   return (
     <span className="flex items-center gap-3 shrink-0 group">

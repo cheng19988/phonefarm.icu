@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { TrustStrip } from "@/components/trust-strip";
 import { ContentHero } from "@/components/content/content-hero";
 import { BLOG_POSTS } from "@/data/blog";
 import { buildMetadata } from "@/lib/seo";
@@ -19,9 +18,7 @@ export default function BlogPage() {
         title="Hardware Guides & Blog"
         subtitle="Deployment planning, rack configuration, power and cooling, QC and packing, and B2B order process for real-device phone farm hardware."
       />
-      <TrustStrip variant="light" />
-
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {BLOG_POSTS.map((post) => (
@@ -32,7 +29,7 @@ export default function BlogPage() {
                   {post.title}
                 </h2>
                 <p className="text-sm text-[var(--text-muted)] mt-2 flex-1 line-clamp-3">{post.excerpt}</p>
-                <span className="text-sm font-medium text-[var(--brand)] mt-4">Read guide →</span>
+                <span className="text-sm font-medium text-[var(--brand)] mt-4">Read guide ?</span>
               </Link>
             ))}
           </div>

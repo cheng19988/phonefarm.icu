@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { PageHero } from "@/components/ui/page-hero";
+import { PageIntro } from "@/components/ui/page-intro";
 import { SpecTable } from "@/components/products/spec-table";
 import { ContactCTA } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { PHONE_FARM_SECTIONS } from "@/data/phone-farm-guide";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "What Is a Phone Farm? — Complete Hardware Guide",
+  title: "What Is a Phone Farm? ? Complete Hardware Guide",
   description:
     "Complete guide to phone farm racks and Box Phone Farm hardware: architecture, 20-slot chassis specs, reference models (S8, S10, A908N), power, cooling, USB/LAN, and how to order from PhoneFarm ICU Guangzhou.",
   path: "/phone-farm",
@@ -25,20 +24,20 @@ export default function PhoneFarmGuidePage() {
 
   return (
     <>
-      <PageHero
+      <PageIntro
         eyebrow="Hardware Guide"
         title="What Is a Phone Farm?"
-        subtitle={`Complete reference for Box Phone Farm racks, motherboard boxes, chassis specs, and deployment — from ${SITE.name}, Guangzhou hardware manufacturer since ${SITE.since}.`}
-        image="/images/products/phone-farm-box/hero.png"
-        imageAlt="Box Phone Farm rack hardware"
-        ctas={[
-          { label: "Shop Products", href: "/products", variant: "accent" },
-          { label: "Phone Farm Box", href: "/products/phone-farm-box", variant: "outline" },
+        subtitle={`Complete reference for Box Phone Farm racks, motherboard boxes, chassis specs, and deployment ? from ${SITE.name}, Guangzhou hardware manufacturer since ${SITE.since}.`}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Phone Farm Guide" },
         ]}
-      />
-      <TrustStrip variant="light" />
+      >
+        <Link href="/products" className="btn-accent">Shop Products</Link>
+        <Link href="/products/phone-farm-box" className="btn-outline">Phone Farm Box</Link>
+      </PageIntro>
 
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero max-w-4xl space-y-16">
           {intro && (
             <section>
@@ -82,7 +81,7 @@ export default function PhoneFarmGuidePage() {
                     className="p-5 rounded-2xl border border-[var(--border)] bg-white hover:border-[var(--brand)]/30 transition-colors"
                   >
                     <Link href={item.href} className="text-lg font-semibold text-[var(--text)] hover:text-[var(--brand)]">
-                      {item.name} →
+                      {item.name} ?
                     </Link>
                     <p className="text-sm text-[var(--text-muted)] mt-2">{item.summary}</p>
                   </div>
@@ -129,7 +128,7 @@ export default function PhoneFarmGuidePage() {
               {"links" in ordering && (
                 <div className="flex flex-wrap gap-4">
                   {ordering.links.map((l) => (
-                    <Link key={l.href} href={l.href} className="btn-outline text-sm">
+                    <Link key={l.href} href={l.href} className="btn-outline-dark text-sm">
                       {l.label}
                     </Link>
                   ))}
@@ -140,7 +139,11 @@ export default function PhoneFarmGuidePage() {
         </div>
       </div>
 
-      <ContactCTA title="Need a Phone Farm Quote?" />
+      <div className="section section-light pt-0">
+        <div className="container-hero">
+          <ContactCTA title="Need a Phone Farm Quote?" />
+        </div>
+      </div>
     </>
   );
 }

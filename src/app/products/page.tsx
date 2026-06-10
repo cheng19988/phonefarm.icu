@@ -50,7 +50,7 @@ export default async function ProductsPage({
   return (
     <>
       <ShopHero productCount={products.length} />
-      <div className="section section-light -mt-1">
+      <div className="section section-light pt-0">
         <div className="container-hero">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
             <CategoryFilters activeGroup={params.group} activeCategory={params.category} />

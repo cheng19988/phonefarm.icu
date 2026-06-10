@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactCTA } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { ContentHero } from "@/components/content/content-hero";
 import { buildMetadata } from "@/lib/seo";
 import { FACTORY_IMAGES } from "@/lib/site-images";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "About — Guangzhou Phone Farm Hardware Manufacturer",
+  title: "About ? Guangzhou Phone Farm Hardware Manufacturer",
   description:
     "PhoneFarm ICU assembles phone farm racks, motherboard boxes, and cooling infrastructure in Guangzhou. Hardware testing, packing inspection, and bulk quote support since 2017.",
   path: "/about",
@@ -19,7 +18,7 @@ const WORKFLOW = [
   { step: "Assembly", desc: "Wiring, power bus, and USB routing assembled in Guangzhou workshop." },
   { step: "QC", desc: "Burn-in, cable continuity, and thermal spot-check before packing." },
   { step: "Packing", desc: "Accessory checklist, foam fit, and export carton inspection." },
-  { step: "Shipping", desc: "Express or sea freight from Guangzhou — freight quoted by destination." },
+  { step: "Shipping", desc: "Express or sea freight from Guangzhou ? freight quoted by destination." },
 ];
 
 const SUPPLY = [
@@ -32,8 +31,8 @@ const SUPPLY = [
 ];
 
 const WHY = [
-  { title: "Factory direct", desc: "Guangzhou assembly — not reseller markup on anonymous drop-ship hardware." },
-  { title: "Visible pricing", desc: "Reference USD catalog prices online — bulk and custom quoted in writing." },
+  { title: "Factory direct", desc: "Guangzhou assembly ? not reseller markup on anonymous drop-ship hardware." },
+  { title: "Visible pricing", desc: "Reference USD catalog prices online ? bulk and custom quoted in writing." },
   { title: "Order + quote paths", desc: "Register, Buy Now, or contact sales for bulk and custom racks." },
   { title: "USDT after confirmation", desc: "USDT payment available after order confirmation. Sales team confirms payment and updates order status." },
 ];
@@ -51,7 +50,7 @@ export default function AboutPage() {
     <>
       <ContentHero
         eyebrow="Guangzhou Factory Direct"
-        title="Real-Device Phone Farm Hardware — Built in Guangzhou"
+        title="Real-Device Phone Farm Hardware ? Built in Guangzhou"
         subtitle={`${SITE.name} designs, assembles, and exports phone farm racks, motherboard boxes, and infrastructure modules for QA labs and device management teams since ${SITE.since}.`}
       >
         <div className="flex flex-wrap gap-3">
@@ -60,18 +59,16 @@ export default function AboutPage() {
           <Link href="/contact" className="btn-outline px-7 py-3">Contact Sales</Link>
         </div>
       </ContentHero>
-      <TrustStrip variant="light" />
-
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero">
           <section className="mb-20">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-8">Factory Facts</h2>
             <dl className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
-                { label: "Location", value: `${SITE.location} — assembly & export` },
+                { label: "Location", value: `${SITE.location} ? assembly & export` },
                 { label: "Established", value: String(SITE.since) },
                 { label: "Focus", value: "Phone farm racks, motherboard boxes, cooling, USB, power" },
-                { label: "Lead time", value: "5–10 business days (in-stock SKUs)" },
+                { label: "Lead time", value: "5?10 business days (in-stock SKUs)" },
                 { label: "MOQ", value: "1 unit sample; bulk from 5+ units" },
                 { label: "Shipping", value: "DHL / FedEx express; sea freight for bulk" },
               ].map((row) => (
@@ -88,7 +85,7 @@ export default function AboutPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {SUPPLY.map((item) => (
                 <div key={item} className="flex gap-3 p-4 rounded-xl bg-[var(--surface-muted)] text-[var(--text-muted)]">
-                  <span className="text-[var(--brand)] font-bold">✓</span>
+                  <span className="text-[var(--brand)] font-bold">?</span>
                   {item}
                 </div>
               ))}

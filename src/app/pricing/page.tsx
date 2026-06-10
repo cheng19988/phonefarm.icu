@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { ContactCTA } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { PriceTag } from "@/components/ui/price-tag";
 import { StockBadge } from "@/components/shared";
-import { PageHero } from "@/components/ui/page-hero";
+import { PageIntro } from "@/components/ui/page-intro";
 import { buildMetadata } from "@/lib/seo";
 import { PRICING_TIERS, getCatalogPriceTable } from "@/data/pricing";
 import { SITE } from "@/lib/config";
-import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
   title: "Hardware Pricing — Shop & Bulk Quotes",
@@ -21,21 +19,20 @@ export default function PricingPage() {
 
   return (
     <>
-      <PageHero
+      <PageIntro
         eyebrow="Reference Pricing"
         title="Hardware Pricing"
         subtitle={`Published USD reference prices from ${SITE.location}. Bulk quotes for custom racks and international freight.`}
-        image={IMAGES.motherboardBox.hero}
-        imageAlt="Motherboard box hardware pricing"
-        ctas={[
-          { label: "Browse Catalog", href: "/products", variant: "accent" },
-          { label: "Bulk Quote", href: "/contact", variant: "outline" },
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Pricing" },
         ]}
-        compact
-      />
-      <TrustStrip variant="light" />
+      >
+        <Link href="/products" className="btn-accent">Browse Catalog</Link>
+        <Link href="/contact" className="btn-outline">Bulk Quote</Link>
+      </PageIntro>
 
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero">
           <section className="mb-20">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-8">Deployment Scale</h2>
@@ -69,7 +66,7 @@ export default function PricingPage() {
           <section className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-2">SKU Price List</h2>
             <p className="text-[var(--text-muted)] mb-8">Reference USD prices — buy online or open product page for full specifications.</p>
-            <div className="rounded-2xl border border-[var(--border)] overflow-x-auto bg-white shadow-sm">
+            <div className="card overflow-x-auto">
               <table className="w-full text-sm min-w-[720px]">
                 <thead>
                   <tr className="border-b border-[var(--border)] bg-[var(--surface-muted)] text-left">

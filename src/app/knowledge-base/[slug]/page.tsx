@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { getKBArticle, KB_ARTICLES } from "@/data/knowledge-base";
 import { ArticleLayout } from "@/components/content/article-layout";
-import { TrustStrip } from "@/components/trust-strip";
 import { buildMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -28,7 +27,6 @@ export default async function KBArticlePage({ params }: Props) {
 
   return (
     <>
-      <TrustStrip variant="light" />
       <ArticleLayout
         backHref="/knowledge-base"
         backLabel="Knowledge Base"

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { TrustStrip } from "@/components/trust-strip";
 import { buildMetadata } from "@/lib/seo";
 import { CONTACT } from "@/lib/config";
 
@@ -20,7 +19,6 @@ const STEPS = [
 export default function InquiryReceivedPage() {
   return (
     <>
-      <TrustStrip variant="light" />
       <div className="section section-light">
         <div className="container-hero max-w-2xl text-center">
           <div className="w-14 h-14 rounded-full border-2 border-green-200 bg-green-50 flex items-center justify-center mx-auto mb-6">

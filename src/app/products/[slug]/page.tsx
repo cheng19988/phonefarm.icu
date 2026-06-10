@@ -6,6 +6,7 @@ import { ProductGallery } from "@/components/product-gallery";
 import { BuyBox } from "@/components/products/buy-box";
 import { ProductDetailSections } from "@/components/products/product-detail-sections";
 import { ContactCTA, JsonLd } from "@/components/shared";
+import { PageIntro } from "@/components/ui/page-intro";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { getProductSeed } from "@/data/products";
 import { HARDWARE_PACKAGES } from "@/data/packages";
@@ -93,23 +94,20 @@ export default async function ProductDetailPage({ params }: Props) {
         ]}
       />
 
-      <div className="section section-light pt-6">
-        <div className="container-hero">
-          <nav className="text-sm text-[var(--text-subtle)] mb-8 flex flex-wrap gap-1">
-            <Link href="/" className="hover:text-[var(--brand)]">Home</Link>
-            <span>/</span>
-            <Link href="/products" className="hover:text-[var(--brand)]">Shop</Link>
-            <span>/</span>
-            <Link
-              href={`/products?category=${encodeURIComponent(product.category)}`}
-              className="hover:text-[var(--brand)]"
-            >
-              {product.category}
-            </Link>
-            <span>/</span>
-            <span className="text-[var(--text-muted)] font-medium">{product.name}</span>
-          </nav>
+      <PageIntro
+        eyebrow={product.category}
+        title={product.name}
+        subtitle={product.shortDesc}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Shop", href: "/products" },
+          { label: product.category, href: `/products?category=${encodeURIComponent(product.category)}` },
+          { label: product.name },
+        ]}
+      />
 
+      <div className="section section-light pt-0">
+        <div className="container-hero">
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 xl:gap-16 mb-16">
             <ProductGallery
               images={gallery.images}
@@ -120,7 +118,7 @@ export default async function ProductDetailPage({ params }: Props) {
               slug={product.slug}
               name={product.name}
               category={product.category}
-              shortDesc={product.shortDesc}
+              shortDesc=""
               priceUsd={product.priceUsd}
               stock={product.stock}
               productLine={productLine?.name}
@@ -136,6 +134,7 @@ export default async function ProductDetailPage({ params }: Props) {
               }
               warrantySummary={warrantySummary}
               specHighlights={seed ? specHighlights(seed) : undefined}
+              compact
             />
           </div>
 

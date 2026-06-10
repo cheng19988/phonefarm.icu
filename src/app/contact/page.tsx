@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { InquiryForm } from "@/components/inquiry-form";
 import { ContactBar, ContactCTA } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { ContentHero } from "@/components/content/content-hero";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Contact Sales — Orders, Quotes & Support",
+  title: "Contact Sales ? Orders, Quotes & Support",
   description: "Contact PhoneFarm ICU sales for bulk quotes, compatibility checks, shipping estimates, and order support from Guangzhou.",
   path: "/contact",
 });
@@ -34,16 +33,14 @@ export default function ContactPage() {
       <ContentHero
         eyebrow="Sales & Support"
         title="Contact Guangzhou Sales"
-        subtitle={`Order support, bulk quotes, and configuration advice from ${SITE.location}. You can also shop and register to order online — inquiry is for custom projects and bulk pricing.`}
+        subtitle={`Order support, bulk quotes, and configuration advice from ${SITE.location}. You can also shop and register to order online ? inquiry is for custom projects and bulk pricing.`}
       >
         <div className="flex flex-wrap gap-3">
           <Link href="/products" className="btn-accent px-7 py-3">Browse Products</Link>
           <Link href="/register" className="btn-primary px-7 py-3">Sign Up to Order</Link>
         </div>
       </ContentHero>
-      <TrustStrip variant="light" />
-
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero max-w-5xl">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-14">
             <div className="lg:col-span-2 space-y-8">
@@ -71,7 +68,7 @@ export default function ContactPage() {
                 <ul className="text-sm text-[var(--text-muted)] space-y-2">
                   {BEFORE_CONTACT.map((item) => (
                     <li key={item} className="flex gap-2">
-                      <span className="text-[var(--brand)]">•</span>
+                      <span className="text-[var(--brand)]">?</span>
                       {item}
                     </li>
                   ))}

@@ -1,66 +1,23 @@
 import Link from "next/link";
 import { CONTACT, FOOTER_NAV, HEADER_NAV, SITE } from "@/lib/config";
 import { BrandLogo } from "./brand-logo";
-import { IconBadge, IconMail, IconPhone, IconTelegram, IconUser, IconWhatsApp } from "./icons";
+import { IconUser } from "./icons";
 import { ShopNavDropdown } from "./shop-nav";
 import { ShopNavMobile } from "./shop-nav-mobile";
 import { getSession } from "@/lib/auth";
-
-function HeaderContactStrip() {
-  const itemClass = "header-contact-link";
-
-  return (
-    <div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1.5 text-[11px]">
-      <a href={`tel:${CONTACT.phone}`} className={itemClass}>
-        <IconBadge>
-          <IconPhone size={12} />
-        </IconBadge>
-        {CONTACT.phone}
-      </a>
-      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className={itemClass}>
-        <IconBadge tone="neutral">
-          <IconWhatsApp size={12} />
-        </IconBadge>
-        WhatsApp
-      </a>
-      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className={itemClass}>
-        <IconBadge tone="neutral">
-          <IconTelegram size={12} />
-        </IconBadge>
-        Telegram
-      </a>
-      <a href={`mailto:${CONTACT.email}`} className={`${itemClass} hidden xl:inline-flex`}>
-        <IconBadge>
-          <IconMail size={12} />
-        </IconBadge>
-        {CONTACT.email}
-      </a>
-    </div>
-  );
-}
 
 export async function Header() {
   const session = await getSession();
 
   return (
-    <header className="site-header sticky top-0 z-50 relative">
-      <div className="hidden lg:block site-header-top">
-        <div className="container-hero py-2 flex justify-between items-center gap-6">
-          <p className="text-[11px] text-[var(--header-muted)] tracking-wide flex items-center gap-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden />
-            {SITE.location} · Factory Direct · Est. {SITE.since}
-          </p>
-          <HeaderContactStrip />
-        </div>
-      </div>
-
+    <header className="site-header sticky top-0 z-50">
       <div className="container-hero">
-        <div className="flex items-center justify-between gap-4 h-[4.25rem] md:h-[4.75rem]">
+        <div className="flex items-center justify-between gap-4 h-16 lg:h-[4.5rem]">
           <Link href="/" className="shrink-0 min-w-0">
-            <BrandLogo variant="light" />
+            <BrandLogo variant="light" compact />
           </Link>
 
-          <nav className="hidden xl:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-0.5">
             <ShopNavDropdown variant="dark" />
             {HEADER_NAV.map((item) => (
               <Link key={item.href} href={item.href} className="header-nav-link">
@@ -91,7 +48,7 @@ export async function Header() {
           </div>
         </div>
 
-        <nav className="xl:hidden flex items-center gap-1 overflow-x-auto pb-3 -mx-1 px-1 scrollbar-none site-header-mobile-nav pt-2.5">
+        <nav className="xl:hidden flex items-center gap-1 overflow-x-auto pb-3 scrollbar-none border-t border-white/[0.06] pt-2.5">
           <ShopNavMobile variant="dark" />
           {HEADER_NAV.map((item) => (
             <Link key={item.href} href={item.href} className="header-nav-link-mobile whitespace-nowrap">
@@ -106,63 +63,59 @@ export async function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--dark-bg)] border-t border-white/10 mt-auto text-slate-400">
+    <footer className="site-footer mt-auto">
       <div className="container-hero py-16 md:py-20 grid md:grid-cols-2 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-5">
           <Link href="/" className="inline-block mb-5">
             <BrandLogo variant="light" />
           </Link>
           <p className="text-slate-400 text-sm mb-6 max-w-md leading-relaxed">{SITE.intro}</p>
+          <p className="text-xs text-slate-500 mb-4">
+            {SITE.location} · Factory Direct · Est. {SITE.since}
+          </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-            <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-2 hover:text-white transition-colors">
-              <IconPhone size={15} />
-              {CONTACT.phone}
-            </a>
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-white transition-colors">
-              <IconWhatsApp size={15} />
+            <a href={`tel:${CONTACT.phone}`} className="footer-link">{CONTACT.phone}</a>
+            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="footer-link">
               WhatsApp
             </a>
-            <a href={`mailto:${CONTACT.email}`} className="inline-flex items-center gap-2 hover:text-white transition-colors">
-              <IconMail size={15} />
-              {CONTACT.email}
-            </a>
+            <a href={`mailto:${CONTACT.email}`} className="footer-link">{CONTACT.email}</a>
           </div>
         </div>
         <div className="lg:col-span-2">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-5">Shop</h3>
+          <h3 className="footer-heading">Shop</h3>
           <ul className="space-y-3 text-sm">
-            <li><Link href="/products" className="hover:text-white transition-colors">All Products</Link></li>
-            <li><Link href="/products/phone-farm-box" className="hover:text-white transition-colors">Phone Farm Box</Link></li>
-            <li><Link href="/products/motherboard-box" className="hover:text-white transition-colors">Motherboard Box</Link></li>
-            <li><Link href="/packages" className="hover:text-white transition-colors">Packages</Link></li>
-            <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+            <li><Link href="/products" className="footer-link">All Products</Link></li>
+            <li><Link href="/products/phone-farm-box" className="footer-link">Phone Farm Box</Link></li>
+            <li><Link href="/products/motherboard-box" className="footer-link">Motherboard Box</Link></li>
+            <li><Link href="/packages" className="footer-link">Packages</Link></li>
+            <li><Link href="/pricing" className="footer-link">Pricing</Link></li>
           </ul>
         </div>
         <div className="lg:col-span-2">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-5">Resources</h3>
+          <h3 className="footer-heading">Resources</h3>
           <ul className="space-y-3 text-sm">
-            <li><Link href="/phone-farm" className="hover:text-white transition-colors">Phone Farm Guide</Link></li>
-            <li><Link href="/docs/buying-guide" className="hover:text-white transition-colors">How to Buy</Link></li>
-            <li><Link href="/docs/usdt-payment-guide" className="hover:text-white transition-colors">USDT Payment</Link></li>
-            <li><Link href="/knowledge-base" className="hover:text-white transition-colors">Knowledge Base</Link></li>
-            <li><Link href="/support" className="hover:text-white transition-colors">Support</Link></li>
+            <li><Link href="/phone-farm" className="footer-link">Phone Farm Guide</Link></li>
+            <li><Link href="/docs/buying-guide" className="footer-link">How to Buy</Link></li>
+            <li><Link href="/docs/usdt-payment-guide" className="footer-link">USDT Payment</Link></li>
+            <li><Link href="/knowledge-base" className="footer-link">Knowledge Base</Link></li>
+            <li><Link href="/support" className="footer-link">Support</Link></li>
           </ul>
         </div>
         <div className="lg:col-span-3">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-5">Company</h3>
+          <h3 className="footer-heading">Company</h3>
           <ul className="space-y-3 text-sm">
-            <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-            <li><Link href="/contact" className="hover:text-white transition-colors">Contact Sales</Link></li>
+            <li><Link href="/about" className="footer-link">About</Link></li>
+            <li><Link href="/contact" className="footer-link">Contact Sales</Link></li>
             {FOOTER_NAV.filter((i) => !["/about", "/contact"].includes(i.href)).map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-white transition-colors">{item.label}</Link>
+                <Link href={item.href} className="footer-link">{item.label}</Link>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-6 text-center text-xs text-slate-600">
-        © {new Date().getFullYear()} {SITE.name} · {SITE.location} · {CONTACT.email}
+      <div className="site-footer-bar py-6 text-center text-xs text-slate-600">
+        © {new Date().getFullYear()} {SITE.name} · {SITE.location}
       </div>
     </footer>
   );

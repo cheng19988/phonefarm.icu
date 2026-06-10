@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { ContactCTA, ContactBar } from "@/components/shared";
-import { TrustStrip } from "@/components/trust-strip";
 import { ContentHero } from "@/components/content/content-hero";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Support Center — Orders, Payment & Hardware Help",
+  title: "Support Center - Orders, Payment & Hardware Help",
   description:
     "PhoneFarm ICU support for orders, USDT payment, shipping, warranty, compatibility, and bulk quotes from Guangzhou.",
   path: "/support",
@@ -14,7 +13,7 @@ export const metadata = buildMetadata({
 
 const SUPPORT_BLOCKS = [
   { title: "Order support", desc: "Help with Buy Now orders, account orders, and order status.", href: "/account/orders", cta: "My Orders" },
-  { title: "Payment support", desc: "USDT (TRC20) payment after order confirmation — sales team confirms payment.", href: "/docs/usdt-payment-guide", cta: "USDT Guide" },
+  { title: "Payment support", desc: "USDT (TRC20) payment after order confirmation - sales team confirms payment.", href: "/docs/usdt-payment-guide", cta: "USDT Guide" },
   { title: "Shipping support", desc: "Export packing, MOQ, express vs sea freight from Guangzhou.", href: "/docs/shipping-guide", cta: "Shipping Guide" },
   { title: "Warranty support", desc: "Hardware warranty, replacement parts, and remote diagnostics.", href: "/docs/warranty-guide", cta: "Warranty Guide" },
   { title: "Product compatibility", desc: "Device model matching for racks, motherboard boxes, and hubs.", href: "/knowledge-base", cta: "Knowledge Base" },
@@ -27,16 +26,15 @@ export default function SupportPage() {
       <ContentHero
         eyebrow="Support Center"
         title="Order & Hardware Support"
-        subtitle={`${SITE.name} support covers online orders, USDT payment, shipping, warranty, and bulk quotes — direct from our Guangzhou team.`}
+        subtitle={`${SITE.name} support covers online orders, USDT payment, shipping, warranty, and bulk quotes - direct from our Guangzhou team.`}
       >
         <div className="flex flex-wrap gap-3">
           <Link href="/products" className="btn-accent px-7 py-3">Shop Hardware</Link>
           <Link href="/contact" className="btn-outline px-7 py-3">Contact Sales</Link>
         </div>
       </ContentHero>
-      <TrustStrip variant="light" />
 
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero">
           <div className="p-6 rounded-2xl border border-[var(--border)] bg-white mb-12 max-w-2xl">
             <h2 className="font-bold text-[var(--text)] mb-3">Contact Channels</h2>
@@ -49,7 +47,7 @@ export default function SupportPage() {
                 <h2 className="font-bold text-[var(--text)] mb-2">{block.title}</h2>
                 <p className="text-sm text-[var(--text-muted)] mb-4 flex-1">{block.desc}</p>
                 <Link href={block.href} className="text-sm font-semibold text-[var(--brand)] hover:underline">
-                  {block.cta} →
+                  {block.cta}
                 </Link>
               </article>
             ))}

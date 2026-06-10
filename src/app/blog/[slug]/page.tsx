@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { getBlogPost, BLOG_POSTS } from "@/data/blog";
 import { ArticleLayout } from "@/components/content/article-layout";
-import { TrustStrip } from "@/components/trust-strip";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/shared";
 
@@ -32,7 +31,6 @@ export default async function BlogPostPage({ params }: Props) {
           { name: post.title, path: `/blog/${slug}` },
         ])}
       />
-      <TrustStrip variant="light" />
       <ArticleLayout
         backHref="/blog"
         backLabel="Guides & Blog"

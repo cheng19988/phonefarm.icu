@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { KBSearch } from "@/components/kb-search";
-import { TrustStrip } from "@/components/trust-strip";
 import { ContentHero } from "@/components/content/content-hero";
 import { KB_ARTICLES, KB_CATEGORIES } from "@/data/knowledge-base";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Buying Knowledge Base — Phone Farm Hardware Guides",
+  title: "Buying Knowledge Base - Phone Farm Hardware Guides",
   description:
     "PhoneFarm ICU knowledge base: rack selection, motherboard boxes, cooling, power, USDT payment, shipping, and bulk orders.",
   path: "/knowledge-base",
@@ -19,15 +18,14 @@ export default function KnowledgeBasePage() {
       <ContentHero
         eyebrow="Buying Guides"
         title="Buying Knowledge Base"
-        subtitle={`Hardware deployment guides for ${SITE.name} buyers — rack selection, cooling, power planning, orders, and shipping from ${SITE.location}.`}
+        subtitle={`Hardware deployment guides for ${SITE.name} buyers - rack selection, cooling, power planning, orders, and shipping from ${SITE.location}.`}
       >
         <Link href="/docs/buying-guide" className="btn-primary px-7 py-3 inline-flex">
           How to Buy
         </Link>
       </ContentHero>
-      <TrustStrip variant="light" />
 
-      <div className="section section-light">
+      <div className="section section-light pt-0">
         <div className="container-hero">
           <KBSearch articles={KB_ARTICLES} />
 
