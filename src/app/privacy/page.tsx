@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageIntro } from "@/components/ui/page-intro";
 import { buildMetadata } from "@/lib/seo";
 import { SITE, CONTACT } from "@/lib/config";
 
@@ -11,10 +12,14 @@ export const metadata = buildMetadata({
 export default function PrivacyPage() {
   return (
     <>
-      <div className="section section-light">
+      <PageIntro
+        eyebrow="Legal"
+        title="Privacy Policy"
+        subtitle="Last updated: June 2026"
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Privacy" }]}
+      />
+      <div className="section section-light pt-0">
         <div className="container-hero max-w-3xl">
-          <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-6">Privacy Policy</h1>
-          <p className="text-[var(--text-subtle)] mb-10">Last updated: June 2026</p>
 
           <div className="prose-content space-y-8">
             <section>

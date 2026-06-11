@@ -11,6 +11,7 @@ import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { getProductSeed } from "@/data/products";
 import { specHighlights } from "@/lib/product-specs";
 import { listCatalogProducts } from "@/lib/catalog";
+import { packageImageFor } from "@/lib/package-images";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props) {
     title: `${pkg.name} — Hardware Package`,
     description: `${pkg.description} Order or request a quote from PhoneFarm ICU, Guangzhou.`,
     path: `/packages/${slug}`,
-    image: pkg.image,
+    image: packageImageFor(pkg),
   });
 }
 
@@ -34,6 +35,7 @@ export default async function PackageDetailPage({ params }: Props) {
   const { slug } = await params;
   const pkg = getPackage(slug);
   if (!pkg) notFound();
+  const heroImage = packageImageFor(pkg);
 
   const allProducts = await listCatalogProducts();
   const relatedProducts = pkg.productSlugs
@@ -75,7 +77,7 @@ export default async function PackageDetailPage({ params }: Props) {
 
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 mb-20">
             <div className="relative aspect-[4/3] lg:aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100 border border-[var(--border)] shadow-lg">
-              <Image src={pkg.image} alt={`${pkg.name} phone farm hardware package`} fill className="object-cover" sizes="55vw" priority />
+              <Image src={heroImage} alt={`${pkg.name} phone farm hardware package`} fill className="object-cover" sizes="55vw" priority />
             </div>
             <PackageBuyBox pkg={pkg} />
           </div>

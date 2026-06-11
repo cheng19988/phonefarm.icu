@@ -10,6 +10,8 @@ type Props = {
   summary?: string;
   children: ReactNode;
   ctaTitle?: string;
+  relatedKbSlug?: string;
+  relatedKbTitle?: string;
 };
 
 export function ArticleLayout({
@@ -20,6 +22,8 @@ export function ArticleLayout({
   summary,
   children,
   ctaTitle = "Need Help With Your Order?",
+  relatedKbSlug,
+  relatedKbTitle,
 }: Props) {
   return (
     <article className="section section-light pt-8">
@@ -32,6 +36,15 @@ export function ArticleLayout({
         )}
         <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4 leading-tight">{title}</h1>
         {summary && <p className="text-lg text-[var(--text-muted)] mb-8 leading-relaxed">{summary}</p>}
+        {relatedKbSlug && (
+          <p className="text-sm text-[var(--text-muted)] mb-6 p-4 rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+            Also in our Knowledge Base:{" "}
+            <Link href={`/knowledge-base/${relatedKbSlug}`} className="text-[var(--brand)] font-medium hover:underline">
+              {relatedKbTitle ?? "Related article"}
+            </Link>
+            {" "}— structured reference version of this guide.
+          </p>
+        )}
         <div className="prose-content space-y-4">{children}</div>
         <div className="mt-12">
           <ContactCTA title={ctaTitle} />

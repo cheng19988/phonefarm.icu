@@ -6,12 +6,14 @@ import { FeaturedProducts } from "@/components/home/featured-products";
 import { FactoryTrustSection } from "@/components/home/factory-trust-section";
 import { HomeCatalogGrid } from "@/components/home/home-catalog-grid";
 import { HomeResourcesPreview } from "@/components/home/home-resources-preview";
+import { HomeLeadForm } from "@/components/home-lead-form";
 import { TrustStrip } from "@/components/trust-strip";
 import { SectionHeader } from "@/components/ui/section-header";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 import { listCatalogProducts } from "@/lib/catalog";
 import { HARDWARE_PACKAGES } from "@/data/packages";
+import { packageImageFor } from "@/lib/package-images";
 import { getProductSeed } from "@/data/products";
 import { getProductLine } from "@/data/product-lines";
 import { specHighlights } from "@/lib/product-specs";
@@ -51,6 +53,7 @@ export default async function HomePage() {
       <HomeCatalogGrid products={catalogCards} />
       <FactoryTrustSection />
       <HomeResourcesPreview />
+      <HomeLeadForm />
 
       <section className="section">
         <div className="container-hero">
@@ -67,7 +70,7 @@ export default async function HomePage() {
                 className="group card card-hover overflow-hidden grid md:grid-cols-2 min-h-[280px]"
               >
                 <div className="relative min-h-[200px] md:min-h-full">
-                  <Image src={pkg.image} alt={pkg.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="50vw" />
+                  <Image src={packageImageFor(pkg)} alt={pkg.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="50vw" />
                 </div>
                 <div className="p-8 flex flex-col justify-center">
                   <h3 className="text-xl font-semibold text-[var(--text)] mb-2">{pkg.name}</h3>

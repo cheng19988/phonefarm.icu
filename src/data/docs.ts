@@ -6,7 +6,7 @@ export type DocArticle = {
   content: string[];
 };
 
-export const DOC_SECTIONS = ["Deployment", "Hardware Specs", "Quote & Orders", "Buying & Payment"] as const;
+export const DOC_SECTIONS = ["Deployment", "Hardware Specs", "Quote & Orders", "Buying & Payment", "API & Integrations"] as const;
 
 export const DOC_ARTICLES: DocArticle[] = [
   {
@@ -133,6 +133,20 @@ export const DOC_ARTICLES: DocArticle[] = [
       "Enterprise projects: share room dimensions, power feed, and total device target.",
       "Written proposal includes layout, accessories, freight, and lead time.",
       "USDT or wire transfer on confirmation — phased shipment available for large orders.",
+    ],
+  },
+  {
+    slug: "order-api-placeholder",
+    title: "Order & Payment API (Coming Soon)",
+    section: "API & Integrations",
+    summary: "Planned REST endpoints for programmatic order status and payment confirmation.",
+    content: [
+      "Status: not yet publicly available. This page documents the intended integration surface for enterprise buyers.",
+      "Planned endpoints (subject to change): GET /api/v1/orders/{id} — order status and line items; POST /api/v1/orders/{id}/payment — submit USDT transaction hash for verification.",
+      "Authentication will use API keys issued after enterprise account review — contact sales for early access.",
+      "Webhooks for payment_confirmed and shipped events are planned for Q3 2026.",
+      "Until launch, use the web dashboard at /orders or contact sales for bulk order tracking.",
+      "Subscribe to updates by noting API interest in your quote request or contact form.",
     ],
   },
 ];

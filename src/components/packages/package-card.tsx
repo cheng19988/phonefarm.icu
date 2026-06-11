@@ -3,12 +3,13 @@ import Link from "next/link";
 import { PriceTag } from "@/components/ui/price-tag";
 import type { HardwarePackage } from "@/data/packages";
 
-export function PackageCard({ pkg }: { pkg: HardwarePackage }) {
+export function PackageCard({ pkg, image }: { pkg: HardwarePackage; image?: string }) {
+  const hero = image ?? pkg.image;
   const c = pkg.comparison;
   return (
     <article className="card card-hover flex flex-col h-full overflow-hidden">
       <Link href={`/packages/${pkg.slug}`} className="block relative aspect-[4/3] bg-slate-100">
-        <Image src={pkg.image} alt={`${pkg.name} hardware package`} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />
+        <Image src={hero} alt={`${pkg.name} hardware package`} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />
       </Link>
       <div className="p-6 flex flex-col flex-1">
         <Link href={`/packages/${pkg.slug}`}>

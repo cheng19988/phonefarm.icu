@@ -5,9 +5,20 @@ import { DOC_ARTICLES } from "@/data/docs";
 import { SectionHeader } from "@/components/ui/section-header";
 
 export function HomeResourcesPreview() {
-  const kb = KB_ARTICLES.slice(0, 3);
+  const kb = [
+    ...KB_ARTICLES.filter((a) => a.slug === "remote-control-setup-guide" || a.slug === "rack-maintenance-guide"),
+    ...KB_ARTICLES,
+  ]
+    .filter((a, i, arr) => arr.findIndex((x) => x.slug === a.slug) === i)
+    .slice(0, 4);
   const faq = FAQ_ITEMS.slice(0, 3);
-  const docs = DOC_ARTICLES.slice(0, 3);
+  const docs = [
+    DOC_ARTICLES.find((d) => d.slug === "order-api-placeholder"),
+    ...DOC_ARTICLES,
+  ]
+    .filter((d): d is (typeof DOC_ARTICLES)[number] => !!d)
+    .filter((d, i, arr) => arr.findIndex((x) => x.slug === d.slug) === i)
+    .slice(0, 4);
 
   return (
     <section className="section-compact">

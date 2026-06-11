@@ -34,7 +34,7 @@ function syncedImages(slug: string, ext: "png" | "webp" = "png") {
   return {
     imageCard: `${base}/card.${ext}`,
     imageHero: `${base}/hero.${ext}`,
-    imageDetail: `${base}/gallery-1.${ext}`,
+    imageDetail: `${base}/hero.${ext}`,
   };
 }
 

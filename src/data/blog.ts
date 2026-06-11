@@ -1,6 +1,17 @@
-export const BLOG_POSTS = [
+export type BlogPost = {
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  excerpt: string;
+  content: string;
+  relatedKbSlug?: string;
+};
+
+export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "how-to-choose-phone-farm-box",
+    relatedKbSlug: "how-to-choose-phone-farm-rack",
     title: "How to Choose a Phone Farm Rack for Your QA Lab",
     category: "Hardware Selection",
     date: "2026-03-27",
@@ -41,6 +52,7 @@ PhoneFarm ICU supplies rack hardware — not cloud subscriptions. Request a quot
   },
   {
     slug: "phone-farm-setup-guide-2026",
+    relatedKbSlug: "phone-farm-box-setup",
     title: "Phone Farm Rack Setup Checklist for New Labs",
     category: "Deployment",
     date: "2026-01-20",
@@ -67,6 +79,7 @@ Remote setup guidance is available via WhatsApp after hardware delivery.`,
   },
   {
     slug: "motherboard-box-vs-phone-box",
+    relatedKbSlug: "motherboard-box-vs-phone-box",
     title: "Motherboard Box vs Phone Farm Rack",
     category: "Hardware Selection",
     date: "2026-04-17",

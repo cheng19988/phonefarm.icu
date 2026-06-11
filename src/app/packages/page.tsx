@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HARDWARE_PACKAGES } from "@/data/packages";
+import { packageImageFor } from "@/lib/package-images";
 import { ContactCTA } from "@/components/shared";
 import { PackageHero } from "@/components/packages/package-hero";
 import { PackageCard } from "@/components/packages/package-card";
@@ -32,7 +33,7 @@ export default function PackagesPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-8">Choose Your Package</h2>
             <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
               {HARDWARE_PACKAGES.map((pkg) => (
-                <PackageCard key={pkg.slug} pkg={pkg} />
+                <PackageCard key={pkg.slug} pkg={pkg} image={packageImageFor(pkg)} />
               ))}
             </div>
           </section>

@@ -2,7 +2,7 @@ import { InquiryForm } from "@/components/inquiry-form";
 
 export function HomeLeadForm() {
   return (
-    <section className="py-16 border-t border-[var(--border)] bg-white">
+    <section className="section">
       <div className="container-hero max-w-3xl">
         <h2 className="text-2xl font-bold text-[var(--text)] text-center mb-2">Bulk Quote &amp; Custom Configuration</h2>
         <p className="text-[var(--text-muted)] text-center mb-8 text-sm">

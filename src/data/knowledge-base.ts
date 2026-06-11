@@ -15,6 +15,8 @@ export const KB_CATEGORIES = [
   "Shipping & MOQ",
   "Quote & Support",
   "Troubleshooting",
+  "Remote Control",
+  "Maintenance",
 ] as const;
 
 export const KB_ARTICLES: KBArticle[] = [
@@ -173,6 +175,34 @@ export const KB_ARTICLES: KBArticle[] = [
       "Replace worn USB cables and verify hub power injection.",
       "Reduce cable length; use powered industrial hubs.",
       "Check for thermal throttling on devices in racks with blocked airflow.",
+    ],
+  },
+  {
+    slug: "remote-control-setup-guide",
+    title: "Remote Control Workstation Setup",
+    category: "Remote Control",
+    excerpt: "Connect a control PC or Mac to your rack for ADB, iOS tools, and remote diagnostics.",
+    body: [
+      "Place the control workstation within USB cable reach of the rack hub uplink — typically 1–2 m with an active extension if needed.",
+      "Android racks: install platform-tools (ADB) and verify each slot maps to a stable device ID using the slot label sheet from your packing list.",
+      "iPhone racks: use a macOS control station with Xcode or your preferred iOS device management toolchain — iPhones are buyer-supplied.",
+      "Enable remote desktop or SSH only on the control PC, not on individual phones, to keep the attack surface small.",
+      "PhoneFarm ICU offers a Remote Control Setup SKU for cable routing verification and first-boot detection — useful for new labs without on-site hardware staff.",
+      "For ongoing support, share hub port maps and photos via WhatsApp or Telegram when reporting disconnect issues.",
+    ],
+  },
+  {
+    slug: "rack-maintenance-guide",
+    title: "Rack Maintenance Schedule",
+    category: "Maintenance",
+    excerpt: "Fan filters, USB cables, PSU checks, and spare parts for production device farms.",
+    body: [
+      "Weekly: spot-check random slots for ADB/iOS detection; log any recurring dropouts by slot ID.",
+      "Monthly: clean cooling fan filters; inspect USB cables at high-flex points near slot entries.",
+      "Quarterly: verify PSU fan operation and ambient temperature at rack intake; replace worn hub cables.",
+      "Keep spare parts sized to rack count: 10–20% extra USB cables, 1 fan module per 4 racks, 1 hub per 10 racks as a starting spare ratio.",
+      "Document maintenance in a slot map spreadsheet — correlates with faster remote diagnostics from our sales team.",
+      "Production farms should discuss a maintenance kit bundle during bulk quote confirmation.",
     ],
   },
 ];
