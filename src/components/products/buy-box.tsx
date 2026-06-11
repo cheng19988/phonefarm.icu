@@ -158,7 +158,7 @@ export function BuyBox({
       <div className="mt-5 p-4 rounded-xl border border-[var(--border)] text-sm text-[var(--text-muted)]">
         <p className="font-semibold text-[var(--text)] mb-1">Sales contact</p>
         <p>
-          {CONTACT.phone} · WhatsApp · Telegram · {CONTACT.email}
+          Telegram {CONTACT.telegram} · WhatsApp {CONTACT.whatsapp} · {CONTACT.email}
         </p>
       </div>
     </div>

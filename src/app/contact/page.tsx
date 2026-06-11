@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { InquiryForm } from "@/components/inquiry-form";
-import { ContactBar, ContactCTA } from "@/components/shared";
+import { ContactCTA } from "@/components/shared";
+import { CONTACT } from "@/lib/config";
 import { ContentHero } from "@/components/content/content-hero";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
@@ -58,8 +59,14 @@ export default function ContactPage() {
 
               <section className="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)]/50">
                 <h2 className="font-bold text-[var(--text)] mb-3">Direct Contact</h2>
-                <p className="text-sm text-[var(--text-muted)] mb-4">WhatsApp is fastest for urgent configuration questions.</p>
-                <ContactBar />
+                <p className="text-sm text-[var(--text-muted)] mb-3">
+                  Use the floating contact button (bottom-right) or reach us directly:
+                </p>
+                <ul className="text-sm text-[var(--text-muted)] space-y-2">
+                  <li>Telegram: {CONTACT.telegram}</li>
+                  <li>WhatsApp: {CONTACT.whatsapp}</li>
+                  <li>Email: {CONTACT.email}</li>
+                </ul>
               </section>
 
               <section className="p-5 rounded-2xl border border-[var(--border)] bg-white">

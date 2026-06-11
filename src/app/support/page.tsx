@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ContactCTA, ContactBar } from "@/components/shared";
+import { ContactCTA } from "@/components/shared";
 import { ContentHero } from "@/components/content/content-hero";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
@@ -36,11 +36,6 @@ export default function SupportPage() {
 
       <div className="section section-light pt-0">
         <div className="container-hero">
-          <div className="p-6 rounded-2xl border border-[var(--border)] bg-white mb-12 max-w-2xl">
-            <h2 className="font-bold text-[var(--text)] mb-3">Contact Channels</h2>
-            <ContactBar />
-          </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {SUPPORT_BLOCKS.map((block) => (
               <article key={block.title} className="card card-hover p-6 flex flex-col">

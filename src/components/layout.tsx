@@ -74,9 +74,11 @@ export function Footer() {
             {SITE.location} · Factory Direct · Est. {SITE.since}
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-            <a href={`tel:${CONTACT.phone}`} className="footer-link">{CONTACT.phone}</a>
+            <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="footer-link">
+              Telegram {CONTACT.telegram}
+            </a>
             <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="footer-link">
-              WhatsApp
+              WhatsApp {CONTACT.whatsapp}
             </a>
             <a href={`mailto:${CONTACT.email}`} className="footer-link">{CONTACT.email}</a>
           </div>

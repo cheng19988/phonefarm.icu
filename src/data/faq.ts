@@ -102,12 +102,12 @@ export const FAQ_ITEMS: FAQItem[] = [
     category: "Bulk quote",
     question: "How do I request a quote?",
     answer:
-      "Use the contact form, WhatsApp (+852 6215 5642), Telegram (@huicheng1998), phone (13059502618), or email (qiuxui646@gmail.com). Include device quantity, product interest, and shipping country.",
+      "Use the contact form, Telegram (@huicheng1998), WhatsApp (+85262155642), or email (qiuxui646@gmail.com). Include device quantity, product interest, and shipping country.",
   },
   {
     category: "Bulk quote",
     question: "How to contact sales?",
     answer:
-      "WhatsApp (+852 6215 5642), Telegram (@huicheng1998), phone (13059502618), or email (qiuxui646@gmail.com). We reply within one business day for most inquiries.",
+      "Telegram (@huicheng1998), WhatsApp (+85262155642), or email (qiuxui646@gmail.com). We reply within one business day for most inquiries.",
   },
 ];

@@ -63,10 +63,10 @@ export function organizationJsonLd() {
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+86-13059502618",
       email: "qiuxui646@gmail.com",
       contactType: "sales",
       areaServed: "Worldwide",
+      availableLanguage: ["English", "Chinese"],
     },
   };
 }
