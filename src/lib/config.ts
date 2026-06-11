@@ -18,6 +18,8 @@ export const CONTACT = {
   whatsapp: "+85262155642",
   whatsappUrl: "https://wa.me/85262155642",
   email: "qiuxui646@gmail.com",
+  /** Gmail compose — reliable in browser; mailto: often falls back to Google search without a mail app */
+  emailUrl: "https://mail.google.com/mail/?view=cm&fs=1&to=qiuxui646@gmail.com",
 } as const;
 
 export const PAYMENT = {

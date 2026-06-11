@@ -16,7 +16,7 @@ const CHANNELS = [
   },
   {
     label: "Email",
-    href: `mailto:${CONTACT.email}`,
+    href: CONTACT.emailUrl,
     icon: IconMail,
     className: "floating-contact-email",
   },
@@ -33,8 +33,8 @@ export function FloatingContact() {
           <li key={label}>
             <a
               href={href}
-              target={href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`floating-contact-btn ${className}`}
               aria-label={label}
               title={label}

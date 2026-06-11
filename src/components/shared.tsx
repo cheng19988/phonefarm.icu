@@ -25,7 +25,7 @@ export function ContactBar({ compact = false, variant = "default" }: { compact?:
       <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${linkClass} transition-colors`}>
         WhatsApp {CONTACT.whatsapp}
       </a>
-      <a href={`mailto:${CONTACT.email}`} className={`${linkClass} transition-colors`}>
+      <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className={`${linkClass} transition-colors`}>
         {CONTACT.email}
       </a>
     </div>

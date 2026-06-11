@@ -80,7 +80,7 @@ export function Footer() {
             <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="footer-link">
               WhatsApp {CONTACT.whatsapp}
             </a>
-            <a href={`mailto:${CONTACT.email}`} className="footer-link">{CONTACT.email}</a>
+            <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="footer-link">{CONTACT.email}</a>
           </div>
         </div>
         <div className="lg:col-span-2">
