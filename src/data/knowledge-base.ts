@@ -1,3 +1,5 @@
+import { KB_EXTENDED } from "@/data/content/kb-extended";
+
 export type KBArticle = {
   slug: string;
   title: string;
@@ -17,6 +19,10 @@ export const KB_CATEGORIES = [
   "Troubleshooting",
   "Remote Control",
   "Maintenance",
+  "Setup & Connectivity",
+  "Rack Control",
+  "Automation Compatibility",
+  "Fleet Management",
 ] as const;
 
 export const KB_ARTICLES: KBArticle[] = [
@@ -205,6 +211,7 @@ export const KB_ARTICLES: KBArticle[] = [
       "Production farms should discuss a maintenance kit bundle during bulk quote confirmation.",
     ],
   },
+  ...KB_EXTENDED,
 ];
 
 export function getKBArticle(slug: string) {

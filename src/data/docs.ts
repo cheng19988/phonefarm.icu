@@ -6,7 +6,14 @@ export type DocArticle = {
   content: string[];
 };
 
-export const DOC_SECTIONS = ["Deployment", "Hardware Specs", "Quote & Orders", "Buying & Payment", "API & Integrations"] as const;
+export const DOC_SECTIONS = [
+  "Deployment",
+  "Hardware Specs",
+  "Quote & Orders",
+  "Buying & Payment",
+  "API & Integrations",
+  "Setup & Connectivity",
+] as const;
 
 export const DOC_ARTICLES: DocArticle[] = [
   {
@@ -147,6 +154,86 @@ export const DOC_ARTICLES: DocArticle[] = [
       "Webhooks for payment_confirmed and shipped events are planned for Q3 2026.",
       "Until launch, use the web dashboard at /orders or contact sales for bulk order tracking.",
       "Subscribe to updates by noting API interest in your quote request or contact form.",
+    ],
+  },
+  {
+    slug: "usb-debugging-checklist",
+    title: "USB Debugging Checklist (Android Labs)",
+    section: "Setup & Connectivity",
+    summary: "Per-brand steps before connecting devices to a phone farm rack.",
+    content: [
+      "Enable Developer options: Settings → About → tap Build number 7 times.",
+      "Turn on USB debugging in Developer options.",
+      "Samsung: enable Install via USB for frequent APK pushes.",
+      "Xiaomi/Redmi: enable USB debugging (Security settings); consider disabling MIUI optimization.",
+      "Authorize RSA fingerprint on device screen when first connected to control PC.",
+      "Label slot ID on rack map after each device is authorized.",
+      "Full guide: /knowledge-base/enable-usb-debugging",
+    ],
+  },
+  {
+    slug: "otg-lan-setup",
+    title: "OTG / LAN Device Connection",
+    section: "Setup & Connectivity",
+    summary: "Network-attached device modes on phone farm racks.",
+    content: [
+      "Front panel LAN1/LAN2 support network-based device tooling alongside USB uplink.",
+      "Keep control PC and rack on same subnet for reliable discovery.",
+      "Document which slots use USB vs LAN path in slot map.",
+      "Pair with Network Equipment SKU for per-cluster VLAN isolation.",
+      "See /knowledge-base/otg-lan-network-connection",
+    ],
+  },
+  {
+    slug: "group-control-hardware-notes",
+    title: "Group Control Hardware Prerequisites",
+    section: "Setup & Connectivity",
+    summary: "Stable USB and slot maps required before synchronized multi-device operations.",
+    content: [
+      "Group control in device management tools requires stable ADB on all selected nodes.",
+      "Replace worn USB cables before enabling fleet-wide mirrored gestures.",
+      "Pilot on 1–2 slots before fleet rollout.",
+      "PhoneFarm ICU provides slot labels and wiring maps with each rack shipment.",
+      "Remote Control Setup service covers first-boot verification.",
+    ],
+  },
+  {
+    slug: "proxy-router-lab-guide",
+    title: "Proxy Router Lab Topology",
+    section: "Hardware Specs",
+    summary: "Capacity and wiring for multi-IP device clusters.",
+    content: [
+      "Typical entry tier: 20–30 devices per router cluster.",
+      "Mid tier: ~50 devices with managed switch.",
+      "High density projects: mini-PC proxy class quoted per room layout.",
+      "Configure SOCKS5 and DNS/MAC policy on buyer side — hardware ships with factory firmware.",
+      "Blog: /blog/proxy-router-configuration-lab",
+    ],
+  },
+  {
+    slug: "hardware-revision-notes",
+    title: "Hardware Revision Notes",
+    section: "Deployment",
+    summary: "Changelog for rack chassis, fan modules, and PSU revisions.",
+    content: [
+      "2026-Q2: Cooling module gallery expanded with rear fan bay reference photos.",
+      "2026-Q2: iPhone farm chassis documentation — Lightning/USB-C cable plan per quote.",
+      "2026-Q1: USB hub module webp asset sync for accessory PDP galleries.",
+      "2026-Q1: Package hero images synced from product catalog assets.",
+      "Contact sales for serial-specific revision notes on bulk orders.",
+    ],
+  },
+  {
+    slug: "compatibility-adb-tools",
+    title: "ADB & Device Management Tool Compatibility",
+    section: "Deployment",
+    summary: "Third-party software compatibility statement for rack hardware.",
+    content: [
+      "PhoneFarm ICU supplies hardware — not device management SaaS licenses.",
+      "Racks are tested for standard ADB USB paths on Windows, Linux, and macOS (iOS labs).",
+      "Compatible with common scrcpy, MDM, and CI deploy tools that support USB debugging.",
+      "Inspector/automation locators should be validated on real devices in your rack, not emulators only.",
+      "Remote Control Setup SKU helps map tools to your slot layout.",
     ],
   },
 ];

@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client.js";
-import { PRODUCT_SEEDS } from "../src/data/products.js";
+import { PRODUCT_SEEDS, getProductSeed } from "../src/data/products.js";
 import { getProductAssets } from "../src/lib/product-assets.js";
 import bcrypt from "bcryptjs";
 
@@ -16,7 +16,8 @@ const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  for (const seed of PRODUCT_SEEDS) {
+  for (const base of PRODUCT_SEEDS) {
+    const seed = getProductSeed(base.slug) ?? base;
     const assets = getProductAssets(seed.slug);
     const imageCard = assets?.card ?? seed.imageCard;
     const imageHero = assets?.hero ?? seed.imageHero;

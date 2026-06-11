@@ -28,7 +28,10 @@ export function buildMetadata({
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: { "en-US": url },
+    },
     openGraph: {
       title: fullTitle,
       description,
@@ -54,6 +57,7 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: SITE.name,
     url: SITE.url,
+    inLanguage: "en-US",
     logo: `${SITE.url}/images/card_800x800/phonefarm.icu-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-card_800x800.webp`,
     description: SITE.description,
     address: {

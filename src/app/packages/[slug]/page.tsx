@@ -89,6 +89,40 @@ export default async function PackageDetailPage({ params }: Props) {
                 <p className="text-[var(--text-muted)] leading-relaxed text-lg">{pkg.description}</p>
               </section>
 
+              {pkg.painPoints.length > 0 && (
+                <section>
+                  <h2 className="text-2xl font-bold text-[var(--text)] mb-4">Problems This Bundle Solves</h2>
+                  <ul className="space-y-2 text-[var(--text-muted)]">
+                    {pkg.painPoints.map((p) => (
+                      <li key={p} className="flex gap-2 text-sm">
+                        <span className="text-[var(--accent)] shrink-0">—</span>
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {pkg.whyRealDevices && (
+                <section>
+                  <h2 className="text-2xl font-bold text-[var(--text)] mb-4">Why Real-Device Hardware</h2>
+                  <p className="text-[var(--text-muted)] leading-relaxed">{pkg.whyRealDevices}</p>
+                </section>
+              )}
+
+              {pkg.giftBundle.length > 0 && (
+                <section>
+                  <h2 className="text-2xl font-bold text-[var(--text)] mb-4">Included Support &amp; Documentation</h2>
+                  <ul className="grid sm:grid-cols-2 gap-3">
+                    {pkg.giftBundle.map((item) => (
+                      <li key={item} className="flex gap-2 text-sm text-[var(--text-muted)] p-4 rounded-xl border border-[var(--border)] bg-white">
+                        <span className="text-[var(--brand)] shrink-0">★</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
               <section>
                 <h2 className="text-2xl font-bold text-[var(--text)] mb-4">What Is Included</h2>
                 <ul className="grid sm:grid-cols-2 gap-3">

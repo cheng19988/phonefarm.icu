@@ -1,3 +1,5 @@
+import { PRODUCT_FAQ_EXTRA } from "@/data/content/product-faq-extended";
+
 export type ProductSeed = {
   slug: string;
   name: string;
@@ -821,5 +823,9 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
 ];
 
 export function getProductSeed(slug: string) {
-  return PRODUCT_SEEDS.find((p) => p.slug === slug);
+  const seed = PRODUCT_SEEDS.find((p) => p.slug === slug);
+  if (!seed) return undefined;
+  const extra = PRODUCT_FAQ_EXTRA[slug];
+  if (!extra?.length) return seed;
+  return { ...seed, faq: [...seed.faq, ...extra] };
 }

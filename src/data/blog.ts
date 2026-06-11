@@ -1,3 +1,5 @@
+import { BLOG_EXTENDED } from "@/data/content/blog-extended";
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -126,6 +128,7 @@ PhoneFarm ICU provides hardware and slot maps — your team owns build deploymen
 
 PhoneFarm ICU engineers cabinet projects from Guangzhou. Contact sales with room dimensions and device inventory for a proposal.`,
   },
+  ...BLOG_EXTENDED,
 ];
 
 export function getBlogPost(slug: string) {

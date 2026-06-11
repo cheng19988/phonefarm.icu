@@ -96,6 +96,33 @@ export const PHONE_FARM_SECTIONS = [
     ],
   },
   {
+    id: "box-vs-cloud",
+    title: "Box Phone Farm vs Cloud Phone",
+    paragraphs: [
+      "Cloud phones are virtual Android environments rented from a provider — low upfront cost, subscription billing, limited sensor fidelity.",
+      "Box phone farms are physical racks with real ARM devices you own — higher upfront CapEx, accurate QA, predictable scale by adding racks.",
+      "Most production labs use real hardware for release validation and keep cloud instances only for early demos.",
+    ],
+    links: [
+      { label: "Blog: Box vs Cloud comparison", href: "/blog/box-phone-vs-cloud-phone" },
+      { label: "Blog: What is a cloud phone?", href: "/blog/what-is-cloud-phone-guide" },
+    ],
+  },
+  {
+    id: "knowledge-resources",
+    title: "Guides, Knowledge Base & Docs",
+    paragraphs: [
+      "PhoneFarm ICU publishes setup guides, troubleshooting articles, and buying documentation for AI search and human readers.",
+    ],
+    links: [
+      { label: "Knowledge Base", href: "/knowledge-base" },
+      { label: "Documentation", href: "/docs" },
+      { label: "Blog", href: "/blog" },
+      { label: "FAQ", href: "/faq" },
+      { label: "LLM index (llms.txt)", href: "/llms.txt" },
+    ],
+  },
+  {
     id: "ordering",
     title: "How to Order",
     paragraphs: [

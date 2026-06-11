@@ -122,4 +122,76 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer:
       "Contact sales with your order reference and photos of the issue. Fan modules, USB cables, and PSU replacements are available for most rack SKUs.",
   },
+  {
+    category: "Products",
+    question: "What is a box phone?",
+    answer:
+      "A box phone is a real smartphone or motherboard node mounted inside an industrial phone farm chassis with centralized power, cooling, and USB/LAN routing — not a cloud instance or emulator.",
+  },
+  {
+    category: "Products",
+    question: "Is there a device limit per rack?",
+    answer:
+      "Standard racks have up to 20 physical slots. Final device count depends on phone or board dimensions — confirmed in your written quote, not marketing headlines alone.",
+  },
+  {
+    category: "Products",
+    question: "Do you support enterprise deployment (100+ devices)?",
+    answer:
+      "Yes. Enterprise Rack Deployment and custom cabinet projects include layout planning, PDU sizing, and phased shipment. Contact sales with room dimensions and staff count.",
+  },
+  {
+    category: "Products",
+    question: "Are paid hardware revision updates required?",
+    answer:
+      "Standard rack products include 12-month hardware support on chassis, fans, and PSU modules. Replacement parts are orderable — there is no recurring software license from PhoneFarm ICU.",
+  },
+  {
+    category: "Products",
+    question: "What if I have problems after delivery?",
+    answer:
+      "Contact sales via WhatsApp, Telegram, or email with photos and your slot map. Remote diagnostics and spare parts are available for hardware issues.",
+  },
+  {
+    category: "Products",
+    question: "How do I enable USB debugging on farm phones?",
+    answer:
+      "Enable Developer options on each Android device, turn on USB debugging, and authorize the control PC RSA fingerprint. See Knowledge Base article: Enable USB Debugging on Farm Devices.",
+  },
+  {
+    category: "Products",
+    question: "Can network equipment support multi-IP device labs?",
+    answer:
+      "Yes. Router and switch modules support per-cluster VLAN planning. Proxy IPs and carrier SIMs are buyer-configured — hardware is supplied from our catalog.",
+  },
+  {
+    category: "Products",
+    question: "Is network gear suitable for TikTok Shop US style workflows?",
+    answer:
+      "Buyers configure US egress IP and proxy policy on our network modules. Typical starting capacity is ~30 devices per router cluster — confirm in quote.",
+  },
+  {
+    category: "Products",
+    question: "Box phone farm vs cloud phone — which should I buy?",
+    answer:
+      "Cloud phones suit light demos and low upfront cost. Real-device racks suit QA labs, sensor-accurate testing, and long-running production workloads. See our blog comparison guides.",
+  },
+  {
+    category: "Bulk quote",
+    question: "What should I include in a bulk quote request?",
+    answer:
+      "Device models, quantity, platform (Android/iPhone/motherboard), shipping country, use case, room dimensions (if 40+ devices), and preferred payment method (USDT or T/T).",
+  },
+  {
+    category: "Ordering",
+    question: "What is included in a deployment package gift bundle?",
+    answer:
+      "Packages include quick-start documentation, slot wiring map, QC report, and pre-sales configuration call. Remote Control Setup can be added for first-boot commissioning.",
+  },
+  {
+    category: "Warranty",
+    question: "Does warranty cover buyer-supplied phones?",
+    answer:
+      "No. Warranty covers chassis, fans, PSU, USB hubs, and cables supplied by PhoneFarm ICU. Buyer-supplied devices and third-party software are excluded.",
+  },
 ];

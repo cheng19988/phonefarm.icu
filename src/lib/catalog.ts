@@ -69,7 +69,7 @@ function seedToCatalog(seed: ProductSeed): CatalogProduct {
   });
 }
 
-const FALLBACK_CATALOG = PRODUCT_SEEDS.map(seedToCatalog);
+const FALLBACK_CATALOG = PRODUCT_SEEDS.map((s) => seedToCatalog(getProductSeed(s.slug) ?? s));
 
 function filterFallback(options?: {
   category?: string;

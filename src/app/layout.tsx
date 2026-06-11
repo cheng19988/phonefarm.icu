@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en-US" className="h-full">
       <body className="min-h-full flex flex-col antialiased">
         <JsonLd data={organizationJsonLd()} />
         <Header />
