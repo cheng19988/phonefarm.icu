@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getBlogPost, BLOG_POSTS } from "@/data/blog";
 import { getKBArticle } from "@/data/knowledge-base";
 import { ArticleLayout } from "@/components/content/article-layout";
-import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { articleJsonLd, buildMetadata, breadcrumbJsonLd, jsonLdGraph } from "@/lib/seo";
 import { JsonLd } from "@/components/shared";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -27,11 +27,20 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <JsonLd
-        data={breadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: "Blog", path: "/blog" },
-          { name: post.title, path: `/blog/${slug}` },
-        ])}
+        data={jsonLdGraph(
+          articleJsonLd({
+            title: post.title,
+            description: post.excerpt,
+            path: `/blog/${slug}`,
+            category: post.category,
+            datePublished: post.date,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${slug}` },
+          ]),
+        )}
       />
       <ArticleLayout
         backHref="/blog"

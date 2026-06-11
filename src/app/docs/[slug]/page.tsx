@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { getDoc, DOC_ARTICLES } from "@/data/docs";
 import { ArticleLayout } from "@/components/content/article-layout";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/shared";
+import { articleJsonLd, breadcrumbJsonLd, buildMetadata, jsonLdGraph } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -27,6 +28,21 @@ export default async function DocPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={jsonLdGraph(
+          articleJsonLd({
+            title: doc.title,
+            description: doc.summary,
+            path: `/docs/${slug}`,
+            category: doc.section,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Docs", path: "/docs" },
+            { name: doc.title, path: `/docs/${slug}` },
+          ]),
+        )}
+      />
       <ArticleLayout
         backHref="/docs"
         backLabel="Buyer Docs"

@@ -8,7 +8,7 @@ import { ChassisPhotoNotice } from "@/components/products/chassis-photo-notice";
 import { ProductDetailSections } from "@/components/products/product-detail-sections";
 import { ContactCTA, JsonLd } from "@/components/shared";
 import { PageIntro } from "@/components/ui/page-intro";
-import { buildMetadata, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd, jsonLdGraph } from "@/lib/seo";
 import { getProductSeed } from "@/data/products";
 import { HARDWARE_PACKAGES } from "@/data/packages";
 import { getProductLine } from "@/data/product-lines";
@@ -77,7 +77,7 @@ export default async function ProductDetailPage({ params }: Props) {
   return (
     <>
       <JsonLd
-        data={[
+        data={jsonLdGraph(
           productJsonLd({
             name: product.name,
             description: product.shortDesc,
@@ -92,7 +92,10 @@ export default async function ProductDetailPage({ params }: Props) {
             { name: product.category, path: `/products?category=${encodeURIComponent(product.category)}` },
             { name: product.name, path: `/products/${slug}` },
           ]),
-        ]}
+          ...(faq.length > 0
+            ? [faqJsonLd(faq.map((f) => ({ question: f.q, answer: f.a })))]
+            : []),
+        )}
       />
 
       <PageIntro

@@ -100,6 +100,7 @@ export function Footer() {
             <li><Link href="/docs/buying-guide" className="footer-link">How to Buy</Link></li>
             <li><Link href="/docs/usdt-payment-guide" className="footer-link">USDT Payment</Link></li>
             <li><Link href="/knowledge-base" className="footer-link">Knowledge Base</Link></li>
+            <li><Link href="/for-ai" className="footer-link">AI Fact Sheet</Link></li>
             <li><Link href="/support" className="footer-link">Support</Link></li>
           </ul>
         </div>

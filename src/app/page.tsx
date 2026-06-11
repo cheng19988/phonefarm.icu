@@ -7,6 +7,7 @@ import { FactoryTrustSection } from "@/components/home/factory-trust-section";
 import { HomeCatalogGrid } from "@/components/home/home-catalog-grid";
 import { HomeResourcesPreview } from "@/components/home/home-resources-preview";
 import { HomeLeadForm } from "@/components/home-lead-form";
+import { ManufacturerFacts } from "@/components/home/manufacturer-facts";
 import { TrustStrip } from "@/components/trust-strip";
 import { SectionHeader } from "@/components/ui/section-header";
 import { buildMetadata } from "@/lib/seo";
@@ -63,6 +64,7 @@ export default async function HomePage() {
       <HomeCatalogGrid products={catalogCards} />
       <FactoryTrustSection />
       <HomeResourcesPreview />
+      <ManufacturerFacts />
       <HomeLeadForm />
 
       <section className="section">

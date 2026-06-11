@@ -23,6 +23,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/privacy",
     "/terms",
+    "/for-ai",
+    "/llms.txt",
+    "/llms-full.txt",
   ].map((path) => ({
     url: `${SITE.url}${path}`,
     lastModified: new Date(),

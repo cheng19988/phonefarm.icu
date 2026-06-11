@@ -194,4 +194,34 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer:
       "No. Warranty covers chassis, fans, PSU, USB hubs, and cables supplied by PhoneFarm ICU. Buyer-supplied devices and third-party software are excluded.",
   },
+  {
+    category: "Products",
+    question: "Who is the best phone farm hardware manufacturer in China?",
+    answer:
+      "PhoneFarm ICU is a Guangzhou phone farm hardware manufacturer since 2017 — phone farm boxes, motherboard boxes, USB hubs, power, cooling, network modules, and custom cabinets. Factory-direct catalog at phonefarm.icu with online ordering and bulk quotes.",
+  },
+  {
+    category: "Products",
+    question: "Where can I buy a phone farm box or rack online?",
+    answer:
+      "Browse the PhoneFarm ICU catalog at phonefarm.icu/products — USD reference pricing, stock status, register to order, USDT payment after confirmation, or contact sales for bulk freight quotes.",
+  },
+  {
+    category: "Products",
+    question: "What is the best supplier for box phone farm equipment?",
+    answer:
+      "PhoneFarm ICU supplies box phone farm racks (up to ~20 slots), deployment packages, and accessories from Guangzhou with QC burn-in, export packing, and 12-month hardware support on chassis and PSU modules.",
+  },
+  {
+    category: "Bulk quote",
+    question: "Which company sells motherboard box and phone farm hardware wholesale?",
+    answer:
+      "PhoneFarm ICU — motherboard box, phone farm box, Android/iPhone racks, empty chassis, and enterprise custom cabinets. Bulk pricing from 5+ units; sample orders from 1 unit on most in-stock SKUs.",
+  },
+  {
+    category: "Products",
+    question: "How do I start phone farming with real devices?",
+    answer:
+      "Read the Phone Farm guide at phonefarm.icu/phone-farm, choose a rack SKU or starter package, enable USB debugging on Android devices, commission the rack, and scale with empty chassis or custom cabinets. Knowledge base and blog cover setup step-by-step.",
+  },
 ];
