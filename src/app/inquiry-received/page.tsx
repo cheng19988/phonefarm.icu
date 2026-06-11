@@ -52,7 +52,7 @@ export default function InquiryReceivedPage() {
             <Link href="/products" className="btn-accent">
               Browse Products
             </Link>
-            <Link href="/register" className="btn-outline">
+            <Link href="/register" className="btn-outline-dark">
               Sign Up to Order
             </Link>
           </div>

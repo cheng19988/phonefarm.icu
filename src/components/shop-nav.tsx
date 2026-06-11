@@ -6,12 +6,12 @@ export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "da
   const linkClass =
     variant === "dark"
       ? "header-nav-link header-nav-link-shop inline-flex items-center gap-1.5"
-      : "text-sm font-semibold text-[var(--brand)] hover:text-[var(--brand-hover)] transition-colors inline-flex items-center gap-1.5 px-3 py-2";
+      : "header-nav-link header-nav-link-shop inline-flex items-center gap-1.5";
 
   return (
     <div className="relative group">
       <Link href="/products" className={linkClass}>
-        <IconRack size={15} className={variant === "dark" ? "text-[var(--header-gold)]" : undefined} />
+        <IconRack size={15} className="text-[var(--accent)]" />
         Shop
         <IconChevronDown size={14} className="opacity-60 transition-transform group-hover:rotate-180 duration-300" />
       </Link>
@@ -25,7 +25,7 @@ export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "da
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-slate-300 hover:text-white hover:pl-0.5 transition-all block py-0.5"
+                      className="text-sm text-[var(--text-muted)] hover:text-[var(--brand)] transition-colors block py-0.5"
                     >
                       {item.label}
                     </Link>
@@ -34,14 +34,14 @@ export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "da
               </ul>
             </div>
           ))}
-          <div className="col-span-2 lg:col-span-4 pt-4 border-t border-white/10 flex flex-wrap gap-2.5">
+          <div className="col-span-2 lg:col-span-4 pt-4 border-t border-[var(--border)] flex flex-wrap gap-2.5">
             <Link href="/products" className="header-cta-btn text-sm py-2 px-4">
               All Products
             </Link>
-            <Link href="/packages" className="header-signin-btn text-sm py-2 px-4">
+            <Link href="/packages" className="btn-secondary text-sm py-2 px-4">
               Packages
             </Link>
-            <Link href="/pricing" className="header-signin-btn text-sm py-2 px-4">
+            <Link href="/pricing" className="btn-secondary text-sm py-2 px-4">
               Pricing
             </Link>
           </div>

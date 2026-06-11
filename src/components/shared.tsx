@@ -39,15 +39,15 @@ export function ContactBar({ compact = false, variant = "default" }: { compact?:
 export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { title?: string }) {
   return (
     <section className="cta-band">
-      <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">{title}</h2>
-      <p className="text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+      <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text)] mb-4 tracking-tight">{title}</h2>
+      <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto leading-relaxed">
         Shop the catalog, register to order. USDT payment after order confirmation.
         Bulk quotes via {SITE.location} sales.
       </p>
-      <ContactBar variant="dark" />
-      <div className="mt-8 flex flex-wrap justify-center gap-4">
+      <ContactBar />
+      <div className="mt-6 flex flex-wrap justify-center gap-3">
         <Link href="/products" className="btn-accent">Shop Catalog</Link>
-        <Link href="/contact" className="btn-outline">Contact Sales</Link>
+        <Link href="/contact" className="btn-outline-dark">Contact Sales</Link>
       </div>
     </section>
   );
@@ -56,25 +56,25 @@ export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { titl
 export function MobileContactBar() {
   const item = "flex flex-col items-center gap-1 py-2.5 text-[10px] font-medium transition-colors";
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden border-t border-[rgba(212,175,90,0.2)] backdrop-blur-xl safe-area-pb site-header-mobile-bar">
-      <div className="grid grid-cols-5 divide-x divide-white/[0.06]">
-        <Link href="/products" className={`${item} text-[var(--accent)]`}>
+    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden border-t border-[var(--border)] backdrop-blur-xl safe-area-pb site-header-mobile-bar">
+      <div className="grid grid-cols-5 divide-x divide-[var(--border)]">
+        <Link href="/products" className={`${item} text-[var(--brand)]`}>
           <IconShop size={18} />
           Shop
         </Link>
-        <Link href="/register" className={`${item} text-slate-400 hover:text-white`}>
+        <Link href="/register" className={`${item} text-[var(--text-muted)] hover:text-[var(--brand)]`}>
           <IconUser size={18} />
           Sign Up
         </Link>
-        <Link href="/login" className={`${item} text-slate-400 hover:text-white`}>
+        <Link href="/login" className={`${item} text-[var(--text-muted)] hover:text-[var(--brand)]`}>
           <IconUser size={18} />
           Sign In
         </Link>
-        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${item} text-slate-400 hover:text-white`}>
+        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${item} text-[var(--text-muted)] hover:text-[var(--brand)]`}>
           <IconWhatsApp size={18} />
           WhatsApp
         </a>
-        <Link href="/contact" className={`${item} text-slate-400 hover:text-white`}>
+        <Link href="/contact" className={`${item} text-[var(--text-muted)] hover:text-[var(--brand)]`}>
           <IconMail size={18} />
           Sales
         </Link>

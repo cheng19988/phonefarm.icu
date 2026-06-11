@@ -12,7 +12,7 @@ const STATS = [
 
 export function HeroBanner() {
   return (
-    <section className="relative min-h-[92vh] flex items-end hero-cinematic overflow-hidden">
+    <section className="relative min-h-[78vh] flex items-end hero-cinematic hero-fade-bottom overflow-hidden">
       <Image
         src={IMAGES.factory}
         alt="Phone farm hardware assembly — Guangzhou factory"

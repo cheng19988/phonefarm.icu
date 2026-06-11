@@ -67,7 +67,7 @@ export default function PackagesPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/register" className="btn-primary">Sign Up to Order</Link>
-              <Link href="/contact" className="btn-outline">Contact Sales</Link>
+              <Link href="/contact" className="btn-outline-dark">Contact Sales</Link>
             </div>
           </section>
 

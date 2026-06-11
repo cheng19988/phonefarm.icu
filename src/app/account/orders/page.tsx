@@ -54,7 +54,7 @@ export default async function AccountOrdersPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <Link href="/products" className="btn-accent">Browse Products</Link>
-                <Link href="/contact" className="btn-outline">Contact Sales</Link>
+                <Link href="/contact" className="btn-outline-dark">Contact Sales</Link>
               </div>
             </div>
           ) : (

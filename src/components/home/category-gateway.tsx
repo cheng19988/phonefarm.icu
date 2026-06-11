@@ -26,7 +26,7 @@ const CATEGORIES = [
 
 export function CategoryGateway() {
   return (
-    <section className="section section-light">
+    <section className="section">
       <div className="container-hero">
         <SectionHeader
           eyebrow="Product Lines"

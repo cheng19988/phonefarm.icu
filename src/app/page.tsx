@@ -26,20 +26,19 @@ export default async function HomePage() {
       <FeaturedProducts products={featured} />
       <FactoryTrustSection />
 
-      {/* Deployment packages */}
-      <section className="section section-light">
+      <section className="section">
         <div className="container-hero">
           <SectionHeader
             eyebrow="Deployment Bundles"
             title="Pre-Configured Rack Packages"
-            subtitle="Starter, density, and enterprise bundles — hardware matrix confirmed with sales before shipment."
+            subtitle="Starter, density, and enterprise bundles - hardware matrix confirmed with sales before shipment."
           />
           <div className="grid md:grid-cols-2 gap-8 mt-4">
             {HARDWARE_PACKAGES.slice(0, 2).map((pkg) => (
               <Link
                 key={pkg.slug}
                 href={`/packages/${pkg.slug}`}
-                className="group card card-hover overflow-hidden rounded-lg grid md:grid-cols-2 min-h-[280px]"
+                className="group card card-hover overflow-hidden grid md:grid-cols-2 min-h-[280px]"
               >
                 <div className="relative min-h-[200px] md:min-h-full">
                   <Image src={pkg.image} alt={pkg.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="50vw" />
@@ -48,31 +47,32 @@ export default async function HomePage() {
                   <h3 className="text-xl font-semibold text-[var(--text)] mb-2">{pkg.name}</h3>
                   <p className="text-sm text-[var(--text-muted)] mb-4 line-clamp-2">{pkg.tagline}</p>
                   <p className="text-lg font-semibold text-[var(--accent)]">From ${pkg.fromPriceUsd}</p>
-                  <span className="text-sm text-[var(--brand)] font-medium mt-4">View package →</span>
+                  <span className="text-sm text-[var(--brand)] font-medium mt-4">View package</span>
                 </div>
               </Link>
             ))}
           </div>
-          <div className="text-center mt-12">
+          <div className="text-center mt-10">
             <Link href="/packages" className="btn-outline-dark">Compare All Packages</Link>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="section-compact section-dark">
-        <div className="container-hero text-center max-w-3xl mx-auto">
-          <p className="eyebrow">Get Started</p>
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-5 tracking-tight">
-            Ready to Deploy Phone Farm Hardware?
-          </h2>
-          <p className="text-slate-400 text-lg mb-10 leading-relaxed">
-            Browse the catalog, register to order, or contact our Guangzhou sales team for bulk quotes and custom rack layouts.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/products" className="btn-accent text-base px-8">Shop Catalog</Link>
-            <Link href="/register" className="btn-primary bg-white text-[var(--brand)] hover:bg-slate-100 text-base px-8">Create Account</Link>
-            <Link href="/contact" className="btn-outline text-base px-8">Contact Sales</Link>
+      <section className="section-compact">
+        <div className="container-hero max-w-3xl mx-auto">
+          <div className="cta-band">
+            <p className="eyebrow">Get Started</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text)] mb-4 tracking-tight">
+              Ready to Deploy Phone Farm Hardware?
+            </h2>
+            <p className="text-[var(--text-muted)] text-base mb-8 leading-relaxed">
+              Browse the catalog, register to order, or contact our Guangzhou sales team for bulk quotes and custom rack layouts.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link href="/products" className="btn-accent">Shop Catalog</Link>
+              <Link href="/register" className="btn-primary">Create Account</Link>
+              <Link href="/contact" className="btn-outline-dark">Contact Sales</Link>
+            </div>
           </div>
         </div>
       </section>

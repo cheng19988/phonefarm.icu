@@ -31,7 +31,7 @@ export default function ServicesPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Link href="/products" className="btn-accent px-7 py-3">Browse Hardware</Link>
-          <Link href="/contact" className="btn-outline px-7 py-3">Request Service Quote</Link>
+          <Link href="/contact" className="btn-outline-dark px-7 py-3">Request Service Quote</Link>
         </div>
       </ContentHero>
 

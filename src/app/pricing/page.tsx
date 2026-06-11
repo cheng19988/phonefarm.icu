@@ -29,7 +29,7 @@ export default function PricingPage() {
         ]}
       >
         <Link href="/products" className="btn-accent">Browse Catalog</Link>
-        <Link href="/contact" className="btn-outline">Bulk Quote</Link>
+        <Link href="/contact" className="btn-outline-dark">Bulk Quote</Link>
       </PageIntro>
 
       <div className="section section-light pt-0">
@@ -54,7 +54,7 @@ export default function PricingPage() {
                   </ul>
                   <Link
                     href={tier.href}
-                    className={tier.id === "enterprise" ? "btn-outline text-center py-2.5" : "btn-accent text-center py-2.5"}
+                    className={tier.id === "enterprise" ? "btn-outline-dark text-center py-2.5" : "btn-accent text-center py-2.5"}
                   >
                     {tier.cta}
                   </Link>

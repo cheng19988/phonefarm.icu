@@ -21,7 +21,7 @@ export default function DocsPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Link href="/docs/buying-guide" className="btn-primary px-7 py-3">How to Buy</Link>
-          <Link href="/docs/usdt-payment-guide" className="btn-outline px-7 py-3">USDT Payment</Link>
+          <Link href="/docs/usdt-payment-guide" className="btn-outline-dark px-7 py-3">USDT Payment</Link>
         </div>
       </ContentHero>
 

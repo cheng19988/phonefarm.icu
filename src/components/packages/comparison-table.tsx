@@ -54,7 +54,7 @@ export function PackageComparisonTable() {
                   <Link href={`/packages/${pkg.slug}`} className="btn-secondary text-xs py-2 px-3">
                     View
                   </Link>
-                  <Link href={`/contact?product=${pkg.slug}`} className="btn-outline text-xs py-2 px-3">
+                  <Link href={`/contact?product=${pkg.slug}`} className="btn-outline-dark text-xs py-2 px-3">
                     Quote
                   </Link>
                 </div>

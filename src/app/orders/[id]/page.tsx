@@ -107,7 +107,7 @@ export default function OrderPage() {
             <p className="text-[var(--text-muted)] mb-6">Please sign in to view this order and payment instructions.</p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/login" className="btn-primary">Sign In</Link>
-              <Link href="/register" className="btn-outline">Create Account</Link>
+              <Link href="/register" className="btn-outline-dark">Create Account</Link>
             </div>
           </div>
         </div>

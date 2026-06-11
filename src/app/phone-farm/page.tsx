@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "What Is a Phone Farm? ? Complete Hardware Guide",
+  title: "What Is a Phone Farm? - Complete Hardware Guide",
   description:
     "Complete guide to phone farm racks and Box Phone Farm hardware: architecture, 20-slot chassis specs, reference models (S8, S10, A908N), power, cooling, USB/LAN, and how to order from PhoneFarm ICU Guangzhou.",
   path: "/phone-farm",
@@ -27,21 +27,20 @@ export default function PhoneFarmGuidePage() {
       <PageIntro
         eyebrow="Hardware Guide"
         title="What Is a Phone Farm?"
-        subtitle={`Complete reference for Box Phone Farm racks, motherboard boxes, chassis specs, and deployment ? from ${SITE.name}, Guangzhou hardware manufacturer since ${SITE.since}.`}
+        subtitle={`Complete reference for Box Phone Farm racks, motherboard boxes, chassis specs, and deployment from ${SITE.name}, Guangzhou hardware manufacturer since ${SITE.since}.`}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Phone Farm Guide" },
         ]}
       >
         <Link href="/products" className="btn-accent">Shop Products</Link>
-        <Link href="/products/phone-farm-box" className="btn-outline">Phone Farm Box</Link>
+        <Link href="/products/phone-farm-box" className="btn-outline-dark">Phone Farm Box</Link>
       </PageIntro>
 
       <div className="section section-light pt-0">
         <div className="container-hero max-w-4xl space-y-16">
           {intro && (
             <section>
-              <h2 className="text-3xl font-bold text-[var(--text)] mb-5">{intro.title}</h2>
               {intro.paragraphs.map((p) => (
                 <p key={p} className="text-[var(--text-muted)] leading-relaxed text-lg mb-4">
                   {p}

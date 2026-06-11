@@ -30,7 +30,7 @@ export default function SupportPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Link href="/products" className="btn-accent px-7 py-3">Shop Hardware</Link>
-          <Link href="/contact" className="btn-outline px-7 py-3">Contact Sales</Link>
+          <Link href="/contact" className="btn-outline-dark px-7 py-3">Contact Sales</Link>
         </div>
       </ContentHero>
 

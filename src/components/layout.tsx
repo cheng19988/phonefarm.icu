@@ -14,11 +14,11 @@ export async function Header() {
       <div className="container-hero">
         <div className="flex items-center justify-between gap-4 h-16 lg:h-[4.5rem]">
           <Link href="/" className="shrink-0 min-w-0">
-            <BrandLogo variant="light" compact />
+            <BrandLogo variant="dark" compact />
           </Link>
 
           <nav className="hidden xl:flex items-center gap-0.5">
-            <ShopNavDropdown variant="dark" />
+            <ShopNavDropdown variant="light" />
             {HEADER_NAV.map((item) => (
               <Link key={item.href} href={item.href} className="header-nav-link">
                 {item.label}
@@ -48,8 +48,8 @@ export async function Header() {
           </div>
         </div>
 
-        <nav className="xl:hidden flex items-center gap-1 overflow-x-auto pb-3 scrollbar-none border-t border-white/[0.06] pt-2.5">
-          <ShopNavMobile variant="dark" />
+        <nav className="xl:hidden flex items-center gap-1 overflow-x-auto pb-3 scrollbar-none border-t border-[var(--border)] pt-2.5">
+          <ShopNavMobile variant="light" />
           {HEADER_NAV.map((item) => (
             <Link key={item.href} href={item.href} className="header-nav-link-mobile whitespace-nowrap">
               {item.label}

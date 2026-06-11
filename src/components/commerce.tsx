@@ -90,10 +90,10 @@ export function ProductCommerceActions({
           <input type="hidden" name="action" value="quote" />
           <button type="submit" className="btn-secondary">Add to Order</button>
         </form>
-        <Link href={`/contact?product=${slug}`} className="btn-outline">
+        <Link href={`/contact?product=${slug}`} className="btn-outline-dark">
           Request Quote
         </Link>
-        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
+        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-dark">
           WhatsApp Sales
         </a>
       </div>
