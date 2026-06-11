@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Contact Sales ? Orders, Quotes & Support",
+  title: "Contact Sales - Orders, Quotes & Support",
   description: "Contact PhoneFarm ICU sales for bulk quotes, compatibility checks, shipping estimates, and order support from Guangzhou.",
   path: "/contact",
 });
@@ -34,7 +34,7 @@ export default function ContactPage() {
       <ContentHero
         eyebrow="Sales & Support"
         title="Contact Guangzhou Sales"
-        subtitle={`Order support, bulk quotes, and configuration advice from ${SITE.location}. You can also shop and register to order online ? inquiry is for custom projects and bulk pricing.`}
+        subtitle={`Order support, bulk quotes, and configuration advice from ${SITE.location}. You can also shop and register to order online - inquiry is for custom projects and bulk pricing.`}
       >
         <div className="flex flex-wrap gap-3">
           <Link href="/products" className="btn-accent px-7 py-3">Browse Products</Link>
@@ -57,7 +57,7 @@ export default function ContactPage() {
                 </ul>
               </section>
 
-              <section className="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)]/50">
+              <section id="email" className="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)]/50 scroll-mt-24">
                 <h2 className="font-bold text-[var(--text)] mb-3">Direct Contact</h2>
                 <p className="text-sm text-[var(--text-muted)] mb-3">
                   Contact panel (bottom-right) or reach us directly:
@@ -65,7 +65,7 @@ export default function ContactPage() {
                 <ul className="text-sm text-[var(--text-muted)] space-y-2">
                   <li>Telegram: {CONTACT.telegram}</li>
                   <li>WhatsApp: {CONTACT.whatsapp}</li>
-                  <li>Email: {CONTACT.email}</li>
+                  <li>Email: {CONTACT.email} (click the mail icon bottom-right to copy)</li>
                 </ul>
               </section>
 
@@ -75,7 +75,7 @@ export default function ContactPage() {
                 <ul className="text-sm text-[var(--text-muted)] space-y-2">
                   {BEFORE_CONTACT.map((item) => (
                     <li key={item} className="flex gap-2">
-                      <span className="text-[var(--brand)]">?</span>
+                      <span className="text-[var(--brand)] shrink-0">-</span>
                       {item}
                     </li>
                   ))}

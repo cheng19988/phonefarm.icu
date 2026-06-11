@@ -83,7 +83,7 @@ export default function PhoneFarmGuidePage() {
                     className="p-5 rounded-2xl border border-[var(--border)] bg-white hover:border-[var(--brand)]/30 transition-colors"
                   >
                     <Link href={item.href} className="text-lg font-semibold text-[var(--text)] hover:text-[var(--brand)]">
-                      {item.name} ?
+                      {item.name}
                     </Link>
                     <p className="text-sm text-[var(--text-muted)] mt-2">{item.summary}</p>
                   </div>

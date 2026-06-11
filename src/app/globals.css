@@ -39,6 +39,11 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 5.5rem;
+  }
+}
 
 .container-wide {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -249,6 +254,28 @@ body {
 }
 .floating-contact-email {
   background: linear-gradient(145deg, var(--brand-light), var(--brand));
+  border: none;
+  cursor: pointer;
+}
+.floating-contact-copied {
+  background: linear-gradient(145deg, #1b7a3d, #15803d) !important;
+}
+.floating-contact-toast {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  background: var(--brand);
+  box-shadow: 0 4px 12px rgba(12, 18, 34, 0.15);
+  white-space: nowrap;
+}
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Light header */

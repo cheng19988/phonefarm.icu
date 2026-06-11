@@ -29,7 +29,7 @@ export default function BlogPage() {
                   {post.title}
                 </h2>
                 <p className="text-sm text-[var(--text-muted)] mt-2 flex-1 line-clamp-3">{post.excerpt}</p>
-                <span className="text-sm font-medium text-[var(--brand)] mt-4">Read guide ?</span>
+                <span className="text-sm font-medium text-[var(--brand)] mt-4">Read guide</span>
               </Link>
             ))}
           </div>

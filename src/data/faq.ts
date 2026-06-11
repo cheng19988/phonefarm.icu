@@ -110,4 +110,16 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer:
       "Telegram (@huicheng1998), WhatsApp (+85262155642), or email (qiuxui646@gmail.com). We reply within one business day for most inquiries.",
   },
+  {
+    category: "Warranty",
+    question: "What warranty do you provide?",
+    answer:
+      "Hardware chassis, fans, and PSU modules typically carry 12-month support from shipment date. Exact terms are confirmed in your quotation and warranty guide.",
+  },
+  {
+    category: "Warranty",
+    question: "How do I get replacement parts?",
+    answer:
+      "Contact sales with your order reference and photos of the issue. Fan modules, USB cables, and PSU replacements are available for most rack SKUs.",
+  },
 ];

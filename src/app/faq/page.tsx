@@ -6,7 +6,7 @@ import { FAQ_ITEMS, FAQ_CATEGORIES } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm FAQ ? Hardware, Shipping, Payment & Support",
+  title: "Phone Farm FAQ - Hardware, Shipping, Payment & Support",
   description:
     "Answers about phone farm boxes, motherboard boxes, ordering, USDT payment, shipping, warranty, and bulk quotes.",
   path: "/faq",
@@ -19,7 +19,7 @@ export default function FAQPage() {
       <ContentHero
         eyebrow="Help Center"
         title="Frequently Asked Questions"
-        subtitle="Hardware specs, ordering, payment, shipping, and after-sales ? answers from our Guangzhou sales and engineering team."
+        subtitle="Hardware specs, ordering, payment, shipping, and after-sales - answers from our Guangzhou sales and engineering team."
       />
       <div className="section section-light pt-0">
         <div className="container-hero max-w-3xl">

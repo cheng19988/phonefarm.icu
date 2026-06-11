@@ -4,11 +4,17 @@ import { HeroBanner } from "@/components/home/hero-banner";
 import { CategoryGateway } from "@/components/home/category-gateway";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { FactoryTrustSection } from "@/components/home/factory-trust-section";
+import { HomeCatalogGrid } from "@/components/home/home-catalog-grid";
+import { HomeResourcesPreview } from "@/components/home/home-resources-preview";
+import { TrustStrip } from "@/components/trust-strip";
 import { SectionHeader } from "@/components/ui/section-header";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 import { listCatalogProducts } from "@/lib/catalog";
 import { HARDWARE_PACKAGES } from "@/data/packages";
+import { getProductSeed } from "@/data/products";
+import { getProductLine } from "@/data/product-lines";
+import { specHighlights } from "@/lib/product-specs";
 
 export const metadata = buildMetadata({
   title: SITE.headline,
@@ -17,14 +23,34 @@ export const metadata = buildMetadata({
 });
 
 export default async function HomePage() {
-  const featured = await listCatalogProducts({ orderBy: "priceUsd", take: 3 });
+  const allProducts = await listCatalogProducts({ orderBy: "name" });
+  const featured = allProducts.slice().sort((a, b) => a.priceUsd - b.priceUsd).slice(0, 3);
+
+  const catalogCards = allProducts.map((p) => {
+    const seed = getProductSeed(p.slug);
+    const line = seed ? getProductLine(seed.productLine) : null;
+    return {
+      slug: p.slug,
+      name: p.name,
+      shortDesc: p.shortDesc,
+      priceUsd: p.priceUsd,
+      stock: p.stock,
+      imageCard: p.imageCard,
+      category: p.category,
+      productLine: line?.name,
+      specHighlights: seed ? specHighlights(seed).slice(0, 1) : undefined,
+    };
+  });
 
   return (
     <>
       <HeroBanner />
+      <TrustStrip variant="light" />
       <CategoryGateway />
       <FeaturedProducts products={featured} />
+      <HomeCatalogGrid products={catalogCards} />
       <FactoryTrustSection />
+      <HomeResourcesPreview />
 
       <section className="section">
         <div className="container-hero">
@@ -71,7 +97,7 @@ export default async function HomePage() {
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/products" className="btn-accent">Shop Catalog</Link>
               <Link href="/register" className="btn-primary">Create Account</Link>
-              <Link href="/contact" className="btn-outline-dark">Contact Sales</Link>
+              <Link href="/pricing" className="btn-outline-dark">See Pricing</Link>
             </div>
           </div>
         </div>

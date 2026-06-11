@@ -14,11 +14,11 @@ export const PRICING_TIERS: PricingTier[] = [
   {
     id: "starter",
     name: "Starter",
-    priceLabel: "From $428",
-    description: "Single rack or accessory kit for sample evaluation.",
-    features: ["1× phone farm rack or chassis", "USB hub or power accessory", "Sample order available", "USDT checkout after login"],
-    cta: "Shop Starter Kit",
-    href: "/products/phone-farm-box",
+    priceLabel: "From $280",
+    description: "Chassis shell or accessory kit for sample evaluation.",
+    features: ["Empty box chassis or USB/power accessory", "Sample order from 1 unit", "USDT checkout after login", "Bulk quote via contact"],
+    cta: "Shop Starter SKUs",
+    href: "/products/empty-box-chassis",
   },
   {
     id: "professional",
@@ -26,8 +26,8 @@ export const PRICING_TIERS: PricingTier[] = [
     priceLabel: "From $699",
     description: "Full rack deployment with power, cooling, and setup guidance.",
     features: ["20-node phone farm rack", "Power + fan cooling modules", "Buy online or request bulk quote", "5–10 day lead time (in stock)"],
-    cta: "View Professional Package",
-    href: "/packages/motherboard-density-pack",
+    cta: "View Phone Farm Box",
+    href: "/products/phone-farm-box",
   },
   {
     id: "enterprise",

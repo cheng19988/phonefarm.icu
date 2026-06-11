@@ -30,7 +30,7 @@ export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="text-sm text-slate-300 hover:text-white block py-0.5"
+                      className="text-sm text-[var(--text-muted)] hover:text-[var(--brand)] block py-0.5"
                     >
                       {item.label}
                     </Link>
@@ -39,7 +39,7 @@ export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark
               </ul>
             </div>
           ))}
-          <div className="flex flex-wrap gap-2 pt-3 border-t border-white/10">
+          <div className="flex flex-wrap gap-2 pt-3 border-t border-[var(--border)]">
             <Link href="/products" onClick={() => setOpen(false)} className="header-cta-btn text-xs py-2 px-3">
               All Products
             </Link>

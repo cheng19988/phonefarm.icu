@@ -38,6 +38,8 @@ export const HEADER_NAV = [
   { href: "/pricing", label: "Pricing" },
   { href: "/support", label: "Support" },
   { href: "/knowledge-base", label: "Knowledge Base" },
+  { href: "/docs", label: "Docs" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
@@ -145,6 +147,12 @@ export const SHOP_FILTERS = [
     label: "Custom Cabinet",
     href: "/products?group=cabinet",
     categories: ["Custom Cabinet"],
+  },
+  {
+    key: "remote",
+    label: "Remote Control",
+    href: "/products?group=remote",
+    categories: ["Remote Control"],
   },
   {
     key: "packages",

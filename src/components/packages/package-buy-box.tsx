@@ -9,7 +9,7 @@ export function PackageBuyBox({ pkg }: { pkg: HardwarePackage }) {
 
   return (
     <div className="lg:sticky lg:top-28">
-      <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-3 leading-tight">{pkg.name}</h1>
+      <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-3 leading-tight">{pkg.name}</h2>
       <p className="text-base text-[var(--text-muted)] mb-6">{pkg.tagline}</p>
 
       <div className="p-5 rounded-2xl border border-[var(--border)] bg-white shadow-sm mb-6">

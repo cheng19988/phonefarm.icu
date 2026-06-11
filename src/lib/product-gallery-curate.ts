@@ -141,7 +141,19 @@ export function curateProductGallery(slug: string): CuratedGallery | null {
   const chassisHero = entries.find(
     (e) => isChassisPhoto(e.label) && !isStructureDiagram(e.label) && !isWrongCategoryPhoto(e.label, slug),
   );
-  const hero = chassisOnly && chassisHero ? chassisHero : pickHero;
+  const androidProductHero = entries.find(
+    (e) => slug === "android-phone-farm" && /android phone farm/i.test(e.label) && !isModelSpecEntry(e.label),
+  );
+  const phoneFarmRackHero = entries.find(
+    (e) =>
+      slug === "phone-farm-box" &&
+      /angled|front panel|compact rack|chassis front/i.test(e.label) &&
+      !isModelSpecEntry(e.label),
+  );
+  let hero =
+    androidProductHero ??
+    phoneFarmRackHero ??
+    (chassisOnly && chassisHero ? chassisHero : pickHero);
   if (hero) main.push(hero);
 
   for (const e of entries) {
@@ -165,7 +177,8 @@ export function curateProductGallery(slug: string): CuratedGallery | null {
 
     if (isModelSpecEntry(e.label)) {
       reference.push(e);
-      if (main.length < limit) main.push(e);
+      const boardInMainGallery = slug === "phone-farm-box" || slug === "android-phone-farm" || slug === "iphone-phone-farm";
+      if (main.length < limit && !boardInMainGallery) main.push(e);
       continue;
     }
 

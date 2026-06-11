@@ -5,7 +5,7 @@ import { IMAGES } from "@/lib/images";
 
 const STATS = [
   { value: "2017", label: "Factory since" },
-  { value: "13+", label: "Hardware SKUs" },
+  { value: "12", label: "Hardware SKUs" },
   { value: "20+", label: "Devices per rack" },
   { value: "Global", label: "Export shipping" },
 ];
@@ -36,8 +36,11 @@ export function HeroBanner() {
               <Link href="/products" className="btn-accent text-base px-8 py-3.5">
                 Explore Catalog
               </Link>
-              <Link href="/contact" className="btn-outline text-base px-8 py-3.5">
-                Talk to Sales
+              <Link href="/pricing" className="btn-outline text-base px-8 py-3.5">
+                See Pricing
+              </Link>
+              <Link href="/register" className="btn-outline text-base px-8 py-3.5">
+                Register
               </Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/15">
