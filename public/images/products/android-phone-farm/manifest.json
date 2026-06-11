@@ -1,62 +1,142 @@
 [
   {
     "file": "hero.png",
-    "label": "S9 S9 Latest Generation 2026 USB LAN OTG Black Circuit Board",
+    "label": "Samsung S9 — USB · LAN · OTG — Black circuit board",
     "url": "/images/products/android-phone-farm/hero.png",
-    "role": "hero"
+    "role": "hero",
+    "specs": {
+      "model": "Samsung S9",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
   },
   {
     "file": "card.png",
-    "label": "S9 S9 Latest Generation 2026 USB LAN OTG Black Circuit Board",
+    "label": "Samsung S9 — USB · LAN · OTG — Black circuit board",
     "url": "/images/products/android-phone-farm/card.png",
     "role": "card"
   },
   {
     "file": "gallery-01-android-phone-farm-product-photo.png",
-    "label": "Android phone farm — product photo",
+    "label": "Android Phone Farm — product photo",
     "url": "/images/products/android-phone-farm/gallery-01-android-phone-farm-product-photo.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-02-note-20-8-256gb-usb-lan-otg-black-circuit-board.png",
-    "label": "Note 20 8 256GB USB LAN OTG black circuit board",
-    "url": "/images/products/android-phone-farm/gallery-02-note-20-8-256gb-usb-lan-otg-black-circuit-board.png",
-    "role": "gallery"
+    "file": "gallery-02-google-pixel-4-xl-super-change-usb-lan-otg.png",
+    "label": "Google Pixel 4 XL — Super Change — USB · LAN · OTG",
+    "url": "/images/products/android-phone-farm/gallery-02-google-pixel-4-xl-super-change-usb-lan-otg.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Google Pixel 4 XL",
+      "variant": "Super Change",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   },
   {
-    "file": "gallery-03-oneplus-8-pro-8-128gb-usb-port-lan-otg.png",
-    "label": "OnePlus 8 Pro 8 128GB USB Port LAN OTG",
-    "url": "/images/products/android-phone-farm/gallery-03-oneplus-8-pro-8-128gb-usb-port-lan-otg.png",
-    "role": "gallery"
+    "file": "gallery-03-oneplus-8-pro-8gb-128gb-usb-lan-otg.png",
+    "label": "OnePlus 8 Pro — 8GB+128GB — USB · LAN · OTG",
+    "url": "/images/products/android-phone-farm/gallery-03-oneplus-8-pro-8gb-128gb-usb-lan-otg.png",
+    "role": "gallery",
+    "specs": {
+      "model": "OnePlus 8 Pro",
+      "ramGb": 8,
+      "storageGb": 128,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   },
   {
-    "file": "gallery-04-pixel-4xl-super-change-cong-usb-lan-otg.png",
-    "label": "Pixel 4XL Super Change Cong USB LAN OTG",
-    "url": "/images/products/android-phone-farm/gallery-04-pixel-4xl-super-change-cong-usb-lan-otg.png",
-    "role": "gallery"
+    "file": "gallery-04-samsung-note-20-8gb-256gb-usb-lan-otg-black-circ.png",
+    "label": "Samsung Note 20 — 8GB+256GB — USB · LAN · OTG — Black circuit board",
+    "url": "/images/products/android-phone-farm/gallery-04-samsung-note-20-8gb-256gb-usb-lan-otg-black-circ.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung Note 20",
+      "ramGb": 8,
+      "storageGb": 256,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
   },
   {
-    "file": "gallery-05-s20-8-128gb-usb-lan-otg-black-circuit.png",
-    "label": "S20 8 128GB USB LAN OTG black circuit",
-    "url": "/images/products/android-phone-farm/gallery-05-s20-8-128gb-usb-lan-otg-black-circuit.png",
-    "role": "gallery"
+    "file": "gallery-05-samsung-s20-8gb-128gb-usb-lan-otg.png",
+    "label": "Samsung S20 — 8GB+128GB — USB · LAN · OTG",
+    "url": "/images/products/android-phone-farm/gallery-05-samsung-s20-8gb-128gb-usb-lan-otg.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung S20",
+      "ramGb": 8,
+      "storageGb": 128,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   },
   {
-    "file": "gallery-06-s21-fe-6-128gb-usb-lan-otg-black-circuit-board.png",
-    "label": "S21 FE 6 128GB USB LAN OTG black circuit board",
-    "url": "/images/products/android-phone-farm/gallery-06-s21-fe-6-128gb-usb-lan-otg-black-circuit-board.png",
-    "role": "gallery"
+    "file": "gallery-06-samsung-s21-fe-6gb-128gb-usb-lan-otg-black-circu.png",
+    "label": "Samsung S21 FE — 6GB+128GB — USB · LAN · OTG — Black circuit board",
+    "url": "/images/products/android-phone-farm/gallery-06-samsung-s21-fe-6gb-128gb-usb-lan-otg-black-circu.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung S21 FE",
+      "ramGb": 6,
+      "storageGb": 128,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
   },
   {
-    "file": "gallery-07-z-flip3-8-128gb-usb-lan-otg-black-circuit.png",
-    "label": "Z Flip3 8 128GB USB LAN OTG black circuit",
-    "url": "/images/products/android-phone-farm/gallery-07-z-flip3-8-128gb-usb-lan-otg-black-circuit.png",
-    "role": "gallery"
+    "file": "gallery-07-samsung-z-flip3-8gb-128gb-usb-lan-otg.png",
+    "label": "Samsung Z Flip3 — 8GB+128GB — USB · LAN · OTG",
+    "url": "/images/products/android-phone-farm/gallery-07-samsung-z-flip3-8gb-128gb-usb-lan-otg.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung Z Flip3",
+      "ramGb": 8,
+      "storageGb": 128,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   },
   {
-    "file": "gallery-08-z-flip4-8-128gb-usb-lan-otg-black-circuit.png",
-    "label": "Z Flip4 8 128GB USB LAN OTG black circuit",
-    "url": "/images/products/android-phone-farm/gallery-08-z-flip4-8-128gb-usb-lan-otg-black-circuit.png",
-    "role": "gallery"
+    "file": "gallery-08-samsung-z-flip4-8gb-128gb-usb-lan-otg.png",
+    "label": "Samsung Z Flip4 — 8GB+128GB — USB · LAN · OTG",
+    "url": "/images/products/android-phone-farm/gallery-08-samsung-z-flip4-8gb-128gb-usb-lan-otg.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung Z Flip4",
+      "ramGb": 8,
+      "storageGb": 128,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   }
 ]

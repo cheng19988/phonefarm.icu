@@ -21,7 +21,13 @@
     "file": "gallery-02-empty-chassis-front-20-slots-lan1-lan2-usb.png",
     "label": "Empty chassis front — 20 slots, LAN1/LAN2, USB",
     "url": "/images/products/iphone-phone-farm/gallery-02-empty-chassis-front-20-slots-lan1-lan2-usb.png",
-    "role": "gallery"
+    "role": "gallery",
+    "specs": {
+      "ports": [
+        "LAN",
+        "USB"
+      ]
+    }
   },
   {
     "file": "gallery-03-empty-chassis-rear-4-fan-psu-bay.png",

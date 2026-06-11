@@ -1,68 +1,126 @@
 [
   {
     "file": "hero.png",
-    "label": "S8 S8 Latest Generation 2026 USB LAN Port",
+    "label": "Samsung S8 — USB · LAN",
     "url": "/images/products/phone-farm-box/hero.png",
-    "role": "hero"
+    "role": "hero",
+    "specs": {
+      "model": "Samsung S8",
+      "ports": [
+        "USB",
+        "LAN"
+      ]
+    }
   },
   {
     "file": "card.png",
-    "label": "S8 S8 Latest Generation 2026 USB LAN Port",
+    "label": "Samsung S8 — USB · LAN",
     "url": "/images/products/phone-farm-box/card.png",
     "role": "card"
   },
   {
-    "file": "gallery-01-2025-10-25-11-21-img-0547.png",
-    "label": "2025 10 25 11 21 IMG 0547",
-    "url": "/images/products/phone-farm-box/gallery-01-2025-10-25-11-21-img-0547.png",
-    "role": "gallery"
-  },
-  {
-    "file": "gallery-02-2025-10-25-11-24-img-0549.png",
-    "label": "2025 10 25 11 24 IMG 0549",
-    "url": "/images/products/phone-farm-box/gallery-02-2025-10-25-11-24-img-0549.png",
-    "role": "gallery"
-  },
-  {
-    "file": "gallery-03-change-generasi-terbaru-2026-port-usb-lan.png",
-    "label": "Change Generasi Terbaru 2026 Port USB LAN",
-    "url": "/images/products/phone-farm-box/gallery-03-change-generasi-terbaru-2026-port-usb-lan.png",
-    "role": "gallery"
-  },
-  {
-    "file": "gallery-04-chassis-front-status-led-row.png",
+    "file": "gallery-01-chassis-front-status-led-row.png",
     "label": "Chassis front — status LED row",
-    "url": "/images/products/phone-farm-box/gallery-04-chassis-front-status-led-row.png",
+    "url": "/images/products/phone-farm-box/gallery-01-chassis-front-status-led-row.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-05-compact-rack-product-photo.png",
+    "file": "gallery-02-chassis-structure-diagram-20-slots-usb-lan.png",
+    "label": "Chassis structure diagram — 20 slots, USB + LAN",
+    "url": "/images/products/phone-farm-box/gallery-02-chassis-structure-diagram-20-slots-usb-lan.png",
+    "role": "gallery",
+    "specs": {
+      "ports": [
+        "USB",
+        "LAN"
+      ],
+      "boardType": "structure diagram"
+    }
+  },
+  {
+    "file": "gallery-03-compact-rack-product-photo.png",
     "label": "Compact rack — product photo",
-    "url": "/images/products/phone-farm-box/gallery-05-compact-rack-product-photo.png",
+    "url": "/images/products/phone-farm-box/gallery-03-compact-rack-product-photo.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-06-note-9-6-128gb-usb-lan-otg-black-circuit-board.png",
-    "label": "Note 9 6 128GB USB LAN OTG black circuit board",
-    "url": "/images/products/phone-farm-box/gallery-06-note-9-6-128gb-usb-lan-otg-black-circuit-board.png",
+    "file": "gallery-04-phone-farm-box-angled-rack-product-view.png",
+    "label": "Phone Farm Box — angled rack product view",
+    "url": "/images/products/phone-farm-box/gallery-04-phone-farm-box-angled-rack-product-view.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-07-s10-change-usb-lan-otg-port-with-black-circuit-b.png",
-    "label": "S10 Change USB LAN OTG Port with Black Circuit Board",
-    "url": "/images/products/phone-farm-box/gallery-07-s10-change-usb-lan-otg-port-with-black-circuit-b.png",
-    "role": "gallery"
+    "file": "gallery-05-phone-farm-box-front-panel-lan-usb-i-o.png",
+    "label": "Phone Farm Box — front panel LAN/USB I/O",
+    "url": "/images/products/phone-farm-box/gallery-05-phone-farm-box-front-panel-lan-usb-i-o.png",
+    "role": "gallery",
+    "specs": {
+      "ports": [
+        "LAN",
+        "USB"
+      ]
+    }
   },
   {
-    "file": "gallery-08-s10-usb-lan-otg-port-with-black-circuit-board.png",
-    "label": "S10 USB LAN OTG Port with Black Circuit Board",
-    "url": "/images/products/phone-farm-box/gallery-08-s10-usb-lan-otg-port-with-black-circuit-board.png",
-    "role": "gallery"
+    "file": "gallery-06-samsung-note-9-6gb-128gb-usb-lan-otg-black-circu.png",
+    "label": "Samsung Note 9 — 6GB+128GB — USB · LAN · OTG — Black circuit board",
+    "url": "/images/products/phone-farm-box/gallery-06-samsung-note-9-6gb-128gb-usb-lan-otg-black-circu.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung Note 9",
+      "ramGb": 6,
+      "storageGb": 128,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
   },
   {
-    "file": "gallery-09-s8-change-latest-generation-2026-usb-lan-port.png",
-    "label": "S8 Change Latest Generation 2026 USB LAN Port",
-    "url": "/images/products/phone-farm-box/gallery-09-s8-change-latest-generation-2026-usb-lan-port.png",
-    "role": "gallery"
+    "file": "gallery-07-samsung-s10-change-usb-lan-otg-black-circuit-boa.png",
+    "label": "Samsung S10 — Change — USB · LAN · OTG — Black circuit board",
+    "url": "/images/products/phone-farm-box/gallery-07-samsung-s10-change-usb-lan-otg-black-circuit-boa.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung S10",
+      "variant": "Change",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
+  },
+  {
+    "file": "gallery-08-samsung-s10-usb-lan-otg-black-circuit-board.png",
+    "label": "Samsung S10 — USB · LAN · OTG — Black circuit board",
+    "url": "/images/products/phone-farm-box/gallery-08-samsung-s10-usb-lan-otg-black-circuit-board.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung S10",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
+  },
+  {
+    "file": "gallery-09-samsung-s8-change-usb-lan.png",
+    "label": "Samsung S8 — Change — USB · LAN",
+    "url": "/images/products/phone-farm-box/gallery-09-samsung-s8-change-usb-lan.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung S8",
+      "variant": "Change",
+      "ports": [
+        "USB",
+        "LAN"
+      ]
+    }
   }
 ]

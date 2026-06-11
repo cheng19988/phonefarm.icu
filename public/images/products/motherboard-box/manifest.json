@@ -1,50 +1,109 @@
 [
   {
     "file": "hero.png",
-    "label": "A908N 6 128GB USB LAN OTG black circuit board",
+    "label": "A908N — 6GB+128GB — USB · LAN · OTG — Black circuit board",
     "url": "/images/products/motherboard-box/hero.png",
-    "role": "hero"
+    "role": "hero",
+    "specs": {
+      "model": "A908N",
+      "ramGb": 6,
+      "storageGb": 128,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
   },
   {
     "file": "card.png",
-    "label": "A908N 6 128GB USB LAN OTG black circuit board",
+    "label": "A908N — 6GB+128GB — USB · LAN · OTG — Black circuit board",
     "url": "/images/products/motherboard-box/card.png",
     "role": "card"
   },
   {
     "file": "gallery-01-motherboard-box-product-photo.png",
-    "label": "Motherboard box — product photo",
+    "label": "Motherboard Box — product photo",
     "url": "/images/products/motherboard-box/gallery-01-motherboard-box-product-photo.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-02-note-10-lite-change-usb-lan-otg-port-with-black-.png",
-    "label": "Note 10 Lite Change USB LAN OTG Port with Black Circuit Board",
-    "url": "/images/products/motherboard-box/gallery-02-note-10-lite-change-usb-lan-otg-port-with-black-.png",
-    "role": "gallery"
+    "file": "gallery-02-nubia-z17-super-change-usb-lan-otg.png",
+    "label": "Nubia Z17 — Super Change — USB · LAN · OTG",
+    "url": "/images/products/motherboard-box/gallery-02-nubia-z17-super-change-usb-lan-otg.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Nubia Z17",
+      "variant": "Super Change",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   },
   {
-    "file": "gallery-03-note-8-6-64gb-usb-lan-otg-black-circuit-board.png",
-    "label": "Note 8 6 64GB USB LAN OTG black circuit board",
-    "url": "/images/products/motherboard-box/gallery-03-note-8-6-64gb-usb-lan-otg-black-circuit-board.png",
-    "role": "gallery"
+    "file": "gallery-03-oneplus-5-super-change-usb-lan-otg.png",
+    "label": "OnePlus 5 — Super Change — USB · LAN · OTG",
+    "url": "/images/products/motherboard-box/gallery-03-oneplus-5-super-change-usb-lan-otg.png",
+    "role": "gallery",
+    "specs": {
+      "model": "OnePlus 5",
+      "variant": "Super Change",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   },
   {
-    "file": "gallery-04-note-8-super-change-usb-port-lan-otg-boxphone-no.png",
-    "label": "Note 8 Super Change USB Port LAN OTG boxphone-note-8-super-change",
-    "url": "/images/products/motherboard-box/gallery-04-note-8-super-change-usb-port-lan-otg-boxphone-no.png",
-    "role": "gallery"
+    "file": "gallery-04-samsung-note-10-lite-change-usb-lan-otg-black-ci.png",
+    "label": "Samsung Note 10 Lite — Change — USB · LAN · OTG — Black circuit board",
+    "url": "/images/products/motherboard-box/gallery-04-samsung-note-10-lite-change-usb-lan-otg-black-ci.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung Note 10 Lite",
+      "variant": "Change",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
   },
   {
-    "file": "gallery-05-nubia-z17-super-change-usb-port-lan-otg.png",
-    "label": "Nubia Z17 Super Change USB Port LAN OTG",
-    "url": "/images/products/motherboard-box/gallery-05-nubia-z17-super-change-usb-port-lan-otg.png",
-    "role": "gallery"
+    "file": "gallery-05-samsung-note-8-6gb-64gb-usb-lan-otg-black-circui.png",
+    "label": "Samsung Note 8 — 6GB+64GB — USB · LAN · OTG — Black circuit board",
+    "url": "/images/products/motherboard-box/gallery-05-samsung-note-8-6gb-64gb-usb-lan-otg-black-circui.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung Note 8",
+      "ramGb": 6,
+      "storageGb": 64,
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ],
+      "boardType": "Black circuit board"
+    }
   },
   {
-    "file": "gallery-06-oneplus-5-super-change-usb-port-lan-otg.png",
-    "label": "OnePlus 5 Super Change USB Port LAN OTG",
-    "url": "/images/products/motherboard-box/gallery-06-oneplus-5-super-change-usb-port-lan-otg.png",
-    "role": "gallery"
+    "file": "gallery-06-samsung-note-8-super-change-usb-lan-otg.png",
+    "label": "Samsung Note 8 — Super Change — USB · LAN · OTG",
+    "url": "/images/products/motherboard-box/gallery-06-samsung-note-8-super-change-usb-lan-otg.png",
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung Note 8",
+      "variant": "Super Change",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   }
 ]

@@ -147,6 +147,7 @@ export default async function ProductDetailPage({ params }: Props) {
               scenarios={scenarios}
               faq={faq}
               referenceLabels={gallery.referenceLabels}
+              referenceModels={gallery.referenceModels}
               seed={seed}
             />
 

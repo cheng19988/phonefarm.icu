@@ -1,5 +1,6 @@
 import path from "node:path";
 import { getProductImageManifest, type ProductImageEntry } from "@/lib/product-image-manifest";
+import { formatModelLabel } from "@/lib/product-model-parse";
 
 const ACCESSORY_SLUGS = new Set([
   "usb-hub",
@@ -14,14 +15,14 @@ const CHASSIS_ONLY_SLUGS = new Set(["iphone-phone-farm"]);
 const CABINET_SLUGS = new Set(["empty-box-chassis", "custom-cabinet"]);
 
 const MAX_MAIN_IMAGES: Record<string, number> = {
-  "phone-farm-box": 6,
-  "motherboard-box": 5,
-  "android-phone-farm": 5,
-  "iphone-phone-farm": 4,
-  "real-device-phone-farm": 5,
-  "empty-box-chassis": 6,
-  "custom-cabinet": 6,
-  default: 3,
+  "phone-farm-box": 20,
+  "motherboard-box": 20,
+  "android-phone-farm": 20,
+  "iphone-phone-farm": 12,
+  "real-device-phone-farm": 12,
+  "empty-box-chassis": 12,
+  "custom-cabinet": 12,
+  default: 8,
 };
 
 const ACCESSORY_CAPTIONS: Record<string, string> = {
@@ -40,23 +41,12 @@ const ACCESSORY_CAPTIONS: Record<string, string> = {
   "techaccessories-showcase": "Remote setup — workstation accessories",
 };
 
-/** Human-readable model label from asset filename metadata */
-export function formatModelLabel(label: string): string {
-  let s = label.trim();
-  if (/^phonefarm\.icu-/i.test(s)) {
-    const tag = s.replace(/^phonefarm\.icu-/i, "").toLowerCase();
-    for (const [key, caption] of Object.entries(ACCESSORY_CAPTIONS)) {
-      if (tag.includes(key)) return caption;
-    }
+function accessoryCaption(label: string): string {
+  const tag = label.toLowerCase();
+  for (const [key, caption] of Object.entries(ACCESSORY_CAPTIONS)) {
+    if (tag.includes(key)) return caption;
   }
-  s = s
-    .replace(/\bS8 S8\b/gi, "Samsung S8")
-    .replace(/\bS9 S9\b/gi, "Samsung S9")
-    .replace(/\b(\d+)\s+(\d+)GB\b/gi, "$1GB+$2GB")
-    .replace(/\bUSB LAN OTG\b/gi, "USB · LAN · OTG")
-    .replace(/\bUSB Port LAN OTG\b/gi, "USB · LAN · OTG")
-    .replace(/\s+/g, " ");
-  return s;
+  return formatModelLabel(label);
 }
 
 function isModelSpecEntry(label: string): boolean {
@@ -100,10 +90,16 @@ function maxMain(slug: string) {
   return MAX_MAIN_IMAGES[slug] ?? MAX_MAIN_IMAGES.default;
 }
 
+export type ReferenceModelCard = {
+  label: string;
+  url: string;
+  specs?: ProductImageEntry["specs"];
+};
+
 export type CuratedGallery = {
   mainImages: string[];
   captions: Record<string, string>;
-  referenceModels: { label: string; url: string }[];
+  referenceModels: ReferenceModelCard[];
   referenceLabels: string[];
 };
 
@@ -113,7 +109,7 @@ export function curateProductGallery(slug: string): CuratedGallery | null {
 
   const captions: Record<string, string> = {};
   for (const e of manifest) {
-    if (e.role !== "card") captions[e.url] = formatModelLabel(e.label);
+    if (e.role !== "card") captions[e.url] = ACCESSORY_SLUGS.has(slug) ? accessoryCaption(e.label) : formatModelLabel(e.label);
   }
 
   const entries = manifest.filter((e) => e.role !== "card");
@@ -169,7 +165,7 @@ export function curateProductGallery(slug: string): CuratedGallery | null {
 
     if (isModelSpecEntry(e.label)) {
       reference.push(e);
-      if (main.length < limit && slug !== "custom-cabinet") main.push(e);
+      if (main.length < limit) main.push(e);
       continue;
     }
 
@@ -180,7 +176,7 @@ export function curateProductGallery(slug: string): CuratedGallery | null {
       continue;
     }
 
-    if (main.length < limit && slug !== "custom-cabinet") {
+    if (main.length < limit) {
       main.push(e);
     }
   }
@@ -188,15 +184,28 @@ export function curateProductGallery(slug: string): CuratedGallery | null {
   const mainUrls = new Set(main.map((e) => e.url));
   const seenLabels = new Set<string>();
   const referenceModels = reference
-    .map((e) => ({ label: formatModelLabel(e.label), url: e.url }))
+    .map((e) => ({
+      label: formatModelLabel(e.label),
+      url: e.url,
+      specs: e.specs,
+    }))
     .filter((r) => {
       if (mainUrls.has(r.url)) return false;
       const key = r.label.toLowerCase();
       if (seenLabels.has(key)) return false;
       seenLabels.add(key);
       return r.label.length > 4;
-    })
-    .slice(0, 12);
+    });
+
+  // Also surface model-spec gallery shots that landed in main set
+  for (const e of entries) {
+    if (!isModelSpecEntry(e.label) || isWrongCategoryPhoto(e.label, slug)) continue;
+    const label = formatModelLabel(e.label);
+    const key = label.toLowerCase();
+    if (seenLabels.has(key)) continue;
+    seenLabels.add(key);
+    referenceModels.push({ label, url: e.url, specs: e.specs });
+  }
 
   return {
     mainImages: [...new Set(main.map((e) => e.url))].slice(0, limit),

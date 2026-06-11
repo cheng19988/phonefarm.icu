@@ -3,7 +3,13 @@
     "file": "hero.png",
     "label": "Empty chassis front — 20 slots, LAN1/LAN2, USB",
     "url": "/images/products/empty-box-chassis/hero.png",
-    "role": "hero"
+    "role": "hero",
+    "specs": {
+      "ports": [
+        "LAN",
+        "USB"
+      ]
+    }
   },
   {
     "file": "card.png",
@@ -18,22 +24,29 @@
     "role": "gallery"
   },
   {
-    "file": "gallery-02-change-generasi-terbaru-2026-port-usb-lan.png",
-    "label": "Change Generasi Terbaru 2026 Port USB LAN",
-    "url": "/images/products/empty-box-chassis/gallery-02-change-generasi-terbaru-2026-port-usb-lan.png",
-    "role": "gallery"
-  },
-  {
-    "file": "gallery-03-chassis-front-status-led-row.png",
+    "file": "gallery-02-chassis-front-status-led-row.png",
     "label": "Chassis front — status LED row",
-    "url": "/images/products/empty-box-chassis/gallery-03-chassis-front-status-led-row.png",
+    "url": "/images/products/empty-box-chassis/gallery-02-chassis-front-status-led-row.png",
     "role": "gallery"
   },
   {
-    "file": "gallery-04-chassis-rear-psu-and-cooling-fans.png",
+    "file": "gallery-03-chassis-rear-psu-and-cooling-fans.png",
     "label": "Chassis rear — PSU and cooling fans",
-    "url": "/images/products/empty-box-chassis/gallery-04-chassis-rear-psu-and-cooling-fans.png",
+    "url": "/images/products/empty-box-chassis/gallery-03-chassis-rear-psu-and-cooling-fans.png",
     "role": "gallery"
+  },
+  {
+    "file": "gallery-04-chassis-structure-diagram-20-slots-usb-lan.png",
+    "label": "Chassis structure diagram — 20 slots, USB + LAN",
+    "url": "/images/products/empty-box-chassis/gallery-04-chassis-structure-diagram-20-slots-usb-lan.png",
+    "role": "gallery",
+    "specs": {
+      "ports": [
+        "USB",
+        "LAN"
+      ],
+      "boardType": "structure diagram"
+    }
   },
   {
     "file": "gallery-05-custom-cabinet-product-photo.jpeg",

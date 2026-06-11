@@ -1,11 +1,21 @@
 import fs from "node:fs";
 import path from "node:path";
 
+export type ProductImageSpecs = {
+  model?: string;
+  variant?: string;
+  ramGb?: number;
+  storageGb?: number;
+  ports?: string[];
+  boardType?: string;
+};
+
 export type ProductImageEntry = {
   file: string;
   label: string;
   url: string;
   role?: string;
+  specs?: ProductImageSpecs;
 };
 
 export function getProductImageManifest(slug: string): ProductImageEntry[] {

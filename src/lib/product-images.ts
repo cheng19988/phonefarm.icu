@@ -1,4 +1,4 @@
-import { curateProductGallery } from "@/lib/product-gallery-curate";
+import { curateProductGallery, type ReferenceModelCard } from "@/lib/product-gallery-curate";
 import { getProductAssets } from "@/lib/product-assets";
 import { getProductSeed } from "@/data/products";
 import { mergeReferenceLabels } from "@/lib/product-reference-labels";
@@ -12,7 +12,7 @@ type ProductImages = {
 export type ProductGalleryData = {
   images: string[];
   captions: Record<string, string>;
-  referenceModels: { label: string; url: string }[];
+  referenceModels: ReferenceModelCard[];
   referenceLabels: string[];
 };
 

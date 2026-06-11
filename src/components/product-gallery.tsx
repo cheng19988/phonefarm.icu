@@ -17,8 +17,7 @@ export function ProductGallery({ images, alt, captions = {} }: Props) {
 
   if (!current) return null;
 
-  const visibleThumbs = thumbs.slice(0, 8);
-  const extraCount = thumbs.length - visibleThumbs.length;
+  const visibleThumbs = thumbs;
 
   return (
     <div className="space-y-4 lg:sticky lg:top-28">
@@ -43,14 +42,14 @@ export function ProductGallery({ images, alt, captions = {} }: Props) {
       )}
 
       {visibleThumbs.length > 1 && (
-        <div className="grid grid-cols-4 sm:grid-cols-4 gap-2">
+        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
           {visibleThumbs.map((src, i) => (
             <button
               key={src}
               type="button"
               onClick={() => setActive(i)}
               title={captions[src]}
-              className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+              className={`relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
                 i === active
                   ? "border-[var(--brand)] ring-2 ring-[var(--brand)]/15"
                   : "border-[var(--border)] hover:border-[var(--brand)]/40"
@@ -62,9 +61,6 @@ export function ProductGallery({ images, alt, captions = {} }: Props) {
         </div>
       )}
 
-      {extraCount > 0 && (
-        <p className="text-xs text-[var(--text-subtle)] px-1">+{extraCount} additional photos available on request</p>
-      )}
     </div>
   );
 }

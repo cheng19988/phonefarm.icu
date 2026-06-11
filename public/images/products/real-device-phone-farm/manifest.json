@@ -1,19 +1,28 @@
 [
   {
     "file": "hero.png",
-    "label": "S8 Super Change USB Port LAN OTG boxphone-s8-super-change",
+    "label": "Samsung S8 — Super Change — USB · LAN · OTG",
     "url": "/images/products/real-device-phone-farm/hero.png",
-    "role": "hero"
+    "role": "hero",
+    "specs": {
+      "model": "Samsung S8",
+      "variant": "Super Change",
+      "ports": [
+        "USB",
+        "LAN",
+        "OTG"
+      ]
+    }
   },
   {
     "file": "card.png",
-    "label": "S8 Super Change USB Port LAN OTG boxphone-s8-super-change",
+    "label": "Samsung S8 — Super Change — USB · LAN · OTG",
     "url": "/images/products/real-device-phone-farm/card.png",
     "role": "card"
   },
   {
     "file": "gallery-01-real-device-s8-rack-product-photo.png",
-    "label": "Real device S8 rack — product photo",
+    "label": "Real Device S8 rack — product photo",
     "url": "/images/products/real-device-phone-farm/gallery-01-real-device-s8-rack-product-photo.png",
     "role": "gallery"
   },
@@ -21,18 +30,42 @@
     "file": "gallery-02-samsung-s8-real-device-unit-for-box-phone-farm.jpg",
     "label": "Samsung S8 — real device unit for Box Phone Farm",
     "url": "/images/products/real-device-phone-farm/gallery-02-samsung-s8-real-device-unit-for-box-phone-farm.jpg",
-    "role": "gallery"
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung S8",
+      "variant": "Real device unit",
+      "ports": [
+        "USB",
+        "LAN"
+      ]
+    }
   },
   {
     "file": "gallery-03-samsung-s8-real-device-unit-for-box-phone-farm.jpg",
     "label": "Samsung S8 — real device unit for Box Phone Farm",
     "url": "/images/products/real-device-phone-farm/gallery-03-samsung-s8-real-device-unit-for-box-phone-farm.jpg",
-    "role": "gallery"
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung S8",
+      "variant": "Real device unit",
+      "ports": [
+        "USB",
+        "LAN"
+      ]
+    }
   },
   {
     "file": "gallery-04-samsung-s8-real-device-unit-for-box-phone-farm.jpg",
     "label": "Samsung S8 — real device unit for Box Phone Farm",
     "url": "/images/products/real-device-phone-farm/gallery-04-samsung-s8-real-device-unit-for-box-phone-farm.jpg",
-    "role": "gallery"
+    "role": "gallery",
+    "specs": {
+      "model": "Samsung S8",
+      "variant": "Real device unit",
+      "ports": [
+        "USB",
+        "LAN"
+      ]
+    }
   }
 ]

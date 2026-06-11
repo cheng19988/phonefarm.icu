@@ -8,6 +8,8 @@ import {
   referenceContextForSlug,
   type ReferenceContext,
 } from "@/lib/product-reference-labels";
+import { ReferenceModelGallery } from "@/components/products/reference-model-gallery";
+import type { ReferenceModelCard } from "@/lib/product-gallery-curate";
 
 type Props = {
   slug: string;
@@ -17,6 +19,7 @@ type Props = {
   scenarios: string[];
   faq: { q: string; a: string }[];
   referenceLabels: string[];
+  referenceModels?: ReferenceModelCard[];
   seed: ProductSeed | undefined;
   referenceContext?: ReferenceContext;
 };
@@ -29,6 +32,7 @@ export function ProductDetailSections({
   scenarios,
   faq,
   referenceLabels,
+  referenceModels = [],
   seed,
   referenceContext,
 }: Props) {
@@ -56,21 +60,25 @@ export function ProductDetailSections({
         <SpecTable specs={specs} title="Specifications" />
       </section>
 
-      {referenceLabels.length > 0 && (
-        <section>
-          <h2 className="text-xl font-bold text-[var(--text)] mb-3">{refCopy.title}</h2>
-          <p className="text-sm text-[var(--text-muted)] mb-4">{refCopy.intro}</p>
-          <div className="flex flex-wrap gap-2">
-            {referenceLabels.map((label) => (
-              <span
-                key={label}
-                className="text-sm px-3 py-1.5 rounded-full border border-[var(--border)] bg-white text-[var(--text-muted)]"
-              >
-                {label}
-              </span>
-            ))}
-          </div>
-        </section>
+      {referenceModels.length > 0 ? (
+        <ReferenceModelGallery title={refCopy.title} intro={refCopy.intro} models={referenceModels} />
+      ) : (
+        referenceLabels.length > 0 && (
+          <section>
+            <h2 className="text-xl font-bold text-[var(--text)] mb-3">{refCopy.title}</h2>
+            <p className="text-sm text-[var(--text-muted)] mb-4">{refCopy.intro}</p>
+            <div className="flex flex-wrap gap-2">
+              {referenceLabels.map((label) => (
+                <span
+                  key={label}
+                  className="text-sm px-3 py-1.5 rounded-full border border-[var(--border)] bg-white text-[var(--text-muted)]"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+          </section>
+        )
       )}
 
       {scenarios.length > 0 && (

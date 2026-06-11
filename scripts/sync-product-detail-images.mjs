@@ -5,6 +5,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { parseProductImageFilename } from "./product-model-parse.mjs";
 
 const DETAIL_SRC = "D:\\产品商品详情图";
 const WHITEBG_SRC = "E:\\主板机照片素材\\主板机白底";
@@ -93,28 +94,19 @@ const ACCESSORY_WEBPS = {
 };
 
 function parseModelLabel(filename) {
-  if (/product_Box_Phone_Farm_/i.test(filename)) {
-    const part = filename.replace(/^product_Box_Phone_Farm_/i, "").split(/_box-|-en_main|-id_/i)[0];
-    return part.replace(/_/g, " ").replace(/\s+/g, " ").trim();
-  }
-  if (/Perangkat_S8/i.test(filename)) return "Samsung S8 — real device unit for Box Phone Farm";
-  if (/Structure_of_B/i.test(filename)) return "Chassis structure — 20 slots, LAN, USB, OTG";
-  if (/IMG_0570/i.test(filename)) return "Empty chassis front — 20 slots, LAN1/LAN2, USB";
-  if (/IMG_0571/i.test(filename)) return "Empty chassis rear — 4× fan + PSU bay";
-  if (/IMG_0579/i.test(filename)) return "Empty chassis — stacked product photo";
-  if (/IMG_0561/i.test(filename)) return "Chassis rear — PSU and cooling fans";
-  if (/IMG_0548/i.test(filename)) return "Chassis front — status LED row";
-  if (/IMG_0551/i.test(filename)) return "Motherboard box — product photo";
-  if (/IMG_0553/i.test(filename)) return "Android phone farm — product photo";
-  if (/IMG_0566/i.test(filename)) return "Compact rack — product photo";
-  if (/IMG_0556/i.test(filename)) return "Real device S8 rack — product photo";
-  if (/IMG_0573/i.test(filename)) return "Custom cabinet — product photo";
-  if (/IMG_0575/i.test(filename)) return "Cabinet / chassis — product photo";
-  if (/phonefarm\.icu-/i.test(filename)) {
-    const tag = filename.replace(/^phonefarm\.icu-/, "").split(/-hero_|-card_|-detail_/)[0];
-    return tag.replace(/-/g, " ");
-  }
-  return filename.replace(/\.[^.]+$/, "").replace(/_/g, " ").slice(0, 100);
+  return parseProductImageFilename(filename).label;
+}
+
+function parseModelMeta(filename) {
+  const meta = parseProductImageFilename(filename);
+  const specs = {};
+  if (meta.model) specs.model = meta.model;
+  if (meta.variant) specs.variant = meta.variant;
+  if (meta.ramGb) specs.ramGb = meta.ramGb;
+  if (meta.storageGb) specs.storageGb = meta.storageGb;
+  if (meta.ports?.length) specs.ports = meta.ports;
+  if (meta.boardType) specs.boardType = meta.boardType;
+  return Object.keys(specs).length ? specs : undefined;
 }
 
 function extOf(file) {
@@ -148,13 +140,13 @@ function resetSlugDir(slug) {
   return dir;
 }
 
-/** @type {Record<string, { src: string; label: string; key: string }[]>} */
+/** @type {Record<string, { src: string; label: string; key: string; specs?: object }[]>} */
 const bucket = Object.fromEntries(ALL_SLUGS.map((s) => [s, []]));
 
-function pushAsset(slug, src, label, key) {
+function pushAsset(slug, src, label, key, specs) {
   if (!bucket[slug]) bucket[slug] = [];
   if (bucket[slug].some((a) => a.key === key)) return;
-  bucket[slug].push({ src, label, key });
+  bucket[slug].push({ src, label, key, specs });
 }
 
 // Detail library
@@ -167,8 +159,9 @@ if (fs.existsSync(DETAIL_SRC)) {
     seen.add(normalized);
     const slugs = classifyDetail(file);
     const label = parseModelLabel(file);
+    const specs = parseModelMeta(file);
     const src = path.join(DETAIL_SRC, file);
-    for (const slug of slugs) pushAsset(slug, src, label, `detail:${normalized}`);
+    for (const slug of slugs) pushAsset(slug, src, label, `detail:${normalized}`, specs);
   }
 }
 
@@ -187,7 +180,8 @@ if (fs.existsSync(WHITEBG_SRC)) {
     if (!matched) continue;
     const src = path.join(WHITEBG_SRC, file);
     const label = parseModelLabel(file);
-    for (const slug of matched) pushAsset(slug, src, label, `whitebg:${file}`);
+    const specs = parseModelMeta(file);
+    for (const slug of matched) pushAsset(slug, src, label, `whitebg:${file}`, specs);
   }
 }
 
@@ -197,7 +191,8 @@ for (const [slug, bases] of Object.entries(ACCESSORY_WEBPS)) {
     const src =
       findWebp(base, "detail_1200x900") ?? findWebp(base, "hero_1600x900") ?? findWebp(base, "card_800x800");
     if (!src) continue;
-    pushAsset(slug, src, parseModelLabel(path.basename(src)), `webp:${base}:detail`);
+    const fname = path.basename(src);
+    pushAsset(slug, src, parseModelLabel(fname), `webp:${base}:detail`, parseModelMeta(fname));
   }
 }
 
@@ -245,6 +240,7 @@ for (const slug of ALL_SLUGS) {
     label: heroAsset.label,
     url: `/images/products/${slug}/${heroName}`,
     role: "hero",
+    ...(heroAsset.specs ? { specs: heroAsset.specs } : {}),
   });
   console.log(`  ${heroName} <- ${path.basename(heroAsset.src)}`);
   total += 1;
@@ -266,6 +262,7 @@ for (const slug of ALL_SLUGS) {
       label: asset.label,
       url: `/images/products/${slug}/${gName}`,
       role: "gallery",
+      ...(asset.specs ? { specs: asset.specs } : {}),
     });
     console.log(`  ${gName} <- ${path.basename(asset.src)}`);
     total += 1;

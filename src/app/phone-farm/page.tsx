@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { SpecTable } from "@/components/products/spec-table";
+import { ReferenceModelGallery } from "@/components/products/reference-model-gallery";
 import { ContactCTA } from "@/components/shared";
+import { getGuideReferenceModels } from "@/lib/product-model-catalog";
 import { PHONE_FARM_SECTIONS } from "@/data/phone-farm-guide";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
@@ -21,6 +23,7 @@ export default function PhoneFarmGuidePage() {
   const useCases = PHONE_FARM_SECTIONS.find((s) => s.id === "use-cases");
   const ordering = PHONE_FARM_SECTIONS.find((s) => s.id === "ordering");
   const intro = PHONE_FARM_SECTIONS.find((s) => s.id === "what-is");
+  const guideModels = getGuideReferenceModels();
 
   return (
     <>
@@ -99,6 +102,14 @@ export default function PhoneFarmGuidePage() {
               ))}
               <SpecTable specs={models.table} title="Reference Platforms" />
             </section>
+          )}
+
+          {guideModels.length > 0 && (
+            <ReferenceModelGallery
+              title="Model Gallery from Factory Photos"
+              intro="Reference device boards and rack configurations from our product photo library. RAM, storage, and port layout are confirmed in your quotation."
+              models={guideModels}
+            />
           )}
 
           {specs && "table" in specs && <SpecTable specs={specs.table} />}

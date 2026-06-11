@@ -65,9 +65,21 @@ function syncCompanyPhotos() {
 
 console.log("Asset root:", ASSET_LIBRARY);
 console.log("Site images:", SITE_SRC);
+const PRODUCTS_DIR = path.join(PUBLIC_IMAGES, "products");
+let productsBackup: string | null = null;
+if (fs.existsSync(PRODUCTS_DIR)) {
+  productsBackup = path.join(process.cwd(), ".sync-products-backup");
+  if (fs.existsSync(productsBackup)) fs.rmSync(productsBackup, { recursive: true });
+  fs.cpSync(PRODUCTS_DIR, productsBackup, { recursive: true });
+}
 if (fs.existsSync(PUBLIC_IMAGES)) {
   fs.rmSync(PUBLIC_IMAGES, { recursive: true });
 }
 copyDir(SITE_SRC, PUBLIC_IMAGES);
+if (productsBackup && fs.existsSync(productsBackup)) {
+  fs.cpSync(productsBackup, PRODUCTS_DIR, { recursive: true });
+  fs.rmSync(productsBackup, { recursive: true });
+  console.log("Preserved public/images/products/");
+}
 syncCompanyPhotos();
 console.log("Done.");
