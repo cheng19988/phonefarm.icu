@@ -37,8 +37,10 @@ const ACCESSORY_CAPTIONS: Record<string, string> = {
   "electronics-workbenchdetail": "Cooling fan module — rack airflow",
   "networkdevice-accessories": "Network switch / router accessories",
   "networkdevice-cablesaccessoriesshowcase": "Network cables and rack accessories",
-  "computeraccessories-showcase": "Router and switch module showcase",
+  "computeraccessories-showcase": "Control workstation — router and switch reference",
   "techaccessories-showcase": "Remote setup — workstation accessories",
+  "chassis-rear-psu-and-cooling-fans": "Rack rear — PSU bay and cooling fan row",
+  "empty-chassis-rear-4-fan-psu-bay": "Rear fan module — 4-fan PSU bay layout",
 };
 
 function accessoryCaption(label: string): string {

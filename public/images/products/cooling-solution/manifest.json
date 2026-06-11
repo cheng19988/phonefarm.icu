@@ -1,14 +1,32 @@
 [
   {
-    "file": "hero.webp",
-    "label": "components electronics workbenchdetail 6f814",
-    "url": "/images/products/cooling-solution/hero.webp",
+    "file": "hero.png",
+    "label": "Chassis rear — PSU and cooling fans",
+    "url": "/images/products/cooling-solution/hero.png",
     "role": "hero"
   },
   {
-    "file": "card.webp",
-    "label": "components electronics workbenchdetail 6f814",
-    "url": "/images/products/cooling-solution/card.webp",
+    "file": "card.png",
+    "label": "Chassis rear — PSU and cooling fans",
+    "url": "/images/products/cooling-solution/card.png",
     "role": "card"
+  },
+  {
+    "file": "gallery-01-components-electronics-workbenchdetail-6f814.webp",
+    "label": "components electronics workbenchdetail 6f814",
+    "url": "/images/products/cooling-solution/gallery-01-components-electronics-workbenchdetail-6f814.webp",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-02-components-electronicsassembly-detail-f936c.webp",
+    "label": "components electronicsassembly detail f936c",
+    "url": "/images/products/cooling-solution/gallery-02-components-electronicsassembly-detail-f936c.webp",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-03-empty-chassis-rear-4-fan-psu-bay.png",
+    "label": "Empty chassis rear — 4× fan + PSU bay",
+    "url": "/images/products/cooling-solution/gallery-03-empty-chassis-rear-4-fan-psu-bay.png",
+    "role": "gallery"
   }
 ]

@@ -56,9 +56,9 @@ function classifyDetail(name) {
 /** @type {Record<string, string[]>} */
 const WHITEBG_SLUGS = {
   "2025_10_25_11_39_IMG_0570": ["empty-box-chassis", "iphone-phone-farm"],
-  "2025_10_25_11_40_IMG_0571": ["empty-box-chassis", "iphone-phone-farm"],
+  "2025_10_25_11_40_IMG_0571": ["empty-box-chassis", "iphone-phone-farm", "cooling-solution"],
   "2025_10_25_12_01_IMG_0579": ["empty-box-chassis", "custom-cabinet"],
-  "2025_10_25_11_33_IMG_0561": ["empty-box-chassis", "custom-cabinet"],
+  "2025_10_25_11_33_IMG_0561": ["empty-box-chassis", "custom-cabinet", "cooling-solution"],
   "2025_10_25_11_23_IMG_0548": ["empty-box-chassis", "phone-farm-box", "iphone-phone-farm"],
   "2025_10_25_11_21_IMG_0547": ["phone-farm-box"],
   "2025_10_25_11_24_IMG_0549": ["phone-farm-box"],
@@ -83,14 +83,22 @@ const ACCESSORY_WEBPS = {
     "phonefarm.icu-components-electronicsassemblylab-19f44",
     "phonefarm.icu-components-electronicsassembly-detail-f936c",
   ],
-  "cooling-solution": ["phonefarm.icu-components-electronics-workbenchdetail-6f814"],
+  "cooling-solution": [
+    "phonefarm.icu-components-electronics-workbenchdetail-6f814",
+    "phonefarm.icu-components-electronicsassembly-detail-f936c",
+  ],
   "network-equipment": [
     "phonefarm.icu-accessories-networkdevice-accessories-36665",
     "phonefarm.icu-accessories-networkdevice-cablesaccessoriesshowcase-e6cc8",
     "phonefarm.icu-accessories-computeraccessories-showcase-2b3e3",
   ],
   "custom-cabinet": ["phonefarm.icu-product-box-2025-10-25-11-33-img-0561-db197"],
-  "remote-control-setup": ["phonefarm.icu-accessories-techaccessories-showcase-80dfb"],
+  "remote-control-setup": [
+    "phonefarm.icu-accessories-techaccessories-showcase-80dfb",
+    "phonefarm.icu-accessories-computeraccessories-showcase-2b3e3",
+    "phonefarm.icu-components-electronicscomponents-device-showcase-93575",
+    "phonefarm.icu-accessories-electronics-accessories-1cc0b",
+  ],
 };
 
 function parseModelLabel(filename) {

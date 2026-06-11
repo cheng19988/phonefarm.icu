@@ -28,7 +28,17 @@ export default async function HomePage() {
   const allProducts = await listCatalogProducts({ orderBy: "name" });
   const featured = allProducts.slice().sort((a, b) => a.priceUsd - b.priceUsd).slice(0, 3);
 
-  const catalogCards = allProducts.map((p) => {
+  const RACK_SLUGS = new Set([
+    "phone-farm-box",
+    "motherboard-box",
+    "android-phone-farm",
+    "iphone-phone-farm",
+    "real-device-phone-farm",
+    "empty-box-chassis",
+    "custom-cabinet",
+  ]);
+
+  const catalogCards = allProducts.filter((p) => RACK_SLUGS.has(p.slug)).map((p) => {
     const seed = getProductSeed(p.slug);
     const line = seed ? getProductLine(seed.productLine) : null;
     return {

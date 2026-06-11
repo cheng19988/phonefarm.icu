@@ -4,6 +4,7 @@ import { getCatalogProduct, listCatalogProducts } from "@/lib/catalog";
 import { RelatedProducts } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { BuyBox } from "@/components/products/buy-box";
+import { ChassisPhotoNotice } from "@/components/products/chassis-photo-notice";
 import { ProductDetailSections } from "@/components/products/product-detail-sections";
 import { ContactCTA, JsonLd } from "@/components/shared";
 import { PageIntro } from "@/components/ui/page-intro";
@@ -108,6 +109,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
       <div className="section section-light pt-0">
         <div className="container-hero">
+          <ChassisPhotoNotice slug={slug} />
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 xl:gap-16 mb-16">
             <ProductGallery
               images={gallery.images}

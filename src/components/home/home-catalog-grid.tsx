@@ -7,9 +7,9 @@ export function HomeCatalogGrid({ products }: { products: ShopProductCardProps[]
     <section className="section">
       <div className="container-hero">
         <SectionHeader
-          eyebrow="Full Catalog"
-          title="All Hardware SKUs"
-          subtitle="Reference USD pricing and stock status - register to order or contact sales for bulk quotes."
+          eyebrow="Rack Lineup"
+          title="Racks & Cabinets — USD Pricing"
+          subtitle="Main deployment SKUs with stock status. Accessories and modules are in the category grid above."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4">
           {products.map((p) => (

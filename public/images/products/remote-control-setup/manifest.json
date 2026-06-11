@@ -1,14 +1,32 @@
 [
   {
     "file": "hero.webp",
-    "label": "accessories techaccessories showcase 80dfb",
+    "label": "accessories computeraccessories showcase 2b3e3",
     "url": "/images/products/remote-control-setup/hero.webp",
     "role": "hero"
   },
   {
     "file": "card.webp",
-    "label": "accessories techaccessories showcase 80dfb",
+    "label": "accessories computeraccessories showcase 2b3e3",
     "url": "/images/products/remote-control-setup/card.webp",
     "role": "card"
+  },
+  {
+    "file": "gallery-01-accessories-electronics-accessories-1cc0b.webp",
+    "label": "accessories electronics accessories 1cc0b",
+    "url": "/images/products/remote-control-setup/gallery-01-accessories-electronics-accessories-1cc0b.webp",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-02-accessories-techaccessories-showcase-80dfb.webp",
+    "label": "accessories techaccessories showcase 80dfb",
+    "url": "/images/products/remote-control-setup/gallery-02-accessories-techaccessories-showcase-80dfb.webp",
+    "role": "gallery"
+  },
+  {
+    "file": "gallery-03-components-electronicscomponents-device-showcase.webp",
+    "label": "components electronicscomponents device showcase 93575",
+    "url": "/images/products/remote-control-setup/gallery-03-components-electronicscomponents-device-showcase.webp",
+    "role": "gallery"
   }
 ]
