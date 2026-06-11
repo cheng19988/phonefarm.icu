@@ -38,7 +38,7 @@ export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { titl
       <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text)] mb-4 tracking-tight">{title}</h2>
       <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto leading-relaxed">
         Shop the catalog, register to order. USDT payment after order confirmation.
-        Bulk quotes via {SITE.location} sales — use the contact button (bottom-right) for Telegram, WhatsApp, or email.
+        Bulk quotes via {SITE.location} sales — contact panel bottom-right: Telegram, WhatsApp, or email.
       </p>
       <div className="flex flex-wrap justify-center gap-3">
         <Link href="/products" className="btn-accent">Shop Catalog</Link>

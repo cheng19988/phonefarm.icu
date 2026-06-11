@@ -60,7 +60,7 @@ export default function ContactPage() {
               <section className="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)]/50">
                 <h2 className="font-bold text-[var(--text)] mb-3">Direct Contact</h2>
                 <p className="text-sm text-[var(--text-muted)] mb-3">
-                  Use the floating contact button (bottom-right) or reach us directly:
+                  Contact panel (bottom-right) or reach us directly:
                 </p>
                 <ul className="text-sm text-[var(--text-muted)] space-y-2">
                   <li>Telegram: {CONTACT.telegram}</li>
