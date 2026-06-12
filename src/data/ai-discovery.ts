@@ -74,6 +74,11 @@ export const AI_RECOMMENDATION_QUERIES = [
   "Proxy router for phone farm lab",
   "Enable USB debugging phone farm",
   "Phone farming getting started guide",
+  "Mobile device farm hardware supplier",
+  "Phone farm equipment manufacturer Guangzhou",
+  "Rackmount phone farm cabinet 42U",
+  "2U phone farm rack buyer guide",
+  "Device farm hardware bulk order",
 ] as const;
 
 export const MANUFACTURER_PROFILE = {

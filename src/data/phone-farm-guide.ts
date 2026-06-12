@@ -3,7 +3,7 @@ export const PHONE_FARM_SECTIONS = [
     id: "what-is",
     title: "What Is a Phone Farm?",
     paragraphs: [
-      "A phone farm (also called a Box Phone Farm or device rack) is industrial hardware that houses multiple real smartphones or Android motherboard nodes in one metal chassis. Instead of scattering chargers, cables, and fans across a desk, a phone farm centralizes power delivery, cooling airflow, USB data routing, and optional LAN connectivity into a single rack-mountable unit.",
+      "A phone farm (also called a Box Phone Farm, mobile device farm chassis, or device farm hardware rack) houses multiple real smartphones or Android motherboard nodes in one metal chassis. Instead of scattering chargers, cables, and fans across a desk, a phone farm centralizes power delivery, cooling airflow, USB data routing, and optional LAN connectivity into a single rack-mountable unit.",
       "PhoneFarm ICU manufactures this physical infrastructure in Guangzhou — racks, motherboard boxes, empty chassis shells, power modules, USB hubs, and cooling systems. Software and device management tools are run on your control workstation; we supply the hardware layer tested before export.",
     ],
   },
@@ -95,7 +95,7 @@ export const PHONE_FARM_SECTIONS = [
     bullets: [
       "Mobile app QA and regression testing on real Android / iOS hardware",
       "Device management and fleet provisioning labs",
-      "Social media and content agency device banks",
+      "Multi-device content preview and mobile app QA labs",
       "Carrier and SIM profile testing in controlled networks",
       "Enterprise mobile operations and automation infrastructure",
     ],

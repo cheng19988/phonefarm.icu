@@ -77,7 +77,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     },
     scenarios: [
       "Mobile app QA and regression testing on real hardware",
-      "Social media agency device banks for content preview workflows",
+      "Multi-device content preview labs and mobile app QA workflows",
       "Cross-OS version compatibility testing",
       "Device management infrastructure for enterprise mobile ops",
     ],
@@ -234,7 +234,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Android app QA across multiple OS builds",
       "Enterprise Android device fleet staging",
       "Hardware deployment for mobile testing environments",
-      "Agency infrastructure for Android content device banks",
+      "Android device lab infrastructure for batch testing workflows",
     ],
     accessories: [
       "Android-configured rack chassis",
@@ -300,7 +300,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "iOS app QA and TestFlight distribution testing",
       "iPhone device management lab infrastructure",
       "Mobile testing environment for iOS build matrices",
-      "Agency hardware for iOS content preview devices",
+      "iOS device lab hardware for TestFlight and compatibility testing",
     ],
     accessories: [
       "iPhone rack chassis",
@@ -364,7 +364,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Production mobile testing environment build-out",
       "Enterprise device management operations center",
       "Multi-team QA lab with dedicated rack rows",
-      "Social media agency infrastructure at scale",
+      "Enterprise multi-rack device lab infrastructure at scale",
     ],
     accessories: [
       "Scoped per written proposal — racks, hubs, PSUs, cables",
@@ -680,7 +680,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     },
     scenarios: [
       "SIM and carrier profile testing lab networks",
-      "Per-client VLAN isolation for agency device banks",
+      "Per-client VLAN isolation for multi-team device labs",
       "Enterprise device management network segmentation",
       "Adding network capacity to expanded rack row",
     ],
@@ -741,7 +741,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Enterprise mobile ops center build-out",
       "Dedicated device lab room with single cabinet row",
       "Multi-team QA facility with centralized cable management",
-      "Large agency infrastructure consolidation",
+      "Large-scale device lab consolidation projects",
     ],
     accessories: [
       "Cabinet frame and panels per drawing",

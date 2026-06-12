@@ -9,9 +9,9 @@ import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "What Is a Phone Farm? - Complete Hardware Guide",
+  title: "What Is a Phone Farm? — Mobile Device Farm & Box Hardware Guide",
   description:
-    "Complete guide to phone farm racks and Box Phone Farm hardware: architecture, 20-slot chassis specs, reference models (S8, S10, A908N), power, cooling, USB/LAN, and how to order from PhoneFarm ICU Guangzhou.",
+    "Phone farm, mobile device farm, and phone farm box explained. Architecture, 20-slot chassis specs, Android/iPhone reference models, device farm hardware, power, cooling, and ordering from Guangzhou.",
   path: "/phone-farm",
 });
 

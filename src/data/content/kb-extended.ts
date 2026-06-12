@@ -190,7 +190,7 @@ export const KB_EXTENDED: KBArticle[] = [
   },
   {
     slug: "account-data-management-racks",
-    title: "Account Data Management on Multi-Device Racks",
+    title: "Device Profile Management on Multi-Device Racks",
     category: "Fleet Management",
     excerpt: "CSV templates, per-device assignment, and credential hygiene in hardware labs.",
     body: [

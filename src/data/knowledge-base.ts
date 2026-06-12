@@ -212,6 +212,20 @@ export const KB_ARTICLES: KBArticle[] = [
     ],
   },
   {
+    slug: "mobile-device-farm-vs-phone-farm-box",
+    title: "Mobile Device Farm vs Phone Farm Box",
+    category: "Getting Started",
+    excerpt:
+      "Definitions for mobile device farm, device farm hardware, and phone farm box — what buyers mean and what PhoneFarm ICU supplies.",
+    body: [
+      "Mobile device farm and device farm hardware are broad terms for labs that run many real smartphones or motherboard nodes from shared power, USB, and cooling infrastructure.",
+      "A phone farm box is a specific industrial chassis — typically up to 20 slots — that mounts phones or boards in one ventilated rack with centralized PSU and USB hub uplink.",
+      "PhoneFarm ICU supplies phone farm boxes, motherboard boxes, rackmount custom cabinets, and accessories — not cloud phone subscriptions or device management SaaS.",
+      "Use a phone farm box when you need a catalog SKU with known dimensions, MOQ, and export packing. Use a custom cabinet when you exceed ~40 devices or need PDU-integrated room deployment.",
+      "Compare lines: /knowledge-base/motherboard-box-vs-phone-box · Buyer guide: /knowledge-base/phone-farm-box-buyer-guide",
+    ],
+  },
+  {
     slug: "phone-farm-box-buyer-guide",
     title: "Phone Farm Box Buyer Guide",
     category: "Getting Started",

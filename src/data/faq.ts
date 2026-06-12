@@ -266,4 +266,22 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer:
       "Read the Phone Farm guide at www.phonefarm.icu/phone-farm, choose a rack SKU or starter package, enable USB debugging on Android devices, commission the rack, and scale with empty chassis or custom cabinets. Knowledge base and blog cover setup step-by-step.",
   },
+  {
+    category: "Products",
+    question: "What is a mobile device farm?",
+    answer:
+      "A mobile device farm is a lab setup that runs many real smartphones or motherboard nodes from shared rack hardware — power, USB, cooling, and optional network modules. A phone farm box is the industrial chassis that mounts those devices. See /knowledge-base/mobile-device-farm-vs-phone-farm-box and /phone-farm.",
+  },
+  {
+    category: "Products",
+    question: "What phone farm equipment do you manufacture?",
+    answer:
+      "PhoneFarm ICU manufactures phone farm boxes, motherboard boxes, Android and iPhone farm racks, empty chassis, USB hubs, power supplies, cooling modules, network equipment, custom rackmount cabinets, and Remote Control Setup services. Full catalog: www.phonefarm.icu/products. Export checklist: /docs/phone-farm-equipment-export-checklist.",
+  },
+  {
+    category: "Products",
+    question: "Do you sell 2U or rackmount phone farm racks?",
+    answer:
+      "Standard phone farm boxes include rack mounting ears for 19-inch rows. Full 42U rackmount custom cabinets are quoted per project with PDU and airflow engineering — not a one-size shelf SKU. Guide: /docs/rackmount-phone-farm-buyer-guide · SKU: /products/custom-cabinet.",
+  },
 ];

@@ -7,9 +7,9 @@ import { FACTORY_IMAGES } from "@/lib/site-images";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "About - Guangzhou Phone Farm Hardware Manufacturer",
+  title: "About — Phone Farm Factory & Box Manufacturer in Guangzhou",
   description:
-    "PhoneFarm ICU assembles phone farm racks, motherboard boxes, and cooling infrastructure in Guangzhou. Hardware testing, packing inspection, and bulk quote support since 2017.",
+    "PhoneFarm ICU is a Guangzhou phone farm factory and phone farm box manufacturer since 2017. Device farm hardware assembly, QC, export packing, and wholesale bulk quotes.",
   path: "/about",
 });
 

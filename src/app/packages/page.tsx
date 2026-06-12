@@ -1,23 +1,36 @@
 import Link from "next/link";
 import { HARDWARE_PACKAGES } from "@/data/packages";
 import { packageImageFor } from "@/lib/package-images";
-import { ContactCTA } from "@/components/shared";
+import { ContactCTA, JsonLd } from "@/components/shared";
 import { PackageHero } from "@/components/packages/package-hero";
 import { PackageCard } from "@/components/packages/package-card";
 import { PackageComparisonTable } from "@/components/packages/comparison-table";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, collectionPageJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Hardware Deployment Packages — Compare & Order",
+  title: "Phone Farm Box Packages — Hardware Bundles & Bulk Quotes",
   description:
-    "Compare PhoneFarm ICU hardware packages: starter rack, motherboard density, iPhone farm, and enterprise cabinet. Order online or request a bulk quote.",
+    "Compare phone farm box deployment packages: starter rack, motherboard density, iPhone farm, and rackmount enterprise cabinet. Device farm hardware bundles from Guangzhou.",
   path: "/packages",
 });
 
 export default function PackagesPage() {
+  const collectionItems = HARDWARE_PACKAGES.map((pkg) => ({
+    name: pkg.name,
+    url: `${SITE.url}/packages/${pkg.slug}`,
+  }));
+
   return (
     <>
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: "Phone Farm Hardware Packages",
+          description: "Pre-configured phone farm box and device farm hardware bundles from PhoneFarm ICU.",
+          path: "/packages",
+          items: collectionItems,
+        })}
+      />
       <PackageHero />
 
       <div className="section section-light pt-0">
