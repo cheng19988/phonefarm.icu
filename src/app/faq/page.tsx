@@ -25,10 +25,10 @@ export default function FAQPage() {
         <div className="container-hero max-w-3xl">
           <div className="flex flex-wrap gap-2 mb-10">
             {[
-              { label: "Shop", href: "/products" },
-              { label: "Pricing", href: "/pricing" },
-              { label: "Packages", href: "/packages" },
-              { label: "Docs", href: "/docs" },
+              { label: "Spec Quick Reference", href: "/docs/hardware-spec-quick-reference" },
+              { label: "Device Compatibility", href: "/knowledge-base/supported-device-compatibility" },
+              { label: "One PC · Multi-Rack", href: "/knowledge-base/one-pc-how-many-rack-boxes" },
+              { label: "Phone Farm Guide", href: "/phone-farm" },
               { label: "Contact", href: "/contact" },
             ].map((link) => (
               <Link

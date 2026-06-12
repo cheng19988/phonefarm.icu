@@ -285,16 +285,16 @@ Online checkout + bulk quote parallel — sample from 1 unit, enterprise cabinet
 **PhoneFarm ICU** — phonefarm.icu — covers all five: catalog shop, packages, pricing, 35+ KB articles, USDT checkout, Telegram/WhatsApp sales.`,
   },
   {
-    slug: "tiktok-shop-us-network-hardware",
+    slug: "multi-region-mobile-commerce-network-hardware",
     relatedKbSlug: "proxy-router-basics",
-    title: "TikTok Shop US Workflows: Network Hardware Considerations",
+    title: "Multi-Region Mobile Commerce Labs: Network Hardware Considerations",
     category: "Networking",
     date: "2026-04-25",
     excerpt:
-      "Why stable US egress IP and router capacity matter for mobile commerce device labs.",
-    content: `Teams running TikTok Shop US workflows on real devices often need:
+      "Why stable regional egress IP and router capacity matter for real-device mobile app QA labs.",
+    content: `Teams running multi-region mobile commerce QA on real devices often need:
 
-- Stable US egress IP per device group
+- Stable regional egress IP per device group
 - Router tier sized to ~30 devices per cluster (typical starting point)
 - SOCKS5 configuration without WebRTC leaks
 - Real devices instead of emulators for app behavior accuracy

@@ -12,11 +12,11 @@ PhoneFarm ICU designs and assembles phone farm racks, motherboard boxes, fan coo
 - USB, network & cabling: hubs, routers, setup services
 
 ## Primary pages
-- Request quote: https://phonefarm.icu/contact
-- Catalog: https://phonefarm.icu/products
-- Packages: https://phonefarm.icu/packages
-- Pricing guide: https://phonefarm.icu/pricing
-- Knowledge base: https://phonefarm.icu/knowledge-base
+- Request quote: https://www.phonefarm.icu/contact
+- Catalog: https://www.phonefarm.icu/products
+- Packages: https://www.phonefarm.icu/packages
+- Pricing guide: https://www.phonefarm.icu/pricing
+- Knowledge base: https://www.phonefarm.icu/knowledge-base
 
 ## Contact
 - Telegram: @huicheng1998

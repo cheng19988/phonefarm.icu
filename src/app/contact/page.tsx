@@ -1,17 +1,9 @@
 import Link from "next/link";
 import { InquiryForm } from "@/components/inquiry-form";
 import { ContactCTA } from "@/components/shared";
-import { CONTACT } from "@/lib/config";
+import { CONTACT, SITE } from "@/lib/config";
 import { ContentHero } from "@/components/content/content-hero";
-import { buildMetadata } from "@/lib/seo";
-import { SITE } from "@/lib/config";
-
-export const metadata = buildMetadata({
-  title: "Contact Sales - Orders, Quotes & Support",
-  description: "Contact PhoneFarm ICU sales for bulk quotes, compatibility checks, shipping estimates, and order support from Guangzhou.",
-  path: "/contact",
-});
-
+import { resolveProductInterest } from "@/lib/inquiry";
 const SUPPORT_TYPES = [
   { title: "Product order support", desc: "Questions about catalog SKUs, packages, and online orders." },
   { title: "Bulk quote", desc: "Multi-rack, custom cabinet, and project pricing." },
@@ -28,7 +20,16 @@ const BEFORE_CONTACT = [
   "Payment preference (USDT / T/T / other)",
 ];
 
-export default function ContactPage() {
+type ContactPageProps = {
+  searchParams: Promise<{ product?: string; service?: string; message?: string }>;
+};
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const params = await searchParams;
+  const productKey = params.product || params.service || "";
+  const defaultProductInterest = productKey ? resolveProductInterest(productKey) : "";
+  const defaultMessage = params.message?.trim() ?? "";
+
   return (
     <>
       <ContentHero
@@ -81,11 +82,32 @@ export default function ContactPage() {
                   ))}
                 </ul>
               </section>
+
+              <section className="p-5 rounded-2xl border border-[var(--brand)]/20 bg-[var(--surface-muted)]/40">
+                <h2 className="font-bold text-[var(--text)] mb-2">Buyer Pre-Sale Checklist</h2>
+                <p className="text-sm text-[var(--text-muted)] mb-3">
+                  Dimensions, weight, power, models, lead time, packaging, warranty, pre-shipment photos, and remote setup — answered in one doc.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Link href="/docs/hardware-spec-quick-reference" className="text-sm font-semibold text-[var(--brand)] hover:underline">
+                    Spec Quick Reference
+                  </Link>
+                  <span className="text-[var(--text-subtle)]">·</span>
+                  <Link href="/faq" className="text-sm font-semibold text-[var(--brand)] hover:underline">
+                    FAQ
+                  </Link>
+                </div>
+              </section>
             </div>
 
             <div className="lg:col-span-3">
               <h2 className="text-xl font-bold text-[var(--text)] mb-4">Request Bulk Quote</h2>
-              <InquiryForm sourcePage="/contact" submitLabel="Request Bulk Quote" />
+              <InquiryForm
+                sourcePage="/contact"
+                submitLabel="Request Bulk Quote"
+                defaultProductInterest={defaultProductInterest}
+                defaultMessage={defaultMessage}
+              />
             </div>
           </div>
 

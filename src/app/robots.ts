@@ -19,7 +19,15 @@ const AI_CRAWLERS = [
   "DeepSeekBot",
 ] as const;
 
-const DISALLOW = ["/admin", "/account/", "/api/", "/inquiry-received"];
+const DISALLOW = [
+  "/admin",
+  "/account/",
+  "/api/",
+  "/login",
+  "/register",
+  "/orders/",
+  "/inquiry-received",
+];
 
 export default function robots(): MetadataRoute.Robots {
   return {

@@ -14,7 +14,8 @@ export const KB_EXTENDED: KBArticle[] = [
       "Use /phone-farm for the complete hardware guide: architecture, reference models, and buying paths.",
       "Support channels: contact form, Telegram @huicheng1998, WhatsApp +85262155642, email qiuxui646@gmail.com.",
       "Knowledge Base articles cover setup, USB topology, cooling, network isolation, troubleshooting, and maintenance.",
-      "Docs cover dimensions, order process, USDT payment, shipping, and planned order API integration.",
+      "Docs cover dimensions, order process, USDT payment, shipping, and the Hardware Spec Quick Reference buyer checklist.",
+      "Pre-sale essentials: /docs/hardware-spec-quick-reference · /knowledge-base/one-pc-how-many-rack-boxes · /knowledge-base/supported-device-compatibility",
     ],
   },
   {
@@ -252,6 +253,43 @@ export const KB_EXTENDED: KBArticle[] = [
       "Enterprise: wire transfer (T/T) available after written quote acceptance.",
       "Payment confirmation: sales team verifies USDT hash and updates order status.",
       "Voucher or discount codes: mention in quote request if provided by sales campaign.",
+    ],
+  },
+  {
+    slug: "one-pc-how-many-rack-boxes",
+    title: "One PC — How Many Rack Boxes Can You Control?",
+    category: "Getting Started",
+    excerpt:
+      "USB hub limits, workstation RAM, and when to add a second control PC for multi-rack phone farm labs.",
+    body: [
+      "Buyers often ask how many phone farm boxes (racks) one computer can manage. The answer depends on USB topology and software load — not a fixed marketing number.",
+      "Starting point: one standard rack = up to ~20 device slots connected through one powered industrial USB hub uplink to the control PC.",
+      "One Windows or Linux PC with a single stable USB 3.0 host port can typically commission and operate one fully loaded rack (~20 Android nodes via ADB) when using a quality powered hub matched to node count.",
+      "Adding a second rack on the same PC: possible with a second powered hub on a separate USB host controller (different motherboard port or PCIe USB card). Avoid daisy-chaining consumer hubs — voltage drop causes random ADB disconnects.",
+      "Practical lab tiers: 1 PC → 1 rack (up to 20 nodes) is the most stable default. 1 PC → 2 racks (~40 nodes) needs 32GB RAM, discrete GPU if mirroring many screens, and two isolated hub uplinks. 3+ racks → plan a second control workstation or a dedicated rack-control mini-PC per row.",
+      "iPhone farms: macOS control station recommended. One Mac typically manages one iPhone rack row for Xcode/TestFlight workflows — multi-rack iOS labs often use one Mac per 10–20 devices depending on tooling.",
+      "Screen mirroring load: viewing thumbnails for 20+ devices increases GPU and RAM use. Lower mirror resolution or use a second PC for monitoring if the primary station runs CI deploy jobs.",
+      "Network path alternative: some toolchains use LAN/OTG device modes — document USB vs LAN per slot in your wiring map. See /knowledge-base/otg-lan-network-connection.",
+      "Remote Control Setup SKU includes hub path verification and workstation layout recommendation for your node count.",
+      "Full spec table: /docs/hardware-spec-quick-reference",
+    ],
+  },
+  {
+    slug: "supported-device-compatibility",
+    title: "Supported Device Models & Compatibility Check",
+    category: "Phone Farm Rack",
+    excerpt:
+      "Reference Android and iPhone platforms, motherboard box boards, and what to send sales for slot confirmation.",
+    body: [
+      "PhoneFarm ICU racks are built to your device list — slot spacing, cable length, and connector type are confirmed in the written quote, not assumed from catalog photos alone.",
+      "Full-phone racks (Box Phone Farm): reference Samsung S8, S10, Note 9 class; Android line references include S9, S20, Note 20, S21 FE. Share exact model numbers and whether USB-C or Micro-USB.",
+      "Motherboard box: reference A908N (6GB+128GB), Note 8, Note 10 Lite Change, OnePlus 5 Super Change, Nubia Z17. Android motherboard only — not for iOS.",
+      "iPhone farm chassis: buyer-supplied iPhones. Quote includes Lightning vs USB-C cable plan and typical 10–20 phones per rack depending on model thickness.",
+      "Real device / multi-rack projects: scoped per deployment — send total device target and room layout.",
+      "Before ordering, provide: device make/model list, quantity per rack, connector type, SIM tray requirement (yes/no), and shipping country.",
+      "USB debugging: per-brand steps in /knowledge-base/enable-usb-debugging (Samsung, Xiaomi, Pixel, Oppo, etc.).",
+      "Warranty covers chassis, fans, PSU, and supplied cables — not buyer-supplied phones or third-party software.",
+      "Visual reference table: /phone-farm → Reference Device Models",
     ],
   },
 ];

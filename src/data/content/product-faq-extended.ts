@@ -43,7 +43,7 @@ export const PRODUCT_FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
     { q: "Enough for tropical climates?", a: "Rack fans assist airflow; room HVAC may still be required above 30°C ambient." },
   ],
   "network-equipment": [
-    { q: "Suitable for TikTok Shop US style workflows?", a: "Hardware supports stable per-cluster IP when buyer configures proxy and US egress — ~30 devices per router tier typical." },
+    { q: "Suitable for multi-region mobile commerce QA?", a: "Hardware supports stable per-cluster IP when the buyer configures proxy and regional egress — ~30 devices per router tier typical." },
     { q: "What are standout router features?", a: "Industrial-tier router/switch options with VLAN planning — load balancing and DNS/MAC policies configured by buyer." },
     { q: "SIM bank included?", a: "No — network hardware only. SIM tray access depends on device/motherboard choice." },
   ],

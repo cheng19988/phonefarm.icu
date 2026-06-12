@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FAQAccordion } from "@/components/commerce";
+import { ProductProcurementPanel } from "@/components/products/product-procurement-panel";
 import { SpecTable } from "@/components/products/spec-table";
-import { PAYMENT } from "@/lib/config";
 import type { ProductSeed } from "@/data/products";
 import {
   REFERENCE_SECTION_COPY,
@@ -60,6 +60,8 @@ export function ProductDetailSections({
         <SpecTable specs={specs} title="Specifications" />
       </section>
 
+      {seed && <ProductProcurementPanel seed={seed} />}
+
       {referenceModels.length > 0 ? (
         <ReferenceModelGallery title={refCopy.title} intro={refCopy.intro} models={referenceModels} />
       ) : (
@@ -107,24 +109,6 @@ export function ProductDetailSections({
           </Link>
         </section>
       )}
-
-      <section className="p-5 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)]/60">
-        <h2 className="text-lg font-bold text-[var(--text)] mb-3">Shipping, Warranty &amp; Payment</h2>
-        <ul className="space-y-2 text-sm text-[var(--text-muted)]">
-          {(seed?.packingNotes ?? []).slice(0, 3).map((n) => (
-            <li key={n}>— {n}</li>
-          ))}
-          {(seed?.afterSales ?? []).slice(0, 2).map((n) => (
-            <li key={n}>— {n}</li>
-          ))}
-          <li>
-            — USDT ({PAYMENT.network}) after order confirmation ·{" "}
-            <Link href="/docs/usdt-payment-guide" className="text-[var(--brand)] hover:underline">
-              payment guide
-            </Link>
-          </li>
-        </ul>
-      </section>
 
       {faq.length > 0 && (
         <section>

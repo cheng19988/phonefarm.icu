@@ -1,7 +1,8 @@
+/** Canonical production URL — must match Vercel primary domain (www). */
 export const SITE = {
   name: "PhoneFarm ICU",
-  domain: "phonefarm.icu",
-  url: "https://phonefarm.icu",
+  domain: "www.phonefarm.icu",
+  url: "https://www.phonefarm.icu",
   tagline: "Phone Farm Racks & Hardware — Guangzhou",
   headline: "Phone Farm Hardware, Racks & Boxes — Shop & Deploy",
   intro:

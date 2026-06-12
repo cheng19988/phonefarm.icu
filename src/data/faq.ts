@@ -58,6 +58,48 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     category: "Products",
+    question: "What are the rack dimensions and weight?",
+    answer:
+      "Standard phone farm rack dimensions are approximately 43.5 × 27.5 × 9 cm (L × W × H). Typical net weight is 8–12 kg per rack (chassis, fans, and PSU — phones not included). Exact gross carton weight is on your packing list after configuration. See /docs/hardware-spec-quick-reference and /docs/chassis-dimensions.",
+  },
+  {
+    category: "Products",
+    question: "What voltage and power draw should I plan for?",
+    answer:
+      "Input voltage is 110–220V AC with an industrial PSU — typically 550W class for a 20-node rack. Continuous power draw depends on how many devices charge at once; budget roughly 200–400W class for planning a loaded Android lab. PDU and room power should be sized in your quote. See /docs/hardware-spec-quick-reference.",
+  },
+  {
+    category: "Products",
+    question: "Which phone models fit your racks?",
+    answer:
+      "Share your device list for slot confirmation. Reference platforms include Samsung S8/S10/Note series for full-phone racks, A908N-class boards for motherboard boxes, and iPhone layouts per Lightning/USB-C cable plan (devices BYO). Full table: /phone-farm and /knowledge-base/supported-device-compatibility.",
+  },
+  {
+    category: "Products",
+    question: "How many rack boxes can one control PC manage?",
+    answer:
+      "One PC typically manages one rack (~20 nodes) through one powered USB hub uplink — the most stable default. Two racks (~40 nodes) need separate hub uplinks on different USB host controllers, 32GB+ RAM, and careful cable planning. Three or more racks usually need a second control workstation. Details: /knowledge-base/one-pc-how-many-rack-boxes.",
+  },
+  {
+    category: "Products",
+    question: "Do you offer remote installation or on-site setup?",
+    answer:
+      "Remote Control Setup is a remote commissioning service — ADB path verification, workstation layout, and first-boot walkthrough (typically 2–4 hours). It is not on-site physical rack installation. Hardware is shipped ready for buyer installation; on-site integration is quoted only for enterprise projects. Book the Remote Control Setup SKU or ask sales.",
+  },
+  {
+    category: "Shipping",
+    question: "Can you send photos before shipment?",
+    answer:
+      "Yes — bulk orders (5+ units), enterprise packages, and custom cabinet projects include packing inspection photos on request (chassis, checklist, carton). Sample orders pass standard QC; ask sales on WhatsApp before dispatch if you need pre-shipment photos. See /docs/packing-and-pre-shipment-photos.",
+  },
+  {
+    category: "Shipping",
+    question: "How is hardware packaged for international shipping?",
+    answer:
+      "Single racks ship in foam-lined export cartons with an accessory checklist and slot wiring map inside. Hub/PSU modules may be nested for shock protection. Orders of 5+ racks may ship on pallet; custom cabinets often use crated sea freight. All units pass packing inspection before export.",
+  },
+  {
+    category: "Products",
     question: "Can you customize hardware?",
     answer:
       "Yes. We offer custom chassis dimensions, node counts, power configurations, cooling layouts, and rackmount integrations. Share your device model, quantity, and workflow for a tailored quote.",
@@ -166,9 +208,9 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     category: "Products",
-    question: "Is network gear suitable for TikTok Shop US style workflows?",
+    question: "Is network gear suitable for multi-region mobile commerce QA labs?",
     answer:
-      "Buyers configure US egress IP and proxy policy on our network modules. Typical starting capacity is ~30 devices per router cluster — confirm in quote.",
+      "Yes. Router and switch modules support per-cluster VLAN and regional egress IP when configured by the buyer. Typical starting capacity is ~30 devices per router cluster — confirm in quote.",
   },
   {
     category: "Products",

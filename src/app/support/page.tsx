@@ -12,11 +12,12 @@ export const metadata = buildMetadata({
 });
 
 const SUPPORT_BLOCKS = [
+  { title: "Pre-sale spec guide", desc: "Dimensions, weight, voltage, power draw, models, lead time, packaging, and warranty in one place.", href: "/docs/hardware-spec-quick-reference", cta: "Spec Quick Reference" },
   { title: "Order support", desc: "Help with Buy Now orders, account orders, and order status.", href: "/account/orders", cta: "My Orders" },
   { title: "Payment support", desc: "USDT (TRC20) payment after order confirmation - sales team confirms payment.", href: "/docs/usdt-payment-guide", cta: "USDT Guide" },
-  { title: "Shipping support", desc: "Export packing, MOQ, express vs sea freight from Guangzhou.", href: "/docs/shipping-guide", cta: "Shipping Guide" },
+  { title: "Shipping support", desc: "Export packing, pre-shipment photos, MOQ, express vs sea freight.", href: "/docs/packing-and-pre-shipment-photos", cta: "Packing & Photos" },
   { title: "Warranty support", desc: "Hardware warranty, replacement parts, and remote diagnostics.", href: "/docs/warranty-guide", cta: "Warranty Guide" },
-  { title: "Product compatibility", desc: "Device model matching for racks, motherboard boxes, and hubs.", href: "/knowledge-base", cta: "Knowledge Base" },
+  { title: "Product compatibility", desc: "Supported phone models, one-PC multi-rack limits, and slot matching.", href: "/knowledge-base/supported-device-compatibility", cta: "Device Compatibility" },
   { title: "Bulk quote support", desc: "Custom racks, packages, and enterprise deployment quotes.", href: "/contact", cta: "Contact Sales" },
 ];
 
