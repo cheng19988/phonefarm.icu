@@ -63,17 +63,20 @@ export function ShopProductCard({
           <StockBadge stock={stock} />
         </div>
         <div className="grid grid-cols-2 gap-2">
+          <Link href={`/contact?product=${slug}`} className="btn-accent text-center text-sm py-2.5">
+            Request Quote
+          </Link>
           <Link href={`/products/${slug}`} className="btn-secondary text-center text-sm py-2.5">
             Details
           </Link>
-          <form action="/api/orders" method="POST">
-            <input type="hidden" name="productSlug" value={slug} />
-            <input type="hidden" name="action" value="buy" />
-            <button type="submit" disabled={outOfStock} className="btn-accent w-full text-sm py-2.5 disabled:opacity-50">
-              Buy Now
-            </button>
-          </form>
         </div>
+        <form action="/api/orders" method="POST" className="mt-2">
+          <input type="hidden" name="productSlug" value={slug} />
+          <input type="hidden" name="action" value="buy" />
+          <button type="submit" disabled={outOfStock} className="btn-outline-light w-full text-sm py-2 disabled:opacity-50">
+            Place Order
+          </button>
+        </form>
       </div>
     </article>
   );

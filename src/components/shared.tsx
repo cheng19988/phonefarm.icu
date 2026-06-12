@@ -32,17 +32,36 @@ export function ContactBar({ compact = false, variant = "default" }: { compact?:
   );
 }
 
-export function ContactCTA({ title = "Ready to Build Your Phone Farm?" }: { title?: string }) {
+export function ContactCTA({
+  title = "Ready to Build Your Phone Farm?",
+  variant = "quote",
+}: {
+  title?: string;
+  variant?: "quote" | "order";
+}) {
+  const copy =
+    variant === "order"
+      ? `Browse the catalog and register to place sample orders with USDT after confirmation. Bulk and custom racks — request a written quote from ${SITE.location} sales.`
+      : `Request a bulk or custom hardware quote from our ${SITE.location} sales team. Browse the catalog for reference pricing or register to place sample orders online.`;
+
   return (
     <section className="cta-band">
       <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text)] mb-4 tracking-tight">{title}</h2>
-      <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto leading-relaxed">
-        Shop the catalog, register to order. USDT payment after order confirmation.
-        Bulk quotes via {SITE.location} sales — contact panel bottom-right: Telegram, WhatsApp, or email.
-      </p>
+      <p className="text-[var(--text-muted)] mb-6 max-w-2xl mx-auto leading-relaxed">{copy}</p>
       <div className="flex flex-wrap justify-center gap-3">
-        <Link href="/products" className="btn-accent">Shop Catalog</Link>
-        <Link href="/contact" className="btn-outline-dark">Contact Sales</Link>
+        {variant === "order" ? (
+          <>
+            <Link href="/products" className="btn-accent">Browse Catalog</Link>
+            <Link href="/register" className="btn-secondary">Register to Order</Link>
+            <Link href="/contact" className="btn-outline-dark">Request Quote</Link>
+          </>
+        ) : (
+          <>
+            <Link href="/contact" className="btn-accent">Request a Quote</Link>
+            <Link href="/products" className="btn-secondary">Browse Catalog</Link>
+            <Link href="/register" className="btn-outline-dark">Register to Order</Link>
+          </>
+        )}
       </div>
     </section>
   );

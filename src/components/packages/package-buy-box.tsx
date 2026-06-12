@@ -45,14 +45,9 @@ export function PackageBuyBox({ pkg }: { pkg: HardwarePackage }) {
             can be ordered separately from the shop.
           </p>
         )}
-        <div className="grid grid-cols-2 gap-3">
-          <Link href={`/contact?product=${pkg.slug}`} className="btn-outline-dark text-sm py-3 text-center">
-            Request Quote
-          </Link>
-          <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm py-3 text-center">
-            Contact Sales
-          </a>
-        </div>
+        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-dark w-full text-sm py-3 text-center block">
+          WhatsApp Sales
+        </a>
       </div>
 
       <p className="text-sm text-[var(--text-muted)] mb-4">

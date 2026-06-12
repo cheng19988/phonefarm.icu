@@ -80,8 +80,9 @@ export default function PackagesPage() {
               Bulk projects receive written quotes with freight and MOQ — sales team typically replies within one business day.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/register" className="btn-primary">Sign Up to Order</Link>
-              <Link href="/contact" className="btn-outline-dark">Contact Sales</Link>
+              <Link href="/contact" className="btn-accent">Request a Quote</Link>
+              <Link href="/products" className="btn-secondary">Browse Catalog</Link>
+              <Link href="/register" className="btn-outline-dark">Register to Order</Link>
             </div>
           </section>
 

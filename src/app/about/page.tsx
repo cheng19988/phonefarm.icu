@@ -33,7 +33,7 @@ const SUPPLY = [
 const WHY = [
   { title: "Factory direct", desc: "Guangzhou assembly - not reseller markup on anonymous drop-ship hardware." },
   { title: "Visible pricing", desc: "Reference USD catalog prices online - bulk and custom quoted in writing." },
-  { title: "Order + quote paths", desc: "Register, Buy Now, or contact sales for bulk and custom racks." },
+  { title: "Order + quote paths", desc: "Request a sales quote for bulk racks, browse the catalog, or register to place sample orders online." },
   { title: "USDT after confirmation", desc: "USDT payment available after order confirmation. Sales team confirms payment and updates order status." },
 ];
 
@@ -54,9 +54,9 @@ export default function AboutPage() {
         subtitle={`${SITE.name} designs, assembles, and exports phone farm racks, motherboard boxes, and infrastructure modules for QA labs and device management teams since ${SITE.since}.`}
       >
         <div className="flex flex-wrap gap-3">
-          <Link href="/products" className="btn-accent px-7 py-3">Browse Products</Link>
-          <Link href="/register" className="btn-primary px-7 py-3">Sign Up to Order</Link>
-          <Link href="/contact" className="btn-outline-dark px-7 py-3">Contact Sales</Link>
+          <Link href="/contact" className="btn-accent px-7 py-3">Request a Quote</Link>
+          <Link href="/products" className="btn-secondary px-7 py-3">Browse Catalog</Link>
+          <Link href="/register" className="btn-outline-dark px-7 py-3">Register to Order</Link>
         </div>
       </ContentHero>
       <div className="section section-light pt-0">

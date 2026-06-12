@@ -35,7 +35,10 @@ export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "da
             </div>
           ))}
           <div className="col-span-2 lg:col-span-4 pt-4 border-t border-[var(--border)] flex flex-wrap gap-2.5">
-            <Link href="/products" className="header-cta-btn text-sm py-2 px-4">
+            <Link href="/contact" className="header-cta-btn text-sm py-2 px-4">
+              Request Quote
+            </Link>
+            <Link href="/products" className="btn-secondary text-sm py-2 px-4">
               All Products
             </Link>
             <Link href="/packages" className="btn-secondary text-sm py-2 px-4">

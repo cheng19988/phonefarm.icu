@@ -40,8 +40,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         subtitle={`Order support, bulk quotes, and configuration advice from ${SITE.location}. You can also shop and register to order online - inquiry is for custom projects and bulk pricing.`}
       >
         <div className="flex flex-wrap gap-3">
-          <Link href="/products" className="btn-accent px-7 py-3">Browse Products</Link>
-          <Link href="/register" className="btn-primary px-7 py-3">Sign Up to Order</Link>
+          <Link href="#inquiry-form" className="btn-accent px-7 py-3">Request a Quote</Link>
+          <Link href="/products" className="btn-secondary px-7 py-3">Browse Catalog</Link>
+          <Link href="/register" className="btn-outline-dark px-7 py-3">Register to Order</Link>
         </div>
       </ContentHero>
       <div className="section section-light pt-0">
@@ -102,7 +103,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               </section>
             </div>
 
-            <div className="lg:col-span-3">
+            <div id="inquiry-form" className="lg:col-span-3 scroll-mt-28">
               <h2 className="text-xl font-bold text-[var(--text)] mb-4">Request Bulk Quote</h2>
               <InquiryForm
                 sourcePage="/contact"
@@ -114,7 +115,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </div>
 
           <div className="mt-16">
-            <ContactCTA title="Prefer to Order Online?" />
+            <ContactCTA title="Prefer to Order Online?" variant="order" />
           </div>
         </div>
       </div>

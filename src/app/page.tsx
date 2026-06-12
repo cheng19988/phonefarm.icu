@@ -100,17 +100,17 @@ export default async function HomePage() {
       <section className="section-compact">
         <div className="container-hero max-w-3xl mx-auto">
           <div className="cta-band">
-            <p className="eyebrow">Get Started</p>
+            <p className="eyebrow">Next Steps</p>
             <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text)] mb-4 tracking-tight">
               Ready to Deploy Phone Farm Hardware?
             </h2>
             <p className="text-[var(--text-muted)] text-base mb-8 leading-relaxed">
-              Browse the catalog, register to order, or contact our Guangzhou sales team for bulk quotes and custom rack layouts.
+              Request a bulk quote from our Guangzhou sales team, browse the catalog for reference pricing, or register to place sample orders online.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/products" className="btn-accent">Shop Catalog</Link>
-              <Link href="/register" className="btn-primary">Create Account</Link>
-              <Link href="/pricing" className="btn-outline-dark">See Pricing</Link>
+              <Link href="/contact" className="btn-accent">Request a Quote</Link>
+              <Link href="/products" className="btn-secondary">Browse Catalog</Link>
+              <Link href="/register" className="btn-outline-dark">Register to Order</Link>
             </div>
           </div>
         </div>

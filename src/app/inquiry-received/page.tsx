@@ -43,17 +43,17 @@ export default function InquiryReceivedPage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-accent">
               WhatsApp Sales
             </a>
             <a href={`mailto:${CONTACT.email}`} className="btn-secondary">
               Email Sales
             </a>
-            <Link href="/products" className="btn-accent">
-              Browse Products
+            <Link href="/products" className="btn-secondary">
+              Browse Catalog
             </Link>
             <Link href="/register" className="btn-outline-dark">
-              Sign Up to Order
+              Register to Order
             </Link>
           </div>
 

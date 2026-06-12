@@ -28,8 +28,9 @@ export default function PricingPage() {
           { label: "Pricing" },
         ]}
       >
-        <Link href="/products" className="btn-accent">Browse Catalog</Link>
-        <Link href="/contact" className="btn-outline-dark">Bulk Quote</Link>
+        <Link href="/contact" className="btn-accent">Request a Quote</Link>
+        <Link href="/products" className="btn-secondary">Browse Catalog</Link>
+        <Link href="/register" className="btn-outline-dark">Register to Order</Link>
       </PageIntro>
 
       <div className="section section-light pt-0">
@@ -94,19 +95,19 @@ export default function PricingPage() {
                       </td>
                       <td className="p-4">
                         <div className="flex flex-wrap gap-2">
-                          <form action="/api/orders" method="POST" className="inline">
-                            <input type="hidden" name="productSlug" value={row.slug} />
-                            <input type="hidden" name="action" value="buy" />
-                            <button type="submit" disabled={row.stock <= 0} className="btn-accent text-xs py-2 px-3 disabled:opacity-50">
-                              Buy Now
-                            </button>
-                          </form>
+                          <Link href={`/contact?product=${row.slug}`} className="btn-accent text-xs py-2 px-3">
+                            Quote
+                          </Link>
                           <Link href={`/products/${row.slug}`} className="btn-secondary text-xs py-2 px-3">
                             Details
                           </Link>
-                          <Link href={`/contact?product=${row.slug}`} className="text-xs text-[var(--brand)] font-medium py-2 px-1 hover:underline">
-                            Quote
-                          </Link>
+                          <form action="/api/orders" method="POST" className="inline">
+                            <input type="hidden" name="productSlug" value={row.slug} />
+                            <input type="hidden" name="action" value="buy" />
+                            <button type="submit" disabled={row.stock <= 0} className="btn-outline-dark text-xs py-2 px-3 disabled:opacity-50">
+                              Place Order
+                            </button>
+                          </form>
                         </div>
                       </td>
                     </tr>

@@ -40,8 +40,8 @@ export async function Header() {
                 <Link href="/login" className="header-signin-btn hidden sm:inline-flex">
                   Sign In
                 </Link>
-                <Link href="/register" className="header-cta-btn">
-                  Get Started
+                <Link href="/contact" className="header-cta-btn">
+                  Request Quote
                 </Link>
               </>
             )}

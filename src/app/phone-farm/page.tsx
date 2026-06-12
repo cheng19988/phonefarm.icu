@@ -36,7 +36,8 @@ export default function PhoneFarmGuidePage() {
           { label: "Phone Farm Guide" },
         ]}
       >
-        <Link href="/products" className="btn-accent">Shop Products</Link>
+        <Link href="/contact" className="btn-accent">Request a Quote</Link>
+        <Link href="/products" className="btn-secondary">Browse Catalog</Link>
         <Link href="/products/phone-farm-box" className="btn-outline-dark">Phone Farm Box</Link>
       </PageIntro>
 

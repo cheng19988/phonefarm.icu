@@ -78,21 +78,21 @@ export function ProductCommerceActions({
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-3">
+        <Link href={`/contact?product=${slug}`} className="btn-accent">
+          Request Quote
+        </Link>
         <form action="/api/orders" method="POST">
           <input type="hidden" name="productSlug" value={slug} />
           <input type="hidden" name="action" value="buy" />
-          <button type="submit" disabled={disabled} className="btn-accent disabled:opacity-50">
-            Buy Now
+          <button type="submit" disabled={disabled} className="btn-secondary disabled:opacity-50">
+            Place Order
           </button>
         </form>
         <form action="/api/orders" method="POST">
           <input type="hidden" name="productSlug" value={slug} />
           <input type="hidden" name="action" value="quote" />
-          <button type="submit" className="btn-secondary">Add to Order</button>
+          <button type="submit" className="btn-outline-dark">Add to Order</button>
         </form>
-        <Link href={`/contact?product=${slug}`} className="btn-outline-dark">
-          Request Quote
-        </Link>
         <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-dark">
           WhatsApp Sales
         </a>

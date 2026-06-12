@@ -31,24 +31,20 @@ export function PackageCard({ pkg, image }: { pkg: HardwarePackage; image?: stri
           <span>Support: {c.supportLevel}</span>
         </div>
         <div className="grid grid-cols-2 gap-2">
+          <Link href={`/contact?product=${pkg.slug}`} className="btn-accent text-center text-sm py-2.5">
+            Request Quote
+          </Link>
           <Link href={`/packages/${pkg.slug}`} className="btn-secondary text-center text-sm py-2.5">
             View Package
           </Link>
-          {pkg.productSlugs[0] ? (
-            <form action="/api/orders" method="POST">
-              <input type="hidden" name="productSlug" value={pkg.productSlugs[0]} />
-              <input type="hidden" name="action" value="buy" />
-              <button type="submit" className="btn-accent w-full text-sm py-2.5">Order Now</button>
-            </form>
-          ) : (
-            <Link href={`/contact?product=${pkg.slug}`} className="btn-accent text-center text-sm py-2.5">
-              Order Now
-            </Link>
-          )}
         </div>
-        <Link href={`/contact?product=${pkg.slug}`} className="text-center text-sm text-[var(--brand)] font-medium mt-2 hover:underline">
-          Request Quote →
-        </Link>
+        {pkg.productSlugs[0] ? (
+          <form action="/api/orders" method="POST" className="mt-2">
+            <input type="hidden" name="productSlug" value={pkg.productSlugs[0]} />
+            <input type="hidden" name="action" value="buy" />
+            <button type="submit" className="btn-outline-light w-full text-sm py-2">Place Order</button>
+          </form>
+        ) : null}
       </div>
     </article>
   );

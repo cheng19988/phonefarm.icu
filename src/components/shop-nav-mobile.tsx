@@ -40,7 +40,10 @@ export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark
             </div>
           ))}
           <div className="flex flex-wrap gap-2 pt-3 border-t border-[var(--border)]">
-            <Link href="/products" onClick={() => setOpen(false)} className="header-cta-btn text-xs py-2 px-3">
+            <Link href="/contact" onClick={() => setOpen(false)} className="header-cta-btn text-xs py-2 px-3">
+              Request Quote
+            </Link>
+            <Link href="/products" onClick={() => setOpen(false)} className="header-signin-btn text-xs py-2 px-3">
               All Products
             </Link>
             <Link href="/packages" onClick={() => setOpen(false)} className="header-signin-btn text-xs py-2 px-3">

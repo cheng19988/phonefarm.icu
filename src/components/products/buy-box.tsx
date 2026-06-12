@@ -100,33 +100,33 @@ export function BuyBox({
       </div>
 
       <div className="space-y-3 mb-6">
+        <Link href={`/contact?product=${slug}`} className="btn-accent w-full text-base py-3.5 text-center block">
+          Request Quote
+        </Link>
         <form action="/api/orders" method="POST">
           <input type="hidden" name="productSlug" value={slug} />
           <input type="hidden" name="action" value="buy" />
-          <button type="submit" disabled={disabled} className="btn-accent w-full text-base py-3.5 disabled:opacity-50">
-            Buy Now
+          <button type="submit" disabled={disabled} className="btn-secondary w-full text-base py-3.5 disabled:opacity-50">
+            Place Order
           </button>
         </form>
         <div className="grid grid-cols-2 gap-3">
           <form action="/api/orders" method="POST">
             <input type="hidden" name="productSlug" value={slug} />
             <input type="hidden" name="action" value="quote" />
-            <button type="submit" className="btn-secondary w-full text-sm py-3">
+            <button type="submit" className="btn-outline-light w-full text-sm py-3">
               Add to Order
             </button>
           </form>
-          <Link href={`/contact?product=${slug}`} className="btn-outline-light text-center text-sm py-3">
-            Request Quote
-          </Link>
+          <a
+            href={CONTACT.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline-light text-center text-sm py-3"
+          >
+            WhatsApp Sales
+          </a>
         </div>
-        <a
-          href={CONTACT.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-outline-light w-full text-sm py-3 text-center"
-        >
-          WhatsApp Sales
-        </a>
       </div>
 
       <p className="text-sm text-[var(--text-muted)] mb-6">

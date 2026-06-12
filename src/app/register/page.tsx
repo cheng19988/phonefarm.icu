@@ -42,7 +42,7 @@ function RegisterForm() {
       title="Create Your Account"
       subtitle="Register to place hardware orders, track shipments, and prepare USDT payment after order confirmation."
       benefits={[
-        "Place Buy Now orders on phone farm racks and accessories",
+        "Place sample orders on phone farm racks and accessories",
         "Track order history and payment status in one place",
         "Request bulk quotes faster with saved account details",
         "USDT payment available after sales confirms your order",

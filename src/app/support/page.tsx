@@ -30,8 +30,9 @@ export default function SupportPage() {
         subtitle={`${SITE.name} support covers online orders, USDT payment, shipping, warranty, and bulk quotes - direct from our Guangzhou team.`}
       >
         <div className="flex flex-wrap gap-3">
-          <Link href="/products" className="btn-accent px-7 py-3">Shop Hardware</Link>
-          <Link href="/contact" className="btn-outline-dark px-7 py-3">Contact Sales</Link>
+          <Link href="/contact" className="btn-accent px-7 py-3">Request a Quote</Link>
+          <Link href="/products" className="btn-secondary px-7 py-3">Browse Catalog</Link>
+          <Link href="/register" className="btn-outline-dark px-7 py-3">Register to Order</Link>
         </div>
       </ContentHero>
 

@@ -50,11 +50,11 @@ export default async function AccountOrdersPage() {
             <div className="card p-12 text-center">
               <p className="text-lg text-[var(--text-muted)] mb-2">No orders yet</p>
               <p className="text-sm text-[var(--text-subtle)] mb-6">
-                Browse the hardware catalog, place a Buy Now order, or contact sales for a bulk quote.
+                Request a bulk quote from sales, browse the catalog, or place a sample order online.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
-                <Link href="/products" className="btn-accent">Browse Products</Link>
-                <Link href="/contact" className="btn-outline-dark">Contact Sales</Link>
+                <Link href="/contact" className="btn-accent">Request a Quote</Link>
+                <Link href="/products" className="btn-secondary">Browse Catalog</Link>
               </div>
             </div>
           ) : (
