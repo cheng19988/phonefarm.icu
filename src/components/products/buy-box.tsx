@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { CONTACT } from "@/lib/config";
 import { PriceTag } from "@/components/ui/price-tag";
+import { ReferencePriceNote } from "@/components/ui/reference-price-note";
 import { StockBadge } from "@/components/shared";
+import { REFERENCE_PRICE_NOTE, SAMPLE_ORDER_NOTE } from "@/lib/pricing-copy";
 
 type Props = {
   slug: string;
@@ -94,22 +96,29 @@ export function BuyBox({
           <PriceTag priceUsd={priceUsd} size="lg" label="USD reference" />
           <StockBadge stock={stock} />
         </div>
-        <p className="text-xs text-[var(--text-subtle)]">
-          Reference price — final amount confirmed at checkout. Bulk pricing via sales quote.
+        <ReferencePriceNote />
+      </div>
+
+      <div className="p-4 rounded-lg border border-[var(--brand)]/15 bg-[var(--surface-muted)]/60 mb-6 text-sm text-[var(--text-muted)]">
+        <p className="font-semibold text-[var(--text)] mb-1">Procurement path</p>
+        <p>
+          Request a written quote for bulk racks, custom slot layouts, and export freight. Catalog{" "}
+          {REFERENCE_PRICE_NOTE.toLowerCase()}
         </p>
       </div>
 
       <div className="space-y-3 mb-6">
         <Link href={`/contact?product=${slug}`} className="btn-accent w-full text-base py-3.5 text-center block">
-          Request Quote
+          Request Written Quote
         </Link>
         <form action="/api/orders" method="POST">
           <input type="hidden" name="productSlug" value={slug} />
           <input type="hidden" name="action" value="buy" />
           <button type="submit" disabled={disabled} className="btn-secondary w-full text-base py-3.5 disabled:opacity-50">
-            Place Order
+            Sample Order (registered)
           </button>
         </form>
+        <p className="text-xs text-[var(--text-subtle)] text-center px-1">{SAMPLE_ORDER_NOTE}</p>
         <div className="grid grid-cols-2 gap-3">
           <form action="/api/orders" method="POST">
             <input type="hidden" name="productSlug" value={slug} />
@@ -137,7 +146,7 @@ export function BuyBox({
         <Link href="/register" className="text-[var(--brand)] font-medium hover:underline">
           Sign Up
         </Link>
-        {" to place orders and track payment."}
+        {" to track sample orders after sales confirms your quote."}
       </p>
 
       <div className="grid sm:grid-cols-3 gap-3 text-center text-xs border-t border-[var(--border)] pt-5">

@@ -68,6 +68,17 @@ export default async function ProductsPage({
       <ShopHero productCount={products.length} />
       <div className="section section-light pt-0">
         <div className="container-hero">
+          <p className="text-sm text-[var(--text-muted)] mb-6 max-w-3xl">
+            Factory-direct hardware catalog with procurement specs on every SKU. Reference USD pricing — final quote
+            confirmed before payment.{" "}
+            <Link href="/docs/hardware-spec-quick-reference" className="text-[var(--brand)] hover:underline">
+              Spec quick reference
+            </Link>
+            {" · "}
+            <Link href="/knowledge-base/phone-farm-box-buyer-guide" className="text-[var(--brand)] hover:underline">
+              Buyer guide
+            </Link>
+          </p>
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
             <CategoryFilters activeGroup={params.group} activeCategory={params.category} />
             <div className="flex flex-wrap gap-4 text-sm items-center shrink-0">

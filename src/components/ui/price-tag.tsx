@@ -1,4 +1,5 @@
 import { formatUsd } from "@/lib/pricing";
+import { REFERENCE_PRICE_LABEL } from "@/lib/pricing-copy";
 
 type PriceTagProps = {
   priceUsd: number;
@@ -6,7 +7,7 @@ type PriceTagProps = {
   size?: "sm" | "md" | "lg";
 };
 
-export function PriceTag({ priceUsd, label = "USD", size = "md" }: PriceTagProps) {
+export function PriceTag({ priceUsd, label = REFERENCE_PRICE_LABEL, size = "md" }: PriceTagProps) {
   const sizeClass =
     size === "lg" ? "text-3xl md:text-4xl" : size === "sm" ? "text-lg" : "text-2xl";
   return (

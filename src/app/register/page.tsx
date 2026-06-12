@@ -40,12 +40,12 @@ function RegisterForm() {
   return (
     <AuthLayout
       title="Create Your Account"
-      subtitle="Register to place hardware orders, track shipments, and prepare USDT payment after order confirmation."
+      subtitle="Optional account for sample orders after sales confirms your written quote. Bulk procurement starts with the RFQ form — no payment before configuration is confirmed."
       benefits={[
-        "Place sample orders on phone farm racks and accessories",
-        "Track order history and payment status in one place",
-        "Request bulk quotes faster with saved account details",
-        "USDT payment available after sales confirms your order",
+        "Track sample orders after sales confirms configuration and quote",
+        "Request bulk BOM / proforma quotes faster with saved contact details",
+        "Access order history, payment status, and shipping updates",
+        "USDT payment only after sales confirms final amount (manual confirmation)",
       ]}
     >
       <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-4 shadow-sm">

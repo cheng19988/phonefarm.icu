@@ -97,6 +97,9 @@ model ContactSubmission {
   email            String
   deviceQuantity   String?
   productInterest  String?
+  platform         String?
+  connectionMode   String?
+  budget           String?
   preferredContact String?
   sourcePage       String?
   message          String?

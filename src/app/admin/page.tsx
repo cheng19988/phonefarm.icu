@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AdminInquiryRow } from "@/components/admin-inquiry-row";
+import { AdminPaymentRow } from "@/components/admin-payment-row";
 import { AdminProductRow } from "@/components/admin-product-row";
+import { isAutoPaymentVerificationEnabled } from "@/lib/payment-status";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
@@ -36,7 +38,16 @@ export default async function AdminPage() {
     include: { user: { select: { email: true } }, payment: true, items: { include: { product: { select: { name: true } } } } },
   });
 
+  const payments = await prisma.payment.findMany({
+    take: 50,
+    orderBy: { createdAt: "desc" },
+    include: {
+      order: { select: { id: true, orderNumber: true, totalUsd: true, user: { select: { email: true } } } },
+    },
+  });
+
   const allProducts = await prisma.product.findMany({ orderBy: { name: "asc" } });
+  const autoVerify = isAutoPaymentVerificationEnabled();
 
   return (
     <div className="section">
@@ -55,6 +66,69 @@ export default async function AdminPage() {
             </div>
           ))}
         </div>
+
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-2">USDT Payments</h2>
+          <p className="text-slate-500 text-sm mb-4">
+            Verification mode:{" "}
+            <strong className={autoVerify ? "text-green-400" : "text-amber-400"}>
+              {autoVerify ? "Automatic (TRC20)" : "Manual confirmation"}
+            </strong>
+            . Update payment status after on-chain review.
+          </p>
+          <div className="overflow-x-auto border border-slate-800 rounded-lg mb-4">
+            <table className="w-full text-sm min-w-[1100px]">
+              <thead>
+                <tr className="border-b border-slate-800 text-slate-500 text-left bg-slate-900/50">
+                  <th className="p-3">Created</th>
+                  <th className="p-3">Order</th>
+                  <th className="p-3">Amounts</th>
+                  <th className="p-3">Received</th>
+                  <th className="p-3">Status</th>
+                  <th className="p-3">Tx hash</th>
+                  <th className="p-3">Expires</th>
+                  <th className="p-3">Address</th>
+                  <th className="p-3">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {payments.length === 0 ? (
+                  <tr>
+                    <td colSpan={9} className="p-6 text-center text-slate-500">No payments yet.</td>
+                  </tr>
+                ) : (
+                  payments.map((p) => (
+                    <AdminPaymentRow
+                      key={p.id}
+                      payment={{
+                        id: p.id,
+                        orderId: p.order.id,
+                        orderNumber: p.order.orderNumber,
+                        userEmail: p.order.user.email,
+                        totalUsd: p.order.totalUsd,
+                        expectedAmount: p.expectedAmount,
+                        receivedAmount: p.receivedAmount,
+                        paymentAddress: p.paymentAddress,
+                        paymentStatus: p.paymentStatus,
+                        verificationStatus: p.verificationStatus,
+                        txHash: p.txHash,
+                        expiresAt: p.expiresAt,
+                        createdAt: p.createdAt,
+                      }}
+                    />
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          <ul className="text-xs text-slate-500 space-y-1">
+            <li><strong className="text-yellow-400">pending</strong> — awaiting USDT transfer</li>
+            <li><strong className="text-amber-400">manual_review</strong> — tx submitted or awaiting sales confirmation</li>
+            <li><strong className="text-green-400">paid</strong> — amount matched and confirmed</li>
+            <li><strong className="text-orange-400">underpaid / overpaid</strong> — on-chain amount mismatch</li>
+            <li><strong className="text-red-400">expired</strong> — payment window closed</li>
+          </ul>
+        </section>
 
         <section className="mb-12">
           <h2 className="text-xl font-bold text-white mb-4">Hardware Inquiries</h2>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CONTACT } from "@/lib/config";
 import { PriceTag } from "@/components/ui/price-tag";
+import { ReferencePriceNote } from "@/components/ui/reference-price-note";
 import type { HardwarePackage } from "@/data/packages";
 
 export function PackageBuyBox({ pkg }: { pkg: HardwarePackage }) {
@@ -13,8 +14,9 @@ export function PackageBuyBox({ pkg }: { pkg: HardwarePackage }) {
       <p className="text-base text-[var(--text-muted)] mb-6">{pkg.tagline}</p>
 
       <div className="p-5 rounded-2xl border border-[var(--border)] bg-white shadow-sm mb-6">
-        <PriceTag priceUsd={pkg.fromPriceUsd} size="lg" label="USD from" />
-        <p className="text-xs text-[var(--text-subtle)] mt-2">Reference starting price — final bundle confirmed with sales.</p>
+        <PriceTag priceUsd={pkg.fromPriceUsd} size="lg" label="USD reference from" />
+        <ReferencePriceNote className="mt-2" />
+        <p className="text-xs text-[var(--text-subtle)] mt-1">Bundle BOM and freight confirmed in a written quotation.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-3 text-sm mb-6">

@@ -3,7 +3,7 @@ import { FAQAccordion } from "@/components/commerce";
 import { ContactCTA, JsonLd } from "@/components/shared";
 import { ContentHero } from "@/components/content/content-hero";
 import { FAQ_ITEMS, FAQ_CATEGORIES } from "@/data/faq";
-import { buildMetadata, faqJsonLd } from "@/lib/seo";
+import { buildMetadata, breadcrumbJsonLd, faqJsonLd, jsonLdGraph } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Phone Farm FAQ - Hardware, Shipping, Payment & Support",
@@ -15,7 +15,15 @@ export const metadata = buildMetadata({
 export default function FAQPage() {
   return (
     <>
-      <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
+      <JsonLd
+        data={jsonLdGraph(
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "FAQ", path: "/faq" },
+          ]),
+          faqJsonLd(FAQ_ITEMS),
+        )}
+      />
       <ContentHero
         eyebrow="Help Center"
         title="Frequently Asked Questions"

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PriceTag } from "@/components/ui/price-tag";
+import { ReferencePriceNote } from "@/components/ui/reference-price-note";
+import { SAMPLE_ORDER_NOTE } from "@/lib/pricing-copy";
 import type { HardwarePackage } from "@/data/packages";
 
 export function PackageCard({ pkg, image }: { pkg: HardwarePackage; image?: string }) {
@@ -17,7 +19,8 @@ export function PackageCard({ pkg, image }: { pkg: HardwarePackage; image?: stri
         </Link>
         <p className="text-sm text-[var(--text-muted)] mb-3">{pkg.tagline}</p>
         <p className="text-xs font-medium text-[var(--brand)] mb-4">{c.deviceQuantity}</p>
-        <PriceTag priceUsd={pkg.fromPriceUsd} size="sm" label="USD from" />
+        <PriceTag priceUsd={pkg.fromPriceUsd} size="sm" label="USD reference from" />
+        <ReferencePriceNote className="mt-1" />
         <ul className="text-sm text-[var(--text-muted)] space-y-1.5 my-4 flex-1">
           {pkg.includes.slice(0, 4).map((item) => (
             <li key={item} className="flex gap-2">
@@ -42,7 +45,9 @@ export function PackageCard({ pkg, image }: { pkg: HardwarePackage; image?: stri
           <form action="/api/orders" method="POST" className="mt-2">
             <input type="hidden" name="productSlug" value={pkg.productSlugs[0]} />
             <input type="hidden" name="action" value="buy" />
-            <button type="submit" className="btn-outline-light w-full text-sm py-2">Place Order</button>
+            <button type="submit" className="btn-outline-light w-full text-sm py-2" title={SAMPLE_ORDER_NOTE}>
+              Sample order
+            </button>
           </form>
         ) : null}
       </div>

@@ -4,7 +4,8 @@ import { LogoutButton } from "@/components/logout-button";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
-import { formatUsd } from "@/lib/pricing";
+import { formatUsd, formatUsdt } from "@/lib/pricing";
+import { paymentStatusBadgeClass, paymentStatusLabel } from "@/lib/payment-status";
 
 export const metadata = buildMetadata({
   title: "My Orders",
@@ -60,8 +61,11 @@ export default async function AccountOrdersPage() {
           ) : (
             <div className="space-y-4">
               {orders.map((order) => {
-                const paymentStatus = order.payment?.paymentStatus ?? "—";
-                const needsPayment = order.status.toLowerCase().includes("wait");
+                const paymentStatus = order.payment?.paymentStatus;
+                const needsPayment =
+                  paymentStatus === "pending" ||
+                  paymentStatus === "underpaid" ||
+                  order.status.toLowerCase().includes("wait");
                 return (
                   <article key={order.id} className="card card-hover p-6">
                     <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
@@ -77,6 +81,11 @@ export default async function AccountOrdersPage() {
                       </div>
                       <div className="text-right">
                         <p className="text-xl font-bold text-[var(--accent)]">{formatUsd(order.totalUsd)}</p>
+                        {order.payment && (
+                          <p className="text-xs text-[var(--text-subtle)] mt-1">
+                            {formatUsdt(order.payment.expectedAmount)} USDT due
+                          </p>
+                        )}
                       </div>
                     </div>
                     <p className="text-sm text-[var(--text-muted)] mb-4 line-clamp-2">
@@ -84,8 +93,10 @@ export default async function AccountOrdersPage() {
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       <span className={`${statusBadge(order.status)} capitalize`}>{order.status}</span>
-                      {order.payment && (
-                        <span className={`${statusBadge(paymentStatus)} capitalize`}>Payment: {paymentStatus}</span>
+                      {paymentStatus && (
+                        <span className={`${paymentStatusBadgeClass(paymentStatus)}`}>
+                          Payment: {paymentStatusLabel(paymentStatus)}
+                        </span>
                       )}
                     </div>
                     <div className="flex flex-wrap gap-3">

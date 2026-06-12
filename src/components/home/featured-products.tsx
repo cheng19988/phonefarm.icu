@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PriceTag } from "@/components/ui/price-tag";
+import { REFERENCE_PRICE_NOTE } from "@/lib/pricing-copy";
 import { SectionHeader } from "@/components/ui/section-header";
 import { StockBadge } from "@/components/shared";
 
@@ -25,7 +26,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
         <SectionHeader
           eyebrow="Featured Hardware"
           title="Flagship Products"
-          subtitle="Reference USD pricing - register to order online or contact sales for bulk deployment quotes."
+          subtitle="Guangzhou factory-direct catalog — reference USD pricing, written quote before payment, bulk BOM via RFQ."
         />
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 mt-4">
           <Link
@@ -49,7 +50,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
               </h3>
               <p className="text-sm text-[var(--text-muted)] mb-4 line-clamp-3">{lead.shortDesc}</p>
               <div className="flex items-center gap-4 mt-auto">
-                <PriceTag priceUsd={lead.priceUsd} size="lg" label="USD" />
+                <PriceTag priceUsd={lead.priceUsd} size="lg" />
                 <StockBadge stock={lead.stock} />
               </div>
             </div>
@@ -69,7 +70,8 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
             ))}
           </div>
         </div>
-        <div className="text-center mt-10">
+        <p className="text-center text-xs text-[var(--text-subtle)] mt-6 max-w-xl mx-auto">{REFERENCE_PRICE_NOTE}</p>
+        <div className="text-center mt-6">
           <Link href="/products" className="btn-outline-dark">
             View Full Catalog
           </Link>

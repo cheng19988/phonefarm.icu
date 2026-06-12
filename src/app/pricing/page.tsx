@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ContactCTA } from "@/components/shared";
 import { PriceTag } from "@/components/ui/price-tag";
+import { ReferencePriceNote } from "@/components/ui/reference-price-note";
+import { REFERENCE_PRICE_NOTE } from "@/lib/pricing-copy";
 import { StockBadge } from "@/components/shared";
 import { PageIntro } from "@/components/ui/page-intro";
 import { buildMetadata } from "@/lib/seo";
@@ -35,6 +37,14 @@ export default function PricingPage() {
 
       <div className="section section-light pt-0">
         <div className="container-hero">
+          <div className="mb-10 p-5 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)]/50 max-w-3xl">
+            <p className="text-sm text-[var(--text-muted)]">
+              <strong className="text-[var(--text)]">Pricing policy:</strong> All figures on this page are{" "}
+              {REFERENCE_PRICE_NOTE.toLowerCase()} Bulk racks, custom cabinets, and export freight receive written
+              quotations from our Guangzhou sales team.
+            </p>
+            <ReferencePriceNote className="mt-2" />
+          </div>
           <section className="mb-20">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-8">Deployment Scale</h2>
             <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -105,7 +115,7 @@ export default function PricingPage() {
                             <input type="hidden" name="productSlug" value={row.slug} />
                             <input type="hidden" name="action" value="buy" />
                             <button type="submit" disabled={row.stock <= 0} className="btn-outline-dark text-xs py-2 px-3 disabled:opacity-50">
-                              Place Order
+                              Sample order
                             </button>
                           </form>
                         </div>
@@ -116,7 +126,8 @@ export default function PricingPage() {
               </table>
             </div>
             <p className="text-sm text-[var(--text-subtle)] mt-6">
-              Enterprise bulk pricing and OEM/ODM — <Link href="/contact" className="text-[var(--brand)] hover:underline">contact sales</Link>.
+              Sample orders require sales confirmation before USDT payment. Enterprise bulk pricing, written BOM, and
+              OEM/ODM — <Link href="/contact" className="text-[var(--brand)] hover:underline">request a quote</Link>.
               {" "}Already have an account? <Link href="/login" className="text-[var(--brand)] hover:underline">Sign in</Link>.
             </p>
           </section>

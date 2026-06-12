@@ -8,7 +8,7 @@ export function ShopHero({ productCount }: Props) {
     <PageIntro
       eyebrow={`${SITE.name} · Catalog`}
       title="Hardware Catalog"
-      subtitle={`${productCount} factory-direct SKUs — phone farm racks, motherboard boxes, power, cooling, and connectivity. Reference USD pricing with online ordering.`}
+      subtitle={`${productCount} Guangzhou factory-direct SKUs — phone farm racks, motherboard boxes, power, cooling, USB, and network modules. Reference USD catalog pricing; written quotation confirmed before payment.`}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Shop" },

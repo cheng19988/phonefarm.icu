@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PriceTag } from "@/components/ui/price-tag";
+import { ReferencePriceNote } from "@/components/ui/reference-price-note";
 import { StockBadge } from "@/components/shared";
+import { SAMPLE_ORDER_NOTE } from "@/lib/pricing-copy";
 
 export type ShopProductCardProps = {
   slug: string;
@@ -58,9 +60,12 @@ export function ShopProductCard({
           </p>
         ) : null}
         <p className="text-sm text-[var(--text-muted)] mb-4 line-clamp-2 flex-1 leading-relaxed">{shortDesc}</p>
-        <div className="flex items-center justify-between mb-4 pt-3 border-t border-[var(--border)]">
-          <PriceTag priceUsd={priceUsd} size="sm" />
-          <StockBadge stock={stock} />
+        <div className="mb-4 pt-3 border-t border-[var(--border)]">
+          <div className="flex items-center justify-between mb-1">
+            <PriceTag priceUsd={priceUsd} size="sm" />
+            <StockBadge stock={stock} />
+          </div>
+          <ReferencePriceNote />
         </div>
         <div className="grid grid-cols-2 gap-2">
           <Link href={`/contact?product=${slug}`} className="btn-accent text-center text-sm py-2.5">
@@ -73,8 +78,13 @@ export function ShopProductCard({
         <form action="/api/orders" method="POST" className="mt-2">
           <input type="hidden" name="productSlug" value={slug} />
           <input type="hidden" name="action" value="buy" />
-          <button type="submit" disabled={outOfStock} className="btn-outline-light w-full text-sm py-2 disabled:opacity-50">
-            Place Order
+          <button
+            type="submit"
+            disabled={outOfStock}
+            title={SAMPLE_ORDER_NOTE}
+            className="btn-outline-light w-full text-sm py-2 disabled:opacity-50"
+          >
+            Sample order
           </button>
         </form>
       </div>

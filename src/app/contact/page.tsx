@@ -6,23 +6,23 @@ import { ContentHero } from "@/components/content/content-hero";
 import { resolveProductInterest } from "@/lib/inquiry";
 import { contactPageJsonLd } from "@/lib/seo";
 const SUPPORT_TYPES = [
-  { title: "Product order support", desc: "Questions about catalog SKUs, packages, and online orders." },
-  { title: "Bulk quote", desc: "Multi-rack, custom cabinet, and project pricing." },
-  { title: "Compatibility check", desc: "Device model list review for slot and cable matching." },
-  { title: "Shipping estimate", desc: "Express or sea freight from Guangzhou by destination." },
-  { title: "After-sales support", desc: "Replacement parts, warranty, and remote diagnostics." },
+  { title: "Written BOM / quote", desc: "Multi-rack, motherboard density, accessories, and export freight in a proforma-style quotation." },
+  { title: "Catalog SKU matching", desc: "Map your device list (Samsung, Oppo, Xiaomi, Pixel, etc.) to rack slots and cables." },
+  { title: "Procurement specs", desc: "MOQ, lead time, packing, QC photos, warranty, and USDT/T/T payment terms." },
+  { title: "Rackmount & enterprise", desc: "2U rows, PSU bus sizing, cooling, and 42U custom cabinet layouts." },
+  { title: "Knowledge base & docs", desc: "Setup guides, spec quick reference, and installation checklists in English." },
 ];
 
 const BEFORE_CONTACT = [
-  "Product model or SKU interest",
-  "Target quantity (sample or bulk)",
-  "Shipping country",
-  "Device type (Android / iPhone / motherboard)",
-  "Payment preference (USDT / T/T / other)",
+  "Product SKU or package interest",
+  "Quantity / node count",
+  "Platform (Android, iPhone, motherboard)",
+  "Connection mode (USB/ADB vs LAN)",
+  "Shipping country and budget (optional)",
 ];
 
 type ContactPageProps = {
-  searchParams: Promise<{ product?: string; service?: string; message?: string }>;
+  searchParams: Promise<{ product?: string; service?: string; message?: string; inquiry_error?: string }>;
 };
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
@@ -30,14 +30,15 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const productKey = params.product || params.service || "";
   const defaultProductInterest = productKey ? resolveProductInterest(productKey) : "";
   const defaultMessage = params.message?.trim() ?? "";
+  const inquiryError = params.inquiry_error?.trim();
 
   return (
     <>
       <JsonLd data={contactPageJsonLd()} />
       <ContentHero
-        eyebrow="Sales & Support"
-        title="Contact Guangzhou Sales"
-        subtitle={`Order support, bulk quotes, and configuration advice from ${SITE.location}. You can also shop and register to order online - inquiry is for custom projects and bulk pricing.`}
+        eyebrow="RFQ · Guangzhou Factory"
+        title="Request a Hardware Quote"
+        subtitle={`Catalog + procurement site for phone farm racks, motherboard boxes, and accessories from ${SITE.location}. Submit the form for a written quote — configuration and final price are confirmed before any USDT payment.`}
       >
         <div className="flex flex-wrap gap-3">
           <Link href="#inquiry-form" className="btn-accent px-7 py-3">Request a Quote</Link>
@@ -104,7 +105,15 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </div>
 
             <div id="inquiry-form" className="lg:col-span-3 scroll-mt-28">
-              <h2 className="text-xl font-bold text-[var(--text)] mb-4">Request Bulk Quote</h2>
+              <h2 className="text-xl font-bold text-[var(--text)] mb-2">RFQ Form</h2>
+              <p className="text-sm text-[var(--text-muted)] mb-4">
+                All fields marked * are required. Form HTML is server-rendered for search engines and no-JS access.
+              </p>
+              {inquiryError && (
+                <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mb-4" role="alert">
+                  {inquiryError}
+                </p>
+              )}
               <InquiryForm
                 sourcePage="/contact"
                 submitLabel="Request Bulk Quote"

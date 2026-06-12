@@ -159,25 +159,29 @@ export function productJsonLd(product: {
   stock: number;
   image: string;
 }) {
+  const productUrl = `${SITE.url}/products/${product.slug}`;
   return {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${productUrl}#product`,
     name: product.name,
     description: product.description,
     image: `${SITE.url}${product.image}`,
-    url: `${SITE.url}/products/${product.slug}`,
+    url: productUrl,
+    sku: product.slug,
     brand: { "@type": "Brand", name: SITE.name },
     manufacturer: { "@id": `${SITE.url}/#organization` },
     category: "Phone Farm Hardware",
     offers: {
       "@type": "Offer",
+      url: productUrl,
       priceCurrency: "USD",
       price: product.priceUsd,
       availability:
         product.stock > 0
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
-      seller: { "@type": "Organization", name: SITE.name },
+      seller: { "@id": `${SITE.url}/#organization` },
     },
   };
 }

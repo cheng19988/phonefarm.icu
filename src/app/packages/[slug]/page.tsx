@@ -7,7 +7,7 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { PackageBuyBox } from "@/components/packages/package-buy-box";
 import { FAQAccordion } from "@/components/commerce";
 import { ShopProductCard } from "@/components/products/product-card";
-import { buildMetadata, faqJsonLd } from "@/lib/seo";
+import { buildMetadata, breadcrumbJsonLd, faqJsonLd, jsonLdGraph } from "@/lib/seo";
 import { getProductSeed } from "@/data/products";
 import { specHighlights } from "@/lib/product-specs";
 import { listCatalogProducts } from "@/lib/catalog";
@@ -60,7 +60,16 @@ export default async function PackageDetailPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={faqJsonLd(pkg.faq.map((f) => ({ question: f.q, answer: f.a })))} />
+      <JsonLd
+        data={jsonLdGraph(
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Packages", path: "/packages" },
+            { name: pkg.name, path: `/packages/${slug}` },
+          ]),
+          faqJsonLd(pkg.faq.map((f) => ({ question: f.q, answer: f.a }))),
+        )}
+      />
       <PageIntro
         eyebrow="Deployment Bundle"
         title={pkg.name}

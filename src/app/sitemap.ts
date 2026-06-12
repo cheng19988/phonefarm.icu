@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/faq",
     "/contact",
+    "/for-ai",
     "/blog",
     "/privacy",
     "/terms",

@@ -24,6 +24,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
+  if (request.nextUrl.pathname === "/ai") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/for-ai";
+    return NextResponse.redirect(url, 301);
+  }
+
   if (!isLocal && hostname !== CANONICAL_HOST) {
     const apexHosts = new Set(["phonefarm.icu"]);
     if (apexHosts.has(hostname) || hostname.endsWith(".vercel.app")) {
@@ -44,5 +50,12 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|icon.svg|images/|.*\\.(?:png|jpg|jpeg|webp|svg|ico|txt|xml)$).*)"],
+  matcher: [
+    "/llms.txt",
+    "/llms-full.txt",
+    "/sitemap.xml",
+    "/robots.txt",
+    "/ai",
+    "/((?!_next/static|_next/image|favicon.ico|icon.svg|images/|.*\\.(?:png|jpg|jpeg|webp|svg|ico)$).*)",
+  ],
 };

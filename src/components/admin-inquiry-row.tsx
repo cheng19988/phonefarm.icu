@@ -14,6 +14,9 @@ type Inquiry = {
   country: string | null;
   productInterest: string | null;
   deviceQuantity: string | null;
+  platform: string | null;
+  connectionMode: string | null;
+  budget: string | null;
   preferredContact: string | null;
   sourcePage: string | null;
   message: string | null;
@@ -67,8 +70,15 @@ export function AdminInquiryRow({ inquiry }: { inquiry: Inquiry }) {
         <p className="text-white font-medium">{inquiry.name}</p>
         {inquiry.company && <p className="text-slate-500 text-xs">{inquiry.company}</p>}
       </td>
-      <td className="py-3 pr-4 text-slate-300 text-sm">{inquiry.productInterest || "—"}</td>
-      <td className="py-3 pr-4 text-slate-400 text-sm">{inquiry.deviceQuantity || "—"}</td>
+      <td className="py-3 pr-4 text-slate-300 text-sm">
+        {inquiry.productInterest || "—"}
+        {inquiry.platform ? <p className="text-slate-500 text-xs mt-0.5">{inquiry.platform}</p> : null}
+        {inquiry.connectionMode ? <p className="text-slate-600 text-xs">{inquiry.connectionMode}</p> : null}
+      </td>
+      <td className="py-3 pr-4 text-slate-400 text-sm">
+        {inquiry.deviceQuantity || "—"}
+        {inquiry.budget ? <p className="text-slate-600 text-xs mt-0.5">{inquiry.budget}</p> : null}
+      </td>
       <td className="py-3 pr-4 text-slate-400 text-sm">{inquiry.country || "—"}</td>
       <td className="py-3 pr-4 text-sm">
         <p className="text-slate-300">{inquiry.email}</p>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { CONTACT } from "@/lib/config";
+import { SAMPLE_ORDER_NOTE } from "@/lib/pricing-copy";
 import { ShopProductCard, type ShopProductCardProps } from "@/components/products/product-card";
 import { BuyBox } from "@/components/products/buy-box";
 import { RelatedProductsGrid } from "@/components/products/related-products";
@@ -85,7 +86,7 @@ export function ProductCommerceActions({
           <input type="hidden" name="productSlug" value={slug} />
           <input type="hidden" name="action" value="buy" />
           <button type="submit" disabled={disabled} className="btn-secondary disabled:opacity-50">
-            Place Order
+            Sample order
           </button>
         </form>
         <form action="/api/orders" method="POST">
@@ -97,9 +98,7 @@ export function ProductCommerceActions({
           WhatsApp Sales
         </a>
       </div>
-      <p className="text-xs text-[var(--text-subtle)]">
-        USDT payment is available after order confirmation. Sales team will confirm payment and update the order status.
-      </p>
+      <p className="text-xs text-[var(--text-subtle)]">{SAMPLE_ORDER_NOTE}</p>
     </div>
   );
 }
