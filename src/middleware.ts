@@ -11,9 +11,16 @@ export function middleware(request: NextRequest) {
 
   const isLocal = hostname === "localhost" || hostname === "127.0.0.1" || hostname.endsWith(".localhost");
 
-  if (request.nextUrl.pathname === "/blog/tiktok-shop-us-network-hardware") {
+  const blogRedirects: Record<string, string> = {
+    "/blog/tiktok-shop-us-network-hardware": "/blog/multi-region-mobile-commerce-network-hardware",
+    "/blog/phone-farming-getting-started": "/blog/phone-farm-hardware-buyer-roadmap",
+    "/blog/phone-farm-mmo-hardware-overview": "/blog/high-density-multi-node-device-lab",
+    "/blog/instagram-phone-farm-hardware": "/blog/multi-device-content-preview-labs",
+  };
+  const blogTarget = blogRedirects[request.nextUrl.pathname];
+  if (blogTarget) {
     const url = request.nextUrl.clone();
-    url.pathname = "/blog/multi-region-mobile-commerce-network-hardware";
+    url.pathname = blogTarget;
     return NextResponse.redirect(url, 301);
   }
 

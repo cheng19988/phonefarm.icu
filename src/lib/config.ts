@@ -3,14 +3,14 @@ export const SITE = {
   name: "PhoneFarm ICU",
   domain: "www.phonefarm.icu",
   url: "https://www.phonefarm.icu",
-  tagline: "Phone Farm Racks & Hardware — Guangzhou",
-  headline: "Phone Farm Hardware, Racks & Boxes — Shop & Deploy",
+  tagline: "Phone Farm Box Manufacturer — Guangzhou",
+  headline: "Phone Farm Box & Rack Hardware — Manufacturer Catalog & Bulk Quotes",
   intro:
-    "Factory-direct phone farm racks, motherboard boxes, cooling systems, USB hubs, and deployment packages from Guangzhou. Browse the catalog, register to order, pay with USDT after confirmation, or contact sales for bulk quotes.",
+    "Guangzhou factory-direct phone farm boxes, motherboard racks, cooling, USB hubs, and deployment packages. Browse 12 hardware SKUs, request a bulk quote, or order samples with USDT after confirmation. Export shipping and remote setup available.",
   location: "Guangzhou, China",
   since: 2017,
   description:
-    "PhoneFarm ICU — Guangzhou phone farm hardware catalog. Phone farm racks, motherboard boxes, cooling, USB hubs, packages, and accessories. Shop online, USDT payment, bulk quotes since 2017.",
+    "PhoneFarm ICU — Guangzhou phone farm box manufacturer and device farm hardware catalog. Phone farm racks, motherboard boxes, cooling, USB hubs, and accessories. MOQ from 1 unit, export shipping, bulk quotes, USDT payment since 2017.",
 } as const;
 
 export const CONTACT = {

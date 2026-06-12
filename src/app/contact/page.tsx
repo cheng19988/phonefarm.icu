@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { InquiryForm } from "@/components/inquiry-form";
-import { ContactCTA } from "@/components/shared";
+import { ContactCTA, JsonLd } from "@/components/shared";
 import { CONTACT, SITE } from "@/lib/config";
 import { ContentHero } from "@/components/content/content-hero";
 import { resolveProductInterest } from "@/lib/inquiry";
+import { contactPageJsonLd } from "@/lib/seo";
 const SUPPORT_TYPES = [
   { title: "Product order support", desc: "Questions about catalog SKUs, packages, and online orders." },
   { title: "Bulk quote", desc: "Multi-rack, custom cabinet, and project pricing." },
@@ -32,6 +33,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
   return (
     <>
+      <JsonLd data={contactPageJsonLd()} />
       <ContentHero
         eyebrow="Sales & Support"
         title="Contact Guangzhou Sales"

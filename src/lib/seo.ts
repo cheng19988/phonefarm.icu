@@ -206,3 +206,47 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
     })),
   };
 }
+
+export function collectionPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+  items?: { name: string; url: string }[];
+}) {
+  const pageUrl = `${SITE.url}${input.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: input.name,
+    description: input.description,
+    url: pageUrl,
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    ...(input.items?.length
+      ? {
+          mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: input.items.length,
+            itemListElement: input.items.map((item, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: item.name,
+              url: item.url,
+            })),
+          },
+        }
+      : {}),
+  };
+}
+
+export function contactPageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Sales — Request a Phone Farm Hardware Quote",
+    description:
+      "Request bulk quotes, compatibility checks, shipping estimates, and order support for phone farm boxes and rack hardware from Guangzhou.",
+    url: `${SITE.url}/contact`,
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    about: { "@id": `${SITE.url}/#organization` },
+  };
+}

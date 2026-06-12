@@ -5,7 +5,9 @@ import { ShopHero } from "@/components/products/shop-hero";
 import { ShopProductCard } from "@/components/products/product-card";
 import { ProductCatalogSections } from "@/components/products/product-catalog-sections";
 import { CategoryFilters } from "@/components/products/category-filters";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/shared";
+import { SITE } from "@/lib/config";
+import { buildMetadata, collectionPageJsonLd } from "@/lib/seo";
 import { getShopFilterCategories } from "@/lib/config";
 import { getProductSeed } from "@/data/products";
 import { getProductLine } from "@/data/product-lines";
@@ -14,9 +16,9 @@ import { specHighlights } from "@/lib/product-specs";
 export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
-  title: "Shop — Phone Farm Hardware Catalog",
+  title: "Phone Farm Hardware Catalog — Buy Phone Farm Box & Equipment",
   description:
-    "Shop phone farm racks, motherboard boxes, cooling racks, USB hubs, power supplies, and network modules. USD reference prices — buy online with USDT or request a bulk quote.",
+    "Buy phone farm boxes, motherboard racks, device farm hardware, USB hubs, power, and cooling from a Guangzhou manufacturer. USD reference prices — bulk quote or USDT sample orders.",
   path: "/products",
 });
 
@@ -47,8 +49,22 @@ export default async function ProductsPage({
   })();
   const sortSep = sortBase.includes("?") ? "&" : "?";
 
+  const collectionItems = products.map((p) => ({
+    name: p.name,
+    url: `${SITE.url}/products/${p.slug}`,
+  }));
+
   return (
     <>
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: "Phone Farm Hardware Catalog",
+          description:
+            "Phone farm boxes, motherboard racks, Android and iPhone farms, USB hubs, power, cooling, and network modules from PhoneFarm ICU.",
+          path: "/products",
+          items: collectionItems,
+        })}
+      />
       <ShopHero productCount={products.length} />
       <div className="section section-light pt-0">
         <div className="container-hero">

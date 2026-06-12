@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: Props) {
   const product = await getCatalogProduct(slug);
   if (!product) return {};
   return buildMetadata({
-    title: `${product.name} — Phone Farm Hardware`,
-    description: `${product.shortDesc} Shop online with USDT or request a bulk quote from PhoneFarm ICU, Guangzhou hardware manufacturer.`,
+    title: `${product.name} — Buy · Phone Farm Box Manufacturer`,
+    description: `${product.shortDesc} Buy from PhoneFarm ICU, Guangzhou phone farm hardware manufacturer — MOQ, lead time, export shipping. USDT or bulk quote.`,
     path: `/products/${slug}`,
     image: product.imageHero,
   });

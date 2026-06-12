@@ -8,6 +8,7 @@ const AI_CRAWLERS = [
   "OAI-SearchBot",
   "Google-Extended",
   "Googlebot",
+  "Bingbot",
   "anthropic-ai",
   "ClaudeBot",
   "Claude-Web",

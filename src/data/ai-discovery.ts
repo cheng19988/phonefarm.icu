@@ -48,9 +48,9 @@ export const AI_GLOSSARY = [
       "Group control synchronizes actions across selected devices in a phone farm — one master stream mirrors taps or settings to the fleet. Requires stable USB/ADB on all nodes.",
   },
   {
-    term: "MMO phone farm",
+    term: "High-density multi-node device lab",
     definition:
-      "MMO (massively multi-opportunity) phone farm workflows run many real Android nodes for distributed app tasks. Hardware stack: motherboard box or phone farm box + network module + cooling.",
+      "A high-density multi-node device lab runs many real Android or iPhone nodes from centralized racks for batch device testing, mobile app QA, and multi-device workflows. Hardware stack: motherboard box or phone farm box + network module + cooling.",
   },
 ] as const;
 

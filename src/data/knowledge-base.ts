@@ -211,6 +211,26 @@ export const KB_ARTICLES: KBArticle[] = [
       "Production farms should discuss a maintenance kit bundle during bulk quote confirmation.",
     ],
   },
+  {
+    slug: "phone-farm-box-buyer-guide",
+    title: "Phone Farm Box Buyer Guide",
+    category: "Getting Started",
+    excerpt:
+      "MOQ, lead time, dimensions, weight, voltage, warranty, shipping, payment, and remote setup — what B2B buyers need before ordering a phone farm box.",
+    body: [
+      "A phone farm box is an industrial rack (typically up to 20 slots) for real smartphones or motherboard nodes — used for mobile app QA, device labs, and batch device testing.",
+      "MOQ: sample from 1 unit on most in-stock SKUs; bulk pricing typically from 5+ units or 3+ identical rack configurations.",
+      "Lead time: in-stock 5–10 business days (QC + packing); custom layout 7–15 business days; express freight +3–7 days from Guangzhou.",
+      "Dimensions: standard rack approx. 43.5 × 27.5 × 9 cm — confirm per device model list in your written quote.",
+      "Weight: typical net 8–12 kg per rack (phones not included); gross carton on packing list.",
+      "Voltage: 110–220V AC with industrial PSU sized per node count.",
+      "Warranty: 12-month hardware support on chassis, fans, and PSU — buyer-supplied phones excluded.",
+      "Shipping: DHL/FedEx/UPS express or sea freight; foam-lined export cartons; pallet for 5+ racks.",
+      "Payment: USDT (TRC20) after order confirmation, or wire transfer (T/T) for enterprise bulk quotes.",
+      "Remote setup: Remote Control Setup SKU for ADB commissioning — not on-site physical installation unless scoped in a project quote.",
+      "Full checklist: /docs/hardware-spec-quick-reference · Request quote: /contact",
+    ],
+  },
   ...KB_EXTENDED,
 ];
 

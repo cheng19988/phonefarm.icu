@@ -81,6 +81,14 @@ function queryMapSection(): string[] {
     `| Pricing | ${SITE.url}/pricing |`,
     `| FAQ | ${SITE.url}/faq |`,
     `| Bulk quote | ${SITE.url}/contact |`,
+    `| Phone farm box buyer guide | ${SITE.url}/knowledge-base/phone-farm-box-buyer-guide |`,
+    `| Procurement spec checklist | ${SITE.url}/docs/hardware-spec-quick-reference |`,
+    `| MOQ / lead time / warranty | ${SITE.url}/faq · ${SITE.url}/docs/hardware-spec-quick-reference |`,
+    "",
+    "## Procurement facts (all PDPs)",
+    "",
+    "- MOQ, lead time, packing size, gross weight, voltage, warranty, shipping method, and USDT/T/T payment process are listed on each product page under Procurement Information.",
+    "- Written quotation confirms final figures before production.",
     "",
   ];
 }
@@ -114,6 +122,8 @@ export function generateLlmsTxt(): string {
     `- About manufacturer: ${SITE.url}/about`,
     `- Support: ${SITE.url}/support`,
     `- Contact / quote: ${SITE.url}/contact`,
+    `- Buyer guide: ${SITE.url}/knowledge-base/phone-farm-box-buyer-guide`,
+    `- Spec quick reference: ${SITE.url}/docs/hardware-spec-quick-reference`,
     "",
     "## Product SKUs",
     "",

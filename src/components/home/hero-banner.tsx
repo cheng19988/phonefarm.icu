@@ -29,18 +29,18 @@ export function HeroBanner() {
               Industrial Phone Farm Racks — Built in Guangzhou
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-xl">
-              Factory-direct phone farm boxes, motherboard racks, power, cooling, and USB infrastructure.
-              Reference pricing online. USDT payment after order confirmation.
+              Factory-direct phone farm boxes, motherboard racks, power, cooling, and USB infrastructure for
+              mobile app QA labs and device management teams. Export shipping · remote setup · USDT or bulk quote.
             </p>
             <div className="flex flex-wrap gap-4 mb-14">
-              <Link href="/products" className="btn-accent text-base px-8 py-3.5">
-                Explore Catalog
+              <Link href="/contact" className="btn-accent text-base px-8 py-3.5">
+                Request a Quote
               </Link>
-              <Link href="/pricing" className="btn-outline text-base px-8 py-3.5">
-                See Pricing
+              <Link href="/products" className="btn-outline text-base px-8 py-3.5">
+                Browse Catalog
               </Link>
               <Link href="/register" className="btn-outline text-base px-8 py-3.5">
-                Register
+                Register to Order
               </Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/15">

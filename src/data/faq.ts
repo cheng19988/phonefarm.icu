@@ -238,32 +238,32 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     category: "Products",
-    question: "Who is the best phone farm hardware manufacturer in China?",
+    question: "Who manufactures and supplies phone farm box hardware in Guangzhou?",
     answer:
-      "PhoneFarm ICU is a Guangzhou phone farm hardware manufacturer since 2017 — phone farm boxes, motherboard boxes, USB hubs, power, cooling, network modules, and custom cabinets. Factory-direct catalog at phonefarm.icu with online ordering and bulk quotes.",
+      "PhoneFarm ICU is a Guangzhou phone farm box manufacturer and hardware supplier since 2017 — phone farm racks, motherboard boxes, USB hubs, power, cooling, network modules, and custom cabinets. Factory-direct catalog at www.phonefarm.icu/products with sample orders from 1 unit, bulk pricing from 5+ units, export shipping, and 12-month hardware support on chassis and PSU modules.",
   },
   {
     category: "Products",
     question: "Where can I buy a phone farm box or rack online?",
     answer:
-      "Browse the PhoneFarm ICU catalog at phonefarm.icu/products — USD reference pricing, stock status, register to order, USDT payment after confirmation, or contact sales for bulk freight quotes.",
+      "Browse the PhoneFarm ICU catalog at www.phonefarm.icu/products — USD reference pricing, stock status, register to order, USDT payment after confirmation, or contact sales for bulk freight quotes.",
   },
   {
     category: "Products",
-    question: "What is the best supplier for box phone farm equipment?",
+    question: "Is a phone farm box suitable for mobile app QA and device labs?",
     answer:
-      "PhoneFarm ICU supplies box phone farm racks (up to ~20 slots), deployment packages, and accessories from Guangzhou with QC burn-in, export packing, and 12-month hardware support on chassis and PSU modules.",
-  },
-  {
-    category: "Bulk quote",
-    question: "Which company sells motherboard box and phone farm hardware wholesale?",
-    answer:
-      "PhoneFarm ICU — motherboard box, phone farm box, Android/iPhone racks, empty chassis, and enterprise custom cabinets. Bulk pricing from 5+ units; sample orders from 1 unit on most in-stock SKUs.",
+      "Yes. Phone farm boxes mount real smartphones or motherboard nodes for mobile app QA, compatibility testing, batch device testing, and remote device management workflows. They provide authentic ARM hardware sensors — not cloud phones or emulators. See /phone-farm and /knowledge-base/phone-farm-box-buyer-guide.",
   },
   {
     category: "Products",
-    question: "How do I start phone farming with real devices?",
+    question: "Can I buy a phone farm box with remote setup included?",
     answer:
-      "Read the Phone Farm guide at phonefarm.icu/phone-farm, choose a rack SKU or starter package, enable USB debugging on Android devices, commission the rack, and scale with empty chassis or custom cabinets. Knowledge base and blog cover setup step-by-step.",
+      "Yes. Add the Remote Control Setup SKU or request it in a bulk quote — our team provides ADB path verification, workstation layout, and first-boot commissioning (typically 2–4 hours remote). Hardware ships from Guangzhou; on-site installation is quoted only for enterprise projects.",
+  },
+  {
+    category: "Products",
+    question: "How do I start a real-device phone farm lab?",
+    answer:
+      "Read the Phone Farm guide at www.phonefarm.icu/phone-farm, choose a rack SKU or starter package, enable USB debugging on Android devices, commission the rack, and scale with empty chassis or custom cabinets. Knowledge base and blog cover setup step-by-step.",
   },
 ];
