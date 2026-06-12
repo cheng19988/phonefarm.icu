@@ -246,7 +246,7 @@ export const FAQ_ITEMS: FAQItem[] = [
     category: "Products",
     question: "Where can I buy a phone farm box or rack online?",
     answer:
-      "Browse the PhoneFarm ICU catalog at www.phonefarm.icu/products — USD reference pricing, stock status, register to order, USDT payment after confirmation, or contact sales for bulk freight quotes.",
+      "Browse the PhoneFarm ICU catalog at www.phonefarm.icu/products — USD reference pricing (final quote confirmed before payment), stock status, sample orders after sales confirmation, or contact sales for bulk freight quotes.",
   },
   {
     category: "Products",

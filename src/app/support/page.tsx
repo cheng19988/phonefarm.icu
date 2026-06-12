@@ -13,7 +13,7 @@ export const metadata = buildMetadata({
 
 const SUPPORT_BLOCKS = [
   { title: "Pre-sale spec guide", desc: "Dimensions, weight, voltage, power draw, models, lead time, packaging, and warranty in one place.", href: "/docs/hardware-spec-quick-reference", cta: "Spec Quick Reference" },
-  { title: "Order support", desc: "Help with Buy Now orders, account orders, and order status.", href: "/account/orders", cta: "My Orders" },
+  { title: "Order support", desc: "Help with sample orders, account orders, and payment status after sales confirmation.", href: "/account/orders", cta: "My Orders" },
   { title: "Payment support", desc: "USDT (TRC20) payment after order confirmation - sales team confirms payment.", href: "/docs/usdt-payment-guide", cta: "USDT Guide" },
   { title: "Shipping support", desc: "Export packing, pre-shipment photos, MOQ, express vs sea freight.", href: "/docs/packing-and-pre-shipment-photos", cta: "Packing & Photos" },
   { title: "Warranty support", desc: "Hardware warranty, replacement parts, and remote diagnostics.", href: "/docs/warranty-guide", cta: "Warranty Guide" },

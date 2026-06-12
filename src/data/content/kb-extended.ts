@@ -248,7 +248,7 @@ export const KB_EXTENDED: KBArticle[] = [
     category: "Quote & Support",
     excerpt: "How to upgrade an order, apply vouchers, and choose USDT vs wire transfer.",
     body: [
-      "Online orders: register → Buy Now → pay USDT (TRC20) within the payment window on /orders/{id}.",
+      "Sample orders: register → place order → sales confirms quote → pay USDT (TRC20) within the payment window on /orders/{id}.",
       "Bulk upgrades: contact sales to revise line items before production lock.",
       "Enterprise: wire transfer (T/T) available after written quote acceptance.",
       "Payment confirmation: sales team verifies USDT hash and updates order status.",

@@ -129,7 +129,7 @@ export const KB_ARTICLES: KBArticle[] = [
     category: "Quote & Support",
     excerpt: "How USDT checkout works alongside bulk quote options.",
     body: [
-      "Create an account and place an order via Buy Now on any in-stock SKU.",
+      "Create an account and place a sample order on any in-stock SKU after sales confirms your written quote.",
       "USDT (TRC20) payment is available after order confirmation on the order page.",
       "Complete payment within the displayed window and submit your transaction hash.",
       "Bulk and enterprise orders may use wire transfer — contact sales.",
@@ -167,7 +167,7 @@ export const KB_ARTICLES: KBArticle[] = [
     excerpt: "Evaluate one rack before bulk deployment.",
     body: [
       "Most in-stock SKUs support sample order from 1 unit.",
-      "Register, click Buy Now, and pay with USDT after order confirmation.",
+      "Register, place a sample order, and pay with USDT after sales confirms configuration and final quote.",
       "Alternatively request a quote with shipping country for freight-inclusive pricing.",
       "Sample units pass the same workshop QC as bulk production batches.",
     ],

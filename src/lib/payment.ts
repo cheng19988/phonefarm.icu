@@ -51,9 +51,13 @@ export async function checkAndUpdatePayment(paymentId: string) {
   });
   if (!payment) return null;
 
-  if (new Date() > payment.expiresAt && payment.paymentStatus === "pending") {
+  const awaitingPayment = ["pending", "manual_review", "underpaid"] as const;
+  if (
+    new Date() > payment.expiresAt &&
+    (awaitingPayment as readonly string[]).includes(payment.paymentStatus)
+  ) {
     await markExpired(payment.id, payment.orderId);
-    return { status: "expired" as const, mode: "manual" as const };
+    return { status: "expired" as const, mode: isAutoPaymentVerificationEnabled() ? "auto" : "manual" };
   }
 
   if (payment.paymentStatus === "expired") {

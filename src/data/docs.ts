@@ -138,7 +138,7 @@ export const DOC_ARTICLES: DocArticle[] = [
     summary: "Register, browse the shop, place an order, and complete USDT payment.",
     content: [
       "Step 1: Create an account at /register or sign in at /login.",
-      "Step 2: Browse /products or /packages and click Buy Now on your chosen SKU.",
+      "Step 2: Browse /products or /packages and place a sample order on your chosen SKU (after sales confirms quote).",
       "Step 3: Review the order on /orders/{id} — reference USD price is shown.",
       "Step 4: Pay with USDT (TRC20) within the payment window after order confirmation.",
       "For bulk orders, custom rack layouts, or OEM discussion, use Request Quote or Contact Sales — parallel to online checkout.",

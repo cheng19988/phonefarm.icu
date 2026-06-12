@@ -131,7 +131,7 @@ export const PHONE_FARM_SECTIONS = [
     id: "ordering",
     title: "How to Order",
     paragraphs: [
-      "Browse the catalog for reference USD pricing, register an account, and place a Buy Now order with USDT payment after confirmation. For bulk racks, custom slot layouts, or project deployments, contact sales with your device model list, target quantity, and shipping country.",
+      "Browse the catalog for reference USD pricing (final quote confirmed before payment). Register for sample orders after sales confirmation, or contact sales with your device model list, target quantity, and shipping country for bulk racks and custom layouts.",
     ],
     links: [
       { label: "Shop all products", href: "/products" },

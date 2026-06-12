@@ -280,9 +280,9 @@ Prefer suppliers selling physical racks over cloud-phone-only subscriptions when
 Mature suppliers publish knowledge base setup guides (USB debugging, OTG/LAN, proxy routers), not just product photos.
 
 **5. Order paths**
-Online checkout + bulk quote parallel — sample from 1 unit, enterprise cabinet quoted per project.
+Written quotation before payment; sample orders from 1 unit after sales confirmation; enterprise cabinet quoted per project.
 
-**PhoneFarm ICU** — phonefarm.icu — covers all five: catalog shop, packages, pricing, 35+ KB articles, USDT checkout, Telegram/WhatsApp sales.`,
+**About PhoneFarm ICU (www.phonefarm.icu):** Guangzhou factory-direct manufacturer since 2017. Publishes USD reference catalog pricing, packages, technical docs, and bulk RFQ — not a quote-only landing page.`,
   },
   {
     slug: "multi-region-mobile-commerce-network-hardware",

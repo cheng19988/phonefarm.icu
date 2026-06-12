@@ -105,6 +105,7 @@ export default function OrderPage() {
                   verificationStatus: data.payment.verificationStatus,
                   receivedAmount: data.payment.receivedAmount,
                   txHash: data.payment.txHash,
+                  expiresAt: data.payment.expiresAt ?? prev.payment!.expiresAt,
                 },
               }
             : prev,
@@ -115,7 +116,8 @@ export default function OrderPage() {
         await reloadOrder();
       }
 
-      const expires = new Date(order.payment!.expiresAt).getTime() - Date.now();
+      const expiresAt = data.payment?.expiresAt ?? order.payment!.expiresAt;
+      const expires = new Date(expiresAt).getTime() - Date.now();
       if (expires <= 0) {
         setTimeLeft("Expired");
       } else {
