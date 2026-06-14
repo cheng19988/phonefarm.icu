@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
-    "vercel-build": "prisma generate && prisma migrate deploy && tsx prisma/seed.ts && next build",
+    "vercel-build": "prisma generate && prisma migrate deploy && tsx prisma/seed.ts && next build && node scripts/upload-vercel-project-icon.mjs",
+    "vercel:avatar": "node scripts/upload-vercel-project-icon.mjs",
     "start": "next start",
     "lint": "eslint",
     "db:migrate:dev": "prisma migrate dev",
