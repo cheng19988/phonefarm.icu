@@ -1,8 +1,17 @@
 import Link from "next/link";
 import { SHOP_MENU } from "@/lib/config";
+import { localePath, type Locale } from "@/lib/i18n/config";
+import { NAV_ZH } from "@/lib/i18n/zh-site";
 import { IconChevronDown, IconRack } from "./icons";
 
-export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "dark" }) {
+function localizeHref(locale: Locale, href: string) {
+  if (href.startsWith("/products") || href.startsWith("/packages") || href === "/phone-farm") {
+    return localePath(locale, href);
+  }
+  return href;
+}
+
+export function ShopNavDropdown({ variant = "light", locale = "en" }: { variant?: "light" | "dark"; locale?: Locale }) {
   const linkClass =
     variant === "dark"
       ? "header-nav-link header-nav-link-shop inline-flex items-center gap-1.5"
@@ -10,9 +19,9 @@ export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "da
 
   return (
     <div className="relative group">
-      <Link href="/products" className={linkClass}>
+      <Link href={localePath(locale, "/products")} className={linkClass}>
         <IconRack size={15} className="text-[var(--accent)]" />
-        Shop
+        {locale === "zh" ? NAV_ZH.shop : "Shop"}
         <IconChevronDown size={14} className="opacity-60 transition-transform group-hover:rotate-180 duration-300" />
       </Link>
       <div className="absolute left-0 top-full pt-3 hidden group-hover:block z-50">
@@ -24,7 +33,7 @@ export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "da
                 {group.items.map((item) => (
                   <li key={item.href}>
                     <Link
-                      href={item.href}
+                      href={localizeHref(locale, item.href)}
                       className="text-sm text-[var(--text-muted)] hover:text-[var(--brand)] transition-colors block py-0.5"
                     >
                       {item.label}
@@ -35,17 +44,17 @@ export function ShopNavDropdown({ variant = "light" }: { variant?: "light" | "da
             </div>
           ))}
           <div className="col-span-2 lg:col-span-4 pt-4 border-t border-[var(--border)] flex flex-wrap gap-2.5">
-            <Link href="/contact" className="header-cta-btn text-sm py-2 px-4">
-              Request Quote
+            <Link href={localePath(locale, "/contact")} className="header-cta-btn text-sm py-2 px-4">
+              {locale === "zh" ? NAV_ZH.requestQuote : "Request Quote"}
             </Link>
-            <Link href="/products" className="btn-secondary text-sm py-2 px-4">
-              All Products
+            <Link href={localePath(locale, "/products")} className="btn-secondary text-sm py-2 px-4">
+              {locale === "zh" ? NAV_ZH.allProducts : "All Products"}
             </Link>
-            <Link href="/packages" className="btn-secondary text-sm py-2 px-4">
-              Packages
+            <Link href={localePath(locale, "/packages")} className="btn-secondary text-sm py-2 px-4">
+              {locale === "zh" ? NAV_ZH.packages : "Packages"}
             </Link>
-            <Link href="/pricing" className="btn-secondary text-sm py-2 px-4">
-              Pricing
+            <Link href={localePath(locale, "/pricing")} className="btn-secondary text-sm py-2 px-4">
+              {locale === "zh" ? NAV_ZH.pricing : "Pricing"}
             </Link>
           </div>
         </div>

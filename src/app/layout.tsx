@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Header, Footer } from "@/components/layout";
 import { FloatingContact } from "@/components/floating-contact";
 import { JsonLd } from "@/components/shared";
@@ -18,6 +19,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE.url,
+    languages: {
+      "en-US": SITE.url,
+      "zh-CN": `${SITE.url}/zh`,
+    },
     types: {
       "text/plain": [
         { url: "/llms.txt", title: "LLM Content Index" },
@@ -32,9 +37,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const localeHeader = (await headers()).get("x-locale");
+  const htmlLang = localeHeader === "zh" ? "zh-CN" : "en-US";
+
   return (
-    <html lang="en-US" className="h-full">
+    <html lang={htmlLang} className="h-full">
       <head>
         <link rel="alternate" type="text/plain" href={`${SITE.url}/llms.txt`} title="LLM Content Index" />
         <link rel="alternate" type="text/plain" href={`${SITE.url}/llms-full.txt`} title="LLM Full Content Index" />

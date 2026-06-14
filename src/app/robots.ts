@@ -40,7 +40,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       ...AI_CRAWLERS.map((bot) => ({
         userAgent: bot,
-        allow: ["/", "/llms.txt", "/llms-full.txt", "/for-ai", "/knowledge-base/", "/blog/", "/products/", "/faq"],
+        allow: ["/", "/zh", "/zh/", "/llms.txt", "/llms-full.txt", "/for-ai", "/knowledge-base/", "/blog/", "/products/", "/faq"],
         disallow: DISALLOW,
       })),
     ],

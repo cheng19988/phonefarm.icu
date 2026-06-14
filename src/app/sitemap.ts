@@ -24,6 +24,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/privacy",
     "/terms",
+    "/zh",
+    "/zh/phone-farm",
+    "/zh/products",
+    "/zh/faq",
+    "/zh/contact",
+    "/zh/for-ai",
+    "/zh/about",
   ].map((path) => ({
     url: `${SITE.url}${path}`,
     lastModified: new Date(),
@@ -38,6 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.9,
+    })),
+    ...PRODUCT_SEEDS.map((p) => ({
+      url: `${SITE.url}/zh/products/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.88,
     })),
     ...HARDWARE_PACKAGES.map((p) => ({
       url: `${SITE.url}/packages/${p.slug}`,

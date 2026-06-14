@@ -17,6 +17,7 @@ const DOCUMENTATION_BLOCK = `## About This Index
 Neutral supplier and product facts published by ${SITE.name} for human buyers, search engines, and AI retrieval systems.
 
 - **Primary language:** English (en-US)
+- **Chinese (zh-CN):** ${SITE.url}/zh — 手机农场硬件目录与指南
 - **Canonical site:** ${SITE.url}
 - **Location:** ${SITE.location} (factory assembly since ${SITE.since})
 - **Business type:** Physical phone farm rack hardware — not cloud phone SaaS
@@ -236,6 +237,20 @@ export function generateLlmsFullTxt(): string {
         "",
       ];
     }),
+    "",
+    "---",
+    "",
+    "## 中文索引 (zh-CN) — 手机农场",
+    "",
+    `- **中文首页:** ${SITE.url}/zh`,
+    `- **手机农场指南:** ${SITE.url}/zh/phone-farm`,
+    `- **产品目录:** ${SITE.url}/zh/products`,
+    `- **常见问题:** ${SITE.url}/zh/faq`,
+    `- **批量询价:** ${SITE.url}/zh/contact`,
+    `- **AI 事实页:** ${SITE.url}/zh/for-ai`,
+    "",
+    "PhoneFarm ICU — 广州手机农场机盒制造商，生产手机农场机柜、主板机盒、USB/电源/散热模块。MOQ 1 台起，批量询价，USDT 样单。",
+    "",
   ];
 
   return lines.join("\n");

@@ -3,9 +3,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import { SHOP_MENU } from "@/lib/config";
+import { localePath, type Locale } from "@/lib/i18n/config";
+import { NAV_ZH } from "@/lib/i18n/zh-site";
 import { IconChevronDown, IconRack } from "./icons";
 
-export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark" }) {
+function localizeHref(locale: Locale, href: string) {
+  if (href.startsWith("/products") || href.startsWith("/packages") || href === "/phone-farm") {
+    return localePath(locale, href);
+  }
+  return href;
+}
+
+export function ShopNavMobile({ variant = "light", locale = "en" }: { variant?: "light" | "dark"; locale?: Locale }) {
   const [open, setOpen] = useState(false);
   const btnClass =
     variant === "dark"
@@ -16,7 +25,7 @@ export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark
     <div className="relative shrink-0">
       <button type="button" onClick={() => setOpen((v) => !v)} className={btnClass} aria-expanded={open}>
         <IconRack size={14} className={variant === "dark" ? "text-[var(--header-gold)]" : undefined} />
-        Shop
+        {locale === "zh" ? NAV_ZH.shop : "Shop"}
         <IconChevronDown size={13} className={`opacity-70 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
@@ -28,7 +37,7 @@ export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark
                 {group.items.map((item) => (
                   <li key={item.href}>
                     <Link
-                      href={item.href}
+                      href={localizeHref(locale, item.href)}
                       onClick={() => setOpen(false)}
                       className="text-sm text-[var(--text-muted)] hover:text-[var(--brand)] block py-0.5"
                     >
@@ -40,14 +49,14 @@ export function ShopNavMobile({ variant = "light" }: { variant?: "light" | "dark
             </div>
           ))}
           <div className="flex flex-wrap gap-2 pt-3 border-t border-[var(--border)]">
-            <Link href="/contact" onClick={() => setOpen(false)} className="header-cta-btn text-xs py-2 px-3">
-              Request Quote
+            <Link href={localePath(locale, "/contact")} onClick={() => setOpen(false)} className="header-cta-btn text-xs py-2 px-3">
+              {locale === "zh" ? NAV_ZH.requestQuote : "Request Quote"}
             </Link>
-            <Link href="/products" onClick={() => setOpen(false)} className="header-signin-btn text-xs py-2 px-3">
-              All Products
+            <Link href={localePath(locale, "/products")} onClick={() => setOpen(false)} className="header-signin-btn text-xs py-2 px-3">
+              {locale === "zh" ? NAV_ZH.allProducts : "All Products"}
             </Link>
-            <Link href="/packages" onClick={() => setOpen(false)} className="header-signin-btn text-xs py-2 px-3">
-              Packages
+            <Link href={localePath(locale, "/packages")} onClick={() => setOpen(false)} className="header-signin-btn text-xs py-2 px-3">
+              {locale === "zh" ? NAV_ZH.packages : "Packages"}
             </Link>
           </div>
         </div>

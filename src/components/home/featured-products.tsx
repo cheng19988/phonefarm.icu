@@ -5,6 +5,8 @@ import { REFERENCE_PRICE_NOTE } from "@/lib/pricing-copy";
 import { SectionHeader } from "@/components/ui/section-header";
 import { StockBadge } from "@/components/shared";
 
+import { localePath, type Locale } from "@/lib/i18n/config";
+
 type Product = {
   slug: string;
   name: string;
@@ -15,7 +17,8 @@ type Product = {
   category: string;
 };
 
-export function FeaturedProducts({ products }: { products: Product[] }) {
+export function FeaturedProducts({ products, locale = "en" }: { products: Product[]; locale?: Locale }) {
+  const isZh = locale === "zh";
   const [lead, ...rest] = products.slice(0, 3);
 
   if (!lead) return null;
@@ -24,13 +27,17 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
     <section className="section">
       <div className="container-hero">
         <SectionHeader
-          eyebrow="Featured Hardware"
-          title="Flagship Products"
-          subtitle="Guangzhou factory-direct catalog — reference USD pricing, written quote before payment, bulk BOM via RFQ."
+          eyebrow={isZh ? "精选硬件" : "Featured Hardware"}
+          title={isZh ? "主打产品" : "Flagship Products"}
+          subtitle={
+            isZh
+              ? "广州工厂直供目录 — USD 参考价，付款前书面确认报价，批量采购请提交询价。"
+              : "Guangzhou factory-direct catalog — reference USD pricing, written quote before payment, bulk BOM via RFQ."
+          }
         />
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 mt-4">
           <Link
-            href={`/products/${lead.slug}`}
+            href={localePath(locale, `/products/${lead.slug}`)}
             className="lg:col-span-7 group card card-hover grid md:grid-cols-2 min-h-[400px] overflow-hidden"
           >
             <div className="relative min-h-[240px] md:min-h-full bg-white">
@@ -57,7 +64,7 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
           </Link>
           <div className="lg:col-span-5 flex flex-col gap-6">
             {rest.map((p) => (
-              <Link key={p.slug} href={`/products/${p.slug}`} className="group card card-hover flex flex-1 min-h-[180px] overflow-hidden">
+              <Link key={p.slug} href={localePath(locale, `/products/${p.slug}`)} className="group card card-hover flex flex-1 min-h-[180px] overflow-hidden">
                 <div className="relative w-2/5 min-w-[140px] bg-white">
                   <Image src={p.imageHero} alt={p.name} fill className="object-contain p-2" sizes="200px" />
                 </div>

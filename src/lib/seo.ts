@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { SITE, CONTACT } from "./config";
 import { AI_GLOSSARY, MANUFACTURER_PROFILE } from "@/data/ai-discovery";
+import type { Locale } from "./i18n/config";
+import { alternateLanguageUrls, localePath, stripLocalePrefix } from "./i18n/config";
+
+import { ZH_SITE } from "./i18n/zh-site";
 
 type SEOInput = {
   title: string;
@@ -8,6 +12,7 @@ type SEOInput = {
   path?: string;
   image?: string;
   noIndex?: boolean;
+  locale?: Locale;
 };
 
 export function buildMetadata({
@@ -16,30 +21,36 @@ export function buildMetadata({
   path = "",
   image,
   noIndex,
+  locale = "en",
 }: SEOInput): Metadata {
-  const url = `${SITE.url}${path}`;
+  const { path: basePath } = stripLocalePrefix(path || "/");
+  const canonicalPath = localePath(locale, basePath);
+  const url = `${SITE.url}${canonicalPath}`;
+  const languages = alternateLanguageUrls(basePath);
   const defaultOg = `${SITE.url}/images/hero_1600x900/phonefarm.icu-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-hero_1600x900.webp`;
   const ogImage = image
     ? image.startsWith("http")
       ? image
       : `${SITE.url}${image}`
     : defaultOg;
-  const fullTitle = `${title} | ${SITE.name}`;
+  const siteName = locale === "zh" ? ZH_SITE.name : SITE.name;
+  const fullTitle = `${title} | ${siteName}`;
 
   return {
     title,
     description,
     alternates: {
       canonical: url,
-      languages: { "en-US": url },
+      languages,
     },
     openGraph: {
       title: fullTitle,
       description,
       url,
-      siteName: SITE.name,
+      siteName,
       images: [{ url: ogImage, width: 1600, height: 900, alt: title }],
-      locale: "en_US",
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      alternateLocale: locale === "zh" ? ["en_US"] : ["zh_CN"],
       type: "website",
     },
     twitter: {

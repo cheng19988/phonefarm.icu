@@ -327,6 +327,15 @@ body {
 .header-signin-btn:hover {
   color: var(--brand);
 }
+.header-lang-btn {
+  @apply inline-flex items-center justify-center min-w-[2.5rem] h-9 px-2.5 rounded-lg text-xs font-semibold tracking-wide border transition-colors;
+  border-color: var(--header-border);
+  color: var(--header-muted);
+}
+.header-lang-btn:hover {
+  color: var(--brand);
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--header-border));
+}
 .header-account-btn {
   @apply inline-flex items-center gap-2 rounded-md font-medium text-sm transition-all;
   color: var(--brand);

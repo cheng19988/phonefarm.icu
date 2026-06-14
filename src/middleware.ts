@@ -46,7 +46,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  const pathname = request.nextUrl.pathname;
+  response.headers.set("x-locale", pathname === "/zh" || pathname.startsWith("/zh/") ? "zh" : "en");
+  return response;
 }
 
 export const config = {

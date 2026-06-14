@@ -4,6 +4,7 @@ import { PriceTag } from "@/components/ui/price-tag";
 import { ReferencePriceNote } from "@/components/ui/reference-price-note";
 import { StockBadge } from "@/components/shared";
 import { SAMPLE_ORDER_NOTE } from "@/lib/pricing-copy";
+import { localePath, type Locale } from "@/lib/i18n/config";
 
 export type ShopProductCardProps = {
   slug: string;
@@ -15,6 +16,7 @@ export type ShopProductCardProps = {
   category: string;
   productLine?: string;
   specHighlights?: string[];
+  locale?: Locale;
 };
 
 export function ShopProductCard({
@@ -27,16 +29,20 @@ export function ShopProductCard({
   category,
   productLine,
   specHighlights = [],
+  locale = "en",
 }: ShopProductCardProps) {
+  const isZh = locale === "zh";
+  const detailHref = localePath(locale, `/products/${slug}`);
+  const quoteHref = `${localePath(locale, "/contact")}?product=${slug}`;
   const outOfStock = stock <= 0;
   const highlight = specHighlights[0];
 
   return (
     <article className="group card card-hover flex flex-col h-full rounded-xl overflow-hidden">
-      <Link href={`/products/${slug}`} className="block relative aspect-[5/4] overflow-hidden bg-white border-b border-[var(--border)]">
+      <Link href={detailHref} className="block relative aspect-[5/4] overflow-hidden bg-white border-b border-[var(--border)]">
         <Image
           src={imageCard}
-          alt={`${name} — phone farm hardware`}
+          alt={isZh ? `${name} — 手机农场硬件` : `${name} — phone farm hardware`}
           fill
           className="object-contain p-4 group-hover:scale-[1.02] transition-transform duration-500"
           sizes="(max-width:768px) 50vw, 33vw"
@@ -49,7 +55,7 @@ export function ShopProductCard({
             <span className="text-[10px] text-[var(--text-subtle)]">· {productLine}</span>
           ) : null}
         </div>
-        <Link href={`/products/${slug}`}>
+        <Link href={detailHref}>
           <h3 className="font-semibold text-lg text-[var(--text)] group-hover:text-[var(--brand)] transition-colors mb-2 line-clamp-2 leading-snug">
             {name}
           </h3>
@@ -68,11 +74,11 @@ export function ShopProductCard({
           <ReferencePriceNote />
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <Link href={`/contact?product=${slug}`} className="btn-accent text-center text-sm py-2.5">
-            Request Quote
+          <Link href={quoteHref} className="btn-accent text-center text-sm py-2.5">
+            {isZh ? "批量询价" : "Request Quote"}
           </Link>
-          <Link href={`/products/${slug}`} className="btn-secondary text-center text-sm py-2.5">
-            Details
+          <Link href={detailHref} className="btn-secondary text-center text-sm py-2.5">
+            {isZh ? "详情" : "Details"}
           </Link>
         </div>
         <form action="/api/orders" method="POST" className="mt-2">
@@ -84,7 +90,7 @@ export function ShopProductCard({
             title={SAMPLE_ORDER_NOTE}
             className="btn-outline-light w-full text-sm py-2 disabled:opacity-50"
           >
-            Sample order
+            {isZh ? "样单采购" : "Sample order"}
           </button>
         </form>
       </div>
